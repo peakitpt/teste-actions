@@ -1,0 +1,44 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="modalClose()"
+  [headerBottomMargin]="false"
+  [width]="600"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxFill fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1 *ngIf="!isSmallScreen(); else smallHeader">{{ 'documents:action.generate_doc_title' | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ 'documents:action.generate_doc_title' | i18next }}
+    </ng-template>
+    <div class="header-buttons" fxLayout="row">
+      <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #body>
+  <div style="margin: 20px 0" *ngIf="!isLoading && form; else loadingTemplate">
+    <div class="body-content" [innerHTML]="'documents:message.generate_doc_body' | i18next"></div>
+  </div>
+</ng-template>
+
+<ng-template #footer>
+  <ng-container>
+    <div class="footer-buttons" fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <ui-button type="flat" [label]="'translation:action.cancel' | i18next" (onClickEvent)="modal.close()"></ui-button>
+      <ui-button *ngIf="!isLoading && form" type="flat" [label]="'translation:action.confirm' | i18next" color="accent" (onClickEvent)="confirm()"></ui-button>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>

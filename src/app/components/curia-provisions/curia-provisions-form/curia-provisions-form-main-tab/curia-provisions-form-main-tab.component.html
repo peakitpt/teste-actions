@@ -1,0 +1,84 @@
+<section id="process-data-section">
+  <h2>{{ modulePath + ':header.provision' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex *ngIf="id" [label]="modulePath + ':model.serie_number' | i18next" [readonly]="true" [control]="form.get('serie_number')"></ui-input>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.document_date' | i18next" [control]="form.get('document_date')"></ui-datepicker>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.expiration_date' | i18next" [control]="form.get('expiration_date')"></ui-datepicker>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true" [required]="true"
+      [label]="modulePath + ':model.provision_type_description' | i18next"
+      [control]="form.get('provision_type_description')"
+      [rightTemplate]="{ template: curiaProvisionTypesRightTemplate, context: { inputName: 'provision_type' } }">
+    </ui-input>
+    <ui-input fxFlex [readonly]="true" [required]="true"
+      [label]="modulePath + ':model.place_description' | i18next"
+      [control]="form.get('place_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'place', queryStringParams: placeQSP } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="45" [readonly]="true"
+      [label]="modulePath + ':model.emolument_description' | i18next"
+      [control]="form.get('emolument_description')"
+      [rightTemplate]="{ template: emolumentsRightTemplate, context: { inputName: 'emolument' } }">
+    </ui-input>
+    <ui-input fxFlex="10" [label]="modulePath + ':model.tax' | i18next" [readonly]="true" [control]="form.get('tax')"></ui-input>
+    <ui-input fxFlex="45" [readonly]="true"
+      [label]="modulePath + ':model.document_entity_description' | i18next"
+      [control]="form.get('document_entity_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'document_entity' } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true"
+      [label]="modulePath + ':model.applicant_entity_description' | i18next"
+      [control]="form.get('applicant_entity_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'applicant_entity', queryStringParams: priestsAndPersonsQSP } }">
+    </ui-input>
+    <ui-input fxFlex [readonly]="true"
+      [label]="modulePath + ':model.applicant_function_description' | i18next"
+      [control]="form.get('applicant_function_description')"
+      [rightTemplate]="{ template: curiaFunctionsRightTemplate, context: { inputName: 'applicant_function' } }">
+    </ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true"
+      [label]="modulePath + ':model.applicant_chapelry_description' | i18next"
+      [control]="form.get('applicant_chapelry_description')"
+      [rightTemplate]="{ template: chapelriesRightTemplate, context: { inputName: 'applicant_chapelry' } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true"
+      [label]="modulePath + ':model.archpriest_description' | i18next"
+      [control]="form.get('archpriest_description')"
+      [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'archpriest', queryStringParams: group3QSP } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true"
+      [label]="modulePath + ':model.subscriber1_description' | i18next"
+      [control]="form.get('subscriber1_description')"
+      [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'subscriber1', queryStringParams: canSignQSP } }">
+    </ui-input>
+    <ui-input fxFlex [readonly]="true"
+      [label]="modulePath + ':model.subscriber2_description' | i18next"
+      [control]="form.get('subscriber2_description')"
+      [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'subscriber2', queryStringParams: canSignQSP } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex
+      [label]="modulePath + ':model.observations' | i18next"
+      [control]="form.get('observations')">
+    </ui-textarea>
+  </div>
+
+</section>

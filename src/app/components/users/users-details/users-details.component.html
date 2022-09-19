@@ -1,0 +1,202 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.name }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model$ | async as model">
+          <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-button [title]="'translation:action.edit' | i18next" type='icon' icon="edit" (onClickEvent)="editModal()"></ui-button>
+        <ui-menu
+          [hoverTitle]="'translation:action.more' | i18next"
+          type="icons"
+          [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <section>
+      <h2>{{ modulePath + ':header.user' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.active' | i18next }}:</div>
+            <ui-icon fxFlex [icon]="model.disabled ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.kyrios_social_access' | i18next }}:</div>
+            <ui-icon fxFlex [icon]="model.kyrios_social_access ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.kyrios_portal_access' | i18next }}:</div>
+            <ui-icon fxFlex [icon]="model.kyrios_portal_access ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_type' | i18next }}:</div>
+            <div fxFlex>{{ 'translation:entity.'+ entityTypes[model.entity.entity_type_id] | i18next }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.name' | i18next }}:</div>
+            <div fxFlex>{{ model.name }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.email' | i18next }}:</div>
+            <div fxFlex>{{ model.email}}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.expiration_date' | i18next }}:</div>
+            <div fxFlex>{{ model.expiration_date | date:"dd/MM/yyyy" }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.sign_in_count' | i18next }}:</div>
+            <div fxFlex>{{ model.sign_in_count }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.current_sign_in_at' | i18next }}:</div>
+            <div fxFlex>{{ model.current_sign_in_at | date:"dd/MM/yyyy"}}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>{{ modulePath + ':header.subscription' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.subscription_description' | i18next }}:</div>
+            <div fxFlex>{{ model.subscription_description }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.subscriptions_limit' | i18next }}:</div>
+            <div fxFlex>{{ model.subscriptions_limit }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.locale' | i18next }}:</div>
+            <div fxFlex>{{ model.locale }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.api_token' | i18next }}:</div>
+            <div fxFlex>{{ model.api_token }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>{{ modulePath + ':header.subscriptions' | i18next }}</h2>
+      <div fxLayout="row">
+        <div *ngIf="modelList" class="section-container" fxLayout="column" fxFill>
+          <ui-table
+            #table
+            [dataSource]="modelList.results"
+            [tableColumns]="subscriptionColumns"
+            [generalFilter]="false"
+            [checkboxes]="false"
+            stickyHeader="true"
+            (columnOrdinationEvent)="columnOrdinationEvent($event)">
+          </ui-table>
+          <kyr-table-pagination>
+            <ui-paginator
+              [length]="modelList.total"
+              [pageIndex]="modelList.page - 1"
+              [pageSize]="limit"
+              (onChangeEvent)="paginationChangeEvent($event)"
+            ></ui-paginator>
+            <ui-menu
+              type="icons"
+              [model]="pagerMenu"
+              xPosition="before"
+              (sendValue)="setLimit($event)"
+            ></ui-menu>
+          </kyr-table-pagination>
+
+          <form *ngIf="form" [formGroup]="form" class="form-body">
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+              <ui-input fxFlex="80" [label]="'subscriptions:model.entity2.complete_relation' | i18next"
+                readonly="true" [required]="true" [control]="form.get('entity2_description')"
+                [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'entity2'} }">
+              </ui-input>
+              <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+              <ui-button *ngIf="!isSaving" style="position: relative; bottom: 10px;"
+                type="flat" icon="save" [label]="'translation:action.add' | i18next"
+                color="accent"
+                (onClickEvent)="onSubmit()">
+              </ui-button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</ng-template>
+
+<!-- TEMPLATES -->
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<ng-template #entityType2CompleteRelationTemplate let-data="data">
+  <div>
+    {{data.entity2.complete_relation}}
+  </div>
+</ng-template>
+
+<ng-template #entityType2NameTemplate let-data="data">
+  <div>
+    {{data.entity2.entity_type.name}}
+  </div>
+</ng-template>
+
+<ng-template #parishionersRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('parishioners-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="parishionersMenuOptions" (sendValue)="parishionerMenuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>

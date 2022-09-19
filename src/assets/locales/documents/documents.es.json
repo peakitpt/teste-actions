@@ -1,0 +1,76 @@
+{
+    "module": {
+        "name_singular": "Documento",
+        "name_many": "Documentos"
+    },
+    "action": {
+        "new": "Nuevo Documento",
+        "edit": "Editar Documento",
+        "delete": "¿Eliminar Documento?",
+        "treasury_doc": {
+            "view_doc": "Ver el documento",
+            "title": "Documento de tesorería",
+            "generate_doc": "Emitir documento",
+            "download_doc": "Descargar documento"
+        },
+        "generate_doc_title": "¿Emitir documento de tesorería?",
+        "identify_finance_repartition": "Identificar la Agencia Tributaria",
+        "model_25": "Modelo IRPF",
+        "model_25_subs_decl": "Sup. Magnético (decl. de sustitución)",
+        "model_25_1st_decl": "Sup. Magnético (1ª decl.)"
+    },
+    "message": {
+        "save_success": "¡Documento guardado con éxito!",
+        "delete_success": "¡Documento eliminado con éxito!",
+        "delete_success_plural": "¡Documentos eliminados con éxito!",
+        "delete_are_you_sure": "¿Estás seguro de que deseas eliminar el Documento con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Estás seguro de que deseas eliminar los <strong>{{ count }}</strong> Documentos seleccionados?",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "generate_doc_body": "¿Realmente quieres emitir el documento de tesorería?",
+        "generate_doc_success": "¡Documento emitido con éxito!",
+        "total": "Total",
+        "points": {
+            "header": "Modelo IRPF",
+            "2nd": "Verifique el listado para quienes no tengan un Número de Contribuyente asociado y, de ser necesario, rectifique los Registros Individuales de IRPF respectivas entidades y vuelva a generar el Modelo IRPF.",
+            "1st": "Los documentos sin un Número de Contribuyente asociado, si lo hubiera, no se incluirán en el Modelo IRPF."
+        }
+    },
+    "model": {
+        "paid": "Pagado",
+        "total_amount": "Total",
+        "name": "Descripción",
+        "serie_number": "Nº de registro",
+        "entity_description": "Entidad",
+        "document_date": "Fecha del documento",
+        "document_line_attributes": {
+            "price_value": "Valor",
+            "emolument_description": "Emolumento"
+        },
+        "canceled": "Anulado",
+        "document_date_end": "Fecha del documento (Fin)",
+        "document_date_start": "Fecha del documento (inicio)",
+        "affects_legal_tax_reports": "Afecta al Modelo IRPF",
+        "has_parochial_rights": "Derechos parroquiales",
+        "taxpayer": "Nº de contribuyente",
+        "entity__taxpayer": "Nº de Contribuyente",
+        "documents_type_serie_id": "Serie",
+        "currency": "Moneda",
+        "waiting": "Pendiente",
+        "price_value": "Valor",
+        "emolument_description": "Emolumento",
+        "description": "Descripción",
+        "document_to_generate_serie": "Serie",
+        "documents_type_description": "Tipo",
+        "document": "Documento",
+        "partially_paid": "Pagado Parcialmente"
+    },
+    "placeholder": {
+        "has_parochial_rights": "Derechos parroquiales"
+    },
+    "header": {
+        "see_document": "Consultar el documento",
+        "documents": "Documentos",
+        "resume": "Resumen"
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "module": {
+        "name_singular": "User",
+        "name_many": "Users"
+    },
+    "action": {
+        "addUser": "Add User",
+        "new_user": "New User",
+        "edit": "Edit User",
+        "new": "New User",
+        "delete": "Delete User"
+    },
+    "message": {
+        "save_success": "User successfully saved!",
+        "delete_success": "User successfully deleted!",
+        "delete_success_plural": "Users successfully deleted!",
+        "delete_are_you_sure": "Are you sure that you want to delete the User with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure that you want to delete all the <strong>{{ count }}</strong> selected Users?",
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected"
+    },
+    "model": {
+        "name": "Name",
+        "active": "Active",
+        "entity_type": "Entity type",
+        "email": "E-mail",
+        "expiration_date": "Expiration Date",
+        "current_sign_in_at": "Last login",
+        "approved_at": "Approved at",
+        "is_subscription_admin": "Subscription Admin",
+        "locale": "Language",
+        "accounting_attributes": "Accounting",
+        "admin_attributes": "Admin",
+        "archive_attributes": "Archive",
+        "catholic_directory_attributes": "Catholic Directory",
+        "cms_attributes": "CMS",
+        "dash_calendar_attributes": "Dash Calendar",
+        "dms_attributes": "DMS",
+        "newsletter_attributes": "Newsletter",
+        "reporting_attributes": "Reporting",
+        "sacraments_attributes": "Sacraments",
+        "settings_attributes": "Settings",
+        "subscription_admin_attributes": "Subscription Admin",
+        "treasury_attributes": "Treasury",
+        "accruals_attributes": "Accruals",
+        "catechism_attributes": "Catechesis",
+        "places_attributes": "Places",
+        "processes_attributes": "Processes",
+        "permission": "Permission",
+        "access_only_to_own_catechisms": "Access only to catechetical groups where you are a catechist"
+    },
+    "header": {
+        "activation": "Activation",
+        "subscription-user": "Subscription User",
+        "attributes": "Attributes",
+        "view_description": "View",
+        "can_read": "Read",
+        "can_create": "Create",
+        "can_edit": "Edit",
+        "can_delete": "Delete"
+    },
+    "tabs": {
+        "subscription-users": "Subscription Users",
+        "permissions-modules": "Permissions Modules",
+        "subscription_users": "Subscription Users",
+        "permissions_modules": "Module permissions"
+    }
+}

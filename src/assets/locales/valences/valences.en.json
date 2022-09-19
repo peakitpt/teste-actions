@@ -1,0 +1,25 @@
+{
+    "message": {
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "delete_are_you_sure": "Are you sure you want to delete Valency \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Selected Valency?",
+        "send_success": "Valency successfully sent!",
+        "delete_success": "Valency successfully deleted!",
+        "delete_success_plural": "Valency successfully deleted!",
+        "save_success": "Valency successfully saved!"
+    },
+    "model": {
+        "name": "Name",
+        "validated": "Validated"
+    },
+    "module": {
+        "name_many": "valences",
+        "name_singular": "Valency"
+    },
+    "action": {
+        "delete": "Delete Valency?",
+        "edit": "Edit Valency",
+        "new": "New Valency"
+    }
+}

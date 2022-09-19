@@ -1,0 +1,248 @@
+<ui-toolbar
+  class="kyrios-theme-light"
+  [title]="environment.appName"
+  [dataModel]="topbarModel"
+  rowColor="primary"
+  [titleTemplate]="toolbarTitleTemplate"
+></ui-toolbar>
+
+<ui-sidenav-container
+  class="kyrios-theme-light"
+  [autosize]="false"
+  [hasBackdrop]="sidenavHasBackDrop"
+  fixedInViewport="false"
+  [startMode]="sidenavStartMode"
+  contentRole="region"
+  [startOpened]="sideNavOpen"
+  startFixedBottomGap="0"
+  fullHeight="91%"
+  >
+  <div start class="sidenav-start">
+    <div fxLayout="column" fxLayoutAlign="start none" fxLayoutGap="10px" fxFill>
+
+      <div *ngIf="(sidenavData$ | async)" fxHide.gt-xs="true" fxLayout="column" fxLayoutAlign="center center"  class="mat-title">
+        <span fxFlexOffset="5">
+          {{  sidenavData.pageTitle  }}
+        </span>
+      </div>
+
+      <div fxHide.gt-xs="true" class="sidenav-separator">
+        <ui-divider></ui-divider>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="none">
+        <ng-container *ngIf="(sidenavData$ | async) && sidenavData.mainButton">
+          <ui-button class="main-button" [label]="sidenavData.mainButton" (onClickEvent)="navigateTo(sidenavData.mainButtonUrl)" type="chip_button" icon="add"></ui-button>
+        </ng-container>
+      </div>
+
+      <div fxLayout="column" fxFlex="80" fxLayoutAlign="none" class="sidenav-buttons-column">
+
+        <ng-container *ngIf="(sidenavData$ | async)">
+          <ng-container *ngFor="let sideOption of sidenavData.sidenavButtonStructure">
+            <ng-container *ngIf="sideOption.type === 'button'">
+              <div class="sidenav-button-container">
+                <ui-sidenav-button
+                  [startIcon]="sideOption.icon"
+                  [middleSection]="sideOption.title"
+                  [finalSection]="sideOption.end"
+                  [color]="sideOption.color"
+                  [hoverColor]="sideOption.hoverColor"
+                  [backgroundColor]="sideOption.backgroundColor"
+                  [hoverBackgroundColor]="sideOption.hoverBackgroundColor"
+                  [disable]="sideOption.disable"
+                  [active]="sideOption.active"
+                  (onClickEvent)="sidenavButtonClick(sideOption)">
+                </ui-sidenav-button>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="sideOption.type === 'separator'">
+              <div class="sidenav-separator">
+                <ui-divider></ui-divider>
+              </div>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+
+      <ui-divider></ui-divider>
+
+      <div class="mat-body" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="10px" class="version-container-line">
+        <div fxLayoutAlign="center center">
+          <img *ngIf="currentTheme === 'kyrios-theme-light'" [src]="'assets/' + environment.appName + '_chms_logo.png'" width="90" height="30">
+          <img *ngIf="currentTheme === 'kyrios-theme-dark'"  [src]="'assets/' + environment.appName + '_chms_logo__white.png'" width="90" height="30">
+        </div>
+        <a class="version-url" href="https://support.kyrioschms.com/pt/changelog/">v{{ currentVersion }}</a>
+      </div>
+
+    </div>
+  </div>
+  <div content>
+
+    <div fxLayout="row" fxLayoutAlign="end start" class="subscriptions-container">
+      <kyr-subscriptions-menu></kyr-subscriptions-menu>
+    </div>
+
+    <div class="subheader-container"></div>
+
+    <div class="router-outlet-container">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</ui-sidenav-container>
+
+<ng-template #toolbarTitleTemplate>
+  <div fxLayout="row" fxLayoutAlign="start center" fxFlex.lt-md="100" fxFlex.gt-sm="0 1 880px" fxFlex.gt-md="0 1 88">
+
+    <div fxLayout="row" fxLayoutAlign="none center" fxFlex.lt-md="91" fxFlex.gt-sm="309px">
+      <div>
+        <ui-button type="icon" icon="menu" color="white" (click)="toggleSideNav()"></ui-button>
+      </div>
+      <span *ngIf="(sidenavData$ | async)" fxHide.lt-sm="true">
+        {{  sidenavData.pageTitle  }}
+      </span>
+    </div>
+
+    <div *ngIf="innerWidth > 959" fxHide.lt-md="true" fxFlex fxLayout="column" fxFlexAlign="center" class="topbar-search-container">
+      <kyr-advanced-search></kyr-advanced-search>
+    </div>
+
+  </div>
+</ng-template>
+
+<ng-template #profileTemplate>
+   <ui-menu
+    class="right-icon"
+    type="hidden"
+    mainIcon="account_circle"
+    [menuTemplate]="innerProfileTemplate"
+    [hoverTitle]="'translation:profile.title' | i18next"
+  ></ui-menu>
+</ng-template>
+
+<ng-template #innerProfileTemplate>
+  <div fxLayout="column" class="display-contents" style="width: 280px; max-height: 600px;">
+    <div fxFlex="50" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+      <div>
+        <img style="border-radius: 50%; width: 100px; height: 100px; background-color: lightgray;" src="assets/icon-user-default.png">
+      </div>
+      <div>
+        {{ userFullName }}
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <ui-button type="icon" icon="vpn_key" [title]="'translation:profile.change_password' | i18next" (click)="onChangePassword()"></ui-button>
+        <ui-button type="icon" [icon]="componentCssClass === 'kyrios-theme-light' ? 'bedtime' : 'brightness_5'" [title]="'translation:profile.change_theme' | i18next" (click)="onSetTheme(componentCssClass)"></ui-button>
+        <ui-select
+          [title]="'translation:profile.change_language' | i18next"
+          class="right-icon language-selector ui-select-country"
+          [appearance]="'none'"
+          [control]="languageForm"
+          [flags]="true"
+          [squared]="false"
+          [showDescription]="false"
+          [countries]="countryList">
+        </ui-select>
+      </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="start stretch" style="width: 305px;">
+
+      <div *ngIf="+currentSubscriptionType !== 13 && canEditEntity" fxLayout="column" fxLayoutAlign="start stretch">
+        <div style="width: 100%;">
+          <ui-divider></ui-divider>
+        </div>
+        <div class="module-line" fxLayout="row" fxLayoutGap="10px" (click)="editEntity()">
+          <div class="icon-container" fxFlex="50px" fxLayout="row" fxLayoutAlign="center center">
+            <ui-icon [icon]="'account_balance'"></ui-icon>
+          </div>
+          <div class="module-text-container" fxLayout="column" fxLayoutAlign="center start">
+            <b>
+              {{ 'translation:action.edit' | i18next }}
+              {{ 'translation:entity.' + entityDictionary[currentSubscriptionType] | i18next }}
+            </b>
+            <span>
+              {{ 'translation:profile.subheader.data_from' | i18next: {entity: 'translation:entity.' + entityDictionary[currentSubscriptionType] | i18next }  }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="currentUser?.entity.entity_priest_id" fxLayout="column" fxLayoutAlign="start stretch">
+        <div style="width: 100%;">
+          <ui-divider></ui-divider>
+        </div>
+        <div class="module-line" fxLayout="row" fxLayoutGap="10px" (click)="editPriest(currentUser?.entity.entity_priest_id)">
+          <div class="icon-container" fxFlex="50px" fxLayout="row" fxLayoutAlign="center center">
+            <ui-icon [icon]="'person_search'"></ui-icon>
+          </div>
+          <div class="module-text-container" fxLayout="column" fxLayoutAlign="center start">
+            <b>
+              {{ userFullName }}
+            </b>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="column" fxLayoutAlign="start stretch">
+        <div style="width: 100%;">
+          <ui-divider></ui-divider>
+        </div>
+        <div class="module-line" fxLayout="row" fxLayoutGap="10px" (click)="goToSettings()">
+          <div class="icon-container" fxFlex="50px" fxLayout="row" fxLayoutAlign="center center">
+            <ui-icon [icon]="'settings'"></ui-icon>
+          </div>
+          <div class="module-text-container" fxLayout="column" fxLayoutAlign="center start">
+            <b>{{ 'translation:apps.settings' | i18next }}</b>
+            <span>
+              {{ 'translation:profile.subheader.settings_from_subscription' | i18next }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="width: 100%;">
+      <ui-divider></ui-divider>
+    </div>
+
+    <div fxFlex fxLayout="row" fxLayoutAlign="center center">
+      <ui-button style="margin: 10px 0px 5px 0px;" [label]="'translation:profile.logout' | i18next" type="raised" color="primary" (click)="logout()"></ui-button>
+    </div>
+
+  </div>
+</ng-template>
+
+<ng-template #optionsGridTemplate>
+  <div class="right-icon">
+    <kyr-modules-menu></kyr-modules-menu>
+  </div>
+</ng-template>
+
+<ng-template #messagesTemplate>
+  <div class="right-icon">
+    <kyr-messages-menu></kyr-messages-menu>
+  </div>
+</ng-template>
+
+<ng-template #helpTemplate>
+  <div class="right-icon">
+    <ui-menu
+      type="icons"
+      mainIcon="help"
+      [model]="helpMenuModel"
+      [hoverTitle]="'translation:help.title' | i18next"
+      (sendValue)="helpMenuClick($event)"
+    ></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #smallSearchTemplate>
+  <div *ngIf="innerWidth <= 959" class="right-icon" fxHide.gt-sm="true">
+    <kyr-advanced-search [largeSize]="false"></kyr-advanced-search>
+  </div>
+</ng-template>
+
+<kyr-change-password #changePasswordModal></kyr-change-password>

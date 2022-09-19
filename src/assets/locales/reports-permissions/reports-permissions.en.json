@@ -1,0 +1,26 @@
+{
+  "module": {
+    "name_singular": "Report Permission",
+    "name_many": "Reports Permissions"
+  },
+  "action": {
+    "addUser": "Add Report Permission",
+    "new": "New Report Permission",
+    "edit": "Edit Report Permission",
+    "delete": "Delete Report Permission"
+  },
+  "message": {
+    "save_success": "Report Permission successfully saved!",
+    "delete_success": "Report Permission successfully deleted!",
+    "delete_success_plural": "Reports Permissions successfully deleted!",
+    "delete_are_you_sure": "Are you sure that you want to delete the Report Permission with the name \"<strong>{{ description }}</strong>\"?",
+    "delete_are_you_sure_plural": "Are you sure that you want to delete all the <strong>{{ count }}</strong> selected Reports Permissions?",
+    "selected": "{{ count }} selected",
+    "selected_plural": "{{ count }} selected"
+  },
+  "model": {
+    "entity_name": "Entity Name",
+    "reporting_name": "Report Name",
+    "can_write": "Can write"
+  }
+}

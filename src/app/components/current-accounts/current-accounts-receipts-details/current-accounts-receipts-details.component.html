@@ -1,0 +1,198 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.entity_description }}</ng-container>
+    </h1>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model$ | async as model">
+          <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          color="accent"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+      </ng-container>
+      <ui-button type='icon' icon="close" disableRipple="true" disableFocusRipple="true" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <ui-tabs [tabs]="detailsTabs"></ui-tabs>
+  </ng-container>
+</ng-template>
+
+<ng-template #mainTab>
+  <section>
+    <h2> {{ modulePath + ':header.resume' | i18next }} </h2>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.serie_number">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.serie_number' | i18next }}:</div>
+          <div fxFlex>{{ model.serie_number }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_description' | i18next }}:</div>
+          <div fxFlex>{{ model.entity_description }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.receipt_date">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.receipt_date' | i18next }}:</div>
+          <div fxFlex>{{ model.receipt_date | date:('translation:format.date' | i18next) }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.total_amount">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.total_amount' | i18next }}:</div>
+          <div fxFlex>{{ model.total_amount }} {{ model.currency }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="scrollable-table">
+      <table class="mat-table" id="catechists-table">
+        <tr class="mat-header-row">
+          <th class="mat-header-cell col1">{{ modulePath + ':model.current_accounts_lines.document_serie_number' | i18next }}</th>
+          <th class="mat-header-cell col1">{{ modulePath + ':model.current_accounts_lines.document_date' | i18next }}</th>
+          <th class="mat-header-cell col1">{{ modulePath + ':model.current_accounts_lines.total_amount' | i18next }}</th>
+          <th class="mat-header-cell col1">{{ modulePath + ':model.current_accounts_lines.received_amount' | i18next }}</th>
+          <th class="mat-header-cell col1">{{ modulePath + ':model.current_accounts_lines.pending_amount' | i18next }}</th>
+          <th class="mat-header-cell col1"></th>
+        </tr>
+        <tr class="mat-row uiKyriosTableRow" *ngFor="let accountLine of currentAccountsLinesSorted">
+            <td class="mat-cell col1">
+              {{ accountLine.document_serie_number }}
+            </td>
+            <td class="mat-cell col1">
+              {{ accountLine.document_date | date:('translation:format.date' | i18next) }}
+            </td>
+            <td class="mat-cell col1">
+              {{ accountLine.total_amount }}
+            </td>
+            <td class="mat-cell col1">
+              {{ accountLine.received_amount }}
+            </td>
+            <td class="mat-cell col1">
+              {{ accountLine.pending_amount }}
+            </td>
+            <td class="mat-cell col1">
+              <ui-button (onClickEvent)="openDocument(accountLine.document_id)" icon="visibility" type="icon"></ui-button>
+            </td>
+        </tr>
+      </table>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+      <div>
+        <b>{{ modulePath + ':message.total' | i18next }}:</b>
+      </div>
+      <div>
+        <b>{{ calculateTotalAmountToReceive(model.current_accounts_receipts_lines) }}</b>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.payment_type_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.payment_type_description' | i18next }}:</div>
+          <div fxFlex>{{ model.payment_type_description }}</div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.treasury_location">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.treasury_location' | i18next }}:</div>
+          <div fxFlex>{{ model.treasury_location }}</div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.observations">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.observations' | i18next }}:</div>
+          <div fxFlex>{{ model.observations }}</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #attachmentsTab>
+  <section id="attachments-section">
+    <div fxLayout="column" class="tab-content" fxLayoutGap="10px">
+      <ui-input fxFlex
+        (change)="addAttachment($event)"
+        [label]="'translation:fileupload.click_to_select' | i18next"
+        type="file" accept=""
+        [readonly]="true"
+        [control]="attachmentFormControlPlaceholder"></ui-input>
+      <ui-table
+        #attachmentsTable
+        [checkboxes]="false"
+        [dataSource]="attachmentsDS"
+        [tableColumns]="attachmentsColumns"
+        stickyHeader="true">
+      </ui-table>
+      <div fxFlex fxLayoutAlign="end">
+        <ui-button
+          type="flat" icon="save"
+          [label]="(modulePath +':action.save_attachments') | i18next" color="accent"
+          (onClickEvent)="onSubmit()">
+        </ui-button>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<!-- ATTACHMENTS TABLE TEMPLATES -->
+<ng-template #deleteAttachmentTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index, attachmentsFormArray, attachmentsDS)"></ui-button>
+</ng-template>
+
+<ng-template #attachmentTemplate let-index="index">
+  <ng-container *ngIf="attachmentsFormArray.controls[index].get('attachment').value">
+    <a [href]="getAttachmentUrl(attachmentsFormArray.controls[index])">{{ attachmentsFormArray.controls[index].get('attachment_name').value }}</a>
+  </ng-container>
+
+  <ng-container *ngIf="!attachmentsFormArray.controls[index].get('attachment').value">
+    {{ attachmentsFormArray.controls[index].get('attachment_name').value }}
+  </ng-container>
+</ng-template>
+
+<ng-template #attachmentDescriptionTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" [control]="attachmentsFormArray.controls[index].get('description')"></ui-input>
+</ng-template>

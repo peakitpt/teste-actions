@@ -1,0 +1,326 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="onModalClose()"
+  [disableClose]="true"
+  [headerBottomMargin]="false"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu [hoverTitle]="'translation:action.more' | i18next" *ngIf="headerOptionsMenu.length && !isQuickInsertion" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+
+    <ui-button
+      *ngIf="!isQuickInsertion"
+      type="flat" icon="save"
+      [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true">
+    </ui-button>
+
+    <ui-button
+      type="flat" icon="save"
+      [label]="(isQuickInsertion ? 'translation:action.create_insert' : 'translation:action.save') | i18next"
+      color="accent" (onClickEvent)="onSubmit()"
+      [disable]="isSaving">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body" (keydown.enter)="$event.preventDefault()">
+    <ui-tabs [tabs]="formTabs"></ui-tabs>
+  </form>
+</ng-template>
+
+
+<!-- TABS -->
+<ng-template #personalDataTabTemplate>
+  <kyr-persons-form-personal-data-tab
+    [modulePath]="modulePath"
+    [id]="id"
+    [form]="form"
+    [todayDate]="todayDate"
+    [ageControl]="ageControl"
+    [currentImage]="currentImage"
+    [subs]="subs"
+    [leftTemplate]="leftTemplate"
+    [countriesRightTemplate]="countriesRightTemplate"
+    [chapelriesRightTemplate]="chapelriesRightTemplate"
+    [worshipplacesRightTemplate]="worshipplacesRightTemplate"
+    [personsRightTemplate]="personsRightTemplate"
+  ></kyr-persons-form-personal-data-tab>
+</ng-template>
+
+<ng-template #categoriesTabTemplate>
+  <kyr-persons-form-categories-tab
+    [modulePath]="modulePath"
+    [form]="form"
+  ></kyr-persons-form-categories-tab>
+</ng-template>
+
+<ng-template #curiaTabTemplate>
+  <kyr-persons-form-curia-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [appointmentsFormArray]="appointmentsFormArray"
+    [appointmentsDS]="appointmentsDS"
+    [appointmentsColumns]="appointmentsColumns"
+  ></kyr-persons-form-curia-tab>
+</ng-template>
+
+<ng-template #christianLifeTabTemplate>
+  <kyr-persons-form-christian-life-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [todayDate]="todayDate"
+    [leftTemplate]="leftTemplate"
+    [worshipplacesRightTemplate]="worshipplacesRightTemplate"
+  ></kyr-persons-form-christian-life-tab>
+</ng-template>
+
+<ng-template #professionalLifeTabTemplate>
+  <kyr-persons-form-professional-life-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [leftTemplate]="leftTemplate"
+    [countriesRightTemplate]="countriesRightTemplate"
+  ></kyr-persons-form-professional-life-tab>
+</ng-template>
+
+<ng-template #catechistTabTemplate>
+  <kyr-persons-form-catechist-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [todayDate]="todayDate"
+  ></kyr-persons-form-catechist-tab>
+</ng-template>
+
+<ng-template #mecTabTemplate>
+  <kyr-persons-form-mec-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [todayDate]="todayDate"
+    [leftTemplate]="leftTemplate"
+    [worshipplacesRightTemplate]="worshipplacesRightTemplate"
+    [mecRenewalsFormArray]="mecRenewalsFormArray"
+    [mecRenewalsDS]="mecRenewalsDS"
+    [mecRenewalsColumns]="mecRenewalsColumns"
+  ></kyr-persons-form-mec-tab>
+</ng-template>
+
+<ng-template #elderSickTabTemplate>
+  <kyr-persons-form-elder-sick-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [todayDate]="todayDate"
+    [leftTemplate]="leftTemplate"
+    [priestsRightTemplate]="priestsRightTemplate"
+  ></kyr-persons-form-elder-sick-tab>
+</ng-template>
+
+<ng-template #groupsTabTemplate>
+  <kyr-persons-form-groups-tab
+    [modulePath]="modulePath"
+    [entityPersonId]="id"
+  ></kyr-persons-form-groups-tab>
+</ng-template>
+
+<ng-template #reportsTabTemplate>
+  <kyr-persons-form-reports-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [leftTemplate]="leftTemplate"
+    [worshipplacesRightTemplate]="worshipplacesRightTemplate"
+  ></kyr-persons-form-reports-tab>
+</ng-template>
+<!-- END TABS -->
+
+
+
+<!-- TEMPLATES -->
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #leftTemplate let-icon="icon">
+  <div style="margin-right: 2px;">
+    <ui-icon class="input-icon" [icon]="icon"></ui-icon>
+  </div>
+</ng-template>
+
+<ng-template #countriesRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('countries-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="countriesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #chapelriesRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('chapelries-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="chapelriesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #worshipplacesRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('worshipplaces-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="worshipplacesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #personsRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('persons-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="personsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #priestsRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('priests-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="priestsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #deleteMecRenewalsTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index, mecRenewalsFormArray, mecRenewalsDS)"></ui-button>
+</ng-template>
+
+<ng-template #mecRenewalDateTemplate let-index="index">
+  <ui-datepicker startView="multi-year" customClass="remove-bottom-padding" [required]="true" [placeholder]="modulePath + ':model.entity.entity_mec.entities_mecs_lines.renewal_date' | i18next" [control]="mecRenewalsFormArray.controls[index].get('renewal_date')" [maxDate]="todayDate"></ui-datepicker>
+</ng-template>
+
+<ng-template #deleteAppointmentsTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index, appointmentsFormArray, appointmentsDS)"></ui-button>
+</ng-template>
+
+<ng-template #appointmentStartDateTemplate let-index="index">
+  <ui-datepicker startView="multi-year" customClass="remove-bottom-padding" [required]="true"
+    [placeholder]="modulePath + ':model.entity_person_appointments.start_date' | i18next"
+    [control]="appointmentsFormArray.controls[index].get('start_date')"></ui-datepicker>
+</ng-template>
+
+<ng-template #appointmentEndDateTemplate let-index="index">
+  <ui-datepicker startView="multi-year" customClass="remove-bottom-padding" [placeholder]="modulePath + ':model.entity_person_appointments.end_date' | i18next"
+    [control]="appointmentsFormArray.controls[index].get('end_date')"></ui-datepicker>
+</ng-template>
+
+<ng-template #appointmentCuriaFunctionTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" [required]="true" [readonly]="true"
+    [placeholder]="modulePath + ':model.entity_person_appointments.curia_function_description' | i18next"
+    [control]="appointmentsFormArray.controls[index].get('curia_function_description')"
+    [rightTemplate]="{ template: appointmentCuriaFunctionRightTemplate, context: { inputName: 'entity_person_appointments.curia_function#' + index, index: index } }"></ui-input>
+
+  <ng-template #appointmentCuriaFunctionRightTemplate let-inputName="inputName">
+    <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+      <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('curia-functions-modal', inputName)"></ui-button>
+      <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="curiaFunctionsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+    </div>
+  </ng-template>
+</ng-template>
+
+<ng-template #appointmentPlaceTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" [required]="true" [readonly]="true"
+    [placeholder]="modulePath + ':model.entity_person_appointments.appointment_place_description' | i18next"
+    [control]="appointmentsFormArray.controls[index].get('appointment_place_description')"
+    [rightTemplate]="{ template: appointmentPlaceRightTemplate, context: { inputName: 'entity_person_appointments.appointment_place#' + index, index: index } }"></ui-input>
+
+  <ng-template #appointmentPlaceRightTemplate let-inputName="inputName">
+    <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+      <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('places-modal', inputName)"></ui-button>
+      <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="placesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+    </div>
+  </ng-template>
+</ng-template>
+
+<ng-template #appointmentRepresentingTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" [required]="true" [readonly]="true"
+    [placeholder]="modulePath + ':model.entity_person_appointments.representing_description' | i18next"
+    [control]="appointmentsFormArray.controls[index].get('representing_description')"
+    [rightTemplate]="{ template: appointmentRepresentingRightTemplate, context: { inputName: 'entity_person_appointments.representing#' + index, index: index } }"></ui-input>
+
+  <ng-template #appointmentRepresentingRightTemplate let-inputName="inputName">
+    <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+      <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('places-modal', inputName)"></ui-button>
+      <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="placesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+    </div>
+  </ng-template>
+</ng-template>
+
+<ng-template #appointmentDescriptionTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" [placeholder]="modulePath + ':model.entity_person_appointments.description' | i18next"  [control]="appointmentsFormArray.controls[index].get('description')"></ui-input>
+</ng-template>
+<!-- TEMPLATES END -->
+
+
+<!-- DUPLICATE CONFIRMATION MODAL -->
+<ui-dialog #duplicateConfirmationModal
+  [inputHeaderTemplate]="duplicateHeader"
+  [inputBodyTemplate]="duplicateBody"
+  [inputFooterTemplate]="duplicateFooter"
+  [headerBottomMargin]="false"
+  (modalClosed)="onDuplicateConfirmationModalClose()"
+  [width]="600"
+>
+</ui-dialog>
+
+<ng-template #duplicateHeader>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + ':message.are_you_sure_you_want_to_save' | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':message.are_you_sure_you_want_to_save' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ui-button type="icon" icon="close" (onClickEvent)="duplicateConfirmationModalClose()"></ui-button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #duplicateBody>
+  <div style="margin: 20px 0">
+    <div class="body-content" [innerHTML]="duplicateConfirmationModalMessage"></div>
+  </div>
+</ng-template>
+
+<ng-template #duplicateFooter>
+  <div class="footer-buttons" fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" [label]="'translation:action.cancel' | i18next" (onClickEvent)="duplicateConfirmationModalClose()"></ui-button>
+    <ui-button type="flat" [label]="'translation:action.save' | i18next" color="accent" (onClickEvent)="duplicateConfirmationModalClose(true)"></ui-button>
+  </div>
+</ng-template>
+<!-- DUPLICATE CONFIRMATION MODAL END -->

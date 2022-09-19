@@ -1,0 +1,114 @@
+{
+    "options": {
+        "not_available": "N/D",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "header": {
+        "contacts": "Contact",
+        "address": "Adress",
+        "ecclesial_formations": "Ecclesial Formations",
+        "renewal": "Renewals",
+        "formations": "Formation",
+        "ecclesial_activities": "Church activities",
+        "identi_documents": "Identification documents"
+    },
+    "message": {
+        "delete_success": "EMC successfully deleted!",
+        "delete_success_plural": "EMCs successfully deleted!",
+        "delete_are_you_sure": "Are you sure want to delete the EMC with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure want to eliminate the  <strong>{{ count }}</strong> EMCs selected?",
+        "save_success": "EMC saved successfully!",
+        "error_blank_mecs_formations": "Please, fill in all the required fields of the Formations table",
+        "error_blank_mecs_lines": "Please, complete all fields in the Renewal table",
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected"
+    },
+    "model": {
+        "magnetic_number": "Magnetic Number",
+        "congregation": "Congregation",
+        "ecclesial_formation_biblical_courses": "Bible courses",
+        "ecclesial_activities_association_of_faithful_direction_member": "Member of the board of an association of the faithful",
+        "ecclesial_activities_other_description": "Another ecclesial activity",
+        "ecclesial_activities_economic_council_member": "Member of the economic council",
+        "entity": {
+            "longitude": "Longitud",
+            "entity_acolyte": {
+                "is_acolyte": "Acolyte"
+            },
+            "residence_chapelry_description": "Residence parish",
+            "place": "Locality",
+            "county": "County",
+            "email": "E-mail",
+            "entity_reader": {
+                "is_reader": "Reader"
+            },
+            "entity_person": {
+                "serie_number": "Registration number",
+                "ident_document_emission_date": "Date of issue",
+                "ident_document_validity_date": "Expiration date",
+                "ident_document_emitted_by": "Emitted by",
+                "birth_date": "Date of birth",
+                "qualifications": "Abilities",
+                "professional_profession_description": "Profession",
+                "comments": "Comments",
+                "ident_document_type": "Identification type",
+                "ident_document_number": "Identification number",
+                "is_parishioner": "Parishioner",
+                "sex": "Genre",
+                "age": "Age"
+            },
+            "name": "Name",
+            "civil_status": "Marital status",
+            "address": "Adress",
+            "door_number": "Number",
+            "phone": "Cell Phone",
+            "fax": "Fax",
+            "is_public_profile": "Public",
+            "entity_catechist": {
+                "catechist": "Catechist"
+            },
+            "entity_birth_chapelry_description": "Birth parish",
+            "postal_code": "Zip code",
+            "latitude": "Latitud",
+            "mobilephone": "Mobile Phone",
+            "url": "Web Page"
+        },
+        "entities_mecs_lines": {
+            "renewal_date": "Date"
+        },
+        "mec": "Active",
+        "mec_number": "Nº EMC",
+        "entities_mecs_formations": {
+            "formation_description": "Formation",
+            "formation_date": "Date"
+        },
+        "formation_courses": "Formation courses",
+        "institution_time": "How many years have you been",
+        "ecclesial_formation_other_description": "Another ecclesial formation",
+        "ecclesial_activities_caretaker": "Keeper",
+        "ecclesial_activities_other": "Other",
+        "institution_center_worshipplace_description": "Place of worship",
+        "is_coordinator": "Coordinator",
+        "ecclesial_formation_theological_pastorails_courses": "Theological-pastoral courses",
+        "ecclesial_formation_other": "Other",
+        "ecclesial_activities_singer": "Singer",
+        "institution_date": "Nomination date"
+    },
+    "tabs": {
+        "mec": "EMC",
+        "formations": "Renewals and formations",
+        "personal-data": "Personal data",
+        "categories": "Categories"
+    },
+    "module": {
+        "name_singular": "EMC",
+        "name_many": "EMCs"
+    },
+    "action": {
+        "new": "New EMC",
+        "edit": "Edit EMC",
+        "delete": "Delete EMC?",
+        "generate_card": "Create card"
+    }
+}

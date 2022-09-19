@@ -1,0 +1,84 @@
+{
+  "module": {
+    "name_singular": "Documento",
+    "name_many": "Documentos"
+  },
+  "action": {
+    "new": "Novo Documento",
+    "edit": "Editar Documento",
+    "delete": "Eliminar Documento?",
+    "generate_doc_title": "Emitir documento de tesouraria?",
+    "model_25": "Modelo 25",
+    "identify_finance_repartition": "Identificar Repartição de Finanças",
+    "treasury_doc": {
+      "title": "Documento de tesouraria",
+      "generate_doc": "Emitir documento",
+      "view_doc": "Ver documento",
+      "download_doc": "Transferir documento"
+    },
+    "model_25_1st_decl": "Sup. Magnético (1ª decl.)",
+    "model_25_subs_decl": "Sup. Magnético (decl. de substituição)"
+  },
+  "tabs": {
+    "document": "Documento",
+    "attachments": "Anexos"
+  },
+  "message": {
+    "save_success": "Documento guardado com sucesso!",
+    "delete_success": "Documento apagado com sucesso!",
+    "delete_success_plural": "Documentos apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Documento com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Documentos selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados",
+    "generate_doc_body": "Deseja realmente emitir o documento de tesouraria?",
+    "generate_doc_success": "Documento emitido com sucesso!",
+    "total": "Total",
+    "points": {
+      "header": "Modelo 25",
+      "1st": "Os documentos sem Nº de Contribuinte associado, caso existam, não serão incluídos no Modelo 25.",
+      "2nd": "Verifique na listagem quais os que não têm Nº de Contribuinte associado e, se necessário, retifique as Fichas Individuais das entidades respetivas e volte a gerar o Modelo 25."
+    }
+  },
+  "model": {
+    "document": "Documento",
+    "document_date": "Data do documento",
+    "entity_description": "Entidade",
+    "serie_number": "Nº de registo",
+    "name": "Descrição",
+    "total_amount": "Total",
+    "paid": "Pago",
+    "partially_paid": "Parcialmente Pago",
+    "documents_type_description": "Tipo",
+    "document_to_generate_serie": "Série",
+    "description": "Descrição",
+    "emolument_description": "Emolumento",
+    "price_value": "Valor",
+    "waiting": "Pendente",
+    "currency": "Moeda",
+    "documents_type_serie_id": "Série",
+    "entity__taxpayer": "Nº de Contribuinte",
+    "taxpayer": "Nº Contribuinte",
+    "has_parochial_rights": "Direitos paroquiais",
+    "affects_legal_tax_reports": "Afeta Modelo 25",
+    "document_date_start": "Data do documento (Início)",
+    "document_date_end": "Data do documento (Fim)",
+    "canceled": "Cancelado",
+    "document_line_attributes": {
+      "emolument_description": "Emolumento",
+      "price_value": "Valor"
+    },
+    "attachment": "Anexo",
+    "limits": "Limites",
+    "total_amount_min": "Mín",
+    "total_amount_max": "Máx"
+  },
+  "header": {
+    "resume": "Resumo",
+    "documents": "Documentos",
+    "see_document": "Ver Documento"
+  },
+  "placeholder": {
+    "has_parochial_rights": "Direitos paroquiais"
+  }
+}

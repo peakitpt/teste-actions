@@ -1,0 +1,31 @@
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+  <section fxFlex id="godfather-section">
+    <h2>{{ modulePath + ':header.godfather' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity_godfather_description' | i18next"
+        [control]="form.get('entity_godfather_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }"
+        [rightTemplate]="{ template: personsRightTemplate, context: { modalTitle: ('persons:module.name_many' | i18next) + ' (' + ('translation:gender.male_plural' | i18next) + ')', inputName: 'entity_godfather', modalParams: { sex: 'true' } } }"></ui-input>
+      <div fxFlex ngClass.gt-xs="center-checkbox">
+        <ui-checkbox [label]="modulePath + ':model.entity_godfather_is_not_confirmed' | i18next" [control]="form.get('entity_godfather_is_not_confirmed')"></ui-checkbox>
+      </div>
+      <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity_godfather_representative_description' | i18next"
+        [control]="form.get('entity_godfather_representative_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }"
+        [rightTemplate]="{ template: personsRightTemplate, context: { inputName: 'entity_godfather_representative' } }"></ui-input>
+    </div>
+  </section>
+
+  <section fxFlex id="godmother-section">
+    <h2>{{ modulePath + ':header.godmother' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity_godmother_description' | i18next"
+        [control]="form.get('entity_godmother_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }"
+        [rightTemplate]="{ template: personsRightTemplate, context: { modalTitle: ('persons:module.name_many' | i18next) + ' (' + ('translation:gender.male_plural' | i18next) + ')', inputName: 'entity_godmother', modalParams: { sex: 'false' } } }"></ui-input>
+      <div fxFlex ngClass.gt-xs="center-checkbox">
+        <ui-checkbox [label]="modulePath + ':model.entity_godmother_is_not_confirmed' | i18next" [control]="form.get('entity_godmother_is_not_confirmed')"></ui-checkbox>
+      </div>
+      <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity_godmother_representative_description' | i18next"
+        [control]="form.get('entity_godmother_representative_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }"
+        [rightTemplate]="{ template: personsRightTemplate, context: { inputName: 'entity_godmother_representative' } }"></ui-input>
+    </div>
+  </section>
+</div>

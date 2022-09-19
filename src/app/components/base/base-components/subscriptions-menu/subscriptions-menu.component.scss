@@ -1,0 +1,85 @@
+@import '~@angular/material/theming';
+@include mat-core();
+@import './node_modules/@peakitpt/ui-material/assets/theme.scss';
+
+@mixin subscriptions-menu-theme($theme){
+  $background: map-get($theme, background);
+
+  .subscription-chip:hover {
+    background-color: mat-color($background, hover);
+  }
+
+  .iconParish {
+    color: mat-color($kyrios-primary, 500);
+  }
+
+  .iconDioceses {
+    color: mat-color($kyrios-accent, 500);
+  }
+
+  .iconInstitutions {
+    color: mat-color($kyrios-warn, 500);
+  }
+
+}
+
+.kyrios-theme-light {
+  @include subscriptions-menu-theme($kyrios-theme-light);
+}
+.kyrios-theme-dark {
+  @include subscriptions-menu-theme($kyrios-theme-dark);
+}
+
+.subscriptions-main-container {
+  width: 100%;
+  max-height: 450px;
+  display: block !important;
+}
+
+.changeSubscriptionHeader {
+  // background-color: mat-color($kyrios-primary, 500);
+  // min-width: 500px;
+  // color: white;
+  padding-bottom: 5px;
+  // margin-top: -8px;
+}
+
+.subscription-chip {
+  cursor: pointer;
+}
+
+.modal-subscriptions-container {
+  display: block !important;
+}
+
+.subscriptions-container-list {
+  height: 240px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.link-button {
+  color: mat-color($kyrios-primary, 300);
+  font-size: 17px !important;
+}
+
+.subscription-modal-text-container {
+  display: block !important;
+}
+
+// #subscriptionSearch {
+//   .mat-form-field-appearance-outline .mat-form-field-outline {
+//     color: white!important;
+//   }
+//   mat-form-field {
+//     .mat-hint, input, ::placeholder, .mat-form-field-label {
+//        color: white!important;
+//     }
+//   }
+// }
+
+// #subscriptionSearch > .mat-form-field > .mat-form-field-wrapper > .mat-form-field-flex > .mat-form-field-infix > input.mat-input-element {
+//   font-size: 15px;
+//   color: white!important;
+// }
+

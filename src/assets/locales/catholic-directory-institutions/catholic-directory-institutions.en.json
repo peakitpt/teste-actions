@@ -1,0 +1,77 @@
+{
+    "module": {
+        "name_singular": "Institution",
+        "name_many": "Institutions"
+    },
+    "model": {
+        "observations": "Observations",
+        "entity": {
+            "url": "Website",
+            "email": "Email",
+            "country_description": "Country",
+            "district": "District",
+            "postal_code": "Zip code",
+            "parish": "Town",
+            "door_number": "Door No.",
+            "taxpayer": "Tax Identification No.",
+            "tax_designation": "Fiscal Designation",
+            "name": "Name",
+            "fax": "Fax",
+            "phone": "Cell Phone",
+            "mobilephone": "Mobile Phone",
+            "longitude": "Longitud",
+            "latitude": "Latitud",
+            "county": "County",
+            "place": "Locality",
+            "address": "Adress"
+        },
+        "entity_institution_appointments": {
+            "description": "Description",
+            "representing_description": "Represents",
+            "end_date": "End",
+            "start_date": "Home",
+            "nominee_description": "Entity",
+            "curia_function_description": "Function"
+        },
+        "entity__entity_ekklesia_location__name": "Bishopric",
+        "holidays": "Holidays",
+        "timetable": "Schedule",
+        "historical_note": "Historical Note",
+        "social_media_data_sheet": "Technical Sheet",
+        "website_type_id": "Website Type",
+        "social_media_institution_description": "Description of the Institution",
+        "social_media_type_description": "Description of the Media Type",
+        "periodicity_description": "Description of Periodicity",
+        "scholarity": "Education",
+        "property": "Property",
+        "community": "Home/Community",
+        "mandate": "Mandate",
+        "institution_gender": "Institution Type",
+        "secular_institute_description": "Secular Institute (Community)",
+        "congregation_description": "Congregation",
+        "chapelry_description": "Parish",
+        "archpriestship_description": "Archpristship",
+        "institution_type_description": "Institution Type",
+        "name": "Name"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected"
+    },
+    "option": {
+        "undifferentiated": "Unspecified",
+        "female": "Female",
+        "male": "Male"
+    },
+    "header": {
+        "appointments": "Nominations",
+        "other_info": "Other information",
+        "valences": "Valences",
+        "contacts": "Contact",
+        "address": "Adress"
+    },
+    "tabs": {
+        "appointments": "Nominations",
+        "institution": "Institution"
+    }
+}

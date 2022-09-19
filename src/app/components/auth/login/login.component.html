@@ -1,0 +1,146 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="none none" class="intro-section">
+  <!-- <img src="assets/backgrounds/sunset-bom-jesus.jpg"> -->
+  <div
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxFlex="0 1 900px">
+    <div fxFlex="40" fxFlex.xs="100" fxFlexOrder.xs="2" class="left-side-container">
+      <ui-carousel
+        timings="800ms ease-in"
+        [autoplay]="false"
+        [hideArrows]="innerWidth > 600 ? true : false"
+        [hideIndicators]="false"
+        color="none"
+        maxWidth="auto"
+        [maintainAspectRatio]="false"
+        slides="2"
+        [useKeyboard]="true"
+        [useMouseWheel]="innerWidth > 600 ? true : false"
+        orientation="ltr"
+        [slidesObj]="sliders"
+      ></ui-carousel>
+    </div>
+    <div fxFlex="60" fxFlexOrder.xs="1" class="right-side-container">
+      <div style="height: 100%;" fxLayout="column">
+        <div class="country-selector-container" fxLayout="row" fxLayoutAlign="end center">
+          <ui-select
+            fxFlex="25"
+            class="right-icon language-selector ui-select-country"
+            [appearance]="'none'"
+            [control]="languageForm"
+            [flags]="true"
+            [squared]="false"
+            [showDescription]="false"
+            [countries]="countryList"
+            [title]="'translation:profile.change_language' | i18next">
+          </ui-select>
+        </div>
+
+
+        <!-- Uma vez que só ha uma tab atualmente eu removi as tabs, quando houver mais, basta descomentar e remover -->
+        <!-- o ng-template a baixo e activar a class country-selector-container no .scss -->
+        <!-- <ui-tabs
+          [tabs]="tabs"
+          alignment="stretch"
+          animation="500"
+          color="primary"
+        ></ui-tabs> -->
+        <ng-template [ngTemplateOutlet]="loginTemplate"> </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loginTemplate>
+  <form fxLayout="row" fxLayoutAlign="center strech" [formGroup]="loginForm" style="height: 487px">
+    <div fxLayout="column" fxLayoutAlign="center" fxFlex="80">
+      <ui-input id="email" name="email" autocomplete="email" [label]="'login:email' | i18next" appearance="standard" type='email'
+        [control]="loginForm.get('email')" [errorMessage]="'login:email_invalid' | i18next"
+        (keyup.enter)="login()">
+      </ui-input>
+      <ui-input id="password" name="password" autocomplete="current-password" [label]="'login:password' | i18next" appearance="standard" type='password'
+        [control]="loginForm.get('password')"
+        (keyup.enter)="login()">
+      </ui-input>
+
+      <div fxLayout="column" fxLayoutAlign="start start">
+        <div>
+          <a class="link-text" (click)="openForgotPasswordModal()">
+            {{ 'login:forgot_my_password' | i18next }}
+          </a>
+        </div>
+
+        <div>
+          {{ 'login:no_account_yet' | i18next }}
+          <a class="link-text" target="_blank" href="https://www.kyrioschms.com/pt/preco/">
+            {{ 'login:sign_up' | i18next }}
+          </a>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div class="lt-login-btn" [ngClass]="{'lt-login-btn-invalid' : loginForm.status !== 'VALID'}" fxFlex="40" fxLayout="row" fxLayoutAlign="center center" (click)="login()">
+          <span class="login-text">
+            {{ 'login:login' | i18next }}
+          </span>
+          <span class="login-arrow">
+            <ui-icon icon="arrow_forward"></ui-icon>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #registerTemplate>
+  <a href="https://www.kyrioschms.com">Registe-se aqui</a>
+</ng-template>
+
+<ng-template #slider1>
+  <div fxLayout="column" fxLayoutAlign="start center" class="item">
+    <div fxFlex="40" fxLayoutAlign="center center">
+      <img [src]="'assets/' + environment.appName + '-login.png'">
+    </div>
+
+    <div class="item-content">
+      <h1>
+        {{ 'login:welcome_to_chms' | i18next: { appName: environment.appName } }}
+      </h1>
+      {{ 'login:complete_management_church' | i18next }}
+    </div>
+
+    <div fxFlex fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <div class="item-content">
+        © {{ currentYear }} · PeakIT
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-arround center" fxLayoutGap="10px">
+        <a class="link-text" target="_blank" href="https://www.kyrioschms.com/pt/politica-de-privacidade/">{{ 'login:privacy' | i18next }}</a>
+        <a class="link-text" target="_blank" href="https://support.kyrioschms.com/">{{ 'login:help' | i18next }}</a>
+        <a class="link-text" target="_blank" href="https://www.kyrioschms.com/pt/contactos/">{{ 'login:contacts' | i18next }}</a>
+      </div>
+    </div>
+
+  </div>
+</ng-template>
+
+<ng-template #slider2>
+  slider 2
+</ng-template>
+
+<!-- <ui-snack-bar #failLoginSnackBar
+  [snackbarTemplate]="failLogin"
+  [snackbarDuration]="5000"
+></ui-snack-bar>
+
+<ng-template #failLogin>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <ui-icon icon="report" style="color: red;"></ui-icon>
+    <span class="mat-body">
+      {{ 'login:login_fail_message' | i18next }}
+    </span>
+  </div>
+</ng-template> -->
+
+<kyr-forgot-password #forgotPasswordModal></kyr-forgot-password>
+<kyr-reset-password></kyr-reset-password>

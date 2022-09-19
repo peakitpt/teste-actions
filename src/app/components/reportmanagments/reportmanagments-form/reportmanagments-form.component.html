@@ -1,0 +1,130 @@
+<router-outlet></router-outlet>
+
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2 style="color: white;">
+    {{ modulePath + ':message.modal_closed' | i18next }}
+  </h2>
+  <ui-button type="flat" icon="save" [label]="modulePath + ':action.open_again' | i18next" color="accent" (onClickEvent)="modal.open()">
+  </ui-button>
+</div>
+
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + ':module.name_singular' | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ui-menu
+        type="icons"
+        [title]="modulePath + ':actions.other_actions'"
+        mainIcon="menu"
+        [model]="modulesModel"
+        (sendValue)="modulesMenuClick($event)"
+      >
+
+      </ui-menu>
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+      </ng-container>
+      <ui-button type="icon" icon="close" (onClickEvent)="closeModal()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="modal.close()">
+    </ui-button>
+    <ui-button type="flat" icon="save" [label]="'translation:action.save' | i18next" color="accent" (onClickEvent)="onSubmit()"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <form [formGroup]="form" class="form-body">
+    <section>
+      <div>
+        <div fxLayout="column wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+          <h2>{{ modulePath + ':header.header' | i18next }}</h2>
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+            <ui-input fxFlex [label]="modulePath + ':model.arciprestship_header' | i18next" [control]="form.get('arciprestship_header')"></ui-input>
+            <ui-input fxFlex [label]="modulePath + ':model.chapelry_header' | i18next" [control]="form.get('chapelry_header')"></ui-input>
+          </div>
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+            <ui-input fxFlex
+              (change)="changeImage($event)"
+              [label]="modulePath + ':model.attachment_filename'| i18next"
+              type="file" accept="image/png, image/jpeg"
+              [fileName]="form.get('attachment_filename').value?.name ? form.get('attachment_filename').value.name : form.get('attachment_filename').value"
+              [control]="form.get('attachment_filename')"></ui-input>
+            <div fxFlex="50" fxLayoutAlign="center center">
+              <img *ngIf="currentImage.thumbnail" [src]="currentImage.thumbnail" onerror="this.src='assets/image-placeholder-350x350.png'" height="200px">
+              <img *ngIf="!currentImage.thumbnail" [src]="baseFilePath + '/' + form.value.cover" onerror="this.src='assets/image-placeholder-350x350.png'" height="200px">
+            </div>
+          </div>
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+            <ui-input fxFlex [label]="modulePath + ':model.img_header_url' | i18next" [control]="form.get('img_header_url')"></ui-input>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div>
+        <div fxLayout="column wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+          <h2>{{ modulePath + ':header.footer' | i18next }}</h2>
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px grid">
+            <ui-textarea fxFlex
+              [label]="modulePath + ':model.address_footer' | i18next"
+              [control]="form.get('address_footer')"
+              [rows]="4">
+            </ui-textarea>
+            <ui-textarea fxFlex
+              [label]="modulePath + ':model.contacts_footer' | i18next"
+              [control]="form.get('contacts_footer')"
+              [rows]="4">
+            </ui-textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+  </form>
+</ng-template>
+
+<!-- TEMPLATES -->
+<ng-template #buttonsTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ui-button [title]="'translation:action.edit' | i18next" type="icon" icon="edit" (onClickEvent)="navigate('/' + modulePath + '/' + data.id + '/edit')"></ui-button>
+    <ui-menu
+      type="icons"
+      [model]="headerOptionsMenu"
+      (sendValue)="menuClick($event)"
+    >
+    </ui-menu>
+  </div>
+</ng-template>
+
+
+<!-- TEMPLATES END -->

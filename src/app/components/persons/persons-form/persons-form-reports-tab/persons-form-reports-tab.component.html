@@ -1,0 +1,14 @@
+<section id="authorization-for-baptism-outside-parish-section">
+  <h2>{{ modulePath + ':header.reports_authorization_for_baptism_outside_parish' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.outside_chapelry_description' | i18next" [control]="form.get('outside_chapelry_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'outside_chapelry' } }"></ui-input>
+  </div>
+</section>
+
+<section id="godparents-request-suitability-section">
+  <h2>{{ modulePath + ':header.reports_godparents_request_suitability' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [label]="modulePath + ':model.suitability_request' | i18next" [options]="suitabilityRequestOptions" [control]="form.get('suitability_request')"></ui-select>
+    <ui-input fxFlex [label]="modulePath + ':model.baptized_chrismed_description' | i18next" [control]="form.get('baptized_chrismed_description')"></ui-input>
+  </div>
+</section>

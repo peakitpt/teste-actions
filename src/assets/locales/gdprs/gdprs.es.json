@@ -1,0 +1,12 @@
+{
+  "module": {
+    "name_singular": "RGPD",
+    "name_many": "RGPDs"
+  },
+  "action": {
+    "open_again": "Abrir de nuevo"
+  },
+  "message": {
+    "modal_closed": "¿Está cerrado el modal?"
+  }
+}

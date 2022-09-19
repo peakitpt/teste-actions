@@ -1,0 +1,94 @@
+<div fxLayout="column" class="topbar-search-form-container">
+  <form [formGroup]="form" style="padding: 10px;">
+    <ng-container *ngTemplateOutlet="baseTemplate"></ng-container>
+  </form>
+
+  <div fxLayout="column" fxLayoutGap="15px" class="sticky-footer">
+    <ui-divider></ui-divider>
+    <div fxLayout="row" fxLayoutAlign="end center" fxFlex="95" style="padding-bottom: 10px;">
+      <ui-button [label]="'translation:action.clear' | i18next" type="flat" (click)="clearSearch()"></ui-button>
+      <ui-button [label]="'translation:action.search' | i18next" type="raised" color="primary"
+        (click)="onSearchClick()"></ui-button>
+    </div>
+  </div>
+</div>
+
+
+<!-- TEMPLATES -->
+<ng-template #baseTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid" style="padding: 0 15px 10px 15px;">
+    <div fxLayout="column" fxFlex>
+      <ng-container
+        *ngTemplateOutlet="textInput; context: { field: 'intention_description', label: modulePath + ':model.intention_description' | i18next }">
+      </ng-container>
+      <ng-container
+        *ngTemplateOutlet="textInput; context: { field: 'requested_by_description', label: modulePath + ':model.requested_by_description' | i18next }">
+      </ng-container>
+      <ng-container
+        *ngTemplateOutlet="dateRangeInput; context: { field: 'intention_date', label: modulePath + ':model.intention_date' | i18next, startView: 'year' }">
+      </ng-container>
+      <ng-container
+        *ngTemplateOutlet="textInput; context: { field: 'intention_time', label: modulePath + ':model.intention_time' | i18next }">
+      </ng-container>
+      <ng-container
+        *ngTemplateOutlet="textInput; context: { field: 'serie_number', label: modulePath + ':model.serie_number' | i18next }">
+      </ng-container>
+    </div>
+    <div fxLayout="column" fxFlex>
+      <!-- <ng-container *ngTemplateOutlet="selectInput; context: { field: 'type_name', label: modulePath + ':model.type_name' | i18next, options: typesOptions }"></ng-container> -->
+      <ng-container
+        *ngTemplateOutlet="textInput; context: { field: 'type_name', label: modulePath + ':model.type_name' | i18next }">
+      </ng-container>
+      <ng-container
+        *ngTemplateOutlet="textInput; context: { field: 'celebrated_by_description', label: modulePath + ':model.celebrated_by_description' | i18next }">
+      </ng-container>
+      <ng-container
+        *ngTemplateOutlet="textInput; context: { field: 'location_description', label: modulePath + ':model.location_description' | i18next }">
+      </ng-container>
+      <ng-container
+        *ngTemplateOutlet="selectInput; context: { field: 'paid', label: modulePath + ':model.paid' | i18next, options: booleanOptions }">
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #textInput let-field="field" let-label="label" let-placeholder="placeholder" let-inputType="inputType"
+  let-hint="hint">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="25" fxLayoutAlign="start center">{{ label }}:</div>
+
+    <div fxFlex="70" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-input fxFlex [placeholder]="placeholder ? placeholder : label" [appearance]="'standard'"
+        [control]="form.get('searchFields').get(field).get('value')" [type]="inputType ? inputType : 'text'"
+        [hintMessage]="hint" (keyup.enter)="onSearchClick()">
+      </ui-input>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #dateRangeInput let-field="field" let-label="label" let-startView="startView" let-hint="hint">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="25" fxLayoutAlign="start center">{{ label }}:</div>
+
+    <div fxFlex="70" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="20px">
+      <ui-datepicker-range fxFlex [startView]="startView || 'multi-year'" [appearance]="'standard'"
+        [controlStart]="form.get('searchFields').get(field + '_start').get('value')"
+        [controlEnd]="form.get('searchFields').get(field + '_end').get('value')" [hintMessage]="hint"
+        (keyup.enter)="onSearchClick()">
+      </ui-datepicker-range>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #selectInput let-field="field" let-label="label" let-options="options" let-multiple="multiple"
+  let-hint="hint">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="25" fxLayoutAlign="start center">{{ label }}:</div>
+
+    <div fxFlex="70" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-select fxFlex [placeholder]="'translation:all' | i18next" [appearance]="'standard'" [options]="options"
+        [hintMessage]="hint" [multiple]="multiple" [control]="form.get('searchFields').get(field).get('value')">
+      </ui-select>
+    </div>
+  </div>
+</ng-template>

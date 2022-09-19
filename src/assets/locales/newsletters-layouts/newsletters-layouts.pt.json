@@ -1,0 +1,24 @@
+{
+  "module": {
+    "name_singular": "Layout de E-mail",
+    "name_many": "Layouts de E-mail"
+  },
+  "action": {
+    "new": "Novo Layout de E-mail",
+    "edit": "Editar Layout de E-mail",
+    "delete": "Eliminar Layout de E-mail?"
+  },
+  "message": {
+    "save_success": "Layout de E-mail guardado com sucesso!",
+    "delete_success": "Layout de E-mail apagado com sucesso!",
+    "delete_success_plural": "Layouts de E-mail apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Layout de E-mail \"<strong>{{ title }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Layouts de E-mail selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "title": "Título",
+    "layout": "Layout"
+  }
+}

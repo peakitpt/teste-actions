@@ -1,0 +1,190 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.name }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="model.name" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.name' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.name }}</div>
+          </div>
+          <div *ngIf="model.email" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.email' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.email }}</div>
+          </div>
+          <div *ngIf="model.sex" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.sex' | i18next }}:</strong></div>
+            <div fxFlex [ngSwitch]="model.sex">
+              <div *ngSwitchCase="true"> {{'translation:gender.male' | i18next}}</div>
+              <div *ngSwitchCase="false"> {{'translation:gender.female' | i18next}}</div>
+            </div>
+          </div>
+
+          <div *ngIf="model.title" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.title' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.title }}</div>
+          </div>
+          <div *ngIf="model.birth_place_parish" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.birth_place_parish' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.birth_place_parish }}</div>
+          </div>
+          <div *ngIf="model.birth_place_county" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.birth_place_county' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.birth_place_county }}</div>
+          </div>
+          <div *ngIf="model.taxpayer" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.taxpayer' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.taxpayer }}</div>
+          </div>
+          <div *ngIf="model.door_number" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.door_number' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.door_number }}</div>
+          </div>
+          <div *ngIf="model.postal_code" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.postal_code' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.postal_code }}</div>
+          </div>
+          <div *ngIf="model.district" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.district' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.district }}</div>
+          </div>
+          <div *ngIf="model.mobilephone" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.mobilephone' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.mobilephone }}</div>
+          </div>
+          <div *ngIf="model.phone" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.phone' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.phone }}</div>
+          </div>
+          <div *ngIf="model.fax" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.fax' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.fax }}</div>
+          </div>
+          <div *ngIf="model.reject_reason" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'pending-entities:model.reject_reason' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.reject_reason }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px" *ngIf="model$ | async as model;">
+    <ui-button *ngIf="model.status=='pending'" type="flat" [label]="modulePath + ':action.reject' | i18next" (onClickEvent)="openRejectReasonModal()"></ui-button>
+
+    <ui-button type="flat" icon="save" [label]="modulePath + ':action.accept' | i18next" color="accent"
+      (onClickEvent)="handleAccept()"></ui-button>
+  </div>
+</ng-template>
+
+
+<!--Reject reason modal-->
+<ui-dialog #rejectReasonModal
+  [inputHeaderTemplate]="rejectReasonModalHeader"
+  [inputBodyTemplate]="rejectReasonModalBody"
+  [inputFooterTemplate]="rejectReasonModalFooter"
+  [width]="800"
+>
+</ui-dialog>
+
+<ng-template #rejectReasonModalHeader>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1>
+      {{ modulePath + ':reject_reason_modal.header' | i18next }}
+    </h1>
+    <div class="header-buttons" fxLayout="row">
+      <ui-button type='icon' icon="close" disableRipple="true" disableFocusRipple="true" (onClickEvent)="rejectReasonModal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #rejectReasonModalBody>
+  <ui-textarea fxFlex
+    [control]="rejectReasonControl"
+    rows="3">
+  </ui-textarea>
+</ng-template>
+
+<ng-template #rejectReasonModalFooter>
+  <div class="footer-buttons" fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" [label]="modulePath + ':action.cancel' | i18next" (onClickEvent)="rejectReasonModal.close()"></ui-button>
+    <ui-button type="flat" [label]="modulePath + ':action.continue' | i18next" color="accent" (onClickEvent)="reject()"></ui-button>
+  </div>
+</ng-template>
+
+<!-- Similar entities modal -->
+<ui-dialog #similarEntitiesModal
+  [inputHeaderTemplate]="similarEntitiesModalHeader"
+  [inputBodyTemplate]="similarEntitiesModalBody"
+  [inputFooterTemplate]="similarEntitiesModalFooter"
+  [width]="800"
+>
+</ui-dialog>
+
+<ng-template #similarEntitiesModalHeader>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1>
+      {{ modulePath + ':similar_entities.module.name_many' | i18next }}
+    </h1>
+    <div class="header-buttons" fxLayout="row">
+      <ui-button type='icon' icon="close" disableRipple="true" disableFocusRipple="true" (onClickEvent)="similarEntitiesModal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #similarEntitiesModalBody>
+  <ui-table
+    #table
+    [dataSource]="similarEntities"
+    [tableColumns]="tableColumns"
+    [generalFilter]="false"
+    [checkboxes]="false"
+    stickyHeader="true"
+    [tableFooter]="true"
+    [stickyFooter]="true"
+    (clickRowEvent)="getSelectedRow()">
+  </ui-table>
+</ng-template>
+
+<ng-template #similarEntitiesModalFooter>
+  <div class="footer-buttons" fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" [label]="modulePath + ':action.cancel' | i18next" (onClickEvent)="similarEntitiesModal.close()"></ui-button>
+    <ui-button type="flat" [label]="modulePath + ':action.update_existing_data' | i18next" color="accent" (onClickEvent)="updateData()"></ui-button>
+    <ui-button type="flat" [label]="modulePath + ':action.keep_data' | i18next" color="accent" (onClickEvent)="keepData()"></ui-button>
+    <ui-button type="flat" [label]="modulePath + ':action.new' | i18next" color="accent" (onClickEvent)="createNewEntity()"></ui-button>
+  </div>
+</ng-template>

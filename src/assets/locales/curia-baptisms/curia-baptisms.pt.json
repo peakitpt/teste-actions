@@ -1,0 +1,144 @@
+{
+    "module": {
+        "name_singular": "Batismo",
+        "name_many": "Batismos"
+    },
+    "action": {
+        "new": "Novo Batismo",
+        "edit": "Editar Batismo",
+        "delete": "Eliminar Batismo?",
+        "approve": "Aprovar",
+        "reject": "Rejeitar",
+        "wait_docs": "Aguarda docs."
+    },
+    "message": {
+        "save_success": "Batismo guardado com sucesso!",
+        "delete_success": "Batismo apagado com sucesso!",
+        "delete_are_you_sure": "Tem a certeza que pretende eliminar o Batismo de <b>{{ name }}</b>?",
+        "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <b>{{ count }}</b> Batismos selecionados?",
+        "selected": "{{ count }} selecionado",
+        "selected_plural": "{{ count }} selecionados",
+        "grandparents_text": "Identifique o pai e a mãe para poder selecionar os avós do batizando, respetivamente.",
+        "error_invalid_attachments": "Alguns dos anexos são inválidos"
+    },
+    "tabs": {
+        "main_tab": "Batismo",
+        "parents_grandparents": "Pais e avós",
+        "godparents": "Padrinhos",
+        "reports": "Relatórios",
+        "attachments": "Anexos"
+    },
+    "header": {
+        "process_data": "Dados do processo",
+        "baptism_data": "Dados do batismo",
+        "treasury_document": "Documento de tesouraria",
+        "parents": "Pais",
+        "paternal_grandparents": "Avós paternos",
+        "maternal_grandparents": "Avós maternos",
+        "godfather": "Padrinho",
+        "godmother": "Madrinha",
+        "baptism_inscription": "Inscrição de batismo",
+        "baptism_entry": "Assento de batismo",
+        "baptism_certificate": "Certidão de batismo",
+        "suitability_request": "Pedido de idoneidade",
+        "preparation_courses": "Cursos de preparação de batismo"
+    },
+    "model": {
+        "serie_number": "Nº de registo",
+        "seat_number": "Assento nº",
+        "entity_description": "Batizando",
+        "date": "Data da inscrição",
+        "document_date": "Data do Documento",
+        "age_at_subscription": "Idade inscr.",
+        "baptism_date": "Data do batismo",
+        "baptism_hour": "Hora do batismo",
+        "curia_status": "Estado",
+        "sheet": "Folha",
+        "time_of_birth": "Hora do nascimento",
+        "in_danger_of_life": "Em perigo de vida",
+        "entity_baptized_location_description": "Local do batismo",
+        "entity_baptized_location_county": "Concelho do batismo",
+        "entity_baptized_by_description": "Batizado(a) por",
+        "entity_baptized_authorization_description": "Autorizado por",
+        "comments": "Observações",
+        "emolument_description": "Emolumento",
+        "tax": "Taxa",
+        "document_entity_description": "Entidade a constar no documento",
+        "father_description": "Pai",
+        "mother_description": "Mãe",
+        "paternal_grandfather_description": "Avô paterno",
+        "paternal_grandmother_description": "Avó paterna",
+        "maternal_grandfather_description": "Avô materno",
+        "maternal_grandmother_description": "Avó materna",
+        "father_residence_chapelry_description": "Paróquia de residência do pai",
+        "mother_residence_chapelry_description": "Paróquia de residência da mãe",
+        "entity_godfather_description": "Padrinho",
+        "entity_godfather_is_not_confirmed": "Testemunha",
+        "entity_godmother_description": "Madrinha",
+        "entity_godmother_is_not_confirmed": "Testemunha",
+        "entity_godfather_representative_description": "Representante",
+        "entity_godmother_representative_description": "Representante",
+        "has_more_kids": "Os pais têm mais filhos?",
+        "preparation_reunion_location_description": "Local de reunião de preparação",
+        "preparation_reunion_date_1": "1ª reunião de preparação",
+        "preparation_reunion_date_2": "2ª reunião de preparação",
+        "preparation_reunion_hours": "Horas da reunião",
+        "seat_godfather_pronoun": "Padrinho",
+        "seat_godmother_pronoun": "Madrinha",
+        "seat_officiant_pronoun": "Oficiante",
+        "seat_parson_pronoun": "Pároco",
+        "wich_will": "Os quais comigo (Assinam, ou dos quais comigo assinam só...)",
+        "certificate_no_info_on_margin": "À margem do assento nada consta",
+        "certificate_first_communion": "Incluir informação sobre a Eucaristia",
+        "certificate_chrism": "Incluir informação sobre o Crisma",
+        "certificate_wedding": "Incluir informação sobre o Matrimónio",
+        "certificate_comments": "Observações ao Certificado de Batismo",
+        "suitability_request_godfather_godmother": "Referir este documento a",
+        "entity_parishioner_of_description": "Ex.mo Pároco de",
+        "entity_priest_description": "Rer.mo e ilus.mo Padre",
+        "parents_preparation_priest_description": "Padre destacado para o Curso de Preparação de Batismo",
+        "godfathers_preparation_priest_description": "Padre destacado para Curso de Preparação de Batismo",
+        "parents_and_godparents_preparation_chapelry_description": "Paróquia de preparação",
+        "document_observations": "Observações a aparecerem no \"Nada Obsta\"",
+        "entity": {
+            "entity_person": {
+                "entity_father_description": "Pai",
+                "entity_mother_description": "Mãe",
+                "entity_father": {
+                    "entity_person": {
+                        "entity_father": {
+                            "name": "Avô paterno"
+                        },
+                        "entity_mother": {
+                            "name": "Avó paterna"
+                        }
+                    }
+                },
+                "entity_mother": {
+                    "entity_person": {
+                        "entity_father": {
+                            "name": "Avô materno"
+                        },
+                        "entity_mother": {
+                            "name": "Avó materna"
+                        }
+                    }
+                }
+            }
+        },
+        "baptisms_attachments": {
+            "attachment": "Anexo",
+            "description": "Descrição"
+        }
+    },
+    "pronouns": {
+        "male": {
+            "the": "O",
+            "by_the": "Pelo"
+        },
+        "female": {
+            "the": "A",
+            "by_the": "Pela"
+        }
+    }
+}

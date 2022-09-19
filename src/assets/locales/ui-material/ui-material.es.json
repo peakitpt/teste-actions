@@ -1,0 +1,15 @@
+{
+    "paginator": {
+        "-": "-",
+        "of": "de",
+        "items_per_page": "Artículos por página",
+        "next_page": "Página siguiente",
+        "prev_page": "Página precedente",
+        "first_page": "Primera página",
+        "last_page": "Página final"
+    },
+    "ckeditor": {
+        "open_in_new_tab": "Abrir en una nueva pestaña",
+        "downlable": "Para descargar"
+    }
+}

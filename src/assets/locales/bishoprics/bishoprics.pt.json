@@ -1,0 +1,54 @@
+{
+  "module": {
+    "name_singular": "Diocese",
+    "name_many": "Dioceses"
+  },
+  "action": {
+    "new": "Nova Diocese",
+    "edit": "Editar Diocese",
+    "delete": "Eliminar Diocese?"
+  },
+  "message": {
+    "save_success": "Diocese guardada com sucesso!",
+    "delete_success": "Diocese apagada com sucesso!",
+    "delete_success_plural": "Dioceses apagadas com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Diocese com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Dioceses selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas"
+  },
+  "model": {
+    "entity_description": "Diocese",
+    "name": "Nome",
+    "district": "Distrito",
+    "parish": "Freguesia",
+    "country_description": "País",
+    "validated": "Validado",
+    "is_archdiocese": "Arquidiocese",
+    "reports_group_description": "Grupo de relatórios",
+    "tax_designation": "Designação fiscal",
+    "taxpayer": "Nº de contribuinte",
+    "address": "Morada",
+    "door_number": "Nº da porta",
+    "postal_code": "Código postal",
+    "place": "Localidade",
+    "county": "Concelho",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "mobilephone": "Telemóvel",
+    "phone": "Telefone",
+    "fax": "Fax",
+    "email": "E-mail",
+    "url": "Página Web"
+  },
+  "header": {
+    "address": "Morada",
+    "contacts": "Contactos",
+    "app": "Aplicação",
+    "module": "Módulo"
+  },
+  "tabs": {
+    "bishopric": "Diocese",
+    "permissions_modules": "Permissões a Módulos"
+  }
+}

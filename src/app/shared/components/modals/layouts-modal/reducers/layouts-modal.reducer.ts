@@ -1,0 +1,45 @@
+import { Action } from '@ngrx/store';
+import * as actions from './layouts-modal.actions';
+import { RequestError } from 'src/app/shared/reducers/error-handling.service';
+import { LayoutsResponse } from '../layouts-modal.model';
+import { SelectedModalRow } from 'src/app/shared/shared.model';
+
+export interface State {
+  layouts: LayoutsResponse;
+  modalRowSelect: SelectedModalRow;
+  error: RequestError;
+}
+
+export const initialState: State = {
+  layouts: { results: [] } as LayoutsResponse,
+  modalRowSelect: null,
+  error: null,
+};
+
+export function reducer(state = initialState, action: Action): State {
+  let layouts: LayoutsResponse;
+  let modalRowSelect: any;
+
+  switch (action.type) {
+    case actions.LayoutsActionTypes.RequestFail:
+      const error = (action as actions.RequestFail).payload;
+      return { ...state, error };
+
+    case actions.LayoutsActionTypes.RequestGetAll:
+      return { ...state, error: null };
+
+    case actions.LayoutsActionTypes.SuccessGetAll:
+      layouts = (action as actions.SuccessGetAll).payload;
+      return { ...state, layouts };
+
+    case actions.LayoutsActionTypes.RequestSetSelected:
+      return { ...state, error: null };
+
+    case actions.LayoutsActionTypes.SuccessSetSelected:
+      modalRowSelect = (action as actions.SuccessSetSelected).payload;
+      return { ...state, modalRowSelect };
+
+    default:
+      return state;
+  }
+}

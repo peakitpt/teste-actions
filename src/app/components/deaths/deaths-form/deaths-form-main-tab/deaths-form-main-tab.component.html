@@ -1,0 +1,45 @@
+<section id="main-section">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex *ngIf="id" [readonly]="true" [label]="modulePath + ':model.serie_number' | i18next" [control]="form.get('serie_number')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.seat_number' | i18next" [control]="form.get('seat_number')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.sheet' | i18next" [control]="form.get('sheet')"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="50" [required]="true" [readonly]="true" [label]="modulePath + ':model.entity_description' | i18next" [control]="form.get('entity_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }" [rightTemplate]="{ template: personsRightTemplate, context: { inputName: 'entity' } }"></ui-input>
+    <ui-datepicker fxFlex="25" [required]="true" [label]="modulePath + ':model.death_date' | i18next" [control]="form.get('death_date')" [maxDate]="todayDate" startView="multi-year"></ui-datepicker>
+    <ui-input fxFlex="25" [label]="modulePath + ':model.death_hour' | i18next" [control]="form.get('death_hour')" placeholder="HH:MM" [errorMessage]="'translation:message.hour_format_error' | i18next"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.entity_death_place' | i18next" [control]="form.get('entity_death_place')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity_death_locality' | i18next" [control]="form.get('entity_death_locality')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity_death_county' | i18next" [control]="form.get('entity_death_county')"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.death_chapelry_description' | i18next" [control]="form.get('death_chapelry_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: chapelriesRightTemplate, context: { inputName: 'death_chapelry' } }"></ui-input>
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.bury_chapelry_description' | i18next" [control]="form.get('bury_chapelry_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: chapelriesRightTemplate, context: { inputName: 'bury_chapelry' } }"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [label]="modulePath + ':model.entity_death_bury_process_id' | i18next" [options]="buryProcessOptions" [control]="form.get('entity_death_bury_process_id')"></ui-select>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.entity_bury_date' | i18next" [control]="form.get('entity_bury_date')" startView="multi-year"></ui-datepicker>
+    <ui-input fxFlex [label]="modulePath + ':model.entity_bury_cemitery' | i18next" [control]="form.get('entity_bury_cemitery')"></ui-input>
+    <ui-select fxFlex [label]="modulePath + ':model.civil_status_on_death' | i18next" [options]="civilStatusesOptions" [control]="form.get('civil_status_on_death')"></ui-select>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex="100" rows="2" [label]="modulePath + ':model.sacraments' | i18next" [control]="form.get('sacraments')"></ui-textarea>
+    <ui-textarea fxFlex="100" rows="2" [label]="modulePath + ':model.observations' | i18next" [control]="form.get('observations')"></ui-textarea>
+  </div>
+</section>
+
+<section id="treasury-document-section">
+  <h2>{{ modulePath + ':header.treasury_document' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="80" [readonly]="true" [label]="modulePath + ':model.emolument_description' | i18next" [control]="form.get('emolument_description')" [rightTemplate]="{ template: emolumentsRightTemplate, context: { inputName: 'emolument' } }"></ui-input>
+    <ui-input fxFlex="20" [readonly]="true" [label]="modulePath + ':model.tax' | i18next" [control]="form.get('tax')"></ui-input>
+    <ui-input fxFlex="100" [readonly]="true" [label]="modulePath + ':model.document_entity_description' | i18next" [control]="form.get('document_entity_description')" [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'document_entity' } }"></ui-input>
+  </div>
+</section>

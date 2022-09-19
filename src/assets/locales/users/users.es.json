@@ -1,0 +1,57 @@
+{
+    "model": {
+        "name": "Nombre",
+        "approved_at": "Aprobado a",
+        "active": "Activo",
+        "email": "Correo electrónico",
+        "sign_in_count": "Núm. de Inicios de Sesión",
+        "subscription_description": "Suscripción predefinida",
+        "locale": "Idioma",
+        "current_sign_in_at_start": "Último acceso (inicio)",
+        "entity": "Tipo de entidad",
+        "entity_type": "Tipo de entidad",
+        "expiration_date": "Expira en",
+        "current_sign_in_at": "Último acceso",
+        "subscriptions_limit": "Lím. Suscripciones",
+        "api_token": "API Token",
+        "approved_at_start": "Aprobado (inicio)",
+        "approved_at_end": "Aprobado para (final)",
+        "expiration_date_start": "Caduca (inicio)",
+        "expiration_date_end": "Caduca el (final)",
+        "current_sign_in_at_end": "Último acceso (final)",
+        "entity_ekklesia_location_description": "Diócesis",
+        "repeat_password": "Confirmar contraseña",
+        "password": "Contraseña",
+        "user_id": "Identificador",
+        "user": "Usuario"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "save_success": "¡Usuario guardado correctamente!",
+        "delete_are_you_sure": "¿Está seguro de que desea eliminar el usuario con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que desea eliminar los <strong> {{count}} </strong> usuarios seleccionados?",
+        "delete_success": "¡Usuario eliminado correctamente!",
+        "delete_success_plural": "¡Usuarios eliminados correctamente!"
+    },
+    "action": {
+        "edit": "Editar Usuario",
+        "add": "Agregar Usuario",
+        "new": "Nuevo Usuario",
+        "change_password": "Cambiar contraseña"
+    },
+    "module": {
+        "name_many": "Usuarios",
+        "name_singular": "Usuario"
+    },
+    "header": {
+        "activation": "Activación",
+        "user": "Usuario",
+        "subscription": "Suscripción",
+        "dates": "Fechas",
+        "subscriptions": "Suscripciones"
+    },
+    "hint_message": {
+        "no_pre_defined_subscription": "Sin una suscripción predefinida, el usuario estará inactivo automáticamente"
+    }
+}

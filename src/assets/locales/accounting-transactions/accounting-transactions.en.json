@@ -1,0 +1,52 @@
+{
+    "module": {
+        "name_singular": "Transaction",
+        "name_many": "Transactions"
+    },
+    "model": {
+        "description": "Description",
+        "options": {
+            "opened": "Opening"
+        },
+        "accounting_cost_center": "Cost Center",
+        "accounting_chart_account": "Count",
+        "total_amount": "Balanced",
+        "total": "Total",
+        "debit": "Debit",
+        "credit": "Credit",
+        "accounting_transaction_lines": {
+            "accounting_cost_center_description": "Cost Center",
+            "description": "Description",
+            "debit_amount": "Debit",
+            "credit_amount": "Credit",
+            "accounting_chart_account_description": "Count"
+        },
+        "doc_archival_number": "File No.",
+        "accounting_journal_description": "Diary",
+        "transaction_serie_number": "Document No.",
+        "accounting_transaction_document_type_description": "Document Type",
+        "transaction_type": "Typification of Movement",
+        "period": "Accounting period",
+        "transaction_date_end": "Date (until)",
+        "transaction_date_start": "Date (since)",
+        "transaction_date": "Date",
+        "transaction_id": "Movement Code"
+    },
+    "message": {
+        "selected_plural": "{{ count }} selected",
+        "selected": "{{ count }} selected",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Selected account entries?",
+        "delete_are_you_sure": "Are you sure you want to delete the account entries with the name \"<strong>{{name }}</strong>\"?",
+        "delete_success_plural": "Accounting entries successfully delete!",
+        "delete_success": "Accounting entries delete successfully!",
+        "save_success": "Accounting entries successfully saved!"
+    },
+    "action": {
+        "delete": "Delete Accounting Entries?",
+        "edit": "Edit Accounting Entries",
+        "new": "New Accounting Entries"
+    },
+    "errors": {
+        "total_amount_not_zero": "Total value should be 0"
+    }
+}

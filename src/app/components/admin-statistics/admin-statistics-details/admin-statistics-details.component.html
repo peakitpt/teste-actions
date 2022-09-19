@@ -1,0 +1,85 @@
+<router-outlet></router-outlet>
+
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2 style="color: white;">
+    {{ modulePath + ':message.modal_closed' | i18next }}
+  </h2>
+  <ui-button type="flat" icon="save" [label]="modulePath + ':action.open_again' | i18next" color="accent" (onClickEvent)="modal.open()">
+  </ui-button>
+</div>
+
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + ':module.name_singular' | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ui-button type="icon" icon="close" (onClickEvent)="closeModal()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate;">
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <form class="form-body">
+    <ui-tabs [tabs]="tabs"></ui-tabs>
+  </form>
+</ng-template>
+
+<!-- TEMPLATES -->
+<ng-template #totalsTabTemplate>
+  <div fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap="30px" fxLayoutAlign="flex-start">
+    <section class="stat" [fxFlex]="30 * view.value.length" *ngFor="let view of kpisResults | keyvalue">
+      <h2>{{ modulePath + ':header.' + view.key | i18next }}</h2>
+      <div fxLayout="row">
+        <div *ngFor="let result of view.value" fxFlex fxLayout="row" fxLayoutAlign="start center">
+          <ui-icon icon="bar_chart" size="50px"></ui-icon>
+          <div fxLayout="column">
+            <div class="mat-body-strong" style="font-weight: bold;"> {{result.kpi_translated_label}} </div>
+            <div> {{result.kpi_value}} </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</ng-template>
+
+<ng-template #graphicsTabTemplate>
+  <section *ngIf="userAccessesPerDayReady" fxLayout="column">
+    <h2>{{ modulePath + ':header.user_accesses' | i18next }}</h2>
+    <div #ContainerRef class="chartBarContainer" fxFlex>
+      <ngx-charts-bar-vertical
+        [view]="[ContainerRef.offsetWidth, 400]"
+        [scheme]="DASHBOARD_COLORS"
+        [results]="userAccessesPerDay"
+        [xAxis]="true"
+        [yAxis]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxisLabel]="modulePath + ':graph.day' | i18next"
+        [yAxisLabel]="modulePath + ':graph.users' | i18next">
+      </ngx-charts-bar-vertical>
+    </div>
+  </section>
+</ng-template>
+<!-- TEMPLATES END -->

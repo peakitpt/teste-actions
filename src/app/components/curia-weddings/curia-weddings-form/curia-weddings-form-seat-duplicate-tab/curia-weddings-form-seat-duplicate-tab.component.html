@@ -1,0 +1,60 @@
+<section id="parents-section">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.seat_duplicate_attestation_number' | i18next" [control]="form.get('seat_duplicate_attestation_number')"></ui-input>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.seat_duplicate_baptism_endorsement_date' | i18next" [control]="form.get('seat_duplicate_baptism_endorsement_date')"></ui-datepicker>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true"
+      [label]="modulePath + ':model.seat_duplicate_officiating_description' | i18next"
+      [control]="form.get('seat_duplicate_officiating_description')"
+      [rightTemplate]="{ template: priestsAndPersonsRightTemplate, context: { inputName: 'seat_duplicate_officiating' } }"
+      [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }">
+    </ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.wedding_parson_description' | i18next" [control]="form.get('wedding_parson_description')"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex rows="2" [label]="modulePath + ':model.seat_duplicate_present' | i18next" [control]="form.get('seat_duplicate_present')"></ui-textarea>
+    <ui-textarea fxFlex rows="2" [label]="modulePath + ':model.seat_duplicate_special_mentions' | i18next" [control]="form.get('seat_duplicate_special_mentions')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-textarea>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.seat_duplicate_witnesses_identification_groom1_description' | i18next"
+      [control]="form.get('seat_duplicate_witnesses_identification_groom1_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'seat_duplicate_witnesses_identification_groom1', queryStringParams: witnessesQSP } }"
+      [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }">
+    </ui-input>
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.seat_duplicate_witnesses_identification_groom2_description' | i18next"
+      [control]="form.get('seat_duplicate_witnesses_identification_groom2_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'seat_duplicate_witnesses_identification_groom2', queryStringParams: witnessesQSP } }"
+      [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true"
+      [label]="modulePath + ':model.seat_duplicate_witnesses_identification_bride1_description' | i18next"
+      [control]="form.get('seat_duplicate_witnesses_identification_bride1_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'seat_duplicate_witnesses_identification_bride1', queryStringParams: witnessesQSP } }"
+      [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }">
+    </ui-input>
+    <ui-input fxFlex [readonly]="true"
+      [label]="modulePath + ':model.seat_duplicate_witnesses_identification_bride2_description' | i18next"
+      [control]="form.get('seat_duplicate_witnesses_identification_bride2_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'seat_duplicate_witnesses_identification_bride2', queryStringParams: witnessesQSP } }"
+      [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex [readonly]="!form.value.id" rows="4" [label]="modulePath + ':model.seat_duplicate_will_be_signed' | i18next" [control]="form.get('seat_duplicate_will_be_signed')"></ui-textarea>
+    <ui-textarea fxFlex rows="4" [label]="modulePath + ':model.seat_duplicate_comments_edge_seat' | i18next" [control]="form.get('seat_duplicate_comments_edge_seat')"></ui-textarea>
+  </div>
+
+</section>
+

@@ -1,0 +1,176 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+        {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.description }}</ng-container>
+      </h1>
+      <ng-template #smallHeader>
+        {{ modulePath + ':module.name_singular' | i18next }}
+      </ng-template>
+      <div fxLayout="row" class="header-buttons">
+        <ng-container *ngIf="model$ | async as model">
+            <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-button [title]="'translation:action.edit' | i18next" type='icon' icon="edit" (onClickEvent)="editModal()"></ui-button>
+        <ui-menu
+          [hoverTitle]="'translation:action.more' | i18next"
+          type="icons"
+          [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+        </ng-container>
+        <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+      </div>
+    </div>
+    <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model; else loadingTemplate">
+    <ng-container *ngIf="model.text_messages_errors.length; else messageTabTemplate">
+      <ui-tabs *ngIf="detailsTabs" [tabs]="detailsTabs"></ui-tabs>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<!-- TEMPLATES START -->
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<!-- TABS -->
+<ng-template #messageTabTemplate>
+  <!-- RECIPIENTS -->
+  <section>
+    <h2>{{ modulePath + ':header.recipients' | i18next }}</h2>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.group_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.group' | i18next }}:</div>
+          <div fxFlex>{{ model.group_description }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.additional_recipients">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.additional_recipients' | i18next}}:</div>
+          <div fxFlex>{{ model.additional_recipients }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.test_recipient">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.test_recipient' | i18next }}:</div>
+          <div fxFlex>{{ model.test_recipient }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILS -->
+  <section>
+    <h2>{{ modulePath + ':header.details' | i18next }}</h2>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.active' | i18next }}:</div>
+          <div fxFlex>
+            <ui-icon [icon]="model.active ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.sending_date' | i18next }}:</div>
+          <div fxFlex>{{ model.sending_date | date:('translation:format.date_weekday' | i18next) }} {{ model.sending_hour }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.frequency' | i18next }}:</div>
+          <div fxFlex>{{ frequencyLabel(model.frequency) }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.sent_at">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.sent_at' | i18next }}:</div>
+          <div fxFlex>{{ model.sent_at | date:('translation:format.datetime_weekday' | i18next) }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="!model.sent_at">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.sent' | i18next }}:</div>
+          <div fxFlex>
+            <ui-icon [icon]="'check_box_outline_blank'"></ui-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MESSAGE -->
+  <section>
+    <h2>{{ modulePath + ':header.message' | i18next }}</h2>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.message' | i18next }}:</div>
+          <div fxFlex>{{ model.message }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #errorsTabTemplate>
+  <h2>{{ modulePath + ':tabs.errors_description' | i18next }}</h2>
+  <section *ngIf="model.text_messages_errors">
+    <div fxLayout="column">
+      <div class="scrollable-table">
+        <table class="mat-table" id="text-messages-errors-table">
+          <thead>
+            <tr class="mat-header-row">
+              <th class="mat-header-cell">#</th>
+              <th class="mat-header-cell col1">{{ modulePath + ':model.text_messages_errors.phone_number' | i18next }}</th>
+              <th class="mat-header-cell col2">{{ modulePath + ':model.text_messages_errors.entity_description' | i18next }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="mat-row uiKyriosTableRow" *ngFor="let error of model.text_messages_errors; let i = index" [attr.data-index]="i">
+              <td class="mat-cell">{{ i + 1 }}</td>
+              <td class="mat-cell col1">{{ error.phone_number }}</td>
+              <td class="mat-cell col2">{{ error.entity_description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<kyr-text-messages-send-test *ngIf="openSendTextMessageModal"
+  [model]="selectedTextMessage"
+  (emitModalClose)="openSendTextMessageModal = false"
+>
+</kyr-text-messages-send-test>
+<!-- TEMPLATES END -->

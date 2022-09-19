@@ -1,0 +1,111 @@
+<router-outlet></router-outlet>
+<ng-container *ngIf="modelList$ | async as modelList">
+  <ui-card>
+    <div content>
+      <div fxLayout="row" fxLayoutAlign="end center">
+        <ui-progress-spinner diameter="20" color="accent" *ngIf="actionsInProgress"></ui-progress-spinner>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <!-- <kyr-table-filters fxFlex [filterList]="[]"></kyr-table-filters> -->
+          <ui-menu
+            *ngIf="reportMenuOptionsModel.length"
+            class="reports-list-button"
+            type="nested"
+            [menuClickTemplate]="reportsClickableTemplate"
+            color="accent"
+            [model]="reportMenuOptionsModel"
+            (sendValue)="reportMenuClick($event)"
+          ></ui-menu>
+        </div>
+      </div>
+      <ng-container *ngIf="selectedRows$ | async as selectedRows">
+        <ui-toolbar
+          *ngIf="selectedRows.length"
+          [title]="modulePath + ':message.selected' | i18next: { count: selectedRows.length }"
+          [dataModel]="toolbarDataModel"
+          rowColor="accent"
+        ></ui-toolbar>
+      </ng-container>
+
+      <ui-button *ngIf="!menuHelperService.getSideNavOpen()" class="float-button-mobile" [title]="'translation:action.add' | i18next" fxLayoutAlign="end" type="mini_fab" icon="add" color="accent" [attr.aria-label]="'translation:action.add' | i18next"
+        (onClickEvent)="navigate('/' + modulePath + '/new')">
+      </ui-button>
+
+      <ui-table
+        #table
+        [dataSource]="modelList.results"
+        [tableColumns]="tableColumns"
+        [generalFilter]="false"
+        checkboxes="true"
+        stickyHeader="true"
+        (checkboxSelectionEvent)="checkboxSelectionEvent($event)"
+        (columnFilterEvent)="columnFilterEvent($event)"
+        (columnOrdinationEvent)="columnOrdinationEvent($event)">
+      </ui-table>
+
+      <kyr-table-pagination>
+        <ui-paginator
+          [length]="modelList.total"
+          [pageIndex]="modelList.page - 1"
+          [pageSize]="limit"
+          (onChangeEvent)="paginationChangeEvent($event)"
+        ></ui-paginator>
+        <ui-menu
+          type="icons"
+          [model]="pagerMenu"
+          xPosition="before"
+          (sendValue)="menuClick($event)"
+        ></ui-menu>
+      </kyr-table-pagination>
+    </div>
+  </ui-card>
+</ng-container>
+
+<!-- TEMPLATES -->
+<ng-template #actionsTemplate>
+  <ui-menu
+    type="icons"
+    mainIcon="more_vert"
+    [model]="actionMenuModel"
+    (sendValue)="actionMenuClick($event)"
+  ></ui-menu>
+</ng-template>
+
+<ng-template #userTemplate let-data="data">
+  <div>
+    {{data.entity1.user.name}}
+  </div>
+</ng-template>
+
+<ng-template #entityType1NameTemplate let-data="data">
+  <div>
+    {{data.entity1.entity_type.name}}
+  </div>
+</ng-template>
+
+<ng-template #entityType1ActiveTemplate let-data="data">
+  <ui-icon [icon]="data.entity1.user.disabled ? 'check_box_outline_blank' : 'check_box'"></ui-icon>
+</ng-template>
+
+<ng-template #entityType1ExpirationTemplate let-data="data">
+  <div>
+    {{data.entity1.user.expiration_date | date:"dd/MM/yyyy"}}
+  </div>
+</ng-template>
+
+<ng-template #entityType2CompleteRelationTemplate let-data="data">
+  <div>
+    {{data.entity2.complete_relation}}
+  </div>
+</ng-template>
+
+<ng-template #entityType2NameTemplate let-data="data">
+  <div>
+    {{data.entity2.entity_type.name}}
+  </div>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<!-- TEMPLATES END -->

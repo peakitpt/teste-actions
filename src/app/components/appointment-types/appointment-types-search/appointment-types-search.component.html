@@ -1,0 +1,53 @@
+<div fxLayout="column" class="topbar-search-form-container">
+  <form [formGroup]="form" style="padding: 10px;">
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'name', label: modulePath + ':model.name' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'locale', label: modulePath + ':model.locale' | i18next, options: localeOptions }"></ng-container>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'validated', label: modulePath + ':model.validated' | i18next, options: booleanOptions }"></ng-container>
+  </form>
+
+  <div fxLayout="column" fxLayoutGap="15px" class="sticky-footer">
+    <ui-divider></ui-divider>
+    <div fxLayout="row" fxLayoutAlign="end center" fxFlex="95" style="padding-bottom: 10px;">
+      <ui-button [label]="'translation:action.clear' | i18next" type="flat" (click)="clearSearch()"></ui-button>
+      <ui-button [label]="'translation:action.search' | i18next" type="raised" color="primary" (click)="onSearchClick()"></ui-button>
+    </div>
+  </div>
+</div>
+
+
+<!-- TEMPLATES -->
+<ng-template #textInput let-field="field" let-label="label" let-placeholder="placeholder" let-inputType="inputType" let-hint="hint">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="25" fxLayoutAlign="start center">{{ label }}:</div>
+
+    <div fxFlex="70" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-input
+        fxFlex
+        [placeholder]="placeholder ? placeholder : label"
+        [appearance]="'standard'"
+        [control]="form.get('searchFields').get(field).get('value')"
+        [type]="inputType ? inputType : 'text'"
+        [hintMessage]="hint"
+        (keyup.enter)="onSearchClick()">
+      </ui-input>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #selectInput let-field="field" let-label="label" let-options="options" let-multiple="multiple" let-hint="hint">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="25" fxLayoutAlign="start center">{{ label }}:</div>
+
+    <div fxFlex="70" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-select
+        fxFlex
+        [placeholder]="'translation:all' | i18next"
+        [appearance]="'standard'"
+        [options]="options"
+        [hintMessage]="hint"
+        [multiple]="multiple"
+        [control]="form.get('searchFields').get(field).get('value')">
+      </ui-select>
+    </div>
+  </div>
+</ng-template>

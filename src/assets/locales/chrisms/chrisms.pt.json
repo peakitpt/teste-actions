@@ -1,0 +1,38 @@
+{
+  "module": {
+    "name_singular": "Crisma",
+    "name_many": "Crismas"
+  },
+  "action": {
+    "new": "Novo Crisma",
+    "edit": "Editar Crisma",
+    "delete": "Eliminar Crisma?"
+  },
+  "message": {
+    "save_success": "Crisma guardado com sucesso!",
+    "delete_success": "Crisma apagado com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a ficha de Crisma do dia <b>{{ date }}</b>?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <b>{{ count }}</b> Crismas selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados",
+    "error_blank_chrisms_entities": "Por favor, preencha todos os campos obrigatórios da tabela dos Catequizandos"
+  },
+  "model": {
+    "serie_number": "Nº de registo",
+    "date": "Data",
+    "entity_rel_mec_description": "Ministro confirmante",
+    "entity_chrism_location_description": "Local e culto",
+    "seat_number": "Assento nº",
+    "chrisms_entities_attributes_entity_description": "Crismando",
+    "chrisms_entities_attributes": {
+      "entity_description": "Crismando",
+      "godfather_godmother_description": "Padrinho/madrinha",
+      "emolument_description": "Emolumento",
+      "tax": "Taxa",
+      "document_entity_description": "Entidade a constar no documento"
+    }
+  },
+  "header": {
+    "candidates": "Crismandos"
+  }
+}

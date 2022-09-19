@@ -1,0 +1,177 @@
+{
+    "model": {
+        "entity": {
+            "entity_mec": {
+                "mec": "EMC"
+            },
+            "name": "Name",
+            "civil_status": "Marital status",
+            "door_number": "Number",
+            "postal_code": "Zip code",
+            "mobilephone": "Mobile Phone",
+            "phone": "Cell Phone",
+            "email": "E-mail",
+            "residence_chapelry_description": "Residence parish",
+            "latitude": "Latitud",
+            "entity_person": {
+                "birth_date": "Date of birth",
+                "serie_number": "Registration number",
+                "age": "Age",
+                "sex": "Genre",
+                "qualifications": "Abilities",
+                "professional_profession_description": "Profession",
+                "comments": "Comments",
+                "ident_document_type": "Identification type",
+                "ident_document_number": "Identification number",
+                "ident_document_emission_date": "Date of issue",
+                "ident_document_validity_date": "Expiration date",
+                "ident_document_emitted_by": "Emitted by",
+                "is_parishioner": "Parishioner"
+            },
+            "address": "Adress",
+            "place": "Locality",
+            "fax": "Fax",
+            "is_public_profile": "Public",
+            "entity_acolyte": {
+                "is_acolyte": "Acolyte"
+            },
+            "entity_birth_chapelry_description": "Birth parish",
+            "county": "County",
+            "longitude": "Longitud",
+            "url": "Web Page",
+            "entity_reader": {
+                "is_reader": "Reader"
+            },
+            "entity_catechist": {
+                "catechist": "Catechist"
+            }
+        },
+        "formation_courses": "Formation courses",
+        "institution_date": "Nomination date",
+        "ecclesial_formation_biblical_courses": "Bible courses",
+        "ecclesial_activities_singer": "Singer",
+        "ecclesial_activities_other_description": "Another ecclesial activity",
+        "magnetic_number": "Magnetic Number",
+        "is_coordinator": "Coordinator",
+        "congregation": "Congregation",
+        "institution_time": "How many years have you been",
+        "ecclesial_formation_theological_pastorails_courses": "Theological-pastoral courses",
+        "ecclesial_formation_other": "Other",
+        "ecclesial_formation_other_description": "Another ecclesial formation",
+        "ecclesial_activities_caretaker": "Keeper",
+        "ecclesial_activities_association_of_faithful_direction_member": "Member of the board of an association of the faithful",
+        "ecclesial_activities_economic_council_member": "Member of the economic council",
+        "ecclesial_activities_other": "Other",
+        "pastoral_agents_formations": {
+            "formation": {
+                "id": "Formation"
+            },
+            "formation_id": "Formation"
+        },
+        "pastoral_agents_departments": {
+            "pastoral_agents_type_id": "Departments"
+        },
+        "ddbp_comments": "Comments",
+        "pu_comments": "Comments",
+        "pu_type_id": "University",
+        "pu_type": "University",
+        "ec_work_schools": "Schools where worked at",
+        "ec_is_parochial_coordinator": "Parish Coordinator",
+        "ec_chapelry_description": "Parish where work",
+        "ec_type_id": "Type of teacher",
+        "ec_type": "Type of teacher",
+        "ec_is_card_emitted": "Card emitted",
+        "emrc_work_schools": "Schools worked at",
+        "emrc_is_parochial_coordinator": "Parish Coordinator",
+        "emrc_chapelry_description": "Parish where work",
+        "emrc_type_id": "Type of teacher",
+        "emrc_type": "Type of teacher",
+        "emrc_is_card_emitted": "Carf emitted",
+        "eca_is_trainer": "Former",
+        "eca_is_year_coordinator": "Year",
+        "eca_is_phase_coordinator": "Phase",
+        "eca_is_parochial_coordinator": "Parish",
+        "eca_chapelry_description": "Parish where work",
+        "eca_date": "Date of Christian adult education",
+        "eca_type_id": "Type of Christian adult education",
+        "eca_type": "Type of Christian adult education",
+        "eca_is_card_emitted": "Card emitted",
+        "dapj_is_parochial_coordinator": "Parish Coordinator",
+        "dapj_chapelry_description": "Parish where work",
+        "dapj_date": "Date of animator",
+        "dapj_type_id": "Type of animator",
+        "dapj_type": "Type of animator",
+        "dapj_is_card_emitted": "Card emitted",
+        "dac_is_year_coordinator": "Year",
+        "dac_is_phase_coordinator": "Phase",
+        "dac_is_parochial_coordinator": "Parish",
+        "dac_adults": "Adults",
+        "dac_youth": "Young",
+        "dac_adolescence": "Adolescence",
+        "dac_childhood": "Childhood",
+        "dac_chapelry_description": "Parish where work",
+        "dac_date": "Date of Pastoral Agent",
+        "dac_type_id": "Type of Pastoral Agent",
+        "dac_type": "Type of Pastoral Agent",
+        "dac_is_card_emitted": "Card emitted",
+        "signature": "Signature",
+        "institution_center_worshipplace_description": "Place of Worship",
+        "pastoral_agent_number": "Nº Pastoral Agent",
+        "approved": "Approved",
+        "active": "Active"
+    },
+    "options": {
+        "not_available": "N/D",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "header": {
+        "address": "Adress",
+        "contacts": "Contact",
+        "identi_documents": "Identification documents",
+        "ecclesial_activities": "Church activities",
+        "ecclesial_formations": "Ecclesial Formations",
+        "pu": "University Pastoral Data",
+        "ec": "Catholic School Data",
+        "emrc": "Catholic Moral and Religious Education Data",
+        "eca": "Christian Adult Education Data",
+        "dapj": "Youth Pastoral Data",
+        "dac": "Catechesis Data",
+        "comments": "Comments",
+        "pastoral_agent": "Pastoral Agent",
+        "departments": "Departments",
+        "coordinator": "Coordinator",
+        "pastoral_agents_formations": "Formations / Church Activities",
+        "ddbp": "Data from the Biblical Pastoral DynamicDepartment"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "save_success": "Pastoral agent saved successfully!",
+        "delete_are_you_sure": "Are you sure you want to delete the Pastoral Agent with the name \"<strong> {{name}} </strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the selected <strong> {{count}} </strong> Pastoral Agents?",
+        "delete_success": "Pastoral agent successfully deleted!",
+        "delete_success_plural": "Pastoral agents successfully deleted!"
+    },
+    "action": {
+        "generate_card": "Create card",
+        "new": "New Pastoral Agent",
+        "delete": "Delete Pastoral Agent?",
+        "edit": "Edit Pastoral Agent"
+    },
+    "tabs": {
+        "personal-data": "Personal data",
+        "categories": "Categories",
+        "ddbp": "DDPB",
+        "pu": "PU",
+        "emrc": "EMRC",
+        "ec": "EC",
+        "eca": "ECA",
+        "dapj": "DAPJ",
+        "dac": "DAC"
+    },
+    "module": {
+        "name_many": "Pastoral Agent",
+        "name_singular": "Pastoral Agent"
+    }
+}

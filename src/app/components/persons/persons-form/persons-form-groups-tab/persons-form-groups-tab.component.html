@@ -1,0 +1,47 @@
+<ng-container *ngIf="modelList$ | async as modelList">
+  <router-outlet></router-outlet>
+  <section id="groups-section">
+    <ui-table
+      #table
+      [checkboxes]="false"
+      [dataSource]="modelList.results"
+      [tableColumns]="tableColumns"
+      stickyHeader="true"
+      (columnFilterEvent)="columnFilterEvent($event)"
+      (columnOrdinationEvent)="columnOrdinationEvent($event)">
+    </ui-table>
+
+    <kyr-table-pagination>
+      <ui-paginator
+        [length]="modelList.total"
+        [pageIndex]="modelList.page - 1"
+        [pageSize]="limit"
+        (onChangeEvent)="paginationChangeEvent($event)"
+      ></ui-paginator>
+      <ui-menu
+        type="icons"
+        [model]="pagerMenu"
+        xPosition="before"
+        (sendValue)="menuClick($event)"
+      ></ui-menu>
+    </kyr-table-pagination>
+  </section>
+</ng-container>
+
+<!-- TEMPLATES START -->
+<ng-template #groupNameTemplate let-data="data">
+  {{ data.group.name }}
+</ng-template>
+
+<ng-template #subscriptionDateTemplate let-data="data">
+  {{ data.subscription_date | date:('translation:format.datetime_seconds' | i18next) }}
+</ng-template>
+
+<ng-template #unsubscriptionDateTemplate let-data="data">
+  {{ data.unsubscription_date | date:('translation:format.datetime_seconds' | i18next) }}
+</ng-template>
+
+<ng-template #activeTemplate let-data="data">
+  <ui-button type="icon" color="accent" [icon]="data.active ? 'check_box' : 'check_box_outline_blank'" (onClickEvent)="menuClick('toggle_modal', data)"></ui-button>
+</ng-template>
+<!-- TEMPLATES END -->

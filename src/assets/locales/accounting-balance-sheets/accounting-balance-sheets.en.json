@@ -1,0 +1,32 @@
+{
+    "module": {
+        "name_many": "Analytical Balance Sheets",
+        "name_singular": "Analytical Balance Sheet"
+    },
+    "model": {
+        "options": {
+            "abertura": "Opening"
+        },
+        "period_aggregated_balance": "Accumulated Balance",
+        "period_aggregated_credit_amount": "Accumulated Credit",
+        "period_aggregated_debit_amount": "Accumulated Debit",
+        "period_total_credit": "Credit Value in the Period",
+        "period_total_debit": "Debit Value in the Period",
+        "account_description": "Description",
+        "account_id": "Count",
+        "period": "Period",
+        "exclude_blank_periods": "Exclude accounts with no postings in the period",
+        "account_id_end": "End Account Code",
+        "account_id_start": "Account Code Start"
+    },
+    "recalculate": {
+        "confirm_question": "Are you sure you want to continue?",
+        "body": "This process is not immediate and may take a few minutes. You can continue to use Kyrios while the calculations are done in the background.",
+        "title": "Recalculate"
+    },
+    "actions": {
+        "recalculating_failed": "The operation failed",
+        "recalculating": "Recalculating the accounting values",
+        "recalculate": "Recalculate"
+    }
+}

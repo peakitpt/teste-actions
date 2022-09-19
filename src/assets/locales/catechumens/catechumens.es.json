@@ -1,0 +1,38 @@
+{
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que quieres eliminar el catecumenado de <b>{{ name }}</b>?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quieres eliminar los <b>{{ count }}</b> Catecumenados seleccionados?",
+        "delete_success": "¡Catecumenado eliminado con éxito!",
+        "save_success": "Catecumenado guardado con éxito!"
+    },
+    "model": {
+        "emolument_description": "Emolumento",
+        "seat_number": "Asiento nº",
+        "admission_local_description": "En el lugar",
+        "entity_by_description": "Admitido por",
+        "admission_hour": "Hora de admisión",
+        "admission_date": "Fecha de admisión",
+        "date": "Fecha de inscripción",
+        "entity_catechumen_description": "Nombre",
+        "document_entity_description": "Entidad que debe figurar en el documento",
+        "tax": "Taxa",
+        "sheet": "Hoja",
+        "serie_number": "Nº de registro",
+        "comments": "Observaciones"
+    },
+    "header": {
+        "admission_details": "Detalles de la admisión",
+        "treasury_document": "Documento de la tesorería"
+    },
+    "action": {
+        "delete": "¿Eliminar Catecumenado?",
+        "edit": "Editar Catecumenado",
+        "new": "Nuevo Catecumenado"
+    },
+    "module": {
+        "name_many": "Catecumenado",
+        "name_singular": "Catecumenado"
+    }
+}

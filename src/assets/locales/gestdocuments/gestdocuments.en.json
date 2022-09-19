@@ -1,0 +1,41 @@
+{
+    "module": {
+        "name_singular": "Document",
+        "name_many": "Documents"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Document from \"<strong>{{ document_title }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Selected documents?",
+        "delete_success": "Document successfully deleted!",
+        "save_success": "Document successfully saved!"
+    },
+    "header": {
+        "content": "Document structure",
+        "recipient": "Addressee",
+        "sender": "Sender"
+    },
+    "model": {
+        "footnotes": "Footnotes",
+        "document_text": "Document structure",
+        "document_date": "Date",
+        "document_title": "Title",
+        "document_reference": "Reference",
+        "entity_address": "Adress",
+        "entity_name": "Name of the addressee",
+        "entity_title": "Honorary title",
+        "institution_date": "Date",
+        "signature_post": "Entity Post",
+        "signature": "Signature",
+        "institution_reference": "Reference",
+        "institution_service": "Service",
+        "institution_subject": "Subject",
+        "institution_name": "Name of sender"
+    },
+    "action": {
+        "delete": "Delete Document?",
+        "edit": "Edit Document",
+        "new": "New Document"
+    }
+}

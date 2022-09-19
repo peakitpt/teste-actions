@@ -1,0 +1,111 @@
+{
+  "module": {
+    "name_singular": "Leitor",
+    "name_many": "Leitores"
+  },
+  "action": {
+    "new": "Novo Leitor",
+    "edit": "Editar Leitor",
+    "delete": "Eliminar Leitor?",
+    "generate_card": "Gerar cartão"
+  },
+  "message": {
+    "save_success": "Leitor guardado com sucesso!",
+    "delete_success": "Leitor apagado com sucesso!",
+    "delete_success_plural": "Leitores apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Leitor com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Leitores selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "is_reader": "Ativo(a)",
+    "reader_number": "Nº Leitor",
+    "magnetic_number": "Nº magnético",
+    "institution_center_worshipplace_description": "Local de culto",
+    "is_coordinator": "Coordenador",
+    "congregation": "Congregação",
+    "formation_courses": "Cursos de formação",
+    "institution_date": "Data de nomeação",
+    "institution_time": "Há quantos anos exerce",
+    "ecclesial_formation_biblical_courses": "Cursos bíblicos",
+    "ecclesial_formation_theological_pastorails_courses": "Cursos teológico-pastoral",
+    "ecclesial_formation_other": "Outra",
+    "ecclesial_formation_other_description": "Outra formação eclesial",
+    "ecclesial_activities_singer": "Cantor(a)",
+    "ecclesial_activities_caretaker": "Zelador(a)",
+    "ecclesial_activities_association_of_faithful_direction_member": "Membro da direção de uma associação de fiéis",
+    "ecclesial_activities_economic_council_member": "Membro do conselho económico",
+    "ecclesial_activities_other": "Outra",
+    "ecclesial_activities_other_description": "Outra atividade eclesial",
+    "reappointment_date": "Data de recondução",
+    "entity": {
+      "name": "Nome",
+      "entity_birth_chapelry_description": "Paróquia de nascimento",
+      "civil_status": "Estado civil",
+      "residence_chapelry_description": "Paróquia de residência",
+      "address": "Morada",
+      "door_number": "Nº da porta",
+      "postal_code": "Código postal",
+      "place": "Localidade",
+      "county": "Concelho",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "mobilephone": "Telemóvel",
+      "phone": "Telefone",
+      "fax": "Fax",
+      "email": "E-mail",
+      "url": "Página web",
+      "is_public_profile": "Público",
+      "entity_mec": {
+        "mec": "Acólito(a)"
+      },
+      "entity_acolyte": {
+        "is_acolyte": "Acólito(a)"
+      },
+      "entity_reader": {
+        "is_reader": "Leitor(a)"
+      },
+      "entity_catechist": {
+        "catechist": "Catequista"
+      },
+      "entity_person": {
+        "serie_number": "Nº de registo",
+        "sex": "Género",
+        "birth_date": "Data de nascimento",
+        "age": "Idade",
+        "qualifications": "Habilitações",
+        "professional_profession_description": "Profissão",
+        "comments": "Observações",
+        "ident_document_type": "Tipo de identificação",
+        "ident_document_number": "Nº de identificação",
+        "ident_document_emission_date": "Data de emissão",
+        "ident_document_validity_date": "Data de validade",
+        "ident_document_emitted_by": "Emitido por",
+        "is_parishioner": "Paroquiano(a)"
+      }
+    },
+    "entities_readers_lines": {
+      "renewal_date": "Data"
+    },
+    "entities_readers_formations": {
+      "formation_description": "Formação",
+      "formation_date": "Data"
+    }
+  },
+  "header": {
+    "renewal": "Reconduções",
+    "formations": "Formações",
+    "address": "Morada",
+    "contacts": "Contactos",
+    "identi_documents": "Documentos de identificação",
+    "ecclesial_formations": "Formações eclesiais",
+    "ecclesial_activities": "Atividades eclesiais"
+  },
+  "tabs": {
+    "personal-data": "Dados pessoais",
+    "categories": "Categorias",
+    "reader": "Leitor",
+    "formations": "Reconduções e formações"
+  }
+}

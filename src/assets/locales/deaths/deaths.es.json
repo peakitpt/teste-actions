@@ -1,0 +1,56 @@
+{
+    "module": {
+        "name_singular": "Fallecido",
+        "name_many": "Fallecidos"
+    },
+    "action": {
+        "new": "Nuevo fallecimiento",
+        "edit": "Editar Fallecimiento",
+        "delete": "¿Eliminar Fallecimiento?"
+    },
+    "message": {
+        "save_success": "¡Fallecimiento guardado con éxito!",
+        "delete_success": "Fallecimiento eliminado con éxito!",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Estás seguro de que quieres eliminar el Fallecimiento de \"<strong>{{ entity_description }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Estás seguro de que quieres eliminar el <strong>{{ count }}</strong> Fallecimiento seleccionado?"
+    },
+    "model": {
+        "serie_number": "Nº de registro",
+        "entity_description": "Nombre",
+        "seat_number": "Asiento nº",
+        "observations": "Observaciones",
+        "emolument_description": "Emolumento",
+        "tax": "Taxa",
+        "document_entity_description": "Entidad que debe figurar en el documento",
+        "declaration_relative_kinship": "Relación con el fallecido/a",
+        "declaration_relative_presence": "Nombre",
+        "sacraments": "Sacramento(s)",
+        "civil_status_on_death": "Estado civil en el momento del fallecimiento",
+        "entity_bury_cemitery": "Lugar del funeral",
+        "bury_chapelry_description": "Parroquia donde se celebra el funeral",
+        "death_chapelry_description": "Parroquia donde ha fallecido",
+        "entity_death_county": "Ayuntamiento del fallecido",
+        "entity_death_locality": "Localidad del fallecido",
+        "entity_death_place": "Lugar del fallecimiento",
+        "death_hour": "Hora del fallecimiento",
+        "entity_death_bury_process_id": "Proceso funerario",
+        "entity_bury_date": "Fecha del funeral",
+        "death_year": "Año de fallecimiento",
+        "death_date": "Fecha de fallecimiento",
+        "sheet": "Hoja"
+    },
+    "header": {
+        "treasury_document": "Documento de la tesorería",
+        "declaration_of_presence": "Declaración de asistencia"
+    },
+    "bury_process_options": {
+        "buried": "Enterrado (a)",
+        "cremated": "Cremado (a)"
+    },
+    "tabs": {
+        "reports": "Informes",
+        "main": "Muerte"
+    }
+}

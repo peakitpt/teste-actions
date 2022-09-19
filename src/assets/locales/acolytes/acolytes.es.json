@@ -1,0 +1,116 @@
+{
+    "module": {
+        "name_singular": "Acólito",
+        "name_many": "Acólitos"
+    },
+    "action": {
+        "new": "Nuevo Acólito",
+        "edit": "Editar Acólito",
+        "delete": "¿Eliminar Acólito?",
+        "generate_card": "Generar tarjeta"
+    },
+    "options": {
+        "not_available": "N/D",
+        "yes": "Si",
+        "no": "No"
+    },
+    "message": {
+        "save_success": "¡Acólito guardado con éxito!",
+        "delete_success": "¡Acólito eliminado con éxito!",
+        "delete_success_plural": "¡Acólitos eliminados con éxito!",
+        "delete_are_you_sure": "¿Estás seguro de que deseas eliminar al acólito con el nombre \"<strong> {{ name }} </strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que desea eliminar los <strong>{{ count }}</strong> Acólitos seleccionados?",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados"
+    },
+    "model": {
+        "acolyte": "Activo",
+        "acolyte_number": "Nº Acólito",
+        "magnetic_number": "Nº magnético",
+        "institution_center_worshipplace_description": "Lugar de culto",
+        "is_acolyte": "Acólito",
+        "is_coordinator": "Coordinador",
+        "congregation": "Congregación",
+        "formation_courses": "Cursos de Formación",
+        "institution_date": "Fecha de nombramiento",
+        "institution_time": "Años en ejercicio",
+        "ecclesial_formation_biblical_courses": "Cursos de Biblia",
+        "ecclesial_formation_theological_pastorails_courses": "Cursos teológico-pastorales",
+        "ecclesial_formation_other": "Otro",
+        "ecclesial_formation_other_description": "Otra formación Eclesial",
+        "ecclesial_activities_singer": "Cantor(a)",
+        "ecclesial_activities_caretaker": "Colaborador(a)",
+        "ecclesial_activities_association_of_faithful_direction_member": "Miembro de la junta directiva de una asociación de fieles",
+        "ecclesial_activities_economic_council_member": "Miembro del consejo económico",
+        "ecclesial_activities_other": "Otro",
+        "ecclesial_activities_other_description": "Otra actividad eclesial",
+        "entity": {
+            "name": "Nombre",
+            "entity_birth_chapelry_description": "Parroquia de nacimiento",
+            "civil_status": "Estado civil",
+            "residence_chapelry_description": "Parroquia de residencia",
+            "address": "Dirección",
+            "door_number": "Nº",
+            "postal_code": "CP",
+            "place": "Localidad",
+            "county": "Ayuntamiento",
+            "latitude": "Latitud",
+            "longitude": "Longitud",
+            "mobilephone": "Teléfono móvil",
+            "phone": "Teléfono",
+            "fax": "Fax",
+            "email": "Correo electrónico",
+            "url": "Sitio web",
+            "is_public_profile": "Público",
+            "entity_acolyte": {
+                "is_acolyte": "Acólito(a)"
+            },
+            "entity_mec": {
+                "mec": "Ministro Comunión"
+            },
+            "entity_reader": {
+                "is_reader": "Lector(a)"
+            },
+            "entity_catechist": {
+                "catechist": "Catequista"
+            },
+            "entity_person": {
+                "serie_number": "Nº de registro",
+                "sex": "Género",
+                "birth_date": "Fecha de nacimiento",
+                "age": "Edad",
+                "qualifications": "Habilitaciones",
+                "professional_profession_description": "Profesión",
+                "comments": "Observaciones",
+                "ident_document_type": "Tipo de identificación",
+                "ident_document_number": "Nº de identificación",
+                "ident_document_emission_date": "Fecha de emisión",
+                "ident_document_validity_date": "Fecha de validez",
+                "ident_document_emitted_by": "Emitido por",
+                "is_parishioner": "Parroquiano(a)"
+            }
+        },
+        "entities_acolytes_lines": {
+            "renewal_date": "Fecha"
+        },
+        "entities_acolytes_formations": {
+            "formation_description": "Formación",
+            "formation_date": "Fecha"
+        }
+    },
+    "header": {
+        "renewal": "Renovaciones",
+        "formations": "Formaciones",
+        "address": "Dirección",
+        "contacts": "Contacto",
+        "identi_documents": "Documentos de identificación",
+        "ecclesial_formations": "Formación eclesial",
+        "ecclesial_activities": "Actividades Eclesiales"
+    },
+    "tabs": {
+        "personal-data": "Datos personales",
+        "categories": "Categorías",
+        "acolyte": "Acólito",
+        "formations": "Renovaciones y formaciones"
+    }
+}

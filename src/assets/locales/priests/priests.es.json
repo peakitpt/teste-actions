@@ -1,0 +1,194 @@
+{
+    "model": {
+        "entity": {
+            "name": "Nombre",
+            "can_sign_documents": "Puede firmar documentos",
+            "disabled": "Activo",
+            "taxpayer": "NIF",
+            "newsletter_subscriptor": "Grupos (Newsletter/SMS)",
+            "url": "Sitio web",
+            "email": "Correo electrónico",
+            "fax": "Fax",
+            "phone": "Teléfono",
+            "mobilephone": "Teléfono móvil",
+            "country_description": "País",
+            "district": "Provincia",
+            "county": "Ayuntamiento",
+            "place": "Localidad",
+            "postal_code": "CP",
+            "door_number": "Nº",
+            "address": "Dirección",
+            "complete_relation": "Nombre",
+            "photo_url": "Foto"
+        },
+        "clergy_type": {
+            "abbreviated_name": "Tipo",
+            "name": "Tipo"
+        },
+        "entity__disabled": "Activo",
+        "priest_academic_qualifications": "Habilitaciones académicas",
+        "curriculum": "Currículum",
+        "publications": "Publicaciones",
+        "ongoing_formations": "Formación permanente",
+        "coat_of_arms_filename": "Escudo",
+        "attachment_filename": "Fotografía",
+        "appointments": "Nombreamientos (importados)",
+        "imported_actual_appointments": "Nombreamientos actuales (importados)",
+        "ordination_place": "Lugar de ordenación",
+        "ordination_date": "Fecha de ordenación sacerdotal",
+        "observations": "Observaciones",
+        "mother_description": "Madre",
+        "father_description": "Padre",
+        "private_mobilephone": "Teléfono móvil privado",
+        "residence_chapelry_description": "Parroquia de residencia",
+        "residence": "Residencia",
+        "birth_chapelry_description": "Parroquia de nacimiento",
+        "priest_birth_date": "Fecha de nacimiento",
+        "title_for_documents": "Título para usar en documentos",
+        "abbreviated_name": "Nombre abreviado",
+        "clergy_type_description": "Tipo de clero",
+        "death_date": "Fallecido en",
+        "deceased": "Fallecido",
+        "entity_priest_hashtags": {
+            "tag": "Etiqueta"
+        },
+        "entity_priest_academic_qualifications": {
+            "description": "Descripción",
+            "end_date": "Fin",
+            "start_date": "Inicio"
+        },
+        "entity_priest_curriculums": {
+            "description": "Descripción",
+            "end_date": "Fin",
+            "start_date": "Inicio"
+        },
+        "entity_priest_publications": {
+            "description": "Descripción",
+            "publication_date": "Fecha de publicación"
+        },
+        "entity_priest_ongoing_formations": {
+            "description": "Descripción",
+            "end_date": "Fin",
+            "start_date": "Inicio"
+        },
+        "entity_priest_retreats": {
+            "retreat_place": "Lugar",
+            "retreat_year": "Año"
+        },
+        "entity_priest_priestly_cards": {
+            "renewal_date": "Fecha de renovación"
+        },
+        "entity_priest_appointments": {
+            "description": "Descripción",
+            "representing_description": "Representa",
+            "appointment_place_description": "Lugar",
+            "curia_function_description": "Función",
+            "end_date": "Fin",
+            "start_date": "Inicio"
+        },
+        "entity_person": {
+            "ident_document_validity_date": "Fecha de validez",
+            "ident_document_emitted_by": "Emitido por",
+            "ident_document_emission_date": "Fecha de Emisión",
+            "ident_document_number": "Número de identificación",
+            "ident_document_type": "Tipo de Identificación"
+        },
+        "changes_request": "Solicitud de actualización de datos",
+        "appointments_appointment_place_description_starts": "Ubicación actual del nombramiento (pertenece a)",
+        "appointments_appointment_place_description": "Ubicación actual del nombramiento (igual que)",
+        "appointments_curia_function_description": "Nombramiento actual",
+        "hashtag_tag": "Etiquetas de búsqueda"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que pretende eliminar el elemento del clero con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_success": "¡Elemento del Clero eliminado con éxito!",
+        "save_success": "¡Elemento del Clero guardado con éxito!",
+        "group_toggle_deactivated": "¡Suscripción desactivada con éxito!",
+        "group_toggle_activated": "¡Suscripción activada con éxito!",
+        "group_toggle_are_you_sure_deactivate": "¿Realmente quieres Desactivar la suscripción en el grupo<strong>{{ groupName }}</strong>?",
+        "group_toggle_are_you_sure_activate": "¿Realmente quieres Activar la suscripción en el grupo<strong>{{ groupName }}</strong>?"
+    },
+    "module": {
+        "name_many": "Elementos del Clero",
+        "name_singular": "Elemento del Clero"
+    },
+    "placeholder": {
+        "age": "Edad"
+    },
+    "action": {
+        "delete": "¿Eliminar el Elemento del Clero?",
+        "edit": "Editar el Elemento del Clero",
+        "new": "Nuevo Elemento del Clero",
+        "group_toggle_subscription_deactivate": "¿Desactivar suscripción en el grupo?",
+        "group_toggle_subscription_activate": "¿Activar suscripción en el grupo?",
+        "group_deactivate": "Desactivar",
+        "group_activate": "Activar"
+    },
+    "header": {
+        "groups": "Grupos",
+        "current_account_curia": "Cuenta Corriente Curia",
+        "current_account_priestly_fraternity": "Cuenta corriente de la fraternidad sacerdotal",
+        "coat_of_arms": "Escudo",
+        "hashtags": "Etiquetas de búsqueda",
+        "attachment": "Fotografía",
+        "academic_qualifications": "Habilitaciones académicas",
+        "curriculum": "Currículum",
+        "publications": "Publicaciones",
+        "permanent_formation": "Formación permanente",
+        "retreats": "Retiros",
+        "priest_card_renewals": "Renovación de la tarjeta sacerdotal",
+        "appoitments": "Nombramientos",
+        "ordination": "Ordenación",
+        "other_informations": "Otras informaciones",
+        "filiation": "Afiliación",
+        "identification_documents": "Documentos de identificación",
+        "contacts": "Contacto",
+        "address": "Dirección",
+        "personal_data": "Datos personales"
+    },
+    "tabs": {
+        "other_infos": "Otras informaciones",
+        "groups": "Grupos",
+        "current_accounts": "Cuentas corrientes",
+        "ordination_appointmens": "Ordenaciones y nombramientos",
+        "personal_data": "Datos personales"
+    },
+    "types": {
+        "tit_resi": "Título de Residencia",
+        "passaport": "Pasaporte",
+        "cc": "Tarjeta de Ciudadanía",
+        "bi": "DNI",
+        "arquidiocesano2": "Desde fuera a residir en la Diócesis",
+        "arquidiocesano1": "Diocesano con residencia fuera",
+        "arquidiocesano": "Diocesano",
+        "religious": "Religioso",
+        "canceled": "Cancelado",
+        "paid": "Pagado",
+        "partially_paid": "Pagado em parte",
+        "pending": "Pendiente"
+    },
+    "groups": {
+        "active": "Activar / Desactivar",
+        "unsubscription_date": "Fecha de anulación",
+        "subscription_date": "Fecha de suscripción",
+        "group_name": "Grupo"
+    },
+    "current_account_curia": {
+        "pending_amount": "Valor pendiente",
+        "total_amount": "Valor total",
+        "currency": "Moneda",
+        "serie_number": "Doc. Nº",
+        "documents_status_description": "Estado",
+        "document_date": "Fecha del doc."
+    },
+    "current_account_priestly_fraternity": {
+        "pending_amount": "Valor pendiente",
+        "currency": "Moneda",
+        "total_amount": "Valor total",
+        "serie_number": "Doc. Nº",
+        "documents_status_description": "Estado",
+        "document_date": "Fecha del doc."
+    }
+}

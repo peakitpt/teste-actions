@@ -1,0 +1,118 @@
+{
+  "module": {
+    "name_singular": "Catequese",
+    "name_many": "Catequese",
+    "name_session_singular": "Sessão de Catequese",
+    "name_session_many": "Sessões de Catequese"
+  },
+  "action": {
+    "new": "Novo Grupo de Catequese",
+    "edit": "Editar Grupo de Catequese",
+    "delete": "Eliminar Grupo de Catequese?",
+    "add_session": "Adicionar sessão",
+    "new_session": "Nova Sessão de Catequese",
+    "edit_session": "Editar Sessão de Catequese",
+    "delete_session": "Eliminar Sessão de Catequese?",
+    "passing_grade_finalize": "Finalizar e passar de ano",
+    "passing_grade": "Passar de ano",
+    "finalize": "Finalizar",
+    "save_with_missing_sponsors": "Guardar sem Encarregados de Associação",
+    "save_when_student_exists_on_another_catechism": "Guardar"
+  },
+  "message": {
+    "save_success": "Grupo de Catequese guardado com sucesso!",
+    "delete_success": "Grupo de Catequese apagado com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Grupo de Catequese<br>\"<strong>{{ year }} {{ classYear }} — {{ name }}</strong>\"<br>dos catequistas<br><strong>{{ catechists }}</strong>?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Grupos de Catequese selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados",
+    "error_blank_catechists": "Por favor, preencha todos os campos obrigatórios da tabela de Catequistas",
+    "error_blank_students": "Por favor, preencha todos os campos obrigatórios da tabela de Catequizandos",
+    "error_blank_transfers": "Por favor, preencha todos os campos obrigatórios da tabela de Transferências",
+    "save_session_success": "Sessão de Catequese guardada com sucesso!",
+    "delete_session_success": "Sessão de Catequese apagada com sucesso!",
+    "delete_session_are_you_sure": "Tem a certeza que pretende eliminar a Sessão de Catequese com o sumário<br>\"<strong>{{ summary }}</strong>\"?",
+    "delete_session_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Sessões de Catequese selecionadas?",
+    "error_blank_presences": "Por favor, preencha todos os campos obrigatórios da tabela das Presenças",
+    "passing_grade_finalize_message": "Pretende finalizar esta turma ao passar de ano?<br/><br/><strong>Esta turma será finalizada e será aberta uma nova janela para que possa criar a nova turma.<br>As presenças desta turma serão contabilizadas nas Fichas dos catequizandos e deixará de ser possível editá-la.</strong>",
+    "passing_grade_message": "Pretende passar de ano sem finalizar esta turma?<br/><br/><strong>Esta turma continuará editável e as presenças não serão contabilizadas nas Fichas dos catequizandos enquanto não for finalizada.</strong>",
+    "finalize_message": "Pretende finalizar esta turma?<br/><br/><strong>As presenças serão contabilizadas nas Fichas dos catequizandos e deixará de ser possível editar a turma.</strong>",
+    "finalized_success": "O Grupo de Catequese foi finalizado com sucesso!",
+    "cant_edit_finalized_catechism": "Este Grupo de Catequese já foi finalizado. Não é possível editá-lo",
+    "cant_manage_finalized_catechism_session": "Não é possível gerir sessões porque o Grupo de Catequese já foi finalizado",
+    "missing_sponsors_message": "Este Grupo de Catequese não está marcado como sendo <strong>\"Para adultos\"</strong> e existem catequizandos sem Encarregado de Educação associado.<br/><br/><strong>Prentende guardar, mesmo assim?</strong>",
+    "student_exists_on_another_catechism_message": "O catequizando <strong>{{ student_names }}</strong> já existe noutro Grupo de Catequese para o ano pastoral <strong>{{ class_year }}</strong>.<br/><br/><strong>Prentende guardar, mesmo assim?</strong>",
+    "student_exists_on_another_catechism_message_plural": "Os catequizandos <strong>{{ student_names }}</strong> já existem noutro Grupo de Catequese para o ano pastoral <strong>{{ class_year }}</strong>.<br/><br/><strong>Prentende guardar, mesmo assim?</strong>"
+  },
+  "model": {
+    "class_year": "Ano pastoral",
+    "year": "Ano",
+    "name": "Descrição",
+    "catechists_names_for_search": "Catequista(s)",
+    "week_day": "Dia da semana",
+    "start_time": "Hora de início",
+    "end_time": "Hora de fim",
+    "is_for_adults": "Para adultos",
+    "is_for_adults_abrev": "Adultos",
+    "finalized": "Finalizado",
+    "catechisms_catechists": {
+      "entity_description": "Catequista"
+    },
+    "catechisms_students": {
+      "entity_description": "Catequizando",
+      "education_sponsor_description": "Encarregado de educação",
+      "observations": "Observações",
+      "inscription_date": "Inscrição"
+    },
+    "catechisms_transfers": {
+      "transited": "Transitou?",
+      "next_class_year_inscription": "Apenas próx. ano pastoral?",
+      "entity_description": "Catequizando",
+      "chapelry_description": "Paróquia de destino",
+      "transfer_date": "Data"
+    },
+    "catechisms_sessions": {
+      "date": "Data",
+      "presences": "Presenças",
+      "summary": "Sumário",
+      "observations": "Observações",
+      "catechisms_sessions_presences_attributes": {
+        "entity_description": "Catequizando",
+        "present": "Presente"
+      }
+    },
+    "catechisms_individual_documents": {
+      "entity_description": "Catequizando",
+      "doc_inscription_url": "Inscrição",
+      "doc_historic_url": "Histórico",
+      "doc_attendance_sheet_url": "Folha de presenças",
+      "doc_transfer_url": "Transferência"
+    }
+  },
+  "placeholder": {
+    "class_year": "aaaa/aaaa",
+    "schedule": "Horário"
+  },
+  "tabs": {
+    "catechism": "Catequese",
+    "sessions": "Sessões",
+    "transfers": "Transferências",
+    "individual_docs": "Documentos individuais"
+  },
+  "header": {
+    "catechists": "Catequistas",
+    "students": "Catequizandos"
+  },
+  "catechism_years": {
+    "1_year": "1º Ano",
+    "2_year": "2º Ano",
+    "3_year": "3º Ano",
+    "4_year": "4º Ano",
+    "5_year": "5º Ano",
+    "6_year": "6º Ano",
+    "7_year": "7º Ano",
+    "8_year": "8º Ano",
+    "9_year": "9º Ano",
+    "10_year": "10º Ano"
+  }
+}

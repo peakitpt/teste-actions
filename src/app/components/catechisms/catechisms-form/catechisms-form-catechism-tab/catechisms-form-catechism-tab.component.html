@@ -1,0 +1,43 @@
+<section id="catechism-section">
+  <div fxLayout="row wrap" ngClass.lt-sm="padding-20" ngClass.gt-xs="center-checkbox padding-40" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-checkbox [label]="modulePath + ':model.is_for_adults' | i18next" [control]="form.get('is_for_adults')"></ui-checkbox>
+    <ui-checkbox [label]="modulePath + ':model.finalized' | i18next" [control]="form.get('finalized')"></ui-checkbox>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="50" [required]="true" [label]="modulePath + ':model.name' | i18next" [control]="form.get('name')"></ui-input>
+    <ui-select fxFlex="25" [required]="true" [label]="modulePath + ':model.year' | i18next" [options]="yearsOptions" [control]="form.get('year')"></ui-select>
+    <ui-input fxFlex="25" [required]="true" [label]="modulePath + ':model.class_year' | i18next" [placeholder]="modulePath + ':placeholder.class_year' | i18next" [control]="form.get('class_year')"></ui-input>
+    <ui-select fxFlex="50" [label]="modulePath + ':model.week_day' | i18next" [options]="weekdaysOptions" [control]="form.get('week_day')"></ui-select>
+    <ui-input fxFlex="25" [label]="modulePath + ':model.start_time' | i18next" placeholder="HH:MM" [control]="form.get('start_time')"></ui-input>
+    <ui-input fxFlex="25" [label]="modulePath + ':model.end_time' | i18next" placeholder="HH:MM" [control]="form.get('end_time')"></ui-input>
+  </div>
+
+  <section id="catechists-section">
+    <h2>{{ modulePath + ':header.catechists' | i18next }}</h2>
+    <ui-table
+      #catechistsTable
+      [checkboxes]="false"
+      [dataSource]="catechistsDS"
+      [tableColumns]="catechistsColumns"
+      stickyHeader="true">
+    </ui-table>
+    <div class="add-table-line" (click)="addTableLine(newCatechist, catechistsFormArray, catechistsDS)">
+      {{ 'translation:action.add' | i18next }}
+    </div>
+  </section>
+
+  <section id="students-section">
+    <h2>{{ modulePath + ':header.students' | i18next }}</h2>
+    <ui-table
+      #studentsTable
+      [checkboxes]="false"
+      [dataSource]="studentsDS"
+      [tableColumns]="studentsColumns"
+      stickyHeader="true">
+    </ui-table>
+    <div class="add-table-line" (click)="addTableLine(newStudent, studentsFormArray, studentsDS)">
+      {{ 'translation:action.add' | i18next }}
+    </div>
+  </section>
+</section>

@@ -1,0 +1,36 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="modalClose()"
+  [headerBottomMargin]="false"
+  [width]="600"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxFill fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + ':action.' + action | i18next }}?</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':action.' + action | i18next }}?
+    </ng-template>
+    <div class="header-buttons" fxLayout="row">
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #body>
+  <div style="margin: 20px 0">
+    <div class="body-content" [innerHTML]="bodyMessage"></div>
+  </div>
+</ng-template>
+
+<ng-template #footer>
+  <ng-container>
+    <div class="footer-buttons" fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <ui-button type="flat" [label]="'translation:action.cancel' | i18next" (onClickEvent)="modal.close()"></ui-button>
+      <ui-button type="flat" [label]="modulePath + ':action.' + action | i18next" color="accent" (onClickEvent)="confirm()"></ui-button>
+    </div>
+  </ng-container>
+</ng-template>

@@ -1,0 +1,76 @@
+<section id="catechism-section">
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.year' | i18next }}:</div>
+        <div fxFlex>{{ modulePath + ':catechism_years.' +  model.year  + '_year' | i18next }}, {{ model.class_year }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.name">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.name' | i18next }}:</div>
+        <div fxFlex>{{ model.name }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.week_day || model.start_time || model.end_time">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':placeholder.schedule' | i18next }}:</div>
+        <div fxFlex>{{ getSchedule(model) }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.is_for_adults' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.is_for_adults ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.finalized' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.finalized ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="catechists-section" *ngIf="model.catechisms_catechists_attributes?.length">
+  <h2>{{ modulePath + ':header.catechists' | i18next }}</h2>
+  <div fxLayout="column">
+    <section>
+      <div class="scrollable-table">
+        <table class="mat-table" id="catechists-table">
+          <tr class="mat-header-row">
+            <th class="mat-header-cell">#</th>
+            <th class="mat-header-cell col1">{{ modulePath + ':model.catechisms_catechists.entity_description' | i18next }}</th>
+          </tr>
+          <tr class="mat-row uiKyriosTableRow" *ngFor="let catechist of model.catechisms_catechists_attributes; let i = index" [attr.data-index]="i">
+            <td class="mat-cell">{{ i + 1 }}</td>
+            <td class="mat-cell col1"><a (click)="openDetails('persons', catechist.entity_id)">{{ catechist.entity_description }}</a></td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </div>
+</section>
+
+<section id="students-section" *ngIf="model.catechisms_students_attributes?.length">
+  <h2>{{ modulePath + ':header.students' | i18next }}</h2>
+  <div fxLayout="column">
+    <section>
+      <div class="scrollable-table">
+        <table class="mat-table" id="students-table">
+          <tr class="mat-header-row">
+            <th class="mat-header-cell">#</th>
+            <th class="mat-header-cell col1">{{ modulePath + ':model.catechisms_students.entity_description' | i18next }}</th>
+            <th class="mat-header-cell col2">{{ modulePath + ':model.catechisms_students.education_sponsor_description' | i18next }}</th>
+            <th class="mat-header-cell col3">{{ modulePath + ':model.catechisms_students.observations' | i18next }}</th>
+            <th class="mat-header-cell col4">{{ modulePath + ':model.catechisms_students.inscription_date' | i18next }}</th>
+          </tr>
+          <tr class="mat-row uiKyriosTableRow" *ngFor="let student of model.catechisms_students_attributes; let i = index" [attr.data-index]="i">
+            <td class="mat-cell">{{ i + 1 }}</td>
+            <td class="mat-cell col1"><a (click)="openDetails('persons', student.entity_id)">{{ student.entity_description }}</a></td>
+            <td class="mat-cell col2"><a (click)="openDetails('persons', student.education_sponsor_id)">{{ student.education_sponsor_description }}</a></td>
+            <td class="mat-cell col3">{{ student.observations }}</td>
+            <td class="mat-cell col4">{{ student.inscription_date | date:('translation:format.date' | i18next) }}</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </div>
+</section>

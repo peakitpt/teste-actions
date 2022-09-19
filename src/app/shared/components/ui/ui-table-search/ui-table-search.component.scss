@@ -1,0 +1,32 @@
+@import './node_modules/@peakitpt/ui-material/assets/theme.scss';
+
+
+@mixin table-search-theme($theme){
+  $background: map-get($theme, background);
+
+  .menuContainer {
+    max-width: 870px;
+  }
+
+  .search-icon-left {
+
+  }
+
+  .search-clear-button {
+
+  }
+
+  .search-menu {
+    position: relative;
+    top: 6px;
+  }
+
+}
+
+.kyrios-theme-light {
+  @include table-search-theme($kyrios-theme-light);
+}
+
+.kyrios-theme-dark {
+  @include table-search-theme($kyrios-theme-dark);
+}

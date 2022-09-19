@@ -1,0 +1,59 @@
+<section id="groom-section">
+  <h2>{{ modulePath + ':header.groom' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity_groom_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_groom_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity_groom.entity_person.id)">{{ model.entity_groom_description }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_groom_nick' | i18next }}:</div>
+        <div fxFlex>
+          <a>{{ model.entity_groom_nick }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bride-section">
+  <h2>{{ modulePath + ':header.bride' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity_bride_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_bride_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity_bride.entity_person.id)">{{ model.entity_bride_description }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_bride_nick' | i18next }}:</div>
+        <div fxFlex>
+          <a>{{ model.entity_bride_nick }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="children-section">
+  <h2>{{ modulePath + ':header.children' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.children_common' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.children_common ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.not_children_common' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.not_children_common ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+{
+    "module": {
+        "name_singular": "Subscription",
+        "name_many": "Subscriptions"
+    },
+    "action": {
+        "disable_users": "Disable user",
+        "enable_users": "Activate user",
+        "disable_subscriptions": "Disable subscription",
+        "disable_subscriptions_and_users": "Disable subscription & user",
+        "new": "Add Subscription"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected"
+    },
+    "model": {
+        "entity1": {
+            "user": {
+                "name": "Name",
+                "email": "Email"
+            },
+            "entity_type": {
+                "name": "Type (user)",
+                "active": "Active",
+                "expiration": "Expiration"
+            }
+        },
+        "entity2": {
+            "complete_relation": "Subscription",
+            "entity_type": {
+                "name": "Type (subscription)",
+                "active": "Active"
+            },
+            "country_description": "Country description",
+            "entities_relation": {
+                "diocese_description": "Diocese description",
+                "arciprestado_description": "Archipriesty description",
+                "paroquia_description": "Parish description"
+            }
+        },
+        "entity1_name": "Name",
+        "active": "Active",
+        "complete_relation": "Subscription",
+        "entity1_type": "Type (user)",
+        "entity1_email": "Email",
+        "expiration": "Expiration",
+        "entity2_type": "Type (subscription)",
+        "country_description": "Country description",
+        "diocese_description": "Diocese description",
+        "arciprestado_description": "Archipriesty description",
+        "paroquia_description": "Parish description"
+    }
+}

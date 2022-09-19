@@ -1,0 +1,19 @@
+@import './node_modules/@peakitpt/ui-material/assets/theme.scss';
+
+@mixin subscription-statistics-details-theme($theme) {
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+
+  .see-more-link {
+    text-decoration: none;
+    color: mat-color($accent);
+  }
+}
+
+.kyrios-theme-light {
+  @include subscription-statistics-details-theme($kyrios-theme-light);
+}
+
+.kyrios-theme-dark {
+  @include subscription-statistics-details-theme($kyrios-theme-dark);
+}

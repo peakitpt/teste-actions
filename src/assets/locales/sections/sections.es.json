@@ -1,0 +1,31 @@
+{
+    "module": {
+        "name_singular": "Sección",
+        "name_many": "Secciones"
+    },
+    "message": {
+        "save_success": "¡Sección guardada con éxito!",
+        "delete_are_you_sure": "¿Está seguro de que desea eliminar la sección con la descripción \"<strong>{{ description }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que desea eliminar las <strong>{{ count }}</strong> Secciones seleccionadas?",
+        "delete_success": "¡Sección eliminada correctamente!",
+        "delete_success_plural": "¡Secciones eliminadas correctamente!",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionado"
+    },
+    "options": "Opciones",
+    "delete-section": "Eliminar sección",
+    "delete-section-message": "¿Estás seguro de que quieres eliminar la sección {{ description }}?",
+    "delete-multiple-section-message": "¿Estas seguro que quieres eliminar las {{ length }} secciones?",
+    "section": "Secciones",
+    "action": {
+        "new": "Nueva sección",
+        "edit": "Editar sección",
+        "delete": "¿Eliminar sección?"
+    },
+    "model": {
+        "reference": "Referencia",
+        "description": "Descripción"
+    },
+    "edit-section": "Editar sección",
+    "new-section": "Nueva sección"
+}

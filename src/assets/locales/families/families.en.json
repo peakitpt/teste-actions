@@ -1,0 +1,54 @@
+{
+    "module": {
+        "name_singular": "Family",
+        "name_many": "Families"
+    },
+    "action": {
+        "new": "New Family",
+        "edit": "Edit Family",
+        "delete": "Delete Family?"
+    },
+    "message": {
+        "save_success": "Family successfully saved!",
+        "delete_success": "Family successfully deleted!",
+        "delete_success_plural": "Families successfully deleted!",
+        "delete_are_you_sure": "Are you sure that you want to delete the Family with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure that you want to delete all the <strong>{{ count }}</strong> selected Families?",
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "error_blank_families_entities": "Please, fill in all required fields of the Household table",
+        "family_documents_will_be_here": "Here will be listed the documents associated with this family's elements",
+        "no_satistics_to_show": "No statistics to show"
+    },
+    "model": {
+        "name": "Surname",
+        "father_description": "1st householder",
+        "mother_description": "2nd householder",
+        "disabled": "Active",
+        "comments": "Observations",
+        "opt1_text": "Does any of the household members participate in any religious movement? Who?",
+        "opt1_text2_description": "In which Parish?",
+        "opt2_text": "A member is willing to work in this parish? In which?",
+        "opt2_text2": "In what?",
+        "opt3_text": "'In your opinion, what do you think that could have been done to promote a better connection between the Parishioners and the Parish?'",
+        "opt4_text": "What are the main problems of this household?",
+        "opt5_text": "Does this family needs any kind of support? Which kind of support?",
+        "families_entities": {
+            "_destroy": "Delete?",
+            "entity_description": "Name",
+            "relationship_degree_description": "Relationship",
+            "relation_with": "Relative to"
+        }
+    },
+    "header": {
+        "family_data": "Family data",
+        "household": "Household",
+        "other_info": "Other information"
+    },
+    "tabs": {
+        "family": "Family",
+        "documents": "Documents",
+        "statistic_data": "Statistic data"
+    },
+    "relations_with_both": "Both householders"
+}

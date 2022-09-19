@@ -1,0 +1,374 @@
+<section id="reports-section">
+  <ui-expansion-panel [panels]="expansionPanels" displayMode="flat" togglePosition="before"></ui-expansion-panel>
+</section>
+
+<ng-template #mod3Template>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [required]="true" [label]="modulePath + ':model.mod3_entity_reference' | i18next" [options]="groomBrideOptions" [control]="form.get('mod3_entity_reference')"></ui-select>
+  </div>
+</ng-template>
+
+<ng-template #mod4Template>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.exemption_impediment' | i18next" [control]="form.get('exemption_impediment')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+    <ui-textarea fxFlex rows="2" [label]="modulePath + ':model.exemptions_impediments' | i18next" [control]="form.get('exemptions_impediments')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-textarea>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex rows="2" [label]="modulePath + ':model.exemption_impediments_because' | i18next" [control]="form.get('exemption_impediments_because')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-textarea>
+    <ui-textarea fxFlex rows="2" [label]="modulePath + ':model.exemptions_due_to' | i18next" [control]="form.get('exemptions_due_to')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-textarea>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.economical_situation' | i18next" [control]="form.get('economical_situation')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.fees' | i18next" [control]="form.get('fees')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+  </div>
+
+  <h2>{{ modulePath + ':header.family' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="25" [label]="modulePath + ':model.grooms_kinship_type' | i18next" [control]="form.get('grooms_kinship_type')"></ui-input>
+    <ui-input fxFlex="25" [label]="modulePath + ':model.grooms_degree_of_kinship' | i18next" [control]="form.get('grooms_degree_of_kinship')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.grooms_degree_of_kinship_lineage' | i18next" [control]="form.get('grooms_degree_of_kinship_lineage')"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px">
+    <div fxFlex fxLayout="column">
+      <h2>{{ modulePath + ':header.groom_geneologic_tree' | i18next }}</h2>
+      <ui-input fxFlex [label]="modulePath + ':model.groom_family_tree_1' | i18next" [control]="form.get('groom_family_tree_1')"></ui-input>
+      <ui-input fxFlex [label]="modulePath + ':model.groom_family_tree_2' | i18next" [control]="form.get('groom_family_tree_2')"></ui-input>
+      <ui-input fxFlex [label]="modulePath + ':model.groom_family_tree_3' | i18next" [control]="form.get('groom_family_tree_3')"></ui-input>
+    </div>
+    <div fxFlex fxLayout="column">
+      <h2>{{ modulePath + ':header.bride_geneologic_tree' | i18next }}</h2>
+      <ui-input fxFlex [label]="modulePath + ':model.bride_family_tree_1' | i18next" [control]="form.get('bride_family_tree_1')"></ui-input>
+      <ui-input fxFlex [label]="modulePath + ':model.bride_family_tree_2' | i18next" [control]="form.get('bride_family_tree_2')"></ui-input>
+      <ui-input fxFlex [label]="modulePath + ':model.bride_family_tree_3' | i18next" [control]="form.get('bride_family_tree_3')"></ui-input>
+    </div>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.mod4_common_relative' | i18next" [control]="form.get('mod4_common_relative')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+  </div>
+</ng-template>
+
+<ng-template #mod5Template>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [required]="true" [label]="modulePath + ':model.mod5_entity_reference' | i18next" [options]="groomBrideOptions" [control]="form.get('mod5_entity_reference')"></ui-select>
+    <div fxFlex ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.opt_mod1_opt2' | i18next" [control]="form.get('opt_mod1_opt2')"></ui-checkbox>
+    </div>
+    <ui-input fxFlex *ngIf="form.value.opt_mod1_opt2===true" [label]="modulePath + ':model.opt_mod1_opt2_text' | i18next" [control]="form.get('opt_mod1_opt2_text')"></ui-input>
+  </div>
+</ng-template>
+
+<ng-template #mod6Template>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [required]="true" [label]="modulePath + ':model.mod6_groom_bride' | i18next" [options]="groomBrideOptions" [control]="form.get('mod6_groom_bride')"></ui-select>
+    <ui-input fxFlex [label]="modulePath + ':model.mod6_justify_absence' | i18next" [control]="form.get('mod6_justify_absence')"></ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex rows="1" [label]="modulePath + ':model.mod6_for_that_know' | i18next" [control]="form.get('mod6_for_that_know')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-textarea>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex rows="1" [label]="modulePath + ':model.mod6_declared_that' | i18next" [control]="form.get('mod6_declared_that')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-textarea>
+  </div>
+</ng-template>
+
+<ng-template #mod7Template>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [required]="true" [label]="modulePath + ':model.mod7_groom_bride' | i18next" [options]="groomBrideOptions" [control]="form.get('mod7_groom_bride')"></ui-select>
+  </div>
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.mod7_baptism_witness1_description' | i18next"
+      [control]="form.get('mod7_baptism_witness1_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'mod7_baptism_witness1', queryStringParams: witnessesQSP } }">
+    </ui-input>
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.mod7_baptism_witness2_description' | i18next"
+      [control]="form.get('mod7_baptism_witness2_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'mod7_baptism_witness2', queryStringParams: witnessesQSP } }">
+    </ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [label]="modulePath + ':model.mod7_father_civil_status' | i18next" [options]="civilStatusOptions" [control]="form.get('mod7_father_civil_status')"></ui-select>
+    <ui-select fxFlex [label]="modulePath + ':model.mod7_mother_civil_status' | i18next" [options]="civilStatusOptions" [control]="form.get('mod7_mother_civil_status')"></ui-select>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex rows="1" [label]="modulePath + ':model.mod7_parents_residence' | i18next" [control]="form.get('mod7_parents_residence')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-textarea>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex rows="1" [label]="modulePath + ':model.mod7_justfifiers_knows_because' | i18next" [control]="form.get('mod7_justfifiers_knows_because')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-textarea>
+    <ui-input fxFlex [label]="modulePath + ':model.mod7_witnesses_watched_baptizm_as' | i18next" [control]="form.get('mod7_witnesses_watched_baptizm_as')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex rows="1" [label]="modulePath + ':model.mod7_witnesses_watched_baptizm_that' | i18next" [control]="form.get('mod7_witnesses_watched_baptizm_that')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-textarea>
+  </div>
+</ng-template>
+
+<ng-template #mod8Template>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.civil_registration_documents' | i18next" [control]="form.get('civil_registration_documents')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+    <ui-select fxFlex [label]="modulePath + ':model.subject_field' | i18next" [options]="articleOptions" [control]="form.get('subject_field')"></ui-select>
+    <ui-select fxFlex [label]="modulePath + ':model.declaration_field' | i18next" [options]="declareOptions" [control]="form.get('declaration_field')"></ui-select>
+    <ui-select fxFlex [label]="modulePath + ':model.certificate_field' | i18next" [options]="certificateOptions" [control]="form.get('certificate_field')"></ui-select>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.mod8_groom_assento_number' | i18next" [control]="form.get('mod8_groom_assento_number')"></ui-input>
+    <ui-input fxFlex type="number" [label]="modulePath + ':model.mod8_groom_assento_year' | i18next" [control]="form.get('mod8_groom_assento_year')" [errorMessage]="('translation:message.max_value_error' | i18next) + '/' + ('translation:message.min_value_error' | i18next)"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.mod8_bride_assento_number' | i18next" [control]="form.get('mod8_bride_assento_number')"></ui-input>
+    <ui-input fxFlex type="number" [label]="modulePath + ':model.mod8_bride_assento_year' | i18next" [control]="form.get('mod8_bride_assento_year')" [errorMessage]="('translation:message.max_value_error' | i18next) + '/' + ('translation:message.min_value_error' | i18next)"></ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex rows="1" [label]="modulePath + ':model.mod8_civil_registry_notes' | i18next" [control]="form.get('mod8_civil_registry_notes')"></ui-textarea>
+  </div>
+</ng-template>
+
+<ng-template #mod9Template>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [required]="true" [label]="modulePath + ':model.mod9_groom_or_bride' | i18next" [options]="groomBrideOptions" [control]="form.get('mod9_groom_or_bride')"></ui-select>
+  </div>
+</ng-template>
+
+<ng-template #mod12Template>
+  <h2>{{ modulePath + ':header.sender' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.sender_address' | i18next" [control]="form.get('sender_address')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.sender_postal_code' | i18next" [control]="form.get('sender_postal_code')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+  </div>
+
+  <h2>{{ modulePath + ':header.recipient' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.recipient_name' | i18next"
+      [control]="form.get('recipient_name')"
+      [rightTemplate]="{ template: chapelriesRightTemplate, context: { inputName: 'recipient' } }">
+    </ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.recipient_address' | i18next" [control]="form.get('recipient_address')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.recipient_postal_code' | i18next" [control]="form.get('recipient_postal_code')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+  </div>
+</ng-template>
+
+<ng-template #groomDialogTemplate>
+  <h2>{{ modulePath + ':header.domicile' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.groom_here_lived_after_fourteen' | i18next" [control]="form.get('groom_here_lived_after_fourteen')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+  </div>
+
+  <h2>{{ modulePath + ':header.marriage_preparation' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [label]="modulePath + ':model.groom_religious_status' | i18next" [options]="religiousSituationOptions" [control]="form.get('groom_religious_status')"></ui-select>
+  </div>
+
+  <h2>{{ modulePath + ':header.free_state' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [label]="modulePath + ':model.groom_married_civilly' | i18next" [options]="booleanOptions" [control]="form.get('groom_married_civilly')"></ui-select>
+    <ui-select fxFlex [label]="modulePath + ':model.groom_married_by_church' | i18next" [options]="booleanOptions" [control]="form.get('groom_married_by_church')"></ui-select>
+    <ui-select fxFlex [label]="modulePath + ':model.groom_married_had_children' | i18next" [options]="booleanOptions" [control]="form.get('groom_married_had_children')"></ui-select>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.groom_married_with_who' | i18next"
+      [control]="form.get('groom_married_with_who_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'groom_married_with_who', queryStringParams: groomMarriedWithWhoQSP } }">
+    </ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.groom_is_previous_union_over' | i18next" [control]="form.get('groom_is_previous_union_over')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [label]="modulePath + ':model.groom_impediment_to_marry' | i18next" [options]="booleanOptions" [control]="form.get('groom_impediment_to_marry')"></ui-select>
+    <ui-input fxFlex [label]="modulePath + ':model.groom_impediment_to_marry_which' | i18next" [control]="form.get('groom_impediment_to_marry_which')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+  </div>
+
+  <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutGap="10px">
+    <h2>{{ modulePath + ':header.concent' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-select fxFill [label]="modulePath + ':model.groom_marry_by_free_will' | i18next" [options]="booleanOptions" [control]="form.get('groom_marry_by_free_will')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.groom_reason_beside_love' | i18next" [options]="booleanOptions" [control]="form.get('groom_reason_beside_love')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.groom_difficulty_to_marry' | i18next" [options]="booleanOptions" [control]="form.get('groom_difficulty_to_marry')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.groom_intimicy_and_love' | i18next" [options]="booleanOptions" [control]="form.get('groom_intimicy_and_love')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.groom_faithful_to_wife' | i18next" [options]="booleanOptions" [control]="form.get('groom_faithful_to_wife')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.groom_will_not_divorce' | i18next" [options]="booleanOptions" [control]="form.get('groom_will_not_divorce')"></ui-select>
+
+      <ui-select fxFill [label]="modulePath + ':model.groom_will_accept_children' | i18next" [options]="booleanOptions" [control]="form.get('groom_will_accept_children')"></ui-select>
+      <ui-select fxFill *ngIf="form.value.groom_will_accept_children === false" [label]="modulePath + ':model.groom_knowledge_raise_children' | i18next" [options]="booleanOptions" [control]="form.get('groom_knowledge_raise_children')"></ui-select>
+      <ui-select fxFill *ngIf="form.value.groom_will_accept_children === false" [label]="modulePath + ':model.groom_will_raise_children' | i18next" [options]="booleanOptions" [control]="form.get('groom_will_raise_children')"></ui-select>
+      <ui-select fxFill *ngIf="form.value.groom_will_accept_children === false" [label]="modulePath + ':model.groom_christian_education_children' | i18next" [options]="booleanOptions" [control]="form.get('groom_christian_education_children')"></ui-select>
+
+      <ui-select fxFill [label]="modulePath + ':model.groom_will_consent_marriage' | i18next" [options]="booleanOptions" [control]="form.get('groom_will_consent_marriage')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.groom_has_hid_information' | i18next" [options]="booleanOptions" [control]="form.get('groom_has_hid_information')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.groom_bride_same_ideas_about_marriage' | i18next" [options]="booleanOptions" [control]="form.get('groom_bride_same_ideas_about_marriage')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.groom_bride_talk_about_marriage' | i18next" [options]="booleanOptions" [control]="form.get('groom_bride_talk_about_marriage')"></ui-select>
+
+      <ui-select fxFlex="50" [label]="modulePath + ':model.groom_minor_parents_agree' | i18next" [options]="booleanOptions" [control]="form.get('groom_minor_parents_agree')"></ui-select>
+      <ui-input fxFlex="50" [label]="modulePath + ':model.groom_minor_parents_agree_why' | i18next" [control]="form.get('groom_minor_parents_agree_why')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-select fxFlex [label]="modulePath + ':model.groom_wish_to_correct_information' | i18next" [options]="booleanOptions" [control]="form.get('groom_wish_to_correct_information')"></ui-select>
+      <ui-input *ngIf="form.value.groom_wish_to_correct_information === true" fxFlex [label]="modulePath + ':model.groom_wish_to_correct_information_text' | i18next" [control]="form.get('groom_wish_to_correct_information_text')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+    </div>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.groom_dialog_worshipplace_description' | i18next"
+      [control]="form.get('groom_dialog_worshipplace_description')"
+      [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'groom_dialog_worshipplace' } }">
+    </ui-input>
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.groom_dialog_vicar_description' | i18next"
+      [control]="form.get('groom_dialog_vicar_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'groom_dialog_vicar', queryStringParams: groomDialogVicarQSP } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex="50" [label]="modulePath + ':model.groom_dialog_date' | i18next" [control]="form.get('groom_dialog_date')"></ui-datepicker>
+  </div>
+</ng-template>
+
+<ng-template #brideDialogTemplate>
+  <h2>{{ modulePath + ':header.domicile' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.bride_here_lived_after_fourteen' | i18next" [control]="form.get('bride_here_lived_after_fourteen')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+  </div>
+
+  <h2>{{ modulePath + ':header.marriage_preparation' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [label]="modulePath + ':model.bride_religious_status' | i18next" [options]="religiousSituationOptions" [control]="form.get('bride_religious_status')"></ui-select>
+  </div>
+
+  <h2>{{ modulePath + ':header.free_state' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [label]="modulePath + ':model.bride_married_civilly' | i18next" [options]="booleanOptions" [control]="form.get('bride_married_civilly')"></ui-select>
+    <ui-select fxFlex [label]="modulePath + ':model.bride_married_by_church' | i18next" [options]="booleanOptions" [control]="form.get('bride_married_by_church')"></ui-select>
+    <ui-select fxFlex [label]="modulePath + ':model.bride_married_had_children' | i18next" [options]="booleanOptions" [control]="form.get('bride_married_had_children')"></ui-select>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.bride_married_with_who' | i18next"
+      [control]="form.get('bride_married_with_who_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'bride_married_with_who', queryStringParams: brideMarriedWithWhoQSP } }">
+    </ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.bride_impediment_to_marry_which' | i18next" [control]="form.get('bride_impediment_to_marry_which')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [label]="modulePath + ':model.bride_impediment_to_marry' | i18next" [options]="booleanOptions" [control]="form.get('bride_impediment_to_marry')"></ui-select>
+    <ui-input fxFlex [label]="modulePath + ':model.bride_is_previous_union_over' | i18next" [control]="form.get('bride_is_previous_union_over')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+  </div>
+
+  <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutGap="10px">
+    <h2>{{ modulePath + ':header.concent' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-select fxFill [label]="modulePath + ':model.bride_marry_by_free_will' | i18next" [options]="booleanOptions" [control]="form.get('bride_marry_by_free_will')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.bride_reason_beside_love' | i18next" [options]="booleanOptions" [control]="form.get('bride_reason_beside_love')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.bride_difficulty_to_marry' | i18next" [options]="booleanOptions" [control]="form.get('bride_difficulty_to_marry')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.bride_intimicy_and_love' | i18next" [options]="booleanOptions" [control]="form.get('bride_intimicy_and_love')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.bride_faithful_to_wife' | i18next" [options]="booleanOptions" [control]="form.get('bride_faithful_to_husband')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.bride_will_not_divorce' | i18next" [options]="booleanOptions" [control]="form.get('bride_will_not_divorce')"></ui-select>
+
+      <ui-select fxFill [label]="modulePath + ':model.bride_will_accept_children' | i18next" [options]="booleanOptions" [control]="form.get('bride_will_accept_children')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.bride_knowledge_raise_children' | i18next" [options]="booleanOptions" [control]="form.get('bride_knowledge_raise_children')"></ui-select>
+
+      <ui-select fxFill [label]="modulePath + ':model.bride_will_consent_marriage' | i18next" [options]="booleanOptions" [control]="form.get('bride_will_consent_marriage')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.bride_has_hid_information' | i18next" [options]="booleanOptions" [control]="form.get('bride_has_hid_information')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.bride_groom_same_ideas_about_marriage' | i18next" [options]="booleanOptions" [control]="form.get('bride_groom_same_ideas_about_marriage')"></ui-select>
+      <ui-select fxFill [label]="modulePath + ':model.bride_groom_talk_about_marriage' | i18next" [options]="booleanOptions" [control]="form.get('bride_groom_talk_about_marriage')"></ui-select>
+
+      <ui-select fxFill [label]="modulePath + ':model.bride_minor_parents_agree' | i18next" [options]="booleanOptions" [control]="form.get('bride_minor_parents_agree')"></ui-select>
+      <ui-input fxFill [label]="modulePath + ':model.bride_minor_parents_agree_why' | i18next" [control]="form.get('bride_minor_parents_agree_why')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-select fxFlex [label]="modulePath + ':model.bride_wish_to_correct_information' | i18next" [options]="booleanOptions" [control]="form.get('bride_wish_to_correct_information')"></ui-select>
+      <ui-input fxFlex *ngIf="form.value.bride_wish_to_correct_information === true" [label]="modulePath + ':model.bride_wish_to_correct_information_text' | i18next" [control]="form.get('bride_wish_to_correct_information_text')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+    </div>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.bride_dialog_worshipplace_description' | i18next"
+      [control]="form.get('bride_dialog_worshipplace_description')"
+      [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'bride_dialog_worshipplace' } }">
+    </ui-input>
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.bride_dialog_vicar_description' | i18next"
+      [control]="form.get('bride_dialog_vicar_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'bride_dialog_vicar', queryStringParams: groomDialogVicarQSP } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex="50" [label]="modulePath + ':model.bride_dialog_date' | i18next" [control]="form.get('bride_dialog_date')"></ui-datepicker>
+  </div>
+</ng-template>
+
+<ng-template #frequenceInscriptionsCPMTemplate>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.cpm_number' | i18next" [control]="form.get('cpm_number')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.cpm_chapelry_registration_description' | i18next"
+      [control]="form.get('cpm_chapelry_registration_description')"
+      [rightTemplate]="{ template: chapelriesRightTemplate, context: { inputName: 'cpm_chapelry_registration' } }">
+    </ui-input>
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.cpm_worshipplace_description' | i18next"
+      [control]="form.get('cpm_worshipplace_description')"
+      [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'cpm_worshipplace' } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex rows="1" [label]="modulePath + ':model.cpm_knowledge_of' | i18next" [control]="form.get('cpm_knowledge_of')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-textarea>
+    <ui-input fxFlex [label]="modulePath + ':model.cpm_time_dating' | i18next" [control]="form.get('cpm_time_dating')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.cpm_reception_worshipplace_description' | i18next"
+      [control]="form.get('cpm_reception_worshipplace_description')"
+      [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'cpm_reception_worshipplace' } }">
+    </ui-input>
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.cpm_reception_entity_description' | i18next"
+      [control]="form.get('cpm_reception_entity_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'cpm_reception_entity', queryStringParams: groomDialogVicarQSP } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex="50" [label]="modulePath + ':model.cpm_reception_date' | i18next" [control]="form.get('cpm_reception_date')"></ui-datepicker>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <div fxFlex ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.cpm_chapelry_colaboration_groom' | i18next" [control]="form.get('cpm_chapelry_colaboration_groom')"></ui-checkbox>
+    </div>
+    <div fxFlex ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.cpm_chapelry_colaboration_bride' | i18next" [control]="form.get('cpm_chapelry_colaboration_bride')"></ui-checkbox>
+    </div>
+  </div>
+
+</ng-template>
+
+<ng-template #birthCertificateTemplate>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [required]="true" [label]="modulePath + ':model.groom_bride_birth_certificate_request' | i18next" [options]="groomBrideOptions" [control]="form.get('groom_bride_birth_certificate_request')"></ui-select>
+  </div>
+</ng-template>

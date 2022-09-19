@@ -1,0 +1,33 @@
+{
+  "module": {
+    "name_singular": "Subscrição em Grupo",
+    "name_many": "Subscrições em Grupos"
+  },
+  "action": {
+    "new": "Nova Subscrição em Grupo",
+    "toggle_activation": "Ativar / Desativar",
+    "activate": "Ativar",
+    "deactivate": "Desativar"
+  },
+  "message": {
+    "save_success": "Subscrição em Grupo guardada com sucesso!",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas",
+    "toggle_are_you_sure": "Tem a certeza de que pretende <b>{{ action }}</b> a subscrição de <b>{{ subscriptor_name }}</b> no grupo <b>{{ group_name }}</b>?",
+    "activated_success": "Subscrição ativada com sucesso!",
+    "deactivated_success": "Subscrição desativada com sucesso!"
+  },
+  "model": {
+    "subscription_date": "Data de subscrição",
+    "unsubscription_date": "Data de cancelamento",
+    "active": "Ativa",
+    "group_id": "Grupo",
+    "newsletter_subscription_description": "Subscritor",
+    "group": {
+      "name": "Grupo"
+    },
+    "newsletter_subscription": {
+      "name": "Subscritor"
+    }
+  }
+}

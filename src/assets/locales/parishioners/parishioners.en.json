@@ -1,0 +1,70 @@
+{
+    "module": {
+        "name_singular": "Parish",
+        "name_many": "Parishes",
+        "modal_title": "Entities",
+        "except_users_with_demo": "Entities",
+        "priests_and_persons": "Individual Sheets and Clergy"
+    },
+    "model": {
+        "name": "Name",
+        "entity_type__name": "Type",
+        "address": "Adress",
+        "complete_relation": "Search Term",
+        "entity_type_description": "Type",
+        "birth_date": "Birthday",
+        "email": "E-mail",
+        "options": {
+            "residence_title": "Residency Title",
+            "passport": "Passport",
+            "citizenship_card": "Citizen Card",
+            "identification_card": "Identity Card",
+            "not_married": "Not Married",
+            "civil": "Civil",
+            "catholic": "Catholic",
+            "other": "Other",
+            "death": "Deceased",
+            "widow": "Widower/Widow",
+            "union_of_fact": "Non-Marital Partnership",
+            "single": "Single",
+            "judicial_separated": "Judicially Separated",
+            "divorced_remarried": "Divorced Remarried",
+            "divorced_not_remarried": "Divorced Not Remarried",
+            "civil_divorced": "Civilly Divorced",
+            "divorced": "Divorced",
+            "civil_married": "Civilly Married",
+            "catholic_married": "Married Catholic"
+        },
+        "ident_document_emitted_by": "Issued by",
+        "ident_document_emission_date": "Date of Issue",
+        "ident_document_validity_date": "Expiry Date",
+        "ident_document_number": "Identification No.",
+        "ident_document_type": "Type of Identification",
+        "phone": "Cellphone",
+        "mobilephone": "Mobile phone",
+        "country_id": "Coutry",
+        "district": "District",
+        "county": "Municipality",
+        "place": "Location",
+        "postal_code": "Postal Code",
+        "door_number": "Door Nº",
+        "maritial_status": "Type of Wedding",
+        "civil_status": "Civil Status",
+        "entity_birth_place_id": "Nationality",
+        "sex": "Gender",
+        "is_catechized": "Catechizing",
+        "catechist": "Catechist",
+        "is_parishioner": "Parishioner",
+        "entity_ekklesia_location_id": "Bishopric (Elem. of Clergy and Institutions)",
+        "taxpayer": "Contributor No.",
+        "diocese_id": "Bishopric (Elem. of Clergy and Institutions)"
+    },
+    "header": {
+        "identification_documents": "Identity Documents",
+        "contacts": "Contact",
+        "address": "Adress"
+    },
+    "action": {
+        "new": "New"
+    }
+}

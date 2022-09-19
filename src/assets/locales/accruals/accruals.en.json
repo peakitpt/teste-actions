@@ -1,0 +1,64 @@
+{
+    "module": {
+        "name_singular": "Accrual",
+        "name_many": "Accruals"
+    },
+    "message": {
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "populate": "Popular",
+        "auto_complete_data_confirmation": "By clicking on Popular, the pre-completed data will be changed as well as the emoluments.",
+        "auto_complete_title": "Filling data automatically",
+        "total": "Total",
+        "delete_are_you_sure": "Are you sure you want to delete the covenant with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Agreements selected?",
+        "delete_success": "Agreement successfuly deleted!",
+        "delete_success_plural": "Agreements succesfully deleted!",
+        "save_success": "Agreement successfully saved!"
+    },
+    "tabs": {
+        "emoluments": "Emoluments",
+        "general": "General"
+    },
+    "header": {
+        "observations": "Observations",
+        "document_to_generate": "Document to be Created",
+        "processing": "Processing",
+        "validity": "Expiry"
+    },
+    "model": {
+        "validity_date_end_end": "End Date (Until)",
+        "validity_date_end_start": "Final Date (since)",
+        "processing_next_date_end": "Next Processing (Until)",
+        "processing_next_date_start": "Next processing (since)",
+        "validity_date_start_end": "Inicial Date (Until)",
+        "validity_date_start_start": "Inicial Date (since)",
+        "accruals_accruals_emoluments": {
+            "total": "Total",
+            "value": "Price",
+            "quantity": "Quantity",
+            "description": "Description"
+        },
+        "total": "Total",
+        "value": "Price",
+        "quantity": "Quantity",
+        "comments": "Observations",
+        "catechisms_sessions": "Observations",
+        "document_to_generate_serie": "Series",
+        "document_to_generate_document_type_description": "Document Type",
+        "processing_last_date": "Last Processing",
+        "processing_next_date": "Next Processing",
+        "validity_date_end": "End Date",
+        "validity_date_start": "Start Date",
+        "active": "Active",
+        "accrual_type_description": "Type of Agreement",
+        "client_name": "Costumer",
+        "description": "Description"
+    },
+    "action": {
+        "delete": "Delete Agreement?",
+        "edit": "Edit Agreement",
+        "new": "New Agreement",
+        "generate_card": "Create card"
+    }
+}

@@ -1,0 +1,288 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="onModalClose()"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>{{ (id ? modulePath + ':action.edit' : modulePath + ':action.new') | i18next }}</h1>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu *ngIf="!isQuickInsertion" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+    <ui-button
+      *ngIf="!isQuickInsertion"
+      type="flat" icon="save"
+      [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true">
+    </ui-button>
+
+    <ui-button
+      type="flat" icon="save"
+      [label]="(isQuickInsertion ? 'translation:action.create_insert' : 'translation:action.save') | i18next"
+      color="accent" (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body">
+    <ui-tabs [tabs]="formTabs"></ui-tabs>
+  </form>
+</ng-template>
+
+<ng-template #mainTab>
+  <section>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input *ngIf="id"
+        fxFlex="25" [label]="modulePath + ':model.transaction_id'| i18next"
+        [placeholder]=" modulePath + ':model.transaction_id'| i18next"
+        [control]="form.get('transaction_id')"
+        [readonly]="true">
+      </ui-input>
+      <ui-input
+        fxFlex [label]="modulePath + ':model.description'| i18next"
+        [placeholder]=" modulePath + ':model.description'| i18next"
+        [control]="form.get('description')">
+      </ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-datepicker
+        fxFlex
+        [label]="modulePath + ':model.transaction_date' | i18next"
+        [control]="form.get('transaction_date')"
+        [required]="true">
+      </ui-datepicker>
+      <ui-select fxFlex [required]="true"
+        [label]="modulePath + ':model.period' | i18next"
+        [options]="periodOptions" [control]="form.get('period')">
+      </ui-select>
+      <ui-select fxFlex [required]="true"
+        [label]="modulePath + ':model.transaction_type' | i18next"
+        [options]="transactionTypeOptions" [control]="form.get('transaction_type')">
+      </ui-select>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input
+        fxFlex [label]="modulePath + ':model.accounting_transaction_document_type_description'| i18next"
+        [placeholder]=" modulePath + ':model.accounting_transaction_document_type_description'| i18next"
+        readonly="true" [required]="true"
+        [control]="form.get('accounting_transaction_document_type_description')"
+        [rightTemplate]="{ template: accountingTransactionDocumentTypesRightTemplate, context: { inputName: 'accounting_transaction_document_type'} }">
+      </ui-input>
+      <ui-input
+        fxFlex [label]="modulePath + ':model.transaction_serie_number'| i18next"
+        [placeholder]=" modulePath + ':model.transaction_serie_number'| i18next"
+        [required]="true"
+        [control]="form.get('transaction_serie_number')">
+      </ui-input>
+      <ui-input
+        fxFlex [label]="modulePath + ':model.accounting_journal_description'| i18next"
+        [placeholder]=" modulePath + ':model.accounting_journal_description'| i18next"
+        readonly="true" [required]="true"
+        [control]="form.get('accounting_journal_description')"
+        [rightTemplate]="{ template: accountingJournalsRightTemplate, context: { inputName: 'accounting_journal'} }">
+      </ui-input>
+      <ui-input
+        fxFlex [label]="modulePath + ':model.doc_archival_number'| i18next"
+        [placeholder]=" modulePath + ':model.doc_archival_number'| i18next"
+        [required]="true"
+        [control]="form.get('doc_archival_number')">
+      </ui-input>
+    </div>
+  </section>
+
+  <section>
+    <ui-table
+      #accountingTransactionLinesTable
+      [checkboxes]="false"
+      [dataSource]="accountingTransactionsDS"
+      [tableColumns]="accountingTransactionsColumns">
+    </ui-table>
+    <div class="add-related-content" (click)="addTableLine(newAccountingTransactionLine, accountingTransactionsFormArray, accountingTransactionsDS)">
+      {{ 'translation:action.add' | i18next }}
+    </div>
+  </section>
+
+  <section>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input
+        fxFlex="25" [label]="modulePath + ':model.credit'| i18next"
+        [placeholder]=" modulePath + ':model.credit'| i18next"
+        [control]="form.get('transaction_credit_amount')"
+        readonly="true">
+      </ui-input>
+      <ui-input
+        fxFlex="25" [label]="modulePath + ':model.debit'| i18next"
+        [placeholder]=" modulePath + ':model.debit'| i18next"
+        readonly="true"
+        [control]="form.get('transaction_debit_amount')">
+      </ui-input>
+    </div>
+    <div fxLayout="row end" fxLayout.lt-sm="column" fxLayoutAlign="end center" fxLayoutGap="10px grid">
+      <ui-input
+        fxFlex="25" [label]="modulePath + ':model.total'| i18next"
+        [placeholder]=" modulePath + ':model.total'| i18next"
+        [control]="form.get('total_amount')"
+        readonly="true"
+        [errorMessage]="modulePath + ':errors.total_amount_not_zero' | i18next">
+      </ui-input>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #attachmentsTab>
+  <section id="attachments-section">
+    <div fxLayout="column" class="tab-content" fxLayoutGap="10px">
+      <ui-input fxFlex
+        (change)="addAttachment($event)"
+        [label]="'translation:fileupload.click_to_select' | i18next"
+        type="file" accept=""
+        [readonly]="true"
+        [control]="attachmentFormControlPlaceholder"></ui-input>
+      <ui-table
+        #attachmentsTable
+        [checkboxes]="false"
+        [dataSource]="attachmentsDS"
+        [tableColumns]="attachmentsColumns"
+        stickyHeader="true">
+      </ui-table>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #accountingTransactionDocumentTypesRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('accounting-transaction-document-types-modal', inputName)"></ui-button>
+    <ui-menu type="icons" [model]="accountingTransactionDocumentTypesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #accountingJournalsRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('accounting-journals-modal', inputName)"></ui-button>
+    <ui-menu type="icons" [model]="accountingJournalsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+
+<!-- TABLE TEMPLATES -->
+<ng-template #deleteTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (click)="deleteTableLine(index, accountingTransactionsFormArray, accountingTransactionsDS)"></ui-button>
+</ng-template>
+
+<ng-template #accountingChartAccountDescriptionTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input
+      fxFlexOffset="20px" readonly="true" [required]="true"
+      [rightTemplate]="{template: accountingChartAccountRightIndexTemplate, context: { inputName: 'accounting_chart_account#' + index}}"
+      [control]="accountingTransactionsFormArray.get([index, 'accounting_chart_account_description'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #accountingChartAccountRightIndexTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('accounting-chart-accounts-modal', inputName, {}, '', {ochilds: 1})"></ui-button>
+    <ui-menu type="icons" [model]="accountingChartAccountsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #creditAmountTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input
+      fxFlexOffset="20px"
+      [control]="accountingTransactionsFormArray.get([index, 'credit_amount'])"
+      [errorMessage]="modulePath + '.errors.debit_credit_same_line'">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #debitAmountTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input
+      fxFlexOffset="20px"
+      [control]="accountingTransactionsFormArray.get([index, 'debit_amount'])"
+      [errorMessage]="modulePath + '.errors.debit_credit_same_line'">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #descriptionTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input
+      fxFlexOffset="20px"
+      [control]="accountingTransactionsFormArray.get([index, 'description'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #accountingCostCenterDescriptionTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input
+      fxFlexOffset="20px" readonly="true"
+      [rightTemplate]="{template: accountingCostCenterRightIndexTemplate, context: { inputName: 'accounting_cost_center#' + index}}"
+      [control]="accountingTransactionsFormArray.get([index, 'accounting_cost_center_description'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #accountingCostCenterRightIndexTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('accounting-cost-centers-modal', inputName)"></ui-button>
+    <ui-menu type="icons" [model]="accountingCostCentersMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+<!-- TABLE TEMPLATES -->
+
+<!-- ATTACHMENTS TABLE TEMPLATES -->
+<ng-template #deleteAttachmentTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index, attachmentsFormArray, attachmentsDS)"></ui-button>
+</ng-template>
+
+<ng-template #attachmentTemplate let-index="index">
+  <ng-container *ngIf="attachmentsFormArray.controls[index].get('attachment').value">
+    <a [href]="getAttachmentUrl(attachmentsFormArray.controls[index])">{{ attachmentsFormArray.controls[index].get('attachment_name').value }}</a>
+  </ng-container>
+
+  <ng-container *ngIf="!attachmentsFormArray.controls[index].get('attachment').value">
+    {{ attachmentsFormArray.controls[index].get('attachment_name').value }}
+  </ng-container>
+</ng-template>
+
+<ng-template #attachmentDescriptionTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" [control]="attachmentsFormArray.controls[index].get('description')"></ui-input>
+</ng-template>

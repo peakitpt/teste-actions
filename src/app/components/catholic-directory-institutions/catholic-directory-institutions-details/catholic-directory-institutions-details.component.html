@@ -1,0 +1,316 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.entity.complete_relation }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model$ | async as model">
+          <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ui-tabs [tabs]="tabs"></ui-tabs>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #institutionTabTemplate>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="model.institution_type_description" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.institution_type_description' | i18next }}:</div>
+            <div fxFlex>{{ model.institution_type_description }}</div>
+          </div>
+          <div *ngIf="model.entity.name" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.name' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.name }}</div>
+          </div>
+          <div *ngIf="model.entity.tax_designation" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.tax_designation' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.tax_designation }}</div>
+          </div>
+          <div *ngIf="model.entity.taxpayer" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.taxpayer' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.taxpayer }}</div>
+          </div>
+          <div *ngIf="model.archpriestship_description" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.archpriestship_description' | i18next }}:</div>
+            <div fxFlex>{{ model.archpriestship_description }}</div>
+          </div>
+          <div *ngIf="model.chapelry_description" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.chapelry_description' | i18next }}:</div>
+            <div fxFlex>{{ model.chapelry_description }}</div>
+          </div>
+          <div *ngIf="model.congregation_description" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.congregation_description' | i18next }}:</div>
+            <div fxFlex>{{ model.congregation_description }}</div>
+          </div>
+          <div *ngIf="model.secular_institute_description" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.secular_institute_description' | i18next }}:</div>
+            <div fxFlex>{{ model.secular_institute_description }}</div>
+          </div>
+          <div *ngIf="model.institution_gender" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.institution_gender' | i18next }}:</div>
+            <div fxFlex>{{ institutionsGenders[model.institution_gender] }}</div>
+          </div>
+          <div *ngIf="model.mandate" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mandate' | i18next }}:</div>
+            <div fxFlex>{{ model.mandate }}</div>
+          </div>
+          <div *ngIf="model.community" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.community' | i18next }}:</div>
+            <div fxFlex>{{ model.community }}</div>
+          </div>
+          <div *ngIf="model.property" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.property' | i18next }}:</div>
+            <div fxFlex>{{ model.property }}</div>
+          </div>
+          <div *ngIf="model.scholarity" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.scholarity' | i18next }}:</div>
+            <div fxFlex>{{ model.scholarity }}</div>
+          </div>
+          <div *ngIf="model.periodicity_description" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.periodicity_description' | i18next }}:</div>
+            <div fxFlex>{{ model.periodicity_description }}</div>
+          </div>
+          <div *ngIf="model.social_media_type_description" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.social_media_type_description' | i18next }}:</div>
+            <div fxFlex>{{ model.social_media_type_description }}</div>
+          </div>
+          <div *ngIf="model.social_media_institution_description" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.social_media_institution_description' | i18next }}:</div>
+            <div fxFlex>{{ model.social_media_institution_description }}</div>
+          </div>
+          <div *ngIf="model.website_type_id" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.website_type_id' | i18next }}:</div>
+            <div fxFlex>{{ model.website_type_id }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>{{ modulePath + ':header.valences' | i18next }}</h2>
+      <div fxLayout="column">
+        <section>
+          <div class="scrollable-table">
+            <table class="mat-table">
+              <tr class="mat-header-row">
+                <th class="mat-header-cell col1">{{ modulePath + ':header.valences' | i18next }}</th>
+              </tr>
+              <tr class="mat-row uiKyriosTableRow" *ngFor="let valence of model.entity_institution_valences">
+                <td class="mat-cell col1">
+                  {{ valence.valence_description }}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="model.social_media_data_sheet" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.social_media_data_sheet' | i18next }}:</div>
+            <div fxFlex [innerHTML]=" model.social_media_data_sheet"></div>
+          </div>
+          <div *ngIf="model.historical_note" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.historical_note' | i18next }}:</div>
+            <div fxFlex [innerHTML]="model.historical_note"></div>
+          </div>
+          <div *ngIf="model.timetable" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.timetable' | i18next }}:</div>
+            <div fxFlex [innerHTML]="model.timetable"></div>
+          </div>
+          <div *ngIf="model.holidays" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.holidays' | i18next }}:</div>
+            <div fxFlex [innerHTML]="model.holidays"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>{{ modulePath + ':header.address' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="model.entity.address" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.address' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.address }}</div>
+          </div>
+          <div *ngIf="model.entity.door_number" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.door_number' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.door_number }}</div>
+          </div>
+          <div *ngIf="model.entity.parish" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.parish' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.parish }}</div>
+          </div>
+          <div *ngIf="model.entity.postal_code" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.postal_code' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.postal_code }}</div>
+          </div>
+          <div *ngIf="model.entity.place" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.place' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.place }}</div>
+          </div>
+          <div *ngIf="model.entity.county" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.county' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.county }}</div>
+          </div>
+          <div *ngIf="model.entity.district" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.district' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.district }}</div>
+          </div>
+          <div *ngIf="model.entity.country_description" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.country_description' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.country_description }}</div>
+          </div>
+          <div *ngIf="model.entity.latitude" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.latitude' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.latitude }}</div>
+          </div>
+          <div *ngIf="model.entity.longitude" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.longitude' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.longitude }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>{{ modulePath + ':header.contacts' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="model.entity.mobilephone" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.mobilephone' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.mobilephone }}</div>
+          </div>
+          <div *ngIf="model.entity.phone" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.phone' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.phone }}</div>
+          </div>
+          <div *ngIf="model.entity.fax" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.fax' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.fax }}</div>
+          </div>
+          <div *ngIf="model.entity.email" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.email' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.email }}</div>
+          </div>
+          <div *ngIf="model.entity.url" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.url' | i18next }}:</div>
+            <div fxFlex>{{ model.entity.url }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>{{ modulePath + ':header.other_info' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="model.observations" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.observations' | i18next }}:</div>
+            <div fxFlex>{{ model.observations }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </ng-container>
+</ng-template>
+
+<ng-template #appointmentsTabTemplate>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <section>
+      <h2>{{ modulePath + ':header.appointments' | i18next }}</h2>
+      <div fxLayout="column">
+        <section>
+          <div class="scrollable-table">
+            <table class="mat-table">
+              <tr class="mat-header-row">
+                <th class="mat-header-cell col1">{{ modulePath + ':model.entity_institution_appointments.curia_function_description' | i18next }}</th>
+                <th class="mat-header-cell col1">{{ modulePath + ':model.entity_institution_appointments.nominee_description' | i18next }}</th>
+                <th class="mat-header-cell col1">{{ modulePath + ':model.entity_institution_appointments.start_date' | i18next }}</th>
+                <th class="mat-header-cell col1">{{ modulePath + ':model.entity_institution_appointments.end_date' | i18next }}</th>
+                <th class="mat-header-cell col1">{{ modulePath + ':model.entity_institution_appointments.representing_description' | i18next }}</th>
+                <th class="mat-header-cell col1">{{ modulePath + ':model.entity_institution_appointments.description' | i18next }}</th>
+              </tr>
+              <tr class="mat-row uiKyriosTableRow" *ngFor="let appointment of model.entity_institution_appointments">
+                <td class="mat-cell col1">
+                  {{ appointment.curia_function_description }}
+                </td>
+                <td class="mat-cell col1">
+                  {{ appointment.nominee_description }}
+                </td>
+                <td class="mat-cell col1">
+                  {{ appointment.start_date | date:('translation:format.date' | i18next) }}
+                </td>
+                <td class="mat-cell col1">
+                  {{ appointment.end_date | date:('translation:format.date' | i18next) }}
+                </td>
+                <td class="mat-cell col1">
+                  {{ appointment.representing_description }}
+                </td>
+                <td class="mat-cell col1">
+                  {{ appointment.description }}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </section>
+      </div>
+    </section>
+
+  </ng-container>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>

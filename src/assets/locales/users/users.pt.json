@@ -1,0 +1,60 @@
+{
+  "module": {
+    "name_singular": "Utilizador",
+    "name_many": "Utilizadores"
+  },
+  "action": {
+    "add": "Adicionar Utilizador",
+    "new": "Novo Utilizador",
+    "edit": "Editar Utilizador",
+    "change_password": "Alterar palavra-passe"
+  },
+  "message": {
+    "save_success": "Utilizador guardado com sucesso!",
+    "delete_success": "Utilizador apagado com sucesso!",
+    "delete_success_plural": "Utilizadores apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Utilizador com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Utilizadores selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Nome",
+    "active": "Ativo",
+    "entity_type": "Tipo de entidade",
+    "email": "E-mail",
+    "expiration_date": "Expira em",
+    "sign_in_count": "Núm. Logins",
+    "current_sign_in_at": "Último acesso",
+    "subscription_description": "Subscrição pré-definida",
+    "subscriptions_limit": "Lim. Subscrições",
+    "approved_at": "Aprovado a",
+    "locale": "Língua",
+    "api_token": "API Token",
+    "approved_at_start": "Aprovado a (início)",
+    "approved_at_end": "Aprovado a (fim)",
+    "expiration_date_start": "Expira em  (início)",
+    "expiration_date_end": "Expira em (fim)",
+    "current_sign_in_at_start": "Último acesso (início)",
+    "current_sign_in_at_end": "Último acesso (fim)",
+    "entity": "Tipo de entidade",
+    "entity_ekklesia_location_description": "Diocese",
+    "user": "Utilizador",
+    "user_id": "Identificador",
+    "password": "Palavra-passe",
+    "repeat_password": "Confirmar palavra-passe",
+    "kyrios_social_following": "A Seguir KyriosSocial",
+    "kyrios_social_access": "Acesso KyriosSocial",
+    "kyrios_portal_access": "Acesso Portal Kyrios"
+  },
+  "header": {
+    "activation": "Ativação",
+    "user": "Utilizador",
+    "subscription": "Subscrição",
+    "dates": "Datas",
+    "subscriptions": "Subscrições"
+  },
+  "hint_message": {
+    "no_pre_defined_subscription": "Sem subscrição pré-definida, o utilizador ficará inativo automaticamente"
+  }
+}

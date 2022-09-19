@@ -1,0 +1,22 @@
+{
+    "module": {
+        "name_singular": "Mass Intention Type",
+        "name_many": "Mass Intention Types"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Mass Intention Type \"<strong>{{name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Selected Mass Intention Types?",
+        "delete_success": "Mass Intention type successfully deleted!",
+        "save_success": "Mass Intention type successfully saved!"
+    },
+    "model": {
+        "name": "Description"
+    },
+    "action": {
+        "delete": "Delete Mass Intention Type?",
+        "edit": "Edit Type of Mass Intention",
+        "new": "New Type of Mass Intention"
+    }
+}

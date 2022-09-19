@@ -1,0 +1,89 @@
+{
+  "module": {
+    "name_singular": "Paróquia",
+    "name_many": "Paróquias"
+  },
+  "action": {
+    "new": "Nova Paróquia",
+    "edit": "Editar Paróquia",
+    "delete": "Eliminar Paróquia?"
+  },
+  "message": {
+    "save_success": "Paróquia guardada com sucesso!",
+    "delete_success": "Paróquia apagada com sucesso!",
+    "delete_success_plural": "Paróquias apagadas com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Paróquia com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Paróquias selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas",
+    "error_blank_nominations": "Por favor, preencha todos os campos obrigatórios da tabela das Nomeações",
+    "error_blank_mass_schedules": "Por favor, preencha todos os campos obrigatórios da tabela dos Horários"
+  },
+  "search_term": "Termo a pesquisar",
+  "model": {
+    "entity_description": "Paróquia",
+    "name": "Nome",
+    "district": "Distrito",
+    "parish": "Freguesia",
+    "country_description": "País",
+    "validated": "Validado",
+    "is_archdiocese": "Arquidiocese",
+    "reports_group_description": "Grupo de relatórios",
+    "tax_designation": "Designação fiscal",
+    "taxpayer": "Nº de contribuinte",
+    "address": "Morada",
+    "door_number": "Nº da porta",
+    "postal_code": "Código postal",
+    "place": "Localidade",
+    "county": "Concelho",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "mobilephone": "Telemóvel",
+    "phone": "Telefone",
+    "fax": "Fax",
+    "email": "E-mail",
+    "url": "Página web",
+    "patron_description": "Orago",
+    "photo_url": "Fotografia",
+    "notes": "Notas",
+    "entity_relation_attributes":{
+      "archpriestship_description": "Arciprestado",
+      "archpristship_description": "Arciprestado",
+      "arciprestado_description": "Arciprestado",
+      "diocese_description": "Diocese",
+      "diocese_id": "Diocese"
+    },
+    "masses_schedules_attributes": {
+      "created_at": "Criado a",
+      "end_date": "Data de fim",
+      "end_hour": "Hora de fim",
+      "for_confessions": "Confissões?",
+      "frequency": "Periodicidade",
+      "id": "ID",
+      "months": "Meses",
+      "start_date": "Data de início",
+      "start_hour": "Hora de início",
+      "weekdays": "Dias",
+      "worshipplace_description": "Local de culto"
+    },
+    "entity_priest_appointments_attributes": {
+      "entity_name": "Nome",
+      "curia_function_description": "Função",
+      "start_date": "Data de início",
+      "end_date": "Data de fim",
+      "description": "Descrição"
+    }
+  },
+  "header": {
+    "address": "Morada",
+    "contacts": "Contactos",
+    "app": "Aplicação",
+    "module": "Módulo"
+  },
+  "tabs": {
+    "chapelry": "Paróquia",
+    "masses_schedules": "Horários",
+    "nominations": "Nomeações",
+    "permissions_modules": "Permissões a Módulos"
+  }
+}

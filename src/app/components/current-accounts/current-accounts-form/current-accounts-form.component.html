@@ -1,0 +1,153 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="onModalClose()"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>{{ (id ? modulePath + ':action.edit' : modulePath + ':action.new') | i18next }}</h1>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu *ngIf="!isQuickInsertion" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+    <ui-button
+      *ngIf="!isQuickInsertion"
+      type="flat" icon="save"
+      [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true">
+    </ui-button>
+
+    <ui-button
+      type="flat" icon="save"
+      [label]="(isQuickInsertion ? 'translation:action.create_insert' : 'translation:action.save') | i18next"
+      color="accent" (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body">
+    <section>
+      <h2>{{ modulePath + ':header.current_account' | i18next }}</h2>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex="60" readonly="true" [label]="modulePath + ':model.entity_description' | i18next" [control]="form.get('entity_description')"></ui-input>
+        <ui-input fxFlex="40" readonly="true" [label]="modulePath + ':model.balance' | i18next" [control]="form.get('balance')"></ui-input>
+      </div>
+    </section>
+    <ui-tabs [tabs]="formTabs"></ui-tabs>
+  </form>
+</ng-template>
+
+<ng-template #pendingTabsTemplate>
+  <section>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <ui-table
+          #currentAccountsTable
+          checkboxes="true"
+          [dataSource]="currentAccountLineDS.data"
+          [tableColumns]="currentAccountLineColumns"
+          (checkboxSelectionEvent)="checkboxSelectionEvent($event)">
+        </ui-table>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+      <div>
+        <b>{{ modulePath + ':message.total' | i18next }}:</b>
+      </div>
+      <div>
+        <b>{{ calculateTotalAmountToReceive(currentAccountLineFormArray.value) }}</b>
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-datepicker fxFlex
+        [label]="modulePath + ':model.receipt_date' | i18next"
+        [control]="form.get('receipt_date')">
+      </ui-datepicker>
+      <ui-select fxFlex [required]="true" [label]="modulePath + ':model.payment_type_id' | i18next"
+        [options]="paymentTypes" [control]="form.get('payment_type_id')" >
+      </ui-select>
+      <ui-select fxFlex [label]="modulePath + ':model.treasury_location' | i18next"
+        [options]="treasuryLocations" [control]="form.get('treasury_location')" >
+      </ui-select>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-textarea fxFlex
+        rows="2"
+        [label]="modulePath + ':model.observations' | i18next"
+        [control]="form.get('observations')">
+      </ui-textarea>
+    </div>
+  </section>
+
+</ng-template>
+
+<ng-template #receiptsTabsTemplate>
+  <section>
+    <kyr-current-accounts-receipts-table
+      [id]="id"
+      [edit]="true"
+      (receiptDeleted)="receiptDeleted()"
+      >
+    </kyr-current-accounts-receipts-table>
+  </section>
+</ng-template>
+
+
+<ng-template #amountToReceiveTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input
+      fxFlexOffset="20px"
+      [control]="currentAccountLineFormArray.get([index, 'amount_to_receive'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #virtualPendingAmountTemplate let-index="index">
+  <div fxLayout="column">
+    {{ currentAccountLineFormArray.get([index, 'virtual_pending_amount']).value }}
+  </div>
+</ng-template>
+
+<ng-template #seeDocumentTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="visibility" (onClickEvent)="openDocument(data.document_id)"></ui-button>
+  </div>
+</ng-template>

@@ -1,0 +1,12 @@
+<mat-tab-group mat-stretch-tabs color="accent" mat-align-tabs="center">
+	<ng-container *ngFor="let field of fields">
+		<mat-tab [label]="field.textLabel | i18next ">
+			
+	    <ng-container *ngFor="let tabfield of field.fields">	
+        <kyr-form [formField]="tabfield"></kyr-form>
+	    </ng-container>
+
+	  </mat-tab>
+	</ng-container>
+</mat-tab-group>
+

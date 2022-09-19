@@ -1,0 +1,388 @@
+<ui-dialog #modal [inputHeaderTemplate]="header" [inputBodyTemplate]="body" [inputFooterTemplate]="footer"
+  (modalClosed)="navigate('/' + modulePath)" [disableClose]="true">
+</ui-dialog>
+<router-outlet></router-outlet>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') |
+      i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()">
+      </ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ui-tabs [tabs]="formTabs"></ui-tabs>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isNotifying && !isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary" (onClickEvent)="onCancelClick()">
+    </ui-button>
+    <ui-button *ngIf="!isNotifying && !isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.save_new' | i18next" color="secondary" (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true">
+    </ui-button>
+    <ui-button *ngIf="!isNotifying" type="flat" icon="save"
+      [label]="(isQuickInsertion ? 'translation:action.create_insert' : 'translation:action.save') | i18next"
+      color="accent" (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : eventTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<!-- Tabs  -->
+
+<ng-template #eventTemplate>
+  <div class="tab-content">
+    <form [formGroup]="form" class="form-body">
+      <section>
+        <h2>{{ modulePath + ':header.event_details' | i18next }}</h2>
+        <div fxLayout="column" fxLayoutGap="5px">
+          <div fxLayout="row" fxLayoutGap="5px">
+            <ui-input fxFlex [label]="modulePath + ':model.title' | i18next" [required]="true"
+              [control]="form.get('title')"></ui-input>
+            <ui-input fxFlex [label]="modulePath + ':model.slug' | i18next" [control]="form.get('slug')"></ui-input>
+          </div>
+
+          <ui-textarea fxFlex [label]="modulePath + ':model.resume' | i18next" [control]="form.get('resume')"
+            [rows]="4">
+          </ui-textarea>
+          <ui-text-area-ckeditor #contentTextEditor [environment]="environment"
+            [label]="modulePath + ':model.content' | i18next" [control]="form.get('content')" config="">
+          </ui-text-area-ckeditor>
+        </div>
+      </section>
+      <section>
+        <h2>{{ modulePath + ':header.thumbnail' | i18next }}</h2>
+        <div fxLayout="column" fxLayoutGap="5px">
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+            <ui-input fxFlex (change)="changeImage($event)" [label]="modulePath + ':model.attachment_filename'| i18next"
+              type="file" accept="image/png, image/jpeg"
+              [fileName]="form.get('attachment_filename').value?.name ? form.get('attachment_filename').value.name : form.get('attachment_filename').value"
+              [control]="form.get('attachment_filename')"></ui-input>
+            <div fxFlex="50" fxLayoutAlign="center center">
+              <img *ngIf="currentImagePath.thumbnail" [src]="currentImagePath.thumbnail"
+                onerror="this.src='assets/image-placeholder-350x350.png'" height="200px">
+              <img *ngIf="!currentImagePath.thumbnail" [src]="baseFilePath + '/' + form.value.cover"
+                onerror="this.src='assets/image-placeholder-350x350.png'" height="200px">
+            </div>
+          </div>
+          <ui-input fxFlex [label]="modulePath + ':model.cover_author' | i18next" [control]="form.get('cover_author')">
+          </ui-input>
+          <ui-input fxFlex [label]="modulePath + ':model.cover_locale' | i18next" [control]="form.get('cover_locale')">
+          </ui-input>
+        </div>
+      </section>
+      <section>
+        <h2>{{ modulePath + ':header.schedule' | i18next }}</h2>
+        <div fxLayout="column" fxLayoutGap="5px">
+          <ui-datepicker [label]="modulePath + ':model.event_from_date' | i18next"
+            [control]="form.get('event_from_date')" [required]="true"></ui-datepicker>
+          <ui-input fxFlex [label]="modulePath + ':model.event_from_hour' | i18next" [placeholder]="'HH:MM'"
+            [control]="form.get('event_from_hour')"></ui-input>
+
+          <ui-datepicker [label]="modulePath + ':model.event_to_date' | i18next" [control]="form.get('event_to_date')">
+          </ui-datepicker>
+          <ui-input fxFlex [label]="modulePath + ':model.event_to_hour' | i18next" [placeholder]="'HH:MM'"
+            [control]="form.get('event_to_hour')"></ui-input>
+
+          <ui-input fxFlex [label]="modulePath + ':model.locale' | i18next"
+            [placeholder]="modulePath + ':model.locale' | i18next" [control]="form.get('locale')"></ui-input>
+        </div>
+      </section>
+      <section>
+        <h2>{{ modulePath + ':header.publish' | i18next }}</h2>
+        <div fxLayout="column" fxLayoutGap="5px">
+          <div fxLayout="row wrap" ngClass.lt-sm="padding-20" ngClass.gt-xs="center-checkbox padding-40"
+            fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+            <ui-checkbox [label]="modulePath + ':model.online' | i18next" [control]="form.get('online')"></ui-checkbox>
+            <ui-checkbox [label]="modulePath + ':model.send_notification' | i18next"
+              [control]="form.get('send_notification')"></ui-checkbox>
+            <ui-checkbox [label]="modulePath + ':model.send_scheduled_notification' | i18next"
+              [control]="form.get('send_scheduled_notification')"></ui-checkbox>
+          </div>
+          <ui-datepicker *ngIf="form.get('send_scheduled_notification').value"
+            [label]="modulePath + ':model.scheduled_notification_date_to_send' | i18next"
+            [control]="form.get('scheduled_notification_date_to_send')"></ui-datepicker>
+          <ui-input *ngIf="form.get('send_scheduled_notification').value" fxFlex
+            [label]="modulePath + ':model.scheduled_notification_hour_to_send' | i18next" [placeholder]="'HH:MM'"
+            [control]="form.get('scheduled_notification_hour_to_send')"></ui-input>
+
+          <ui-datepicker [label]="modulePath + ':model.online_from_date' | i18next"
+            [control]="form.get('online_from_date')"></ui-datepicker>
+          <ui-input fxFlex [label]="modulePath + ':model.online_from_hour' | i18next" [placeholder]="'HH:MM'"
+            [control]="form.get('online_from_hour')"></ui-input>
+
+          <ui-datepicker [label]="modulePath + ':model.online_to_date' | i18next"
+            [control]="form.get('online_to_date')"></ui-datepicker>
+          <ui-input fxFlex [label]="modulePath + ':model.online_to_hour' | i18next" [placeholder]="'HH:MM'"
+            [control]="form.get('online_to_hour')"></ui-input>
+        </div>
+      </section>
+      <section>
+        <h2>{{ modulePath + ':header.hashtags' | i18next }}</h2>
+        <div fxLayout="column" fxLayoutGap="5px">
+          <ui-chips-dynamic [data]="hashtagsList" [inputPlaceholder]="modulePath + ':model.contents_hashtags' | i18next"
+            [editableData]="true" [control]="form.get('contents_hashtags')">
+          </ui-chips-dynamic>
+        </div>
+      </section>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #registrationsTemplate>
+  <div class="tab-content">
+    <form [formGroup]="form" class="form-body">
+      <section>
+        <h2>{{ modulePath + ':header.registrations' | i18next }}</h2>
+        <div fxLayout="column" fxLayoutGap="5px">
+          <ui-checkbox [label]="modulePath + ':model.accept_registrations' | i18next"
+            [control]="form.get('accept_registrations')"></ui-checkbox>
+
+          <ng-container *ngIf="form.get('accept_registrations').value">
+            <ui-datepicker [label]="modulePath + ':model.registrations_start' | i18next"
+              [control]="form.get('registrations_start')"></ui-datepicker>
+            <ui-input fxFlex [label]="modulePath + ':model.registrations_start_hour' | i18next" [placeholder]="'HH:MM'"
+              [control]="form.get('registrations_start_hour')"></ui-input>
+
+            <ui-datepicker [label]="modulePath + ':model.registrations_end' | i18next"
+              [control]="form.get('registrations_end')"></ui-datepicker>
+            <ui-input fxFlex [label]="modulePath + ':model.registrations_end_hour' | i18next" [placeholder]="'HH:MM'"
+              [control]="form.get('registrations_end_hour')"></ui-input>
+
+            <div fxLayout="row" fxLayoutGap="10px">
+              <ui-input fxFlex [label]="modulePath + ':model.limited_spaces' | i18next" type="number"
+                [control]="form.get('limited_spaces')"></ui-input>
+              <div fxFlex fxLayout="column" fxLayoutAlign="start start">
+                <div>{{ modulePath + ':model.occupied_spaces' | i18next }}:</div>
+                <div>{{ calcOccupiedSpaces() }}</div>
+              </div>
+            </div>
+
+            <div *ngIf="registrationDS">
+              <div fxLayout="row">
+                <h2 fxFlex>{{ modulePath + ':header.registrations' | i18next }}</h2>
+              </div>
+              <div fxLayout="row" fxLayoutGap="10px">
+                <ui-button *ngIf="!isNotifying && !isQuickInsertion"
+                  [label]="modulePath + ':action.save_and_notify' | i18next" type="raised" color="accent"
+                  (click)="saveAndNotifyClick()">
+                </ui-button>
+                <ng-container *ngIf="isNotifying">
+                  <ui-progress-spinner diameter="20" color="accent" strokeWidth="4"></ui-progress-spinner>
+                </ng-container>
+                <div *ngIf="form.get('notification_sent_at').value && !isNotifying" fxLayoutAlign="center center">
+                  {{ modulePath + ':message.notification_sent_at' | i18next }}:
+                  {{ form.get('notification_sent_at').value | date:('translation:format.datetime_seconds' | i18next) }}
+                </div>
+              </div>
+              <ui-table #registrationTable [checkboxes]="false" [dataSource]="registrationDS"
+                [tableColumns]="registrationColumns" stickyHeader="true">
+              </ui-table>
+              <div class="add-related-content"
+                (click)="addTableLine(newRegistration, registrationsFormArray, registrationDS)">
+                {{ 'translation:action.add' | i18next }}
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </section>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #relatedContentsTemplate>
+  <div class="tab-content">
+    <div *ngIf="relatedContentDS">
+      <div fxLayout="row">
+        <h2 fxFlex>{{ modulePath + ':header.sub_menus' | i18next }}</h2>
+      </div>
+      <ui-table #relatedContentTable [checkboxes]="false" [dataSource]="relatedContentDS"
+        [tableColumns]="relatedContentColumns" stickyHeader="true">
+      </ui-table>
+      <div class="add-related-content"
+        (click)="addTableLine(newRelatedContent, relatedContentsFormArray, relatedContentDS)">
+        {{ 'translation:action.add' | i18next }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #fotogaleryTemplate>
+  <div fxLayout="column" class="tab-content">
+    <ui-input fxFlex (change)="addImageToFotogalery($event)"
+      [label]="modulePath + ':model.fotogalery_filename'| i18next" type="file" accept="image/png, image/jpeg"
+      [control]="fotogaleryFormControl"></ui-input>
+
+    <ui-table #fotogaleryTable [checkboxes]="false" [dataSource]="fotogaleryDS" [tableColumns]="fotogaleryColumns">
+    </ui-table>
+  </div>
+</ng-template>
+
+<ng-template #downloadsTemplate>
+  <div fxLayout="column" class="tab-content">
+    <ui-input fxFlex (change)="addDownload($event)" [label]="modulePath + ':model.download_filename'| i18next"
+      type="file" accept="" [control]="downloadsFormControl"></ui-input>
+
+    <ui-table #downloadsTable [checkboxes]="false" [dataSource]="downloadsDS" [tableColumns]="downloadsColumns">
+    </ui-table>
+  </div>
+</ng-template>
+
+
+<!-- Templates -->
+<ng-template #deleteContentTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn"
+    (onClickEvent)="deleteTableLine(index, relatedContentsFormArray, relatedContentDS)"></ui-button>
+</ng-template>
+
+<ng-template #deleteFotogaleryTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (click)="removeFotogalery(index)"></ui-button>
+</ng-template>
+
+<ng-template #deleteDownloadTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (click)="removeDownload(index)"></ui-button>
+</ng-template>
+
+<ng-template #contentRowTemplate let-data="data" let-index="index">
+  <div fxLayout="column">
+    <ui-input customClass="remove-bottom-padding" readonly="true" [required]="true"
+      [rightTemplate]="{template: contentRightIndexTemplate, context: { inputName: 'contents#' + index} }"
+      [control]="relatedContentsFormArray.get([index, 'content_rel_description'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #contentRightIndexTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('contents-modal', inputName)">
+    </ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="contentsMenuOptions"
+      (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #fotogaleryThumbnailTemplate let-data="data" let-index="index">
+  <img *ngIf="data.thumbnail" [src]="data.thumbnail" onerror="this.src='assets/image-placeholder-350x350.png'"
+    height="50px">
+  <img *ngIf="!data.thumbnail" [src]="baseFilePath + '/' + data.image_url"
+    onerror="this.src='assets/image-placeholder-350x350.png'" height="50px">
+</ng-template>
+
+<ng-template #fotogaleryAuthorTemplate let-data="data" let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" [label]="modulePath + ':model.author' | i18next"
+      [control]="fotogaleryFormArray.get([index, 'photo_author'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #fotogaleryCaptionTemplate let-data="data" let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" [label]="modulePath + ':model.caption' | i18next"
+      [control]="fotogaleryFormArray.get([index, 'photo_caption'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #downloadDescriptionTemplate let-data="data" let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" [label]="modulePath + ':model.description' | i18next"
+      [control]="downloadsFormArray.get([index, 'link_description'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #deleteRegistrationTemplate let-index="index" let-inputName="inputName">
+  <div fxLayout="row">
+    <ui-button type="icon" icon="delete" color="warn"
+      (onClickEvent)="deleteTableLine(index, registrationsFormArray, registrationDS)"></ui-button>
+    <ui-button type="icon" icon="open_in_new"
+      (onClickEvent)="openSelectionModal('persons-modal', 'registrations#' + index)"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #contentsRegistrationsNameTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" required=true [label]="modulePath + ':model.name' | i18next"
+      [control]="registrationsFormArray.get([index, 'name'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #contentsRegistrationsEmailTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" [label]="modulePath + ':model.email' | i18next"
+      [control]="registrationsFormArray.get([index, 'email'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #contentsRegistrationsPhoneTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" [label]="modulePath + ':model.phone' | i18next"
+      [control]="registrationsFormArray.get([index, 'phone'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #contentsRegistrationsNrOfPeopleTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" [required]="true" [label]="modulePath + ':model.nr_of_people' | i18next" type="number"
+      [control]="registrationsFormArray.get([index, 'nr_of_people'])" [min]="1"></ui-input>
+  </div>
+</ng-template>
+
+<ng-template #contentsRegistrationsObservationsTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" [label]="modulePath + ':model.observations' | i18next"
+      [control]="registrationsFormArray.get([index, 'observations'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #contentsRegistrationsConfirmedTemplate let-index="index">
+  <div fxFlex fxLayout="row" fxLayoutAlign="center center">
+    <ui-checkbox [control]="registrationsFormArray.get([index, 'confirmed'])"></ui-checkbox>
+  </div>
+</ng-template>
+
+<ng-template #contentsRegistrationsHistoryTemplate let-data="data" let-index="index">
+  <div fxFlex fxLayout="row" fxLayoutAlign="center center" style="cursor: pointer;">
+    <ui-icon icon="history" (click)="openHistory(data)"></ui-icon>
+  </div>
+</ng-template>
+
+<ng-template #contentsRegistrationsPresentTemplate let-index="index">
+  <div fxFlex fxLayout="row" fxLayoutAlign="center center">
+    <ui-checkbox [control]="registrationsFormArray.get([index, 'present'])"></ui-checkbox>
+  </div>
+</ng-template>
+
+<kyr-events-history-modal *ngIf="openHistoryModal" [data]="historyModalData" (modalClosed)="onHistoryModalClose()">
+</kyr-events-history-modal>

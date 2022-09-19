@@ -1,0 +1,38 @@
+{
+    "module": {
+        "name_singular": "Mass Intention",
+        "name_many": "Mass Intentions"
+    },
+    "model": {
+        "intention_type_id": "Type of intention",
+        "intention_description": "Description",
+        "type_name": "Type",
+        "intention_date": "Date",
+        "intention_time": "Time",
+        "celebrated_by_description": "Celebrated by",
+        "location_description": "Place",
+        "paid": "Pay",
+        "requested_by_description": "Requesting",
+        "emolument_description": "Emolument",
+        "tax": "Tax",
+        "document_entity_description": "Entity to be listed on the document",
+        "comments": "Observations",
+        "serie_number": "Registration No."
+    },
+    "action": {
+        "new": "New Mass Intention",
+        "edit": "Edit Mass Intention",
+        "delete": "Delete Mass Intention?"
+    },
+    "message": {
+        "save_success": "Mass Intention successfully saved!",
+        "delete_success": "Mass Intention successfully deleted!",
+        "delete_are_you_sure": "Are you sure you wish to delete the Intention of Mass \"<strong>{{ intention_description }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to eliminate <strong>{{ count }}</strong> Mass Intentions selected?",
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected"
+    },
+    "header": {
+        "treasury_document": "Cash document"
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "module": {
+        "name_singular": "Menu",
+        "name_many": "Menus"
+    },
+    "action": {
+        "add": "Add Menu",
+        "new": "New Menu",
+        "edit": "Edit Menu"
+    },
+    "message": {
+        "save_success": "Menu successfully saved!",
+        "delete_success": "Menu successfully deleted!",
+        "delete_success_plural": "Menus successfully deleted!",
+        "delete_are_you_sure": "Are you sure that you want to delete the Menu with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure that you want to delete all the <strong>{{ count }}</strong> selected Menus?",
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "no_subscription_layouts": "This subscription does not have layouts. Please configure in \"Web Page Settings\" to generate them."
+    },
+    "model": {
+        "order": "Order",
+        "title": "Title",
+        "emenu_type": "Type",
+        "url": "Link",
+        "section_description": "Section",
+        "content_description": "Content",
+        "template_description": "Layout",
+        "layout": "Layout",
+        "block_remove": "Block Remove",
+        "content": "Content",
+        "section": "Section"
+    },
+    "header": {
+        "menu": "Menu",
+        "sub_menus": "Sub-menus"
+    }
+}

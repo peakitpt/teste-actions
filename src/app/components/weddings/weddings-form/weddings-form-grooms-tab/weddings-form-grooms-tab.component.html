@@ -1,0 +1,41 @@
+<section id="process-data-section">
+  <h2>{{ modulePath + ':header.groom' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="75"
+      [readonly]="true"
+      [required]="true"
+      [label]="modulePath + ':model.entity_groom_description' | i18next"
+      [control]="form.get('entity_groom_description')"
+      [rightTemplate]="{ template: personsRightTemplate, context: { modalTitle: ('persons:module.name_many' | i18next) + ' (' + ('translation:gender.male_plural' | i18next) + ')', inputName: 'entity_groom', modalParams: { sex: 'true' },  queryStringParams: entityGroomQSP } }"
+      [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }">
+    </ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity_groom_nick' | i18next" [control]="form.get('entity_groom_nick')"></ui-input>
+  </div>
+</section>
+
+<section id="wedding-data-section">
+  <h2>{{ modulePath + ':header.bride' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="75"
+      [readonly]="true"
+      [required]="true"
+      [label]="modulePath + ':model.entity_bride_description' | i18next"
+      [control]="form.get('entity_bride_description')"
+      [rightTemplate]="{ template: personsRightTemplate, context: { modalTitle: ('persons:module.name_many' | i18next) + ' (' + ('translation:gender.female_plural' | i18next) + ')', inputName: 'entity_bride', modalParams: { sex: 'false' }, queryStringParams: entityBrideQSP } }"
+      [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }">
+    </ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity_bride_nick' | i18next" [control]="form.get('entity_bride_nick')"></ui-input>
+  </div>
+</section>
+
+<section id="treasury-document-section">
+  <h2>{{ modulePath + ':header.children' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <div fxFlex ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.children_common' | i18next" [control]="form.get('children_common')"></ui-checkbox>
+    </div>
+    <div fxFlex ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.not_children_common' | i18next" [control]="form.get('not_children_common')"></ui-checkbox>
+    </div>
+  </div>
+</section>

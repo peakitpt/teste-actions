@@ -1,0 +1,190 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="navigate('..')"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ translationPath +':action.edit'| i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ translationPath + ':action.edit' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+
+    <ui-button type="flat" icon="save" [label]="'translation:action.save' | i18next" color="accent" (onClickEvent)="onSubmit()"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <kyr-form [fields]="formFields"></kyr-form>
+</ng-template>
+
+<ng-template #inputLeftTemplate let-icon="icon">
+  <div style="margin-right: 2px;">
+    <ui-icon class="input-icon" [icon]="icon"></ui-icon>
+  </div>
+</ng-template>
+
+<ng-template #countriesRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('countries-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="countriesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+
+<!-- TABLE TEMPLATES -->
+<ng-template #currentAccountsLinesTemplate>
+  <div fxFlex fxLayout="row" fxLayoutGap="10px">
+    <div fxFlex fxLayout="column">
+      <ui-table
+        #tableCurrentAccountsLines
+        [dataSource]="dataSourceCurrentAccountLines"
+        [tableColumns]="dataSourceColumnsCurrentAccountLines"
+        [generalFilter]="false"
+        [checkboxes]="false">
+      </ui-table>
+      <kyr-table-pagination>
+        <ui-paginator
+          [length]="httpCurrentAccountsLinesParams.total"
+          [pageIndex]="httpCurrentAccountsLinesParams.page - 1"
+          hidePageSize="true"
+          [showFirstLastButtons]="false"
+          (onChangeEvent)="paginationCurrentAccountLinesChangeEvent($event)"
+        ></ui-paginator>
+      </kyr-table-pagination>
+    </div>
+    <form fxFlex="20" [formGroup]="currentAccountsLinesForm" fxLayout="column">
+      <div fxLayout="row">
+        <ui-icon icon="search"></ui-icon>
+        <div>{{ 'translation:action.search' | i18next }}</div>
+      </div>
+      <ui-select fxFlex
+        [label]="translationPath + ':model.current_account_lines.documents_status_description' | i18next"
+        [options]="documentsStatusOptions"
+        [control]="currentAccountsLinesForm.get('documents_status_id')">
+      </ui-select>
+      <ui-datepicker-range
+        fxFlex
+        [label]="translationPath + ':model.current_account_lines.date' | i18next"
+        [appearance]="'standard'"
+        [controlStart]="currentAccountsLinesForm.get('document_date_start')"
+        [controlEnd]="currentAccountsLinesForm.get('document_date_end')">
+      </ui-datepicker-range>
+      <ui-input fxFlex
+        [label]="translationPath + ':model.current_account_lines.serie_number' | i18next"
+        [control]="currentAccountsLinesForm.get('serie_number')">
+      </ui-input>
+      <ui-input fxFlex
+        [label]="translationPath + ':model.current_account_lines.total_amount' | i18next"
+        [control]="currentAccountsLinesForm.get('total_amount')">
+      </ui-input>
+      <div fxLayout="row" fxLayoutAlign="end">
+        <ui-button
+          [label]="'translation:action.clear' | i18next"
+          type="flat"
+          (click)="clearCurrentAccountsLinesSearch()">
+        </ui-button>
+        <ui-button
+          [label]="'translation:action.search' | i18next"
+          type="raised" color="primary"
+          (click)="onCurrentAccountsLinesSearchClick()">
+        </ui-button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #currentAccountsLinesOnCuriaTemplate>
+  <div fxFlex fxLayout="row" fxLayoutGap="10px">
+    <div fxFlex fxLayout="column">
+      <ui-table
+        #tableCurrentAccountsLinesOnCuria
+        [dataSource]="dataSourceCurrentAccountLinesOnCuria"
+        [tableColumns]="dataSourceColumnsCurrentAccountLines"
+        [generalFilter]="false"
+        [checkboxes]="false">
+      </ui-table>
+      <kyr-table-pagination>
+        <ui-paginator
+          [length]="httpcurrentAccountsLinesOnCuriaParams.total"
+          [pageIndex]="httpcurrentAccountsLinesOnCuriaParams.page - 1"
+          hidePageSize="true"
+          [showFirstLastButtons]="false"
+          (onChangeEvent)="paginationCurrentAccountLinesOnCuriaChangeEvent($event)"
+        ></ui-paginator>
+      </kyr-table-pagination>
+    </div>
+    <form fxFlex="20" [formGroup]="currentAccountsLinesOnCuriaForm" fxLayout="column">
+      <div fxLayout="row">
+        <ui-icon icon="search"></ui-icon>
+        <div>{{ 'translation:action.search' | i18next }}</div>
+      </div>
+      <ui-select fxFlex
+        [label]="translationPath + ':model.current_account_lines.documents_status_description' | i18next"
+        [options]="documentsStatusOptions"
+        [control]="currentAccountsLinesOnCuriaForm.get('documents_status_id')">
+      </ui-select>
+      <ui-datepicker-range
+        fxFlex
+        [label]="translationPath + ':model.current_account_lines.date' | i18next"
+        [appearance]="'standard'"
+        [controlStart]="currentAccountsLinesOnCuriaForm.get('document_date_start')"
+        [controlEnd]="currentAccountsLinesOnCuriaForm.get('document_date_end')">
+      </ui-datepicker-range>
+      <ui-input fxFlex
+        [label]="translationPath + ':model.current_account_lines.serie_number' | i18next"
+        [control]="currentAccountsLinesOnCuriaForm.get('serie_number')">
+      </ui-input>
+      <ui-input fxFlex
+        [label]="translationPath + ':model.current_account_lines.total_amount' | i18next"
+        [control]="currentAccountsLinesOnCuriaForm.get('total_amount')">
+      </ui-input>
+      <div fxLayout="row" fxLayoutAlign="end">
+        <ui-button
+          [label]="'translation:action.clear' | i18next"
+          type="flat"
+          (click)="clearCurrentAccountsLinesOnCuriaSearch()">
+        </ui-button>
+        <ui-button
+          [label]="'translation:action.search' | i18next"
+          type="raised" color="primary"
+          (click)="onCurrentAccountsLinesOnCuriaSearchClick()">
+        </ui-button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<!-- TABLE TEMPLATES -->

@@ -1,0 +1,138 @@
+{
+    "module": {
+        "name_singular": "Baptism",
+        "name_many": "Baptisms"
+    },
+    "model": {
+        "comments": "Observations",
+        "serie_number": "Registration No.",
+        "baptisms_attachments": {
+            "description": "Description",
+            "attachment": "Attached"
+        },
+        "entity": {
+            "entity_person": {
+                "entity_mother": {
+                    "entity_person": {
+                        "entity_mother": {
+                            "name": "Maternal grandmother"
+                        },
+                        "entity_father": {
+                            "name": "Maternal grandfather"
+                        }
+                    }
+                },
+                "entity_father": {
+                    "entity_person": {
+                        "entity_mother": {
+                            "name": "Paternal grandmother"
+                        },
+                        "entity_father": {
+                            "name": "Paternal grandfather"
+                        }
+                    }
+                },
+                "entity_mother_description": "Mother",
+                "entity_father_description": "Father"
+            }
+        },
+        "godfathers_preparation_priest_description": "Priest assigned to the Baptism Preparation Course",
+        "parents_preparation_priest_description": "Priest assigned to the Baptism Preparation Course",
+        "entity_priest_description": "Most Reverend Father",
+        "entity_parishioner_of_description": "Your Excellency the Parish Priest of",
+        "suitability_request_godfather_godmother": "Reference this document to",
+        "certificate_comments": "Observations on the Baptism Certificate",
+        "certificate_wedding": "Include information on Marriage",
+        "certificate_chrism": "Include information on Confirmation",
+        "certificate_first_communion": "Include information on the Eucharist",
+        "certificate_no_info_on_margin": "There is nothing on the margin of the cerificate",
+        "wich_will": "Those who with me (Sign, or of whom with me only sign...)",
+        "seat_parson_pronoun": "Parish priest",
+        "seat_officiant_pronoun": "Oficiant",
+        "seat_godmother_pronoun": "Godmother",
+        "seat_godfather_pronoun": "Godfather",
+        "preparation_reunion_hours": "Meeting times",
+        "preparation_reunion_date_2": "2nd preparation meeting",
+        "preparation_reunion_date_1": "1st preparation meeting",
+        "preparation_reunion_location_description": "Preparation meeting place",
+        "has_more_kids": "Do parents have more children?",
+        "entity_godmother_representative_description": "Representative",
+        "entity_godfather_representative_description": "Representative",
+        "entity_godmother_is_not_confirmed": "Witness",
+        "entity_godmother_description": "Godmother",
+        "entity_godfather_is_not_confirmed": "Witness",
+        "entity_godfather_description": "Godfather",
+        "mother_residence_chapelry_description": "Mother's Parish of residence",
+        "father_residence_chapelry_description": "Father's Parish of residence",
+        "maternal_grandmother_description": "Mother's grandmother",
+        "maternal_grandfather_description": "Mothers grandfather",
+        "paternal_grandmother_description": "Paternal grandmother",
+        "paternal_grandfather_description": "Paternal grandfather",
+        "mother_description": "Mother",
+        "father_description": "Father",
+        "document_entity_description": "Entity to be listed on the document",
+        "tax": "Tax",
+        "emolument_description": "Emolument",
+        "entity_baptized_authorization_description": "Authorized by",
+        "entity_baptized_by_description": "Baptized by",
+        "entity_baptized_location_county": "County of baptism",
+        "entity_baptized_location_description": "Place of baptism",
+        "in_danger_of_life": "In danger of death",
+        "time_of_birth": "Time of birth",
+        "sheet": "Sheet",
+        "curia_status": "Status",
+        "baptism_hour": "Baptism hour",
+        "baptism_date": "Date of baptism",
+        "age_at_subscription": "Age inscript.",
+        "date": "Date of registration",
+        "entity_description": "Baptizing",
+        "seat_number": "Certificate Nº"
+    },
+    "pronouns": {
+        "female": {
+            "by_the": "For",
+            "the": "The"
+        },
+        "male": {
+            "by_the": "From",
+            "the": "The"
+        }
+    },
+    "header": {
+        "preparation_courses": "Baptism preparation courses",
+        "suitability_request": "Application of suitability",
+        "baptism_certificate": "Baptismal certificate",
+        "baptism_entry": "Baptismal certificate",
+        "baptism_inscription": "Registration of baptism",
+        "godmother": "Godmother",
+        "godfather": "Godparent",
+        "maternal_grandparents": "Maternal grandparents",
+        "paternal_grandparents": "Paternal grandparents",
+        "parents": "Country",
+        "treasury_document": "Cash document",
+        "baptism_data": "Baptism data",
+        "process_data": "Process data"
+    },
+    "tabs": {
+        "attachments": "Attachments",
+        "reports": "Reports",
+        "godparents": "Godfathers",
+        "parents_grandparents": "Parents and grandparents",
+        "main_tab": "Baptism"
+    },
+    "message": {
+        "error_invalid_attachments": "Some attachments are invalid",
+        "grandparents_text": "Identify the father and mother to be able to select the grandparents of the christening, respectively.",
+        "selected_plural": "{{ count }} selected",
+        "selected": "{{ count }} selected",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <b>{{ count }}</b> selected baptisms?",
+        "delete_are_you_sure": "Are you sure you want to delete the Baptism of <b>{{ name }}</b>?",
+        "delete_success": "Baptism successfully deleted!",
+        "save_success": "Baptism successfully saved!"
+    },
+    "action": {
+        "delete": "Delete Baptism?",
+        "edit": "Edit Baptism",
+        "new": "New Baptism"
+    }
+}

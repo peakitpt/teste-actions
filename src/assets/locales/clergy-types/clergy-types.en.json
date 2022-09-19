@@ -1,0 +1,31 @@
+{
+    "action": {
+        "add": "Add Clergy Type",
+        "new": "New Clergy Type",
+        "edit": "Edit Clergy Type",
+        "delete": "Delete Clergy Type"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Clergy Type with the name \"<strong>{{name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Selected Clergy Types?",
+        "delete_success": "Clergy type successfully deleted!",
+        "delete_success_plural": "Clergy types successfully deleted!",
+        "save_success": "Clergy type successfully saved!"
+    },
+    "model": {
+        "types": {
+            "bishops": "Bishops",
+            "deacons": "Deacons",
+            "presbiterals": "Presbyters"
+        },
+        "group_id": "Group",
+        "abbreviated_name": "Short Name",
+        "name": "Name"
+    },
+    "module": {
+        "name_singular": "Clergy Type",
+        "name_many": "Types of Clergy"
+    }
+}

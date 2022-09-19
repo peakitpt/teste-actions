@@ -1,0 +1,33 @@
+{
+    "module": {
+        "name_singular": "Signatura en Grupo",
+        "name_many": "Signaturas en Grupos"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionado",
+        "activated_success": "¡Suscripción activada con éxito!",
+        "deactivated_success": "¡Suscripción desactivada con éxito!",
+        "toggle_are_you_sure": "¿Estás seguro de que quieres<b>{{ action }}</b> la suscripción de<b>{{ subscriptor_name }}</b> en el grupo {{ group_name }}</b>?",
+        "save_success": "¡Suscripción al grupo guardada con éxito!"
+    },
+    "action": {
+        "toggle_activation": "Activar / Desactivar",
+        "activate": "Activar",
+        "deactivate": "Desactivar",
+        "new": "Nueva suscripción al grupo"
+    },
+    "model": {
+        "active": "Activa",
+        "newsletter_subscription": {
+            "name": "Suscriptor"
+        },
+        "group": {
+            "name": "Grupo"
+        },
+        "newsletter_subscription_description": "Suscriptor",
+        "group_id": "Grupo",
+        "unsubscription_date": "Fecha de anulación",
+        "subscription_date": "Fecha de suscripción"
+    }
+}

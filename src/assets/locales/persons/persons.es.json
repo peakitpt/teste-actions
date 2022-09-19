@@ -1,0 +1,301 @@
+{
+    "module": {
+        "name_singular": "Ficha Individual",
+        "name_many": "Fichas Individuales"
+    },
+    "action": {
+        "new": "Nueva Ficha Individual",
+        "edit": "Editar Ficha Individual",
+        "delete": "¿Eliminar Ficha Individual?",
+        "group_activate": "Activar",
+        "group_deactivate": "Desactivar",
+        "group_toggle_subscription": "{{ action }} la suscripción al grupo?",
+        "continue": "Continuar"
+    },
+    "message": {
+        "save_success": "¡Ficha Individual guardada con éxito!",
+        "delete_success": "¡Ficha Individual eliminada con éxito!",
+        "delete_are_you_sure": "¿Estás seguro de que deseas eliminar la Ficha Individual con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Estás seguro de que quieres eliminar las <strong>{{ count }}</strong> Fichas individuales seleccionadas?",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionado",
+        "field_deceased_affected": "El campo \"Fallecido\", en la pestaña \"Categorías\" se vio afectado",
+        "field_maritial_status_affected": "El campo \"Tipo de boda\" se vio afectado",
+        "field_civil_status_affected": "El campo \"Estado civil\" se vio afectado",
+        "error_blank_mec_renewals": "Por favor, complete todos los campos de la tabla de Renovaciones, en la pestaña Ministro Comunión",
+        "field_newsletter_subscriptor_affected": "El campo \"Grupos (Newsletter/SMS)\" se ve afectado",
+        "field_pastoral_agent_affected": "El campo \"Agente de Pastoral\" ha sido afectado",
+        "field_catechist_affected": "El campo \"Catequista\" está afectado",
+        "error_blank_appointments": "Por favor, complete todos los campos obligatorios de la tabla de Nombramientos, en la pestaña Curia",
+        "error_appointments_dates": "Las fechas de finalización deben ser mayores que las de inicio, en la tabla de Nombramientos, en la pestaña Curia",
+        "group_toggle_are_you_sure": "¿Realmente quieres {{ action }} la suscripción en el grupo<strong>{{ groupName }}</strong>?",
+        "group_toggle_activated": "¡Suscripción activada con éxito!",
+        "group_toggle_deactivated": "¡Suscripción desactivada con éxito!",
+        "duplicated_name": "Ya existe una entidad con el nombre \"<strong>{{ value }}</strong>\";",
+        "duplicated_vat": "Ya existe una entidad con el número de identificación fiscal \"<strong>{{ value }}</strong>\";",
+        "are_you_sure_you_want_to_save": "¿Estás seguro de que quieres guardar?"
+    },
+    "model": {
+        "birth_date": "Fecha de nacimiento",
+        "is_parishioner": "Parroquiano(a)",
+        "serie_number": "Nº de registro",
+        "deceased": "Fallecido(a)",
+        "sex": "Género",
+        "is_catechized": "Catequizando",
+        "comments": "Observaciones",
+        "title": "Título",
+        "qualifications_id": "Calificaciones",
+        "entity_birth_place_description": "Nacionalidad",
+        "birth_place_parish": "Provincia de nacimiento",
+        "birth_place_county": "Ayuntamiento de nacimiento",
+        "previous_address": "Si cambió de residencia en el último año, indique la dirección anterior",
+        "ident_document_type": "Tipo de identificación",
+        "ident_document_number": "Nº de identificación",
+        "ident_document_emission_date": "Fecha de emisión",
+        "ident_document_emitted_by": "Emitido por",
+        "ident_document_validity_date": "Fecha de validez",
+        "is_adopted": "Adoptado(a)",
+        "entity_father_description": "Padre",
+        "entity_mother_description": "Madre",
+        "maritial_status": "Tipo de boda",
+        "entity_spouse_description": "Cónyuge",
+        "wedding_date": "Fecha de matrimonio",
+        "entity_wedding_location_description": "Lugar de matrimonio",
+        "professional_profession_description": "Profesión",
+        "professional_post": "Cargo",
+        "professional_company": "Empresa",
+        "professional_address": "Dirección",
+        "professional_door_number": "Nº",
+        "professional_postal_code": "Código postal",
+        "professional_locality": "Localidad",
+        "professional_parish": "Parroquia",
+        "professional_county": "Ayuntamiento",
+        "professional_district": "Provincia",
+        "professional_country_description": "País",
+        "professional_mobilephone": "Teléfono móvil",
+        "professional_phone": "Teléfono",
+        "professional_fax": "Fax",
+        "professional_email": "Correo electrónico",
+        "professional_url": "Sito Web",
+        "outside_chapelry_description": "Lugar de bautismo",
+        "suitability_request": "Pedido de",
+        "baptized_chrismed_description": "Bautizado/Crismando",
+        "entity": {
+            "name": "Nombre",
+            "email": "Correo electrónico",
+            "mobilephone": "Teléfono móvil",
+            "phone": "Teléfono",
+            "fax": "Fax",
+            "url": "Sitio Web",
+            "disabled": "Activo(a)",
+            "taxpayer": "NIF",
+            "can_sign_documents": "Puede firmar documentos",
+            "newsletter_subscriptor": "Grupos",
+            "civil_status_id": "Estado civil",
+            "entity_birth_chapelry_description": "Parroquia de nacimiento",
+            "entity_birth_chapelry_free_text": "Parroquia de nacimiento (texto libre)",
+            "residence_chapelry_description": "Parroquia de residencia",
+            "address": "Dirección",
+            "door_number": "Nº",
+            "postal_code": "CP",
+            "place": "Localidad",
+            "county": "Ayuntamiento",
+            "district": "Provincia",
+            "country_description": "País",
+            "is_public_profile": "Público",
+            "entity_elder_patient": {
+                "elder": "Anciano(a)",
+                "sick": "Enfermo",
+                "sunday_communion": "Comunión dominical",
+                "sunday_communion_minister_description": "Ministro de comunión",
+                "anointing_ofthe_sick_date": "Fecha",
+                "anointing_ofthe_sick_locale": "Lugar"
+            },
+            "entity_catechist": {
+                "catechist": "Catequista",
+                "initiation_course_date": "Fecha",
+                "initiation_course_avaliation": "Evaluación",
+                "general_course_date": "Fecha",
+                "general_course_avaliation": "Evaluación",
+                "complementary_course_date": "Fecha",
+                "complementary_course_avaliation": "Evaluación"
+            },
+            "entity_mec": {
+                "mec": "Ministro Comunión",
+                "mec_number": "Nº Ministro Comunión",
+                "magnetic_number": "Nº magnético",
+                "institution_date": "Fecha de nombramiento",
+                "institution_center_worshipplace_description": "Centro de institución / Parroquia",
+                "entities_mecs_lines": {
+                    "renewal_date": "Fecha de la renovación"
+                }
+            },
+            "entity_acolyte": {
+                "is_acolyte": "Acólito(a)"
+            },
+            "entity_pastoral_agent": {
+                "active": "Agente de Pastoral"
+            },
+            "entity_reader": {
+                "is_reader": "Lector(a)"
+            },
+            "photo_filename": "Fotografía"
+        },
+        "lives_with": "Vive con",
+        "catechism_last_year": "Asistencia último año",
+        "christian_attended_catechism": "Asistencia Catequesis",
+        "christian_often_eucharist": "Frecuencia en la Eucaristía",
+        "catechized_has_catechized_brothers": "Tienes hermanos en la catequesis? Nombres",
+        "catechized_has_brothers_info": "Tienes hermanos? ¿Cuántos? Nombres y edades",
+        "lives_with_text": "¿Con quién?",
+        "christian_attended_catechism_district": "Provincia",
+        "christian_attended_catechism_county": "Ayuntamiento",
+        "christian_attended_catechism_worshipplace_description": "lugar de culto",
+        "entity_person_appointments": {
+            "curia_function_description": "Función",
+            "appointment_place_description": "Lugar",
+            "representing_description": "Representa",
+            "description": "Descripción",
+            "start_date": "Inicio",
+            "end_date": "Fin"
+        }
+    },
+    "placeholder": {
+        "title": "Sr., Sra., …",
+        "age": "Edad",
+        "newsletter_subscriptor": "Sólo es posible si estás Activo. Permite enviar Newsletter/SMS"
+    },
+    "tabs": {
+        "personal_data": "Datos personales",
+        "categories": "Categorías",
+        "curia": "Curia",
+        "christian_life": "Vida cristiana",
+        "professional_life": "Vida profesional",
+        "catechist": "Catequista",
+        "mec": "Ministro Comunión",
+        "elder_sick": "Anciano/Enfermo",
+        "groups": "Grupos",
+        "reports": "Informes"
+    },
+    "header": {
+        "personal_data": "Datos personales",
+        "address": "Dirección",
+        "contacts": "Contacto",
+        "identification_docs": "Documentos de identificación",
+        "family": "Familia",
+        "comments": "Comentarios",
+        "other_info": "Otros datos",
+        "profession": "Profesión",
+        "catechist_introductory_course": "Curso de iniciación",
+        "catechist_general_course": "Curso general",
+        "catechist_complementary_course": "Curso complementario",
+        "elder_sick_sunday_communion": "Comunión dominical",
+        "elder_sick_anointing_of_the_sick": "Unción de enfermos",
+        "reports_authorization_for_baptism_outside_parish": "Autorización para bautismo fuera de la parroquia",
+        "reports_godparents_request_suitability": "Solicitud de Certificado de Idoneidad para padrino/madrina",
+        "mec_extraordinary_minister_of_communion": "Ministro Extraordinario de Comunión",
+        "mec_renewals": "Renovaciones",
+        "christian_life_catechism": "Catequesis",
+        "christian_life": "Vida cristiana",
+        "subheader": {
+            "presences": "Inscripciones/Asistencia",
+            "parties": "Festividades de la catequesis",
+            "sacraments": "Sacramentos"
+        },
+        "processes": "Historial",
+        "curia_appointments": "Nombramientos",
+        "groups": "Grupos"
+    },
+    "suitability_request_options": {
+        "baptism": "Bautismo",
+        "chrism": "Confirmación"
+    },
+    "sacraments_table": {
+        "sacraments": {
+            "chrism": "Confirmación",
+            "first_communion": "Comunión",
+            "first_confession": "1ª Confesión",
+            "baptized": "Bautismo"
+        },
+        "header": {
+            "district": "Provincia",
+            "county": "Ayuntamiento",
+            "worshipplace": "Lugar de Culto",
+            "sheet": "Hoja",
+            "seat_nr": "Partida nº",
+            "date": "Fecha",
+            "sacrament": "Sacramento"
+        }
+    },
+    "lives_with": {
+        "other": "Otro",
+        "father": "Padre",
+        "mother": "Madre",
+        "parents": "Padres"
+    },
+    "catechism_years": {
+        "10_year": "10º año",
+        "9_year": "9º año",
+        "8_year": "8º año",
+        "7_year": "7º año",
+        "6_year": "6º año",
+        "5_year": "5º año",
+        "4_year": "4º año",
+        "3_year": "3º año",
+        "2_year": "2º año",
+        "1_year": "1º año"
+    },
+    "presences_table": {
+        "years": {
+            "year_10": "10º año",
+            "year_9": "9º año",
+            "year_8": "8º año",
+            "year_7": "7º año",
+            "year_6": "6º año",
+            "year_5": "5º año",
+            "year_4": "4º año",
+            "year_3": "3º año",
+            "year_2": "2º año",
+            "year_1": "1º año"
+        },
+        "header": {
+            "comments": "Observaciones",
+            "failures": "Faltas",
+            "attendance": "Asistencia",
+            "inscription": "Registro",
+            "year": "Año"
+        }
+    },
+    "parties_table": {
+        "parties": {
+            "year_10": "10º año",
+            "year_9": "9º año",
+            "year_8": "8º año",
+            "year_7": "7º año",
+            "year_6": "6º año (profesión de fe)",
+            "year_5": "5º año",
+            "year_4": "4º año",
+            "year_3": "3º año",
+            "year_2": "2º año",
+            "year_1": "1º año"
+        },
+        "header": {
+            "district": "Provincia",
+            "county": "Ayuntamiento",
+            "worshipplace": "Lugar de culto",
+            "date": "Fecha",
+            "party": "Festividad",
+            "year": "Año"
+        }
+    },
+    "filters": {
+        "others": "Otros",
+        "does_birthday": "Cumpleaños",
+        "does_birthday_hint": "Ignora el año",
+        "does_wedding_birthday": "Aniversario de matrimonio",
+        "does_wedding_birthday_hint": "Ignora el año",
+        "does_xx_wedding_birthday": "Aniversario de matrimonio",
+        "does_xx_wedding_birthday_hint": "Hasta el final del mes en curso/inicial, si no se indica la fecha de finalización en el filtro por fecha",
+        "does_xx_wedding_birthday_placeholder": "Número de años"
+    }
+}

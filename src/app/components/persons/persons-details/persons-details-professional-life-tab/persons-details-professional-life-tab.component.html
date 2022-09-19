@@ -1,0 +1,109 @@
+<section id="professional-life-section" *ngIf="model.professional_profession_description
+        || model.professional_post || model.professional_company">
+  <h2>{{ modulePath + ':header.profession' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_profession_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_profession_description' | i18next }}:</div>
+        <div fxFlex>{{ model.professional_profession_description }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_post">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_post' | i18next }}:</div>
+        <div fxFlex>{{ model.professional_post }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_company">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_company' | i18next }}:</div>
+        <div fxFlex>{{ model.professional_company }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="professional-address-section" *ngIf="model.professional_address
+        || model.professional_door_number
+        || model.professional_postal_code
+        || model.professional_locality
+        || model.professional_parish
+        || model.professional_county
+        || model.professional_district
+        || model.professional_country_description">
+  <h2>{{ modulePath + ':header.address' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_address">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_address' | i18next }}:</div>
+        <div fxFlex>{{ model.professional_address }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_door_number">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_door_number' | i18next }}:</div>
+        <div fxFlex>{{ model.professional_door_number }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_postal_code">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_postal_code' | i18next }}:</div>
+        <div fxFlex>{{ model.professional_postal_code }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_locality">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_locality' | i18next }}:</div>
+        <div fxFlex>{{ model.professional_locality }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_parish">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_parish' | i18next }}:</div>
+        <div fxFlex>{{ model.professional_parish }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_county">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_county' | i18next }}:</div>
+        <div fxFlex>{{ model.professional_county }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_district">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_district' | i18next }}:</div>
+        <div fxFlex>{{ model.professional_district }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_country_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_country_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('countries', model.professional_country_id)">{{ model.professional_country_description | i18next }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="professional-contacts-section" *ngIf="model.professional_email
+        || model.professional_mobilephone
+        || model.professional_phone
+        || model.professional_fax
+        || model.professional_url">
+  <h2>{{ modulePath + ':header.contacts' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_email">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_email' | i18next }}:</div>
+        <div fxFlex>
+          <a [href]="'mailto:' + model.professional_email">{{ model.professional_email }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_mobilephone">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_mobilephone' | i18next }}:</div>
+        <div fxFlex>
+          <a [href]="'tel:' + model.professional_mobilephone">{{ model.professional_mobilephone }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_phone">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_phone' | i18next }}:</div>
+        <div fxFlex>
+          <a [href]="'tel:' + model.professional_phone">{{ model.professional_phone }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_fax">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_fax' | i18next }}:</div>
+        <div fxFlex>{{ model.professional_fax }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.professional_url">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.professional_url' | i18next }}:</div>
+        <div fxFlex>
+          <a [href]="model.professional_url.startsWith('http') ? model.professional_url : 'http://' + model.professional_url" target="_blank">{{ model.professional_url }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

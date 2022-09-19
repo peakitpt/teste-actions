@@ -1,0 +1,18 @@
+<section id="attachments-section">
+  <div fxLayout="column" class="tab-content">
+    <ui-input fxFlex
+      (change)="addAttachment($event)"
+      [label]="'translation:fileupload.click_to_select' | i18next"
+      type="file" accept=""
+      [readonly]="true"
+      [control]="attachmentFormControlPlaceholder"></ui-input>
+
+    <ui-table
+      #attachmentsTable
+      [checkboxes]="false"
+      [dataSource]="attachmentsDS"
+      [tableColumns]="attachmentsColumns"
+      stickyHeader="true">
+    </ui-table>
+  </div>
+</section>

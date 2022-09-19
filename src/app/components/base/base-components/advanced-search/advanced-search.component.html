@@ -1,0 +1,66 @@
+<ng-container *ngIf="largeSize === true">
+  <ui-input
+    id="topbarSearch"
+    customClass="remove-bottom-padding"
+    appearance="outline"
+    [placeholder]="'translation:action.search_ellipsis' | i18next"
+    [leftTemplate]="{ template: searchLeftTemplate }"
+    [rightTemplate]="{ template: searchRightTemplate }"
+    [control]="searchStringControl"
+    (keyup.enter)="search()"
+  ></ui-input>
+</ng-container>
+
+<ng-container *ngIf="largeSize === false">
+  <ui-menu
+    type="hidden"
+    [mainIcon]="canSearch ? 'search' : 'search_off'"
+    [menuTemplate]="searchMenuTemplate"
+    hasBackdrop="true"
+    [hoverTitle]="'translation:action.search' | i18next"
+  ></ui-menu>
+</ng-container>
+
+
+<!-- TEMPLATES -->
+
+<ng-template #searchLeftTemplate>
+  <div class="searchbar-left-icon">
+    <ui-icon icon="search"></ui-icon>
+  </div>
+</ng-template>
+
+<ng-template #searchRightTemplate>
+  <div fxLayout="column" [ngStyle]="{'display': (canSearch==true) ? 'flex' : 'none'}">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex="43px">
+      <ui-button *ngIf="searchStringControl?.value" type="icon" icon="clear" (click)="clearSearch()" ></ui-button>
+      <div fxLayout="row" fxLayoutAlign="center center" fxFlex="25px" style="overflow: hidden;">
+        <ui-menu
+          type="hidden"
+          mainIcon="arrow_drop_down"
+          [menuTemplate]="searchMenuTemplate"
+          xPosition="before"
+          yPosition="below"
+          hasBackdrop="true"
+          [hoverTitle]="'translation:action.search' | i18next"
+        ></ui-menu>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #searchMenuTemplate>
+  <div #target>
+  </div>
+  <ng-container *ngIf="canSearch === false">
+    <div fxFlex="350px" fxLayout="row" fxLayoutAlign="center center">
+      <ui-icon icon="search_off"></ui-icon>
+      <span> {{ 'translation:message.search_unavailable' | i18next }} </span>
+    </div>
+  </ng-container>
+</ng-template>
+
+
+
+<!-- TEMPLATES END -->
+

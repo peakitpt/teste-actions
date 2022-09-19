@@ -1,0 +1,30 @@
+{
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar el Numerador del Módulo?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quiere eliminar los <strong>{{ count }}</strong> Números de módulos seleccionados?",
+        "delete_success": "¡Módulo numerador eliminado con éxito!",
+        "delete_success_plural": "¡Módulo Numeradores eliminado con éxito!",
+        "save_success": "¡Módulo numerador guardado con éxito!"
+    },
+    "model": {
+        "name": "Nombre",
+        "numeration_description": "Numerador",
+        "view": "Módulo"
+    },
+    "header": {
+        "sub_menus": "Sub-menús",
+        "menu": "Módulo Numerador"
+    },
+    "action": {
+        "delete": "¿Eliminar el numerador del módulo?",
+        "edit": "Editar el Número de módulo",
+        "new": "Nuevo módulo Numerador",
+        "add": "Añadir Módulo Numerador"
+    },
+    "module": {
+        "name_many": "Números de módulo",
+        "name_singular": "Módulo Numerador"
+    }
+}

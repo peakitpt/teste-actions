@@ -1,0 +1,25 @@
+{
+  "module": {
+    "name_singular": "Tipo de Agente de Pastoral",
+    "name_many": "Tipos de Agente de Pastoral"
+  },
+  "action": {
+    "new": "Novo Tipo de Agente de Pastoral",
+    "edit": "Editar Tipo de Agente de Pastoral",
+    "delete": "Eliminar Tipo de Agente de Pastoral?"
+  },
+  "message": {
+    "save_success": "Tipo de Agente de Pastoral guardado com sucesso!",
+    "delete_success": "Tipo de Agente de Pastoral apagado com sucesso!",
+    "delete_success_plural": "Tipos de Agente de Pastoral apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Tipo de Agente de Pastoral com a descrição \"<strong>{{ description }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Tipos de Agente de Pastoral selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "description": "Descrição",
+    "group": "Grupo",
+    "group_translate": "Grupo"
+  }
+}

@@ -1,0 +1,183 @@
+@import './node_modules/@peakitpt/ui-material/assets/theme.scss';
+
+@mixin login-theme($theme){
+
+  .intro-section {
+    height: 100%;
+    background-image: url('../../../../assets/backgrounds/sunset-bom-jesus.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .left-side-container {
+    background: #255A8E;
+    height: 600px;
+    border-radius: 12px;
+    z-index: 1;
+    box-shadow: 0px 0px 30px #808080;
+  }
+
+  .right-side-container {
+    z-index: 0;
+    background: #fff;
+    width: 100%;
+    height: 566px;
+    box-shadow: 0px 15px 40px #b3b3b3;
+    -webkit-border-top-right-radius: 12px;
+    -webkit-border-bottom-right-radius: 12px;
+    -moz-border-radius-topright: 12px;
+    -moz-border-radius-bottomright: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 17px;
+  }
+
+  .item {
+    height: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: auto;
+  }
+
+  .item>div>img {
+    /* margin-top: 80px;
+    margin-bottom: 80px; */
+    height: 50px;
+  }
+
+  .item-content {
+    text-align: center;
+    color: #fff;
+  }
+
+  .item-content h3 {
+    font-size: 19px;
+    font-weight: bold;
+    text-shadow: 0 0 1px #000;
+    margin: 10px 0;
+  }
+
+  .item-content p {
+    display: block;
+    font-size: 15px;
+    color: #fff;
+    text-shadow: 0 0 1px #000;
+  }
+
+  /* --- Login Button --- */
+  .lt-login-btn {
+    transition: 0.5s;
+    background: #2196f3;
+    color: #fff;
+    border-radius: 30px;
+    text-transform: uppercase;
+    padding: 12px 65px 12px 50px;
+    line-height: normal;
+    font-size: 16px;
+    position: relative;
+    margin-top: 35px;
+    cursor: pointer;
+  }
+
+  .lt-login-btn:hover,
+  .lt-login-btn:focus {
+    transition: 0.5s;
+    color: #fff;
+    background: #3125ba;
+  }
+
+  .lt-login-btn:active {
+    transition: 0s;
+    background-color: #3125ba;
+    box-shadow: 0 2px #666;
+    transform: translateY(1px);
+  }
+
+  .login-text {
+    transition: 0.5s;
+    padding-left: 30px
+  }
+
+  .lt-login-btn:hover span {
+    transition: 0.5s;
+    padding-right: 15px;
+  }
+
+  .login-arrow {
+    transition: 0.5s;
+    opacity: 0;
+    margin-top: 5px;
+  }
+
+  .lt-login-btn:hover .login-arrow {
+    transition: 0.5s;
+    opacity: 1;
+    right: 0;
+  }
+
+
+  .lt-login-btn-invalid {
+    opacity: 0.2;
+    cursor: default;
+  }
+
+  .lt-login-btn-invalid:hover {
+    opacity: 0.2;
+    background: #2196f3;
+    cursor: default;
+  }
+
+  .lt-login-btn-invalid:hover span {
+    transition: 0.5s;
+    padding-right: 0px;
+  }
+
+  .lt-login-btn-invalid:hover .login-arrow {
+    opacity: 0;
+    margin-top: 5px;
+  }
+  /* ------ */
+
+  .link-text {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 13px;
+    color: #b0b3b4;
+    font-weight: normal;
+  }
+
+
+  .link-text:hover {
+    color: #797b7b;
+  }
+
+  ::ng-deep .carousel-indicators > button {
+    background: white;
+    border: 1px solid white;
+  }
+
+  ::ng-deep .carousel > button {
+    color: white;
+  }
+
+  .ui-select-country {
+    z-index: 2
+  }
+
+  // .country-selector-container {
+  //   margin-bottom: -60px;
+  // }
+
+}
+
+.kyrios-theme-light {
+  @include login-theme($kyrios-theme-light);
+}
+
+.kyrios-theme-dark {
+  @include login-theme($kyrios-theme-dark);
+}
+
+

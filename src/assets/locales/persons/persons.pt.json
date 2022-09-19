@@ -1,0 +1,303 @@
+{
+  "module": {
+    "name_singular": "Ficha Individual",
+    "name_many": "Fichas Individuais"
+  },
+  "action": {
+    "new": "Nova Ficha Individual",
+    "edit": "Editar Ficha Individual",
+    "delete": "Eliminar Ficha Individual?",
+    "group_activate": "Ativar",
+    "group_deactivate": "Desativar",
+    "group_toggle_subscription": "{{ action }} a subscrição no grupo?",
+    "continue": "Continuar"
+  },
+  "message": {
+    "save_success": "Ficha Individual guardada com sucesso!",
+    "delete_success": "Ficha Individual apagada com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Ficha Individual com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Fichas Individuais selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas",
+    "field_newsletter_subscriptor_affected": "O campo \"Grupos (Newsletter/SMS)\" foi afetado",
+    "field_deceased_affected": "O campo \"Falecido(a)\", no separador \"Categorias\" foi afetado",
+    "field_maritial_status_affected": "O campo \"Tipo de casamento\" foi afetado",
+    "field_civil_status_affected": "O campo \"Estado civil\" foi afetado",
+    "field_pastoral_agent_affected": "O campo \"Agente de Pastoral\" foi afetado",
+    "field_catechist_affected": "O campo \"Catequista\" foi afetado",
+    "error_blank_mec_renewals": "Por favor, preencha todos os campos obrigatórios da tabela das Renovações, no separador MEC",
+    "error_blank_appointments": "Por favor, preencha todos os campos obrigatórios da tabela das Nomeações, no separador Cúria",
+    "error_appointments_dates": "As datas de fim têm de ser superiores às datas de início, na tabela das Nomeações, no separador Cúria",
+    "group_toggle_are_you_sure": "Deseja realmente {{ action }} a subscrição no grupo \"<strong>{{ groupName }}</strong>\"?",
+    "group_toggle_activated": "Subscrição ativada com sucesso!",
+    "group_toggle_deactivated": "Subscrição desativada com sucesso!",
+    "duplicated_name": "Já existe uma entidade com o nome \"<strong>{{ value }}</strong>\";",
+    "duplicated_vat": "Já existe uma entidade com o Nº de contribuinte \"<strong>{{ value }}</strong>\";",
+    "are_you_sure_you_want_to_save": "Tem a certeza de que deseja guardar?"
+  },
+  "model": {
+    "id": "Número de registo",
+    "birth_date": "Data de nascimento",
+    "birth_date_start": "Data de nascimento desde",
+    "birth_date_end": "Data de nascimento até",
+    "is_parishioner": "Paroquiano(a)",
+    "serie_number": "Nº de registo",
+    "deceased": "Falecido(a)",
+    "sex": "Género",
+    "is_catechized": "Catequizando(a)",
+    "comments": "Observações",
+    "title": "Título",
+    "qualifications_id": "Habilitações",
+    "entity_birth_place_description": "Nacionalidade",
+    "birth_place_parish": "Freguesia de nascimento",
+    "birth_place_county": "Concelho de nascimento",
+    "previous_address": "Se mudou de residência no último ano, indique a morada anterior",
+    "ident_document_type": "Tipo de identificação",
+    "ident_document_number": "Nº de identificação",
+    "ident_document_emission_date": "Data de emissão",
+    "ident_document_emitted_by": "Emitido por",
+    "ident_document_validity_date": "Data de validade",
+    "is_adopted": "Adotado(a)",
+    "entity_father_description": "Pai",
+    "entity_mother_description": "Mãe",
+    "maritial_status": "Tipo de casamento",
+    "entity_spouse_description": "Cônjuge",
+    "wedding_date": "Data de casamento",
+    "entity_wedding_location_description": "Local de casamento",
+    "professional_profession_description": "Profissão",
+    "professional_post": "Cargo",
+    "professional_company": "Empresa",
+    "professional_address": "Morada",
+    "professional_door_number": "Nº da porta",
+    "professional_postal_code": "Código postal",
+    "professional_locality": "Localidade",
+    "professional_parish": "Freguesia",
+    "professional_county": "Concelho",
+    "professional_district": "Distrito",
+    "professional_country_description": "País",
+    "professional_mobilephone": "Telemóvel",
+    "professional_phone": "Telefone",
+    "professional_fax": "Fax",
+    "professional_email": "E-mail",
+    "professional_url": "Website",
+    "outside_chapelry_description": "Local de batismo",
+    "suitability_request": "Pedido de",
+    "baptized_chrismed_description": "Batizando/Crismando",
+    "christian_often_eucharist": "Frequência na eucaristia",
+    "christian_attended_catechism": "Frequentou a catequese",
+    "catechism_last_year": "Último ano frequentado",
+    "christian_attended_catechism_worshipplace_description": "Local de culto",
+    "christian_attended_catechism_county": "Concelho",
+    "christian_attended_catechism_district": "Distrito",
+    "lives_with": "Vive com",
+    "lives_with_text": "Com quem?",
+    "catechized_has_brothers_info": "Tem irmãos? Quantos? Nomes e idades",
+    "catechized_has_catechized_brothers": "Tem irmãos na catequese? Nomes",
+    "entity": {
+      "name": "Nome",
+      "email": "E-mail",
+      "mobilephone": "Telemóvel",
+      "phone": "Telefone",
+      "fax": "Fax",
+      "url": "Website",
+      "disabled": "Ativo(a)",
+      "taxpayer": "Nº de contribuinte",
+      "can_sign_documents": "Pode assinar documentos",
+      "newsletter_subscriptor": "Grupos",
+      "civil_status_id": "Estado civil",
+      "entity_birth_chapelry_description": "Paróquia de nascimento",
+      "entity_birth_chapelry_free_text": "Paróquia de nascimento (texto livre)",
+      "residence_chapelry_description": "Paróquia de residência",
+      "address": "Morada",
+      "door_number": "Nº de porta",
+      "postal_code": "Código postal",
+      "place": "Localidade",
+      "county": "Concelho",
+      "district": "Distrito",
+      "country_description": "País",
+      "is_public_profile": "Público",
+      "photo_filename": "Fotografia",
+      "entity_elder_patient": {
+        "elder": "Idoso(a)",
+        "sick": "Doente",
+        "sunday_communion": "Comunhão dominical",
+        "sunday_communion_minister_description": "Ministro da comunhão",
+        "anointing_ofthe_sick_date": "Data",
+        "anointing_ofthe_sick_locale": "Local"
+      },
+      "entity_catechist": {
+        "catechist": "Catequista",
+        "initiation_course_date": "Data",
+        "initiation_course_avaliation": "Avaliação",
+        "general_course_date": "Data",
+        "general_course_avaliation": "Avaliação",
+        "complementary_course_date": "Data",
+        "complementary_course_avaliation": "Avaliação"
+      },
+      "entity_mec": {
+        "mec": "MEC",
+        "mec_number": "Nº MEC",
+        "magnetic_number": "Nº magnético",
+        "institution_date": "Data de nomeação",
+        "institution_center_worshipplace_description": "Centro de instituição",
+        "entities_mecs_lines": {
+          "renewal_date": "Data da recondução"
+        }
+      },
+      "entity_acolyte": {
+        "is_acolyte": "Acólito(a)"
+      },
+      "entity_pastoral_agent": {
+        "active": "Agente de Pastoral"
+      },
+      "entity_reader": {
+        "is_reader": "Leitor(a)"
+      }
+    },
+    "entity_person_appointments": {
+      "start_date": "Início",
+      "end_date": "Fim",
+      "curia_function_description": "Função",
+      "appointment_place_description": "Local",
+      "representing_description": "Representa",
+      "description": "Descrição"
+    }
+  },
+  "placeholder": {
+    "title": "Sr., Sra., Eng., Dr., …",
+    "age": "Idade",
+    "newsletter_subscriptor": "Só é possível se estiver Ativo(a). Permite o envio de Newsletters/SMS"
+  },
+  "tabs": {
+    "personal_data": "Dados pessoais",
+    "categories": "Categorias",
+    "curia": "Cúria",
+    "christian_life": "Vida cristã",
+    "professional_life": "Vida profissional",
+    "catechist": "Catequista",
+    "mec": "MEC",
+    "elder_sick": "Idoso/Doente",
+    "groups": "Grupos",
+    "reports": "Relatórios"
+  },
+  "header": {
+    "personal_data": "Dados pessoais",
+    "address": "Morada",
+    "contacts": "Contactos",
+    "identification_docs": "Documentos de identificação",
+    "family": "Família",
+    "other_info": "Outras informações",
+    "profession": "Profissão",
+    "catechist_introductory_course": "Curso de iniciação",
+    "catechist_general_course": "Curso geral",
+    "catechist_complementary_course": "Curso complementar",
+    "elder_sick_sunday_communion": "Comunhão dominical",
+    "elder_sick_anointing_of_the_sick": "Unção dos enfermos",
+    "reports_authorization_for_baptism_outside_parish": "Autorização para batismo fora da paróquia",
+    "reports_godparents_request_suitability": "Pedido de Certificado de Idoneidade para padrinho/madrinha",
+    "mec_extraordinary_minister_of_communion": "Ministro Extraordinário da Comunhão",
+    "mec_renewals": "Reconduções",
+    "christian_life": "Vida cristã",
+    "christian_life_catechism": "Catequese",
+    "curia_appointments": "Nomeações",
+    "groups": "Grupos",
+    "processes": "Processos",
+    "subheader": {
+      "sacraments": "Sacramentos",
+      "parties": "Festas da catequese",
+      "presences": "Inscrições/presenças"
+    }
+  },
+  "filters": {
+    "others": "Outros",
+    "does_birthday": "Aniversário",
+    "does_birthday_hint": "Ignorará o ano",
+    "does_wedding_birthday": "Aniv. de matrimónio",
+    "does_wedding_birthday_hint": "Ignorará o ano",
+    "does_xx_wedding_birthday": "Aniv. de matrimónio",
+    "does_xx_wedding_birthday_hint": "Até ao final do mês atual/inicial, se não for indicada uma data final no filtro por data",
+    "does_xx_wedding_birthday_placeholder": "Nº de anos"
+  },
+  "suitability_request_options": {
+    "baptism": "Batismo",
+    "chrism": "Confirmação"
+  },
+  "catechism_years": {
+    "1_year": "1º ano",
+    "2_year": "2º ano",
+    "3_year": "3º ano",
+    "4_year": "4º ano",
+    "5_year": "5º ano",
+    "6_year": "6º ano",
+    "7_year": "7º ano",
+    "8_year": "8º ano",
+    "9_year": "9º ano",
+    "10_year": "10º ano"
+  },
+  "lives_with": {
+    "parents": "Pais",
+    "mother": "Mãe",
+    "father": "Pai",
+    "other": "Outro"
+  },
+  "sacraments_table": {
+    "header": {
+      "sacrament": "Sacramento",
+      "date": "Data",
+      "seat_nr": "Assento nº",
+      "sheet": "Folha",
+      "worshipplace": "Local de culto",
+      "county": "Concelho",
+      "district": "Distrito"
+    },
+    "sacraments": {
+      "baptized": "Batismo",
+      "first_confession": "1ª Confissão",
+      "first_communion": "Comunhão",
+      "chrism": "Crisma"
+    }
+  },
+  "parties_table": {
+    "header": {
+      "year": "Ano",
+      "party": "Festa",
+      "date": "Data",
+      "worshipplace": "Local de culto",
+      "county": "Concelho",
+      "district": "Distrito"
+    },
+    "parties": {
+      "year_1": "1º Ano",
+      "year_2": "2º Ano",
+      "year_3": "3º Ano",
+      "year_4": "4º Ano",
+      "year_5": "5º Ano",
+      "year_6": "6º Ano (Prof. de Fé)",
+      "year_7": "7º Ano",
+      "year_8": "8º Ano",
+      "year_9": "9º Ano",
+      "year_10": "10º Ano"
+    }
+  },
+  "presences_table": {
+    "header": {
+      "year": "Ano",
+      "inscription": "Inscrição",
+      "attendance": "Presenças",
+      "failures": "Faltas",
+      "comments": "Observações"
+    },
+    "years": {
+      "year_1": "1º Ano",
+      "year_2": "2º Ano",
+      "year_3": "3º Ano",
+      "year_4": "4º Ano",
+      "year_5": "5º Ano",
+      "year_6": "6º Ano",
+      "year_7": "7º Ano",
+      "year_8": "8º Ano",
+      "year_9": "9º Ano",
+      "year_10": "10º Ano"
+    }
+  }
+}

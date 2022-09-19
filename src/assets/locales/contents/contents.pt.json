@@ -1,0 +1,72 @@
+{
+  "module": {
+    "name_singular": "Conteúdo",
+    "name_many": "Conteúdos"
+  },
+  "action": {
+    "add": "Adicionar Conteúdo",
+    "new": "Novo Conteúdo",
+    "edit": "Editar Conteúdo"
+  },
+  "message": {
+    "save_success": "Conteúdo guardado com sucesso!",
+    "delete_success": "Conteúdo apagado com sucesso!",
+    "delete_success_plural": "Conteúdos apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Conteúdo com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Conteúdos selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "title": "Título",
+    "sections": "Secção",
+    "sections_names": "Nomes das secções",
+    "resume": "Resumo",
+    "content": "Conteúdo",
+    "author": "Autor",
+    "locale": "Local",
+    "hashtags": "Palavras-chave",
+    "attachment_filename": "Nome do ficheiro",
+    "cover_author": "Autor da imagem",
+    "cover_locale": "Local da imagem",
+    "online": "Online",
+    "online_from_date": "Online desde (data)",
+    "online_from_hour": "Online desde (hora)",
+    "online_to_date": "Online até (data)",
+    "online_to_hour": "Online até (hora)",
+    "fotogalery_filename": "Ficheiro",
+    "thumbnail": "Imagem de capa",
+    "description": "Descrição",
+    "image_url_filename": "Ficheiro da imagem",
+    "caption": "Legenda",
+    "download_filename": "Ficheiro da transferência",
+    "contents_hashtags": "Palavra-chave",
+    "event_from_date": "Online desde",
+    "online_from_date_start": "Online desde (início)",
+    "online_from_date_end": "Online desde (fim)",
+    "send_notification": "Enviar notificação",
+    "notification_sent_at_date": "Notificação enviada em",
+    "send_scheduled_notification": "Agendar Notificação",
+    "scheduled_notification_date_to_send": "Data para envio de notificação",
+    "scheduled_notification_hour_to_send": "Hora para envio de notificação",
+    "scheduled_notification_sent_at_date": "Notificação Agendada enviada em",
+    "slug":"Slug"
+  },
+  "tabs": {
+    "content": "Conteúdo",
+    "related-content": "Conteúdo relacionado",
+    "fotogalery": "Fotogaleria",
+    "downloads": "Transferências"
+  },
+  "header": {
+    "content_details": "Detalhes do conteúdo",
+    "sub_menus": "Sub-menus",
+    "thumbnail": "Imagem de capa",
+    "publish": "Publicar",
+    "sections": "Secções",
+    "hashtags": "Palavras-chave"
+  }
+}
+
+
+

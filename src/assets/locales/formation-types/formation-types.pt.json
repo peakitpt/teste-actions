@@ -1,0 +1,28 @@
+{
+  "module": {
+    "name_singular": "Tipo de Formação",
+    "name_many": "Tipos de Formação"
+  },
+  "action": {
+    "new": "Novo Tipo de Formação",
+    "edit": "Editar Tipo de Formação",
+    "delete": "Eliminar Tipo de Formação?"
+  },
+  "message": {
+    "save_success": "Tipo de Formação guardado com sucesso!",
+    "delete_success": "Tipo de Formação apagado com sucesso!",
+    "delete_success_plural": "Tipos de Formação apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Tipo de Formação com a descrição \"<strong>{{ description }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Tipos de Formação selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "id": "ID",
+    "formation-type": "Tipo de formação",
+    "description": "Descrição"
+  },
+  "actions": "Ações",
+  "edit-formation-type": "Editar Tipo de Formação",
+  "new-formation-type": "Novo Tipo de Formação"
+}

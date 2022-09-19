@@ -1,0 +1,208 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="onModalClose()"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>{{ (id ? modulePath + ':action.edit' : modulePath + ':action.new') | i18next }}</h1>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu *ngIf="!isQuickInsertion" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+    <ui-button
+      *ngIf="!isQuickInsertion"
+      type="flat" icon="save"
+      [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true">
+    </ui-button>
+
+    <ui-button
+      type="flat" icon="save"
+      [label]="(isQuickInsertion ? 'translation:action.create_insert' : 'translation:action.save') | i18next"
+      color="accent" (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body">
+    <ui-tabs [tabs]="formTabs"></ui-tabs>
+  </form>
+</ng-template>
+
+<ng-template #generalTabTemplate>
+  <section>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input
+        fxFlex [label]="modulePath + ':model.code'| i18next"
+        [placeholder]=" modulePath + ':model.code'| i18next"
+        [control]="form.get('code')"
+        [required]="true">
+      </ui-input>
+      <ui-input
+        fxFlex [label]="modulePath + ':model.description'| i18next"
+        [placeholder]=" modulePath + ':model.description'| i18next"
+        [control]="form.get('description')"
+        [required]="true">
+      </ui-input>
+    </div>
+  </section>
+
+
+  <section>
+    <h2>{{ modulePath + ':header.validity' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-datepicker fxFlex [label]="modulePath + ':model.validity_date_start' | i18next" [control]="form.get('validity_date_start')" [required]="true"></ui-datepicker>
+      <ui-datepicker fxFlex [label]="modulePath + ':model.validity_date_end' | i18next" [control]="form.get('validity_date_end')"></ui-datepicker>
+    </div>
+  </section>
+
+  <section>
+    <h2>{{ modulePath + ':header.periodicity' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-select fxFlex [required]="true"
+        [label]="modulePath + ':model.periodicity_type' | i18next"
+        [options]="periodicityTypeOptions" [control]="form.get('periodicity_type')">
+      </ui-select>
+      <ui-input
+        fxFlex [label]="modulePath + ':model.periodicity_number_of_days'| i18next"
+        [placeholder]=" modulePath + ':model.periodicity_number_of_days'| i18next"
+        type="number"
+        [control]="form.get('periodicity_number_of_days')">
+      </ui-input>
+    </div>
+  </section>
+
+  <section>
+    <h2>{{ modulePath + ':header.document_to_generate' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input
+        fxFlex [label]="modulePath + ':model.document_to_generate_document_type_description'| i18next"
+        [placeholder]=" modulePath + ':model.document_to_generate_document_type_description'| i18next"
+        readonly="true" [required]="true"
+        [control]="form.get('document_to_generate_document_type_description')"
+        [rightTemplate]="{ template: documentsTypesRightTemplate, context: { inputName: 'document_to_generate_document_type'} }">
+      </ui-input>
+      <ui-select fxFlex [required]="true" [label]="modulePath + ':model.document_to_generate_serie_description' | i18next"
+        [options]="accrualsTypes" [control]="form.get('document_to_generate_serie_id')" >
+      </ui-select>
+    </div>
+  </section>
+
+  <section>
+    <h2>{{ modulePath + ':header.observations' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-textarea fxFlex
+        rows="3"
+        [label]="modulePath + ':model.comments' | i18next"
+        [control]="form.get('comments')">
+      </ui-textarea>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #documentsTypesRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('documents-types-modal', inputName)"></ui-button>
+    <ui-menu type="icons" [model]="documentsTypesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #emolumentsTabTemplate>
+  <ui-table
+    #emolumentsTable
+    [checkboxes]="false"
+    [dataSource]="emolumentsDS"
+    [tableColumns]="emolumentsColumns">
+  </ui-table>
+  <div class="add-related-content" (click)="addTableLine(newEmolument, emolumentsFormArray, emolumentsDS)">
+    {{ 'translation:action.add' | i18next }}
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+    <div>
+      <b>{{ modulePath + ':message.total' | i18next }}:</b>
+    </div>
+    <div>
+      <b>{{ calculateGrandTotal(emolumentsFormArray.value) }}</b>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #deleteTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (click)="deleteTableLine(index, emolumentsFormArray, emolumentsDS)"></ui-button>
+</ng-template>
+
+<ng-template #descriptionTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input
+      fxFlexOffset="20px" readonly="true" [required]="true"
+      [rightTemplate]="{template: descriptionRightIndexTemplate, context: { inputName: 'accruals_types_emoluments#' + index}}"
+      [control]="emolumentsFormArray.get([index, 'emolument_description'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #descriptionRightIndexTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('emoluments-modal', inputName)"></ui-button>
+    <ui-menu type="icons" [model]="emolumentsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #quantityTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input
+      fxFlexOffset="20px" [required]="true"
+      [control]="emolumentsFormArray.get([index, 'quantity'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #valueTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input
+      fxFlexOffset="20px" [required]="true"
+      [control]="emolumentsFormArray.get([index, 'value'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #totalTemplate let-index="index">
+  <div fxLayout="column">
+    {{ calculateRowTotal(emolumentsFormArray.get([index]).value) }}
+  </div>
+</ng-template>

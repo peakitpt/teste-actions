@@ -1,0 +1,117 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="ownReport ? false : footer"
+  (modalClosed)="navigate('/' + modulePath)"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="ownReport === false">
+    <form>
+      <div fxFlex fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start" fxLayoutGap="10px">
+        <ui-checkbox fxFlex class="margin-checkbox"
+          [label]="modulePath + ':model.hide' | i18next"
+          [control]="hideReportForm">
+        </ui-checkbox>
+        <div fxFlex="80">
+          {{ modulePath  + ':message.hide_report' | i18next}}
+        </div>
+      </div>
+    </form>
+  </ng-container>
+  <ng-container *ngIf="ownReport">
+    <form>
+      <div fxFlex fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start" fxLayoutGap="10px">
+        <ui-input fxFlex
+          [label]="modulePath + ':model.bishoprics' | i18next"
+          [control]="searchForm.get('bishoprics')"
+          (keyup.enter)="onSearchTree()">
+        </ui-input>
+        <ui-input fxFlex
+          [label]="modulePath + ':model.archpristships' | i18next"
+          [control]="searchForm.get('archpristships')"
+          (keyup.enter)="onSearchTree()">
+        </ui-input>
+        <ui-input fxFlex
+          [label]="modulePath + ':model.chapelries' | i18next"
+          [control]="searchForm.get('chapelries')"
+          (keyup.enter)="onSearchTree()">
+        </ui-input>
+        <ui-input fxFlex
+          [label]="modulePath + ':model.worshipplaces' | i18next"
+          [control]="searchForm.get('worshipplaces')"
+          (keyup.enter)="onSearchTree()">
+        </ui-input>
+        <div *ngIf="treeReady" style="padding-top: 10px;">
+          <ui-button
+            type="raised"
+            [label]="'translation:action.search' | i18next"
+            color="primary" (onClickEvent)="onSearchTree()">
+          </ui-button>
+          <ui-button
+            type="flat"
+            [label]="'translation:action.clear' | i18next"
+            (onClickEvent)="onClearSearchTree()">
+          </ui-button>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="isSuperUser" fxLayout="row" fxLayoutGap="10px">
+      <ui-checkbox fxFlex class="margin-checkbox"
+        [label]="modulePath + ':model.is_super_permission' | i18next"
+        [control]="form.get('is_super_permission')">
+      </ui-checkbox>
+      <div>
+        {{ modulePath  + ':message.is_super_permission_report' | i18next }}
+        <div *ngIf="form?.value?.entity?.name" [innerHTML]="modulePath  + ':message.is_super_permission_report2' | i18next: { name: form.value.entity.name}">
+        </div>
+      </div>
+    </div>
+    <br>
+    <ng-container *ngIf="treeReady; else loadingTemplate">
+      <ui-complex-tree
+        #permissionsTree
+        *ngIf="treeReady"
+        [selectAllLabel]="modulePath  + ':action.select_all' | i18next"
+        [dataModel]="permissionsDS"
+        [columns]="permissionsColumns"
+        [selectAllCheckBox]="true"
+        (onCheckboxClick)="onSubmit()">
+      </ui-complex-tree>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" icon="save" [label]="'translation:action.save' | i18next" color="accent" (onClickEvent)="onSubmit()"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+

@@ -1,0 +1,39 @@
+<div fxLayout="column" fxFlex class="small-topbar-search-form-container">
+  <form [formGroup]="form" style="padding: 10px;">
+
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'description' }"></ng-container>
+    <ng-container *ngTemplateOutlet="selectInput; context: { field: 'group', datasource: groupOptions }"></ng-container>
+
+  </form>
+  <div fxLayout="row" fxLayoutAlign="end center" fxFlex="95" fxLayoutGap="15px">
+    <ui-button [label]="'translation:action.clear' | i18next" type="flat" (click)="clearSearch()"></ui-button>
+    <ui-button [label]="'translation:action.search' | i18next" type="raised" color="primary" (click)="onSearchClick()">
+    </ui-button>
+  </div>
+</div>
+
+
+<ng-template #textInput let-field="field" let-index="index">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="20" fxLayoutAlign="start center">{{ form.get('searchFields').get(field).get('searchWordLabel').value
+      }}:</div>
+    <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-input fxFlex [appearance]="'standard'"
+        [placeholder]="form.get('searchFields').get(field).get('searchWordLabel').value"
+        [control]="form.get('searchFields').get(field).get('value')" (keyup.enter)="onSearchClick()">
+      </ui-input>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #selectInput let-field="field" let-index="index" let-datasource="datasource">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="20" fxLayoutAlign="start center">{{ form.get('searchFields').get(field).get('searchWordLabel').value
+      }}:</div>
+    <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-select fxFlex [appearance]="'standard'" [options]="datasource"
+        [control]="form.get('searchFields').get(field).get('value')">
+      </ui-select>
+    </div>
+  </div>
+</ng-template>

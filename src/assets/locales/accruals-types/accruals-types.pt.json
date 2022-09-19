@@ -1,0 +1,64 @@
+{
+  "module": {
+    "name_singular": "Tipo de Avença",
+    "name_many": "Tipos de Avenças"
+  },
+  "action": {
+    "new": "Novo Tipo de Avença",
+    "edit": "Editar Tipo de Avença",
+    "delete": "Eliminar Tipo de Avença?",
+    "generate_card": "Gerar cartão"
+  },
+  "message": {
+    "save_success": "Tipo de Avença guardada com sucesso!",
+    "delete_success": "Tipo de Avença apagada com sucesso!",
+    "delete_success_plural": "Tipos de Avenças apagadas com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Tipo de Avença com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Tipos de Avenças selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas",
+    "total": "Total"
+  },
+  "model": {
+    "code": "Código",
+    "active": "Activa",
+    "validity_date_start": "Data Inicial",
+    "validity_date_end": "Data Final",
+    "validity_date": "Data de Validade",
+    "periodicity_type": "Periodicidade",
+    "periodicity_number_of_days": "Número de Dias",
+    "document_to_generate_document_type_description": "Tipo de Documento",
+    "document_to_generate_serie_description": "Série",
+    "catechisms_sessions": "Observações",
+    "comments": "Observações",
+    "description": "Descrição",
+    "quantity": "Quantidade",
+    "value": "Preço",
+    "total": "Total",
+    "accruals_types_emoluments": {
+      "emolument_description": "Descrição",
+      "quantity": "Quantidade",
+      "value": "Preço",
+      "total": "Total"
+    }
+  },
+  "header": {
+    "validity": "Validade",
+    "processing": "Processamento",
+    "periodicity": "Periodicidade",
+    "document_to_generate": "Documento a Gerar",
+    "observations": "Observações"
+  },
+  "tabs": {
+    "general": "Geral",
+    "emoluments": "Emolumentos"
+  },
+  "options": {
+    "yearly": "Anual",
+    "quarterly": "Trimestral",
+    "semiannual": "Semestral",
+    "monthly": "Mensal",
+    "weekly": "Semanal",
+    "other": "Outra"
+  }
+}

@@ -1,0 +1,37 @@
+<section id="elder-sick-sunday-communion-section" *ngIf="model.entity.entity_elder_patient.elder
+        && (model.entity.entity_elder_patient.sunday_communion
+        || model.entity.entity_elder_patient.sunday_communion_minister_description)">
+  <h2>{{ modulePath + ':header.elder_sick_sunday_communion' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_elder_patient.sunday_communion">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_elder_patient.sunday_communion' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.entity.entity_elder_patient.sunday_communion ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_elder_patient.sunday_communion_minister_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_elder_patient.sunday_communion_minister_description' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.entity_elder_patient.sunday_communion_minister_description }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="elder-sick-anointing-of-the-sick-section" *ngIf="model.entity.entity_elder_patient.sick
+        && (model.entity.entity_elder_patient.anointing_ofthe_sick_date
+        || model.entity.entity_elder_patient.anointing_ofthe_sick_locale)">
+  <h2>{{ modulePath + ':header.elder_sick_anointing_of_the_sick' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_elder_patient.anointing_ofthe_sick_date">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_elder_patient.anointing_ofthe_sick_date' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.entity_elder_patient.anointing_ofthe_sick_date | date:('translation:format.date' | i18next) }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_elder_patient.anointing_ofthe_sick_locale">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_elder_patient.anointing_ofthe_sick_locale' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.entity_elder_patient.anointing_ofthe_sick_locale }}</div>
+      </div>
+    </div>
+  </div>
+</section>

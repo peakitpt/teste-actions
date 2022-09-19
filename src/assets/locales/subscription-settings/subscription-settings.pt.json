@@ -1,0 +1,63 @@
+{
+    "module": {
+        "name_singular": "Definições da Subscrição",
+        "name_many": "Definições da Subscrição"
+    },
+    "action": {
+        "open_again": "Abrir de novo"
+    },
+    "message": {
+        "modal_closed": "A modal está fechada?",
+        "save_success": "Secção guardada com sucesso!"
+    },
+    "model": {
+        "hide_warnings_from_dash": "Não mostrar avisos no Dashboard",
+        "priest_description": "Pároco / Administrador Paroquial",
+        "treasury_default_document_type_description": "Tipo de Documento pré-definido",
+        "current_account_notification_layout_description": "Layout para as notificações das Contas Correntes",
+        "finance_department": "Repartição de Finanças",
+        "sms_gateway": "Gateway",
+        "sms_msisdn": "MSISDN",
+        "sms_password": "Palavra-passe",
+        "smtp_use_custom_settings": "Usar configuração SMTP personalizadas",
+        "smtp_address": "Endereço",
+        "smtp_domain": "Domínio",
+        "smtp_port": "Porta",
+        "smtp_use_ssl": "Usar SSL",
+        "smtp_user_name": "Nome de Utilizador",
+        "smtp_password": "Palavra-passe",
+        "smtp_authentication": "Tipo de autenticação",
+        "smtp_enable_starttls_auto": "Deteção automática de STARTTLS",
+        "smtp_sender_name": "Nome do remetente",
+        "hide_wizard_from_dash": "Não mostrar Assistente de Configuração no Dashboard",
+        "priestly_fraternity_institution_description": "Fraternidade Sacerdotal",
+        "sign_as": "Assinar como"
+    },
+    "text": {
+        "1st_paragraf": "Não é possível alterar a moeda da subscrição porque já tem lançamentos na contabilidade efetuados com esta moeda",
+        "2nd_paragraf": "Estas informações serão utilizadas nos relatórios e no preenchimento automático de alguns formulários.",
+        "3rd_paragraf": "Todos os documentos gerados através do botão \"Guardar e emitir doc.\" serão gerados com este tipo de documento e com a respetiva série pré-definida",
+        "4th_paragraf": "Layout a ser utilizado para o e-mail de notificação a ser enviado às entidades selecionadas nas Contas Correntes. O título do layout será utilizado como assunto do e-mail",
+        "5th_paragraf": "O código da Repartição das Finanças é para a geração do Suporte Magnético do Modelo 25 (ficheiro .xml) para submissão no Portal das Finanças",
+        "6th_paragraf": "Certifique-se de que os dados para envio de SMS são válidos enviando uma SMS de Teste, no respetivo módulo",
+        "7th_paragraf": "Domínio — Caso necessite de especificar um domínio HELO",
+        "8th_paragraf": "Deteção automática de STARTTLS — Deixe esta opção desativada caso tenha problemas com o certificado do servidor",
+        "priestly_fraternity_institution_paragraph": "Instituição aonde ir ler os valores pagos e em aberto dos elementos do clero"
+    },
+    "option": {
+        "parson": "Pároco",
+        "parish_admin": "Administrador Paroquial",
+        "vodafone_pt": "Vodafone PT",
+        "plain": "Sem encriptação (plain)",
+        "login": "Login",
+        "cram_md5": "CRAM-MD5"
+    },
+    "tabs": {
+        "defenitions": "Definições",
+        "configuration_assist": "Assistente de Configuração"
+    },
+    "header": {
+        "sms_configuration": "Configuração de SMS",
+        "smtp_email_configuration": "Configuração de E-mail SMTP"
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "module": {
+        "name_singular": "Emolument Type",
+        "name_many": "Emoluments Types"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Emolument Type with the name \"<strong>{{name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Selected Emoluments Types?",
+        "delete_success": "Emolument type successfully deleted!",
+        "delete_success_plural": "Emoluments types successfully deleted!",
+        "save_success": "Emolument type successfully saved!"
+    },
+    "model": {
+        "name": "Name",
+        "is_donation_emolument": "For donations"
+    },
+    "header": {
+        "sub_menus": "Sub-menus",
+        "menu": "Numerator"
+    },
+    "action": {
+        "edit": "Edit Emolument Type",
+        "new": "New Type of Emolument",
+        "add": "Add Emolument Type"
+    }
+}

@@ -1,0 +1,61 @@
+<ng-container *ngTemplateOutlet="view; context: { templates: [deleteLineTemplate, inputLineTemplate, dateLineTemplate, inputSelectLineTemplate] }"></ng-container>
+
+
+<ng-template #view let-templates="templates">
+	<ui-table
+	    [checkboxes]="false"
+	    [dataSource]="dataSource"
+	    [tableColumns]="addTemplatesToColumns(templates)"
+	    stickyHeader="true"
+	></ui-table>
+
+	<div class="add-table-line" (click)="addTableLine()">
+	{{ 'translation:action.add' | i18next }}
+	</div>	
+</ng-template>
+
+
+<!-- TEMPLATES -->
+<ng-template #deleteLineTemplate let-index="index">
+	<ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index)"></ui-button>
+</ng-template>
+
+<ng-template #inputLineTemplate let-index="index" let-row="data" let-column="column">
+	<kyr-input-field
+	  [label]="column.title"
+	  customClass="remove-bottom-padding"
+	  [required]="column.required"
+	  [form]="formArray.controls[index].get(column.id)"
+	></kyr-input-field>
+</ng-template>
+
+<ng-template #dateLineTemplate let-index="index" let-row="data" let-column="column">
+	<kyr-date-field
+	  [label]="column.title"
+	  customClass="remove-bottom-padding"
+	  [required]="column.required"
+	  [form]="formArray.controls[index].get(column.id)"
+	></kyr-date-field>
+</ng-template>
+
+<ng-template #inputSelectLineTemplate let-index="index" let-row="data" let-column="column">
+	<kyr-input-select-field
+	  [name]="column.id"
+	  [label]="column.title"
+	  [required]="column.required"
+	  customClass="remove-bottom-padding"
+	  [readonly]="false"
+	  [form]="formArray.controls[index]"
+	  [leftTemplateContext]="column.leftTemplateContext"
+	  [isQuickInsertion]="column.isQuickInsertion"
+	  [modalName]="column.modalName"
+	  [inputSelector]="column.inputSelector"
+	  [inputStore]="column.inputStore"
+	  [storeName]="column.storeName"
+	  [detailsModule]="column.detailsModule"
+	  [modalParams]="column.modalParams"
+    	[afectFieldId]="column.afectFieldId"
+    	[afectFieldDescription]="column.afectFieldDescription"
+	></kyr-input-select-field>
+</ng-template>
+<!-- END TEMPLATES-->

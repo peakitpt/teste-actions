@@ -1,0 +1,37 @@
+{
+    "module": {
+        "name_singular": "Confirmación",
+        "name_many": "Confirmaciones"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "error_blank_chrisms_entities": "Por favor, rellene todos los campos obligatorios de la tabla de los Catequizandos",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar el formulario de Confirmación del día <b>{{ date }}</b>?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quiere eliminar los <b>{{ count }}</b> Confirmaciones seleccionadas?",
+        "delete_success": "Confirmación eliminada con éxito!",
+        "save_success": "Confirmación guardada con éxito!"
+    },
+    "model": {
+        "seat_number": "Asiento nº",
+        "chrisms_entities_attributes": {
+            "document_entity_description": "Entidad que debe figurar en el documento",
+            "tax": "Taxa",
+            "emolument_description": "Emolumento",
+            "godfather_godmother_description": "Padrino/Madrina",
+            "entity_description": "Confirmando"
+        },
+        "entity_chrism_location_description": "Lugar y culto",
+        "entity_rel_mec_description": "Ministro de confirmación",
+        "date": "Fecha",
+        "serie_number": "Nº de registro"
+    },
+    "header": {
+        "candidates": "Confirmandos"
+    },
+    "action": {
+        "delete": "¿Eliminar Confirmación?",
+        "edit": "Editar Confirmación",
+        "new": "Nueva confirmación"
+    }
+}

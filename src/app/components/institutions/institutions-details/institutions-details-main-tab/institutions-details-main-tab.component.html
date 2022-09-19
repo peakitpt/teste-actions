@@ -1,0 +1,318 @@
+<!--Institution info-->
+<section>
+  <h2>{{ modulePath + ':header.institution' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.institution_type_description' | i18next }}:</div>
+        <div fxFlex>{{ model.institution_type_description }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.complete_relation' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity.entity_person.id)">{{ model.entity.complete_relation
+            }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.tax_designation">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.tax_designation' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.tax_designation | i18next }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.payer">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.payer' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.payer }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.archpriestship_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.archpriestship_description' | i18next }}:</div>
+        <div fxFlex>{{ model.archpriestship_description }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.chapelry_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.chapelry_description' | i18next }}:</div>
+        <div fxFlex>
+          <a target="_blank" [routerLink]="'/chapelries/' + model.chapelry_id +'/details'">{{
+            model.chapelry_description }}</a>
+        </div>
+      </div>
+
+      <!--congregaçao-->
+      <div fxLayout="row" fxLayoutGap="10px"
+        *ngIf="model.institution_type.congregation && model.congregation_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.congregation_description' | i18next
+          }}:</div>
+        <div fxFlex>{{ model.congregation_description| i18next }}</div>
+      </div>
+
+      <!--instituto secular-->
+      <div fxLayout="row" fxLayoutGap="10px"
+        *ngIf="model.institution_type.secular_institute && model.secular_institute_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.secular_institute_description' |
+          i18next }}:
+        </div>
+        <div fxFlex>{{ model.secular_institute_description| i18next }}</div>
+      </div>
+
+      <!--casa/comunidade-->
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.institution_type.community && model.community">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.community' | i18next }}:</div>
+        <div fxFlex>{{ model.community| i18next }}</div>
+      </div>
+
+      <!--Genero da instituição-->
+      <div fxLayout="row" fxLayoutGap="10px"
+        *ngIf="model.institution_type.institution_gender && model.institution_gender">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.institution_gender' | i18next }}:
+        </div>
+        <div fxFlex [ngSwitch]="model.institution_gender">
+          <div *ngSwitchCase="'m'"> {{modulePath + ':model.options.gender.male' | i18next}}</div>
+          <div *ngSwitchCase="'f'"> {{modulePath + ':model.options.gender.female' | i18next}}</div>
+          <div *ngSwitchCase="'u'"> {{modulePath + ':model.options.gender.undefined' | i18next}}</div>
+        </div>
+      </div>
+
+      <!--tipo de centro de vida crista-->
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.institution_type.christian_life_centers_type">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.christian_life_centers_type' |
+          i18next }}:</div>
+        <div fxFlex [ngSwitch]="model.christian_life_centers_type_id">
+          <div *ngSwitchCase="1"> {{modulePath + ':model.options.christian_life_centers.sanctuary' | i18next}}</div>
+          <div *ngSwitchCase="2"> {{modulePath + ':model.options.christian_life_centers.rectors_chaplaincies' |
+            i18next}}</div>
+        </div>
+      </div>
+
+      <!--mandato-->
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.institution_type.mandate">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mandate' | i18next }}:</div>
+        <div fxFlex>{{ model.mandate| i18next }}</div>
+      </div>
+
+      <!--photo-->
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.institution_type.photo && model.entity.photo_filename">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.photo_url' | i18next }}:</div>
+        <div fxFlex fxLayout="column" fxLayoutAlign="left center">
+          <img [src]="baseFilePath + '/' + model.entity.photo_url"
+            onerror="this.src='assets/image-placeholder-350x350.png'" height="200px">
+          {{ model.entity.photo_filename }}
+        </div>
+      </div>
+
+      <!--propriedade-->
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.institution_type.property!=null && model.property">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.property' | i18next }}:</div>
+        <div fxFlex>{{ model.property }}</div>
+      </div>
+
+      <!--escolaridade-->
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.institution_type.scholarity &&  model.scholarity">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.scholarity' | i18next }}:</div>
+        <div fxFlex>{{ model.scholarity| i18next }}</div>
+      </div>
+
+      <!--website type-->
+      <div fxLayout="row" fxLayoutGap="10px"
+        *ngIf="model.institution_type.website_type_id && model.website_type_id != null">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.website_type' | i18next }}</div>
+        <div fxFlex [ngSwitch]="model.website_type_id">
+          <div *ngSwitchCase="1"> {{modulePath + ':model.options.website.shrines' | i18next}}</div>
+          <div *ngSwitchCase="2"> {{modulePath + ':model.options.website.chapels' | i18next}}</div>
+          <div *ngSwitchCase="3"> {{modulePath + ':model.options.website.chaplaincies' | i18next}}</div>
+          <div *ngSwitchCase="4"> {{modulePath + ':model.options.website.christian_life_centers' | i18next}}</div>
+          <div *ngSwitchCase="5"> {{modulePath + ':model.options.website.rectories' | i18next}}</div>
+          <div *ngSwitchCase="6"> {{modulePath + ':model.options.website.ipss' | i18next}}</div>
+          <div *ngSwitchCase="7"> {{modulePath + ':model.options.website.charity' | i18next}}</div>
+        </div>
+      </div>
+
+      <!--periodicidade-->
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.institution_type.periodicity_id && model.periodicity_id">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.periodicity' | i18next }}</div>
+        <div fxFlex [ngSwitch]="model.periodicity_id">
+          <div *ngSwitchCase="1"> {{modulePath + ':model.options.periodicity.quarterly' | i18next}}</div>
+          <div *ngSwitchCase="2"> {{modulePath + ':model.options.periodicity.weekly' | i18next}}</div>
+          <div *ngSwitchCase="3"> {{modulePath + ':model.options.periodicity.biweekly' | i18next}}</div>
+          <div *ngSwitchCase="4"> {{modulePath + ':model.options.periodicity.four-monthly' | i18next}}</div>
+          <div *ngSwitchCase="5"> {{modulePath + ':model.options.periodicity.monthly' | i18next}}</div>
+          <div *ngSwitchCase="6"> {{modulePath + ':model.options.periodicity.daily' | i18next}}</div>
+          <div *ngSwitchCase="7"> {{modulePath + ':model.options.periodicity.bimonthly' | i18next}}</div>
+          <div *ngSwitchCase="8"> {{modulePath + ':model.options.periodicity.yearly' | i18next}}</div>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px"
+        *ngIf="model.institution_type.periodicity_id && model.periodicity_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.periodicity_description' | i18next }}:</div>
+        <div fxFlex>{{ model.periodicity_description| i18next }}</div>
+      </div>
+
+      <!--comunicaçao social-->
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.institution_type.social_media && model.social_media_type_id">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.social_media_description' | i18next }}:
+        </div>
+        <div fxFlex [ngSwitch]="model.social_media_type_id">
+          <div *ngSwitchCase="1"> {{modulePath + ':model.options.social_media.report_card' | i18next}}</div>
+          <div *ngSwitchCase="2"> {{modulePath + ':model.options.social_media.typography' | i18next}}</div>
+          <div *ngSwitchCase="3"> {{modulePath + ':model.options.social_media.magazine' | i18next}}</div>
+          <div *ngSwitchCase="4"> {{modulePath + ':model.options.social_media.radio' | i18next}}</div>
+          <div *ngSwitchCase="5"> {{modulePath + ':model.options.social_media.bookstore' | i18next}}</div>
+          <div *ngSwitchCase="6"> {{modulePath + ':model.options.social_media.journal' | i18next}}</div>
+          <div *ngSwitchCase="7"> {{modulePath + ':model.options.social_media.publishing_company' | i18next}}</div>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px"
+        *ngIf="model.institution_type.social_media && model.social_media_type_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.social_media_type_description' | i18next }}:
+        </div>
+        <div fxFlex>{{ model.social_media_type_description| i18next }}</div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.social_media_institution_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.social_media_institution_description' | i18next }}:
+        </div>
+        <div fxFlex>{{ model.social_media_institution_description| i18next }}</div>
+      </div>
+
+      <!--valencias-->
+      <div class="scrollable-table" *ngIf="model.entity_institution_valences.length!=0">
+        <table class="mat-table" id="catechists-table">
+          <tr class="mat-header-row" *ngIf="model.entity_institution_valences.length!=0">
+            <th class="mat-header-cell col1">{{ modulePath +
+              ':model.entity_institution_valences' | i18next }}</th>
+          </tr>
+          <tr class="mat-row uiKyriosTableRow" *ngFor="let valence of model.entity_institution_valences">
+            <td class="mat-cell col1">
+              {{ valence.valence_description }}
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!--historical note-->
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.historical_note">
+        <div fxFlex class=" mat-body-strong">{{ modulePath + ':model.historical_note' | i18next }}:</div>
+        <div fxFlex [innerHTML]="model.historical_note"></div>
+      </div>
+
+      <!--Ficha tecnica-->
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.social_media_data_sheet">
+        <div fxFlex class=" mat-body-strong">{{ modulePath + ':model.social_media_data_sheet' | i18next }}:</div>
+        <div fxFlex [innerHTML]="model.social_media_data_sheet"></div>
+      </div>
+
+      <!--Horario-->
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.institution_type.timetable">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.timetable' | i18next }}:</div>
+        <div fxFlex [innerHTML]="model.timetable"></div>
+      </div>
+
+      <!--feriados-->
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.institution_type.holidays">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.holidays' | i18next }}:</div>
+        <div fxFlex [innerHTML]="model.holidays"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Address-->
+<section>
+  <h2>{{ modulePath + ':header.address' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.address">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.address' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.address }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.door_number">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.door_number' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.door_number }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.parish">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.parish' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.parish }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.postal_code">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.postal_code' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.postal_code }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.place">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.place' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.place }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.county">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.county' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.county }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.district">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.district' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.district }}</div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.country_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.country_description' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.country_description }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.latitude">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.latitude' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.latitude }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.longitude">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.longitude' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.longitude }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Contacts-->
+<section>
+  <h2>{{ modulePath + ':header.contacts' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.mobilephone">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.mobilephone' | i18next }}:</div>
+        <div fxFlex>
+          <a [href]="'tel:' + model.entity.mobilephone">{{ model.entity.mobilephone }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.phone">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.phone' | i18next }}:</div>
+        <div fxFlex><a [href]="'tel:' + model.entity.phone">{{ model.entity.phone }}</a></div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.fax">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.fax' | i18next }}:</div>
+        <div fxFlex><a [href]="'tel:' + model.entity.fax">{{ model.entity.fax }}</a></div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.email">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.email' | i18next }}:</div>
+        <div fxFlex><a [href]="'mailto:' + model.entity.email">{{ model.entity.email }}</a></div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.url">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.url' | i18next }}:</div>
+        <div fxFlex><a [href]="'https://'+model.entity.url">{{ model.entity.url }}</a></div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.newsletter_subscriptor' | i18next }}:
+        </div>
+        <div fxFlex>
+          <ui-icon [icon]="model.entity.newsletter_subscriptor ? 'check_box' : 'check_box_outline_blank'">
+          </ui-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Other info-->
+<section>
+  <h2>{{ modulePath + ':header.other_informations' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.observations">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.observations' | i18next }}:</div>
+        <div fxFlex [innerHTML]="model.observations"></div>
+      </div>
+    </div>
+  </div>
+</section>

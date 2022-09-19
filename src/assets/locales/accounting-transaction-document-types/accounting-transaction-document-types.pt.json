@@ -1,0 +1,24 @@
+{
+  "module": {
+    "name_singular": "Tipologia de Documento",
+    "name_many": "Tipologias de Documentos"
+  },
+  "action": {
+    "new": "Nova Tipologia de Documento",
+    "edit": "Editar Tipologia de Documento",
+    "delete": "Eliminar Tipologia de Documento?",
+    "process_selected": "Processar Selecionadas"
+  },
+  "message": {
+    "save_success": "Tipologia de Documento guardada com sucesso!",
+    "delete_success": "Tipologia de Documento apagada com sucesso!",
+    "delete_success_plural": "Tipologias de Documentos apagadas com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Tipologia de Documento com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Tipologias de Documentos selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas"
+  },
+  "model": {
+    "description": "Descrição"
+  }
+}

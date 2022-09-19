@@ -1,0 +1,245 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="onModalClose()"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>{{ (id ? modulePath + ':action.edit' : modulePath + ':action.new') | i18next }}</h1>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu *ngIf="!isQuickInsertion" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+    <ui-button
+      *ngIf="!isQuickInsertion"
+      type="flat" icon="save"
+      [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true">
+    </ui-button>
+
+    <ui-button
+      type="flat" icon="save"
+      [label]="(isQuickInsertion ? 'translation:action.create_insert' : 'translation:action.save') | i18next"
+      color="accent" (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body">
+    <ui-tabs [tabs]="formTabs"></ui-tabs>
+  </form>
+</ng-template>
+
+<ng-template #clergyNominationTabsTemplate>
+  <section>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input
+        fxFlex [label]="modulePath + ':model.serie_number'| i18next"
+        [placeholder]=" modulePath + ':model.serie_number'| i18next"
+        [control]="form.get('serie_number')">
+      </ui-input>
+      <ui-checkbox
+        class="margin-checkbox" fxFlex="25"
+        [label]="modulePath + ':model.enabled'| i18next"
+        [control]="form.get('enabled')">
+      </ui-checkbox>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-select fxFlex="50" [required]="true"
+        [label]="modulePath + ':model.nomination_type_id' | i18next"
+        [control]="form.get('nomination_type_id')"
+        [options]="nominationsTypesOptions">
+      </ui-select>
+      <ui-datepicker
+        fxFlex="25"
+        [label]="modulePath + ':model.nomination_date' | i18next"
+        [control]="form.get('nomination_date')"
+        [required]="true">
+      </ui-datepicker>
+      <ui-datepicker
+        fxFlex="25"
+        [label]="modulePath + ':model.expiration_date' | i18next"
+        [control]="form.get('expiration_date')">
+      </ui-datepicker>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input
+        fxFlex [label]="modulePath + ':model.entity_priest_description'| i18next"
+        [placeholder]=" modulePath + ':model.entity_priest_description'| i18next"
+        readonly="true" [required]="true"
+        [control]="form.get('entity_priest_description')"
+        [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'entity_priest'} }">
+      </ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input
+        fxFlex [label]="modulePath + ':model.function_description'| i18next"
+        [placeholder]=" modulePath + ':model.function_description'| i18next"
+        readonly="true" [required]="true"
+        [control]="form.get('function_description')"
+        [rightTemplate]="{ template: curiaFunctionsRightTemplate, context: { inputName: 'function'} }">
+      </ui-input>
+      <ui-input
+        fxFlex [label]="modulePath + ':model.place_description'| i18next"
+        [placeholder]=" modulePath + ':model.place_description'| i18next"
+        readonly="true" [required]="true"
+        [control]="form.get('place_description')"
+        [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'place'} }">
+      </ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input
+        fxFlex [label]="modulePath + ':model.bishop_description'| i18next"
+        [placeholder]="modulePath + ':model.bishop_description'| i18next"
+        readonly="true" [required]="true"
+        [control]="form.get('bishop_description')"
+        [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'bishop'} }">
+      </ui-input>
+      <ui-input
+        fxFlex [label]="modulePath + ':model.moderator_description'| i18next"
+        [placeholder]="modulePath + ':model.moderator_description'| i18next"
+        readonly="true"
+        [control]="form.get('moderator_description')"
+        [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'moderator'} }">
+      </ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input
+        fxFlex [label]="modulePath + ':model.subscriber1_description'| i18next"
+        [placeholder]=" modulePath + ':model.subscriber1_description'| i18next"
+        readonly="true" [required]="true"
+        [control]="form.get('subscriber1_description')"
+        [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'subscriber1'} }">
+      </ui-input>
+      <ui-input
+        fxFlex [label]="modulePath + ':model.subscriber2_description'| i18next"
+        [placeholder]=" modulePath + ':model.subscriber2_description'| i18next"
+        readonly="true" [required]="true"
+        [control]="form.get('subscriber2_description')"
+        [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'subscriber2'} }">
+      </ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-textarea fxFlex
+        rows="3"
+        [label]="modulePath + ':model.function_details' | i18next"
+        [control]="form.get('function_details')">
+      </ui-textarea>
+      <ui-textarea fxFlex
+        rows="3"
+        [label]="modulePath + ':model.observations' | i18next"
+        [control]="form.get('observations')">
+      </ui-textarea>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #attachmentsTabsTemplate>
+  <section>
+    <ui-table
+      #attachmentTable
+      [checkboxes]="false"
+      [dataSource]="attachmentDS"
+      [tableColumns]="attachmentColumns"
+      stickyHeader="true">
+    </ui-table>
+    <div class="add-related-content" (click)="addTableLine(newAttachmentLine, attachmentFormArray, attachmentDS)">
+      {{ 'translation:action.add' | i18next }}
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #priestsRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('priests-v1-modal', inputName, {},'', getPriestsQueryStringParams(inputName))"></ui-button>
+    <ui-menu type="icons" [model]="priestsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #parishionersRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('parishioners-modal', inputName, {},'', parishionersQueryStringParams)"></ui-button>
+    <ui-menu type="icons" [model]="parishionersMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #curiaFunctionsRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('curia-functions-modal', inputName)"></ui-button>
+    <ui-menu type="icons" [model]="curiaFunctionsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+
+<!-- TABLE TEMPLATES -->
+<ng-template #deleteTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (click)="deleteTableLine(index, attachmentFormArray, attachmentDS);"></ui-button>
+</ng-template>
+
+<ng-template #uploadTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlex
+      customClass="remove-bottom-padding"
+      (change)="addFileToList($event, index)"
+      [placeholder]="modulePath + ':model.nomination_attachments.attachment_filename'| i18next"
+      type="file" accept="*"
+      [fileName]="attachmentFormArray.get([index, 'attachment_filename']).value"
+      [required]="true"
+      [control]="attachmentFormArray.get([index, 'attachment'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #attachmentFilenameTemplate let-inputName="inputName" let-index="index">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <a>
+      {{ attachmentFormArray.value[index].attachment_filename }}
+    </a>
+  </div>
+</ng-template>
+
+<ng-template #attachmentDescriptionTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input
+      customClass="remove-bottom-padding"
+      [required]="true"
+      [placeholder]="modulePath + ':model.nomination_attachments.attachment_description'| i18next"
+      [control]="attachmentFormArray.get([index, 'attachment_description'])">
+    </ui-input>
+  </div>
+</ng-template>
+<!-- TABLE TEMPLATES -->

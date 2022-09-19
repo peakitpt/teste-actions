@@ -1,0 +1,114 @@
+{
+    "tabs": {
+        "formations": "Renovaciones y formaciones",
+        "categories": "Categorías",
+        "personal-data": "Datos personales",
+        "mec": "Ministro Comunión"
+    },
+    "header": {
+        "ecclesial_activities": "Actividades Eclesiales",
+        "ecclesial_formations": "Formación eclesial",
+        "identi_documents": "Documentos de identificación",
+        "contacts": "Contacto",
+        "address": "Dirección",
+        "formations": "Formaciones",
+        "renewal": "Renovaciones"
+    },
+    "model": {
+        "entity": {
+            "entity_person": {
+                "is_parishioner": "Parroquiano(a)",
+                "ident_document_emitted_by": "Emitido por",
+                "ident_document_validity_date": "Fecha de validez",
+                "ident_document_emission_date": "Fecha de emisión",
+                "ident_document_number": "Nº de identificación",
+                "ident_document_type": "Tipo de identificación",
+                "comments": "Observaciones",
+                "professional_profession_description": "Profesión",
+                "qualifications": "Habilitaciones",
+                "age": "Edad",
+                "birth_date": "Fecha de nacimiento",
+                "sex": "Género",
+                "serie_number": "Nº de registro"
+            },
+            "entity_catechist": {
+                "catechist": "Catequista"
+            },
+            "entity_reader": {
+                "is_reader": "Lector(a)"
+            },
+            "entity_acolyte": {
+                "is_acolyte": "Acólito(a)"
+            },
+            "is_public_profile": "Público",
+            "url": "Sitio web",
+            "email": "Correo electrónico",
+            "fax": "Fax",
+            "phone": "Teléfono",
+            "mobilephone": "Teléfono móvil",
+            "longitude": "Longitud",
+            "latitude": "Latitud",
+            "county": "Ayuntamiento",
+            "place": "Localidad",
+            "postal_code": "CP",
+            "door_number": "Nº",
+            "address": "Dirección",
+            "residence_chapelry_description": "Parroquia de residencia",
+            "civil_status": "Estado civil",
+            "entity_birth_chapelry_description": "Parroquia de nacimiento",
+            "name": "Nombre"
+        },
+        "ecclesial_activities_other_description": "Otra actividad eclesial",
+        "ecclesial_activities_other": "Otro",
+        "ecclesial_activities_economic_council_member": "Miembro del consejo económico",
+        "ecclesial_activities_association_of_faithful_direction_member": "Miembro de la junta directiva de una asociación de fieles",
+        "ecclesial_activities_caretaker": "Colaborador(a)",
+        "ecclesial_activities_singer": "Cantor(a)",
+        "ecclesial_formation_other_description": "Otra formación Eclesial",
+        "ecclesial_formation_other": "Otro",
+        "ecclesial_formation_theological_pastorails_courses": "Cursos teológico-pastorales",
+        "ecclesial_formation_biblical_courses": "Cursos de Biblia",
+        "institution_time": "Años en ejercicio",
+        "institution_date": "Fecha de nombramiento",
+        "formation_courses": "Cursos de Formación",
+        "congregation": "Congregación",
+        "is_coordinator": "Coordinador",
+        "institution_center_worshipplace_description": "Lugar de culto",
+        "magnetic_number": "Nº magnético",
+        "entities_mecs_formations": {
+            "formation_date": "Fecha",
+            "formation_description": "Formación"
+        },
+        "entities_mecs_lines": {
+            "renewal_date": "Fecha"
+        },
+        "mec_number": "Nº Ministro Comunión",
+        "mec": "Activo"
+    },
+    "options": {
+        "not_available": "N/D",
+        "no": "No",
+        "yes": "Sí"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "error_blank_mecs_lines": "Complete todos los campos de la tabla de Renovación",
+        "error_blank_mecs_formations": "Complete todos los campos de la tabla de las Formaciones",
+        "delete_are_you_sure": "¿Está seguro de que desea eliminar el Ministro Comunión con el nombre \"<strong> {{name}} </strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que desea eliminar los <strong> {{count}} </strong> Ministros Comunión seleccionados?",
+        "delete_success": "¡Ministro Comunión eliminado correctamente!",
+        "delete_success_plural": "¡Ministros Comunión eliminados correctamente!",
+        "save_success": "¡Ministro Comunión guardado correctamente!"
+    },
+    "action": {
+        "delete": "¿Eliminar Ministro Comunión?",
+        "edit": "Editar Ministro Comunión",
+        "new": "Nuevo Ministro Comunión",
+        "generate_card": "Generar tarjeta"
+    },
+    "module": {
+        "name_many": "Ministros Comunión",
+        "name_singular": "Ministro Comunión"
+    }
+}

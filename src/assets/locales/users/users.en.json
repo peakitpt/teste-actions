@@ -1,0 +1,57 @@
+{
+    "module": {
+        "name_singular": "User",
+        "name_many": "Users"
+    },
+    "action": {
+        "add": "Add User",
+        "new": "New User",
+        "edit": "Edit User",
+        "change_password": "Change password"
+    },
+    "message": {
+        "save_success": "User successfully saved!",
+        "delete_success": "User successfully deleted!",
+        "delete_success_plural": "Users successfully deleted!",
+        "delete_are_you_sure": "Are you sure that you want to delete the User with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure that you want to delete all the <strong>{{ count }}</strong> selected Users?",
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected"
+    },
+    "model": {
+        "name": "Name",
+        "active": "Active",
+        "entity_type": "Entity type",
+        "email": "E-mail",
+        "expiration_date": "Expiration Date",
+        "sign_in_count": "No. Logins",
+        "current_sign_in_at": "Last login",
+        "subscription_description": "Default subscription",
+        "subscriptions_limit": "Subscriptions Limit",
+        "approved_at": "Approved at",
+        "locale": "Language",
+        "api_token": "API Token",
+        "approved_at_start": "Approved at (start)",
+        "approved_at_end": "Approved at (end)",
+        "expiration_date_start": "Expiration Date  (start)",
+        "expiration_date_end": "Expiration Date (end)",
+        "current_sign_in_at_start": "Last login  (start)",
+        "current_sign_in_at_end": "Last login (end)",
+        "entity": "Entity type",
+        "entity_ekklesia_location_description": "Bishopric",
+        "user": "User",
+        "user_id": "Identifier",
+        "password": "Password",
+        "repeat_password": "Confirm password"
+    },
+    "header": {
+        "activation": "Activation",
+        "user": "User",
+        "subscription": "Subscription",
+        "dates": "Dates",
+        "subscriptions": "Subscriptions"
+    },
+    "hint_message": {
+        "no_pre_defined_subscription": "Without pre-defined subscription, the user will be automatically inactive"
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados"
+    },
+    "model": {
+        "entity_type": {
+            "name": "Tipo"
+        },
+        "name": "Ubicación",
+        "complete_relation": "Concepto de búsqueda"
+    },
+    "module": {
+        "name_many": "Ubicaciones",
+        "name_singular": "Ubicación"
+    }
+}

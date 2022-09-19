@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name_singular": "Layout",
+    "name_many": "Layouts"
+  },
+    "model": {
+    "name": "Nome"
+  }
+}

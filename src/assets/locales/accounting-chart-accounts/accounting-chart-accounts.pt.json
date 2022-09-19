@@ -1,0 +1,37 @@
+{
+  "module": {
+    "name_singular": "Conta",
+    "name_many": "Contas"
+  },
+  "action": {
+    "new": "Nova Conta",
+    "edit": "Editar Conta",
+    "delete": "Eliminar Conta?"
+  },
+  "message": {
+    "save_success": "Conta guardada com sucesso!",
+    "delete_success": "Conta apagada com sucesso!",
+    "delete_success_plural": "Contas apagadas com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Conta com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Contas selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas"
+  },
+  "model": {
+    "year": "Exercício",
+    "account_id": "Código",
+    "account_id_as_text": "Código",
+    "account_description": "Descrição",
+    "profit": "Receita ou Despesa",
+    "options": {
+      "profit" : "Receita",
+      "loss" : "Despesa"
+    },
+    "account_id_as_text_start": "Código Desde",
+    "account_id_as_text_end": "Código Até",
+    "included_on_profit_loss": "Incluir na apresentação de contas",
+    "grouping_code_description": "Conta agregadora",
+    "taxonomy_code_description": "Código da Taxonomia",
+    "grouping_category": "Tipo"
+  }
+}

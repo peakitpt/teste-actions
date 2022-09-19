@@ -1,0 +1,39 @@
+{
+    "module": {
+        "name_singular": "Formation",
+        "name_many": "Formations"
+    },
+    "model": {
+        "description": "Description",
+        "type": "Type",
+        "id": "ID",
+        "formation-type": "Formation types"
+    },
+    "id": "Id",
+    "formation-type": "Training type",
+    "formation-types": "Training types",
+    "save-success": "Training type successfully saved",
+    "edit-formation-type": "Edit Training type",
+    "add-formation-type": "Add training type",
+    "new-formation-type": "New training type",
+    "delete-formation-type": "Delete training type",
+    "delete-formation-type-message": "Are you sure you want do delete the training type {{ description }} ?",
+    "delete-multiple-formation-type-message": "Are you sure you want do delete the training types {{ description }} ?",
+    "actions": "Actions",
+    "edit-formation": "Editar Formação",
+    "action": {
+        "addFormation": "Add Formation",
+        "delete": "Delete Formation?",
+        "edit": "Edit Formation",
+        "new": "New Formation"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete Formation with the description \"<strong> {{description}} </strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the selected <strong> {{count}} </strong> formations?",
+        "delete_success": "Formation successfully deleted!",
+        "delete_success_plural": "Formations successfully deleted!",
+        "save_success": "Formation saved successfully!"
+    }
+}

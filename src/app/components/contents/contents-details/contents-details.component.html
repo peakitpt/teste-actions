@@ -1,0 +1,242 @@
+<ui-dialog #modal [inputHeaderTemplate]="header" [inputBodyTemplate]="body" (modalClosed)="modalClose()">
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.title
+        }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model$ | async as model">
+        <ui-menu *ngIf="reportMenuOptionsModel.length" [hasBackdrop]="false" fxHide.lt-md="true"
+          class="reports-list-button" type="nested" [menuClickTemplate]="reportsClickableTemplate" color="accent"
+          [model]="reportMenuOptionsModel" (sendValue)="reportMenuClick($event)"></ui-menu>
+        <ui-menu *ngIf="reportMenuOptionsModel.length" [hasBackdrop]="false" fxHide.gt-sm="true"
+          [hoverTitle]="'reports:module.name_many' | i18next" type="nested" mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel" (sendValue)="reportMenuClick($event)"></ui-menu>
+        <ui-button [title]="'translation:action.edit' | i18next" type='icon' icon="edit" (onClickEvent)="editModal()">
+        </ui-button>
+        <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)">
+        </ui-menu>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()">
+      </ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ui-tabs [tabs]="detailsTabs"></ui-tabs>
+</ng-template>
+
+<ng-template #contentTemplate>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <section>
+      <h2>{{ modulePath + ':header.content_details' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.title' | i18next }}:</div>
+            <div fxFlex>{{ model.title }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.slug' | i18next }}:</div>
+            <div fxFlex>{{ model.slug }}</div>
+          </div>
+          <div fxLayout="column" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.resume' | i18next }}:</div>
+            <div fxFlex> {{model.resume}} </div>
+          </div>
+          <div fxLayout="column" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.content' | i18next }}:</div>
+            <div fxFlex [innerHTML]="contentHtml"></div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.author' | i18next }}:</div>
+            <div fxFlex>{{ model.author }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.locale' | i18next }}:</div>
+            <div fxFlex>{{ model.locale }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>{{ modulePath + ':header.thumbnail' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.attachment_filename' | i18next }}:</div>
+            <div fxFlex fxLayout="column" fxLayoutAlign="center center">
+              <img *ngIf="model.cover" [src]="baseFilePath + '/' + model.cover"
+                onerror="this.src='assets/image-placeholder-350x350.png'" height="200px">
+              {{model.attachment_filename}}
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.cover_author' | i18next }}:</div>
+            <div fxFlex>{{ model.cover_author }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.cover_locale' | i18next }}:</div>
+            <div fxFlex>{{ model.cover_locale }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>{{ modulePath + ':header.publish' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.online' | i18next }}:</div>
+            <div fxFlex>
+              <ui-icon [icon]="model.online ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.send_notification' | i18next }}:</div>
+            <div fxFlex>
+              <ui-icon [icon]="model.send_notification ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.notification_sent_at_date">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.notification_sent_at_date' | i18next }}:</div>
+            <div fxFlex>{{ model.notification_sent_at_date | date:('translation:format.datetime_weekday' | i18next) }}
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.send_scheduled_notification' | i18next }}:</div>
+            <div fxFlex>
+              <ui-icon [icon]="model.send_scheduled_notification ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.send_scheduled_notification">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.scheduled_notification_date_to_send' | i18next
+              }}:</div>
+            <div fxFlex>{{ model.scheduled_notification_date_to_send | date:('translation:format.date' | i18next) }}
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.send_scheduled_notification">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.scheduled_notification_hour_to_send' | i18next
+              }}:</div>
+            <div fxFlex>{{ model.scheduled_notification_hour_to_send }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.scheduled_notification_sent_at_date">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.scheduled_notification_sent_at_date' | i18next
+              }}:</div>
+            <div fxFlex>{{ model.scheduled_notification_sent_at_date | date:('translation:format.datetime_weekday' |
+              i18next) }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.online_from_date' | i18next }}:</div>
+            <div fxFlex>{{ model.online_from_date | date:('translation:format.date' | i18next) }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.online_from_hour' | i18next }}:</div>
+            <div fxFlex>{{ model.online_from_hour }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.online_to_date' | i18next }}:</div>
+            <div fxFlex>{{ model.online_to_date | date:('translation:format.date' | i18next) }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.online_to_hour' | i18next }}:</div>
+            <div fxFlex>{{ model.online_to_hour }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>{{ modulePath + ':header.sections' | i18next }}</h2>
+      <div fxLayout="row">
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':header.sections' | i18next }}:</div>
+          <div fxFlex.lt-sm="1 1 140px">
+            <ui-chip-list [chipList]="sectionsList"></ui-chip-list>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>{{ modulePath + ':header.hashtags' | i18next }}</h2>
+      <div fxLayout="row">
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':header.hashtags' | i18next }}:</div>
+          <div fxFlex>
+            <ui-chip-list [chipList]="hashtagsList"></ui-chip-list>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</ng-template>
+
+<ng-template #relatedContentsTemplate>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <table class="mat-table">
+      <tr class="mat-header-row">
+        <th class="mat-header-cell">{{ modulePath + ':model.content' | i18next }}</th>
+      </tr>
+      <tr class="mat-row uiKyriosTableRow" *ngFor="let content of model.contents_contents">
+        <td class="mat-cell">{{ content.content_rel_description }}</td>
+      </tr>
+    </table>
+  </ng-container>
+</ng-template>
+
+<ng-template #fotogaleryTemplate>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <table class="mat-table">
+      <tr class="mat-header-row">
+        <th class="mat-header-cell">{{ modulePath + ':model.image_url_filename' | i18next }}</th>
+        <th class="mat-header-cell">{{ modulePath + ':model.thumbnail' | i18next }}</th>
+        <th class="mat-header-cell">{{ modulePath + ':model.author' | i18next }}</th>
+        <th class="mat-header-cell">{{ modulePath + ':model.caption' | i18next }}</th>
+      </tr>
+      <tr class="mat-row uiKyriosTableRow" *ngFor="let content of model.contents_fotogaleries">
+        <td class="mat-cell">{{ content.image_url_filename }}</td>
+        <td class="mat-cell">
+          <img *ngIf="content.image_url" [src]="baseFilePath + '/' + content.image_url"
+            onerror="this.src='assets/image-placeholder-350x350.png'" height="50px">
+        </td>
+        <td class="mat-cell">{{ content.photo_author }}</td>
+        <td class="mat-cell">{{ content.photo_caption }}</td>
+      </tr>
+    </table>
+  </ng-container>
+</ng-template>
+
+<ng-template #downloadsTemplate>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <table class="mat-table">
+      <tr class="mat-header-row">
+        <th class="mat-header-cell">{{ modulePath + ':model.download_filename' | i18next }}</th>
+        <th class="mat-header-cell">{{ modulePath + ':model.description' | i18next }}</th>
+      </tr>
+      <tr class="mat-row uiKyriosTableRow" *ngFor="let content of model.contents_attachments">
+        <td class="mat-cell">{{ content.attachment_filename }}</td>
+        <td class="mat-cell">{{ content.link_description }}</td>
+      </tr>
+    </table>
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>

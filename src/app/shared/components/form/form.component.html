@@ -1,0 +1,234 @@
+<ng-container *ngIf="!formField">
+  <ng-container *ngFor="let tabfield of fields">
+    <ng-container *ngTemplateOutlet="renderField; context: { field: tabfield }"></ng-container>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="formField">
+  <ng-container *ngTemplateOutlet="renderField; context: { field: formField }"></ng-container>
+</ng-container>
+
+<ng-template #renderField let-field="field">
+  <ng-container [ngSwitch]="field.type">
+    <ng-container *ngSwitchCase="'row'">
+      <ng-container *ngTemplateOutlet="rowFieldTemplate; context: { field: field }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'input'">
+      <ng-container *ngTemplateOutlet="inputFieldTemplate; context: { field: field, form: field.form }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'input-select'">
+      <ng-container *ngTemplateOutlet="inputSelectFieldTemplate; context: { field: field, form: field.form }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'select'">
+      <ng-container *ngTemplateOutlet="selectFieldTemplate; context: { field: field }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'checkbox'">
+      <ng-container *ngTemplateOutlet="checkboxFieldTemplate; context: { field: field }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'section'">
+      <ng-container *ngTemplateOutlet="sectionFieldTemplate; context: { field: field }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'date'">
+      <ng-container *ngTemplateOutlet="dateFieldTemplate; context: { field: field, form: field.form }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'textarea'">
+      <ng-container *ngTemplateOutlet="textareaFieldTemplate; context: { field: field }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'tab-group'">
+      <ng-container *ngTemplateOutlet="tabGroupFieldTemplate; context: { field: field }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'table'">
+      <ng-container *ngTemplateOutlet="tableFieldTemplate; context: { field: field }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'image'">
+      <ng-container *ngTemplateOutlet="imageFieldTemplate; context: { field: field }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'column'">
+      <ng-container *ngTemplateOutlet="columnFieldTemplate; context: { field: field }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'chips'">
+      <ng-container *ngTemplateOutlet="chipsFieldTemplate; context: { field: field }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'complex-tree'">
+      <ng-container *ngTemplateOutlet="complexTreeFieldTemplate; context: { field: field }"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'template'">
+      <ng-container *ngTemplateOutlet="field.template"></ng-container>
+    </ng-container>
+
+  </ng-container>
+</ng-template>
+
+<!-- STATIC TEMPLATES -->
+<ng-template #complexTreeFieldTemplate let-field="field">
+  <kyr-complex-tree-field
+    fxFlex
+    [label]="field.label"
+    [dataSource]="field.dataSource"
+    [dataSourceColumns]="field.dataSourceColumns"
+  ></kyr-complex-tree-field>
+</ng-template>
+
+<ng-template #chipsFieldTemplate let-field="field">
+  <kyr-chips-field
+    fxFlex
+    [label]="field.label"
+    [form]="field.form"
+    [readonly]="field.readonly"
+    [getTagId]="field.getTagId"
+    [getTagLabel]="field.getTagLabel"
+    [name]="field.name"
+    [fillFormArray]="field.fillFormArray"
+  ></kyr-chips-field>
+</ng-template>
+
+<ng-template #imageFieldTemplate let-field="field">
+  <kyr-image-field
+    fxFlex
+    [label]="field.label"
+    [required]="field.required"
+    [form]="field.form"
+    [imageValue]="field.imageValue"
+    [readonly]="field.readonly"
+    [successPostImageActionCallback]="field.successPostImageActionCallback"
+    [onImageChange]="field.onImageChange"
+    [name]="field.name"
+  ></kyr-image-field>
+</ng-template>
+
+<ng-template #tableFieldTemplate let-templatefield="field">
+  <kyr-table-field
+    fxFlex
+    [dataSource]="templatefield.dataSource"
+    [dataSourceColumns]="templatefield.dataSourceColumns"
+    [formArray]="templatefield.formArray"
+    [newObject]="templatefield.newObject"
+  ></kyr-table-field>
+</ng-template>
+
+
+<ng-template #tabGroupFieldTemplate let-templatefield="field">
+  <kyr-tab-group-field
+    [fields]="templatefield.fields"
+  ></kyr-tab-group-field>
+</ng-template>
+
+<ng-template #rowFieldTemplate let-templatefield="field">
+  <div [fxLayout]="templatefield.fxLayout" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ng-container *ngFor="let field of templatefield.fields; index as i;">
+      <ng-container *ngTemplateOutlet="renderField; context: { field: field }"></ng-container>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #columnFieldTemplate let-field="field">
+  <div
+    fxLayout="column"
+    [fxLayoutAlign]="field.fxLayoutAlign"
+    [fxLayoutGap]="field.fxLayoutGap + 'px'"
+    [fxFlex]="field.fxFlex ? field.fxFlex + '%' : null"
+    >
+    <ng-container *ngFor="let columnfield of field.fields">
+      <ng-container *ngTemplateOutlet="renderField; context: { field: columnfield }"></ng-container>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #inputFieldTemplate let-field="field" let-form="form">
+  <kyr-input-field
+    fxFlex
+    [label]="field.label"
+    [required]="field.required"
+    [form]="form"
+  ></kyr-input-field>
+</ng-template>
+
+<ng-template #inputSelectFieldTemplate let-field="field" let-form="form">
+  <kyr-input-select-field
+    fxFlex
+    [name]="field.name"
+    [label]="field.label"
+    [readonly]="true"
+    [required]="field.required"
+    [form]="form"
+    [leftTemplateContext]="field.leftTemplateContext"
+    [isQuickInsertion]="field.isQuickInsertion"
+    [modalName]="field.modalName"
+    [inputSelector]="field.inputSelector"
+    [inputStore]="field.inputStore"
+    [storeName]="field.storeName"
+    [detailsModule]="field.detailsModule"
+    [modalParams]="field.modalParams"
+    [setModalId]="field.setModalId"
+    [setModalDescription]="field.setModalDescription"
+    [setAfectedFields]="field.setAfectedFields"
+    [afectFieldId]="field.afectFieldId"
+    [afectFieldDescription]="field.afectFieldDescription"
+  ></kyr-input-select-field>
+</ng-template>
+
+<ng-template #selectFieldTemplate let-field="field">
+  <ui-select
+    fxFlex
+    [label]="field.label | i18next"
+    [options]="field.options"
+    [required]="field.required"
+    [control]="field.form"
+  ></ui-select>
+</ng-template>
+
+<ng-template #checkboxFieldTemplate let-field="field">
+  <ui-checkbox
+    fxFlex
+    class="margin-checkbox"
+    [label]="field.label | i18next"
+    [control]="field.form"
+  ></ui-checkbox>
+</ng-template>
+
+<ng-template #sectionFieldTemplate let-field="field">
+  <section  [id]="field.id" *ngIf="field.isVisible">
+    <h2>{{ field.label | i18next }}</h2>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+          <ng-container *ngFor="let sectionfield of field.fields; index as i;">
+            <ng-container *ngTemplateOutlet="renderField; context: { field: sectionfield }"></ng-container>
+          </ng-container>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #dateFieldTemplate let-field="field" let-form="form" let-customClass="customClass">
+  <kyr-date-field
+    fxFlex
+    [label]="field.label"
+    [required]="field.required"
+    [form]="form"
+    [maxDate]="field.maxDate"
+  ></kyr-date-field>
+</ng-template>
+
+<ng-template #textareaFieldTemplate let-field="field">
+  <kyr-text-area-field
+    fxFlex
+    [label]="field.label"
+    [form]="field.form"
+    [required]="field.required"
+  ></kyr-text-area-field>
+</ng-template>
+<!-- END STATIC TEMPLATES -->

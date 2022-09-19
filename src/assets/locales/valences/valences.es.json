@@ -1,0 +1,25 @@
+{
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionado",
+        "delete_are_you_sure": "¿Estás seguro de que pretendes eliminar Valencia \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Estás seguro de que pretendes eliminar las <strong>{{ count }}</strong> Valencias seleccionadas?",
+        "send_success": "¡Valencia enviada con éxito!",
+        "delete_success": "¡Valencia eliminada con éxito!",
+        "delete_success_plural": "¡Valencias eliminadas con éxito!",
+        "save_success": "¡Valencia se ha guardado con éxito!"
+    },
+    "model": {
+        "name": "Nombre",
+        "validated": "Validado"
+    },
+    "action": {
+        "delete": "¿Eliminar a Valencia?",
+        "edit": "Edición Valencia",
+        "new": "Nueva Valencia"
+    },
+    "module": {
+        "name_many": "Valences",
+        "name_singular": "Valencia"
+    }
+}

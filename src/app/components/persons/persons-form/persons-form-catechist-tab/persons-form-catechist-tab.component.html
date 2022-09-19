@@ -1,0 +1,23 @@
+<section id="catechist-introductory-course-section">
+  <h2>{{ modulePath + ':header.catechist_introductory_course' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex startView="multi-year" [label]="modulePath + ':model.entity.entity_catechist.initiation_course_date' | i18next" [control]="form.get('entity.entity_catechist.initiation_course_date')" [maxDate]="todayDate"></ui-datepicker>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.entity_catechist.initiation_course_avaliation' | i18next" [control]="form.get('entity.entity_catechist.initiation_course_avaliation')"></ui-input>
+  </div>
+</section>
+
+<section id="catechist-general-course-section">
+  <h2>{{ modulePath + ':header.catechist_general_course' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex startView="multi-year" [label]="modulePath + ':model.entity.entity_catechist.general_course_date' | i18next" [control]="form.get('entity.entity_catechist.general_course_date')" [maxDate]="todayDate"></ui-datepicker>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.entity_catechist.general_course_avaliation' | i18next" [control]="form.get('entity.entity_catechist.general_course_avaliation')"></ui-input>
+  </div>
+</section>
+
+<section id="catechist-complementary-course-section">
+  <h2>{{ modulePath + ':header.catechist_complementary_course' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex startView="multi-year" [label]="modulePath + ':model.entity.entity_catechist.complementary_course_date' | i18next" [control]="form.get('entity.entity_catechist.complementary_course_date')" [maxDate]="todayDate"></ui-datepicker>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.entity_catechist.complementary_course_avaliation' | i18next" [control]="form.get('entity.entity_catechist.complementary_course_avaliation')"></ui-input>
+  </div>
+</section>

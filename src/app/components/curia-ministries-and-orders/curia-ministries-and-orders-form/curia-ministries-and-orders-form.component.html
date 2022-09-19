@@ -1,0 +1,149 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="navigate('/' + modulePath)"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu *ngIf="model && !model.block_remove" [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+
+    <ui-button *ngIf="!isQuickInsertion && this.id" type="flat" icon="save" [label]="modulePath + ':action.save_generate_document' | i18next" color="secondary" (onClickEvent)="menuClick('save_generate_document')"
+      fxHide.lt-sm="true"></ui-button>
+
+    <ui-button type="flat" icon="save" [label]="'translation:action.save_new' | i18next" color="secondary" (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true"></ui-button>
+
+    <ui-button type="flat" icon="save" [label]="'translation:action.save' | i18next" color="accent" (onClickEvent)="onSubmit()"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body" (keydown.enter)="$event.preventDefault()">
+    <ui-tabs [tabs]="formTabs"></ui-tabs>
+  </form>
+</ng-template>
+
+<!-- TABS -->
+<ng-template #mainTabTemplate>
+  <kyr-curia-ministries-and-orders-form-main-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [id]="id"
+    [leftTemplate]="leftTemplate"
+    [emolumentsRightTemplate]="emolumentsRightTemplate"
+    [parishionersRightTemplate]="parishionersRightTemplate"
+    [worshipplacesRightTemplate]="worshipplacesRightTemplate"
+    [priestsRightTemplate]="priestsRightTemplate"
+    [curiaFunctionsRightTemplate]="curiaFunctionsRightTemplate"
+  ></kyr-curia-ministries-and-orders-form-main-tab>
+</ng-template>
+
+<ng-template #attachmentsTabTemplate>
+  <kyr-curia-ministries-and-orders-form-attachments-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [attachmentsFormArray]="attachmentsFormArray"
+    [attachmentsDS]="attachmentsDS"
+    [attachmentsColumns]="attachmentsColumns"
+    [subs]="subs"
+  ></kyr-curia-ministries-and-orders-form-attachments-tab>
+</ng-template>
+
+<!-- TEMPLATES -->
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #leftTemplate let-icon="icon">
+  <div style="margin-right: 2px;">
+    <ui-icon class="input-icon" [icon]="icon"></ui-icon>
+  </div>
+</ng-template>
+
+<ng-template #emolumentsRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('emoluments-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="emolumentsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #parishionersRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('parishioners-modal', inputName, modalParams ? modalParams : {}, modalTitle, queryStringParams ? queryStringParams : null)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="parishionersMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #worshipplacesRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('worshipplaces-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="worshipplacesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #priestsRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams" let-queryStringParams="queryStringParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('priests-v1-modal', inputName, modalParams ? modalParams : {}, modalTitle, queryStringParams ? queryStringParams : null)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="priestsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #curiaFunctionsRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('curia-functions-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="curiaFunctionsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #deleteAttachmentTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index, attachmentsFormArray, attachmentsDS)"></ui-button>
+</ng-template>
+
+<ng-template #attachmentTemplate let-index="index">
+  <ng-container *ngIf="attachmentsFormArray.controls[index].get('attachment').value">
+    <a [href]="getAttachmentUrl(attachmentsFormArray.controls[index])">{{ attachmentsFormArray.controls[index].get('attachment_name').value }}</a>
+  </ng-container>
+
+  <ng-container *ngIf="!attachmentsFormArray.controls[index].get('attachment').value">
+    {{ attachmentsFormArray.controls[index].get('attachment_name').value }}
+  </ng-container>
+</ng-template>
+
+<ng-template #attachmentDescriptionTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" [control]="attachmentsFormArray.controls[index].get('description')"></ui-input>
+</ng-template>

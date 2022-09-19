@@ -1,0 +1,12 @@
+<section id="transfers-section">
+  <ui-table
+    #transfersTable
+    [checkboxes]="false"
+    [dataSource]="transfersDS"
+    [tableColumns]="transfersColumns"
+    stickyHeader="true">
+  </ui-table>
+  <div class="add-table-line" (click)="addTableLine(newTransfer, transfersFormArray, transfersDS)">
+    {{ 'translation:action.add' | i18next }}
+  </div>
+</section>

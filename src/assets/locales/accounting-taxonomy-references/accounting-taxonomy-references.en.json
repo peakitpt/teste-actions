@@ -1,0 +1,26 @@
+{
+    "module": {
+        "name_singular": "Taxonomy - Reference",
+        "name_many": "Taxonomy - References"
+    },
+    "model": {
+        "description": "Description",
+        "locale": "Location",
+        "code": "Code",
+        "is_default": "Pre-defined"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Reference with the code \"<strong>{{ code }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to eliminate <strong>{{ count }}</strong> Selected references?",
+        "delete_success": "Reference successfully deleted!",
+        "delete_success_plural": "References successfully deleted!",
+        "save_success": "Reference successfully saved!"
+    },
+    "action": {
+        "delete": "Delete Reference?",
+        "edit": "Edit Reference",
+        "new": "New Reference"
+    }
+}

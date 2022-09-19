@@ -1,0 +1,26 @@
+{
+  "module": {
+    "name_singular": "Acesso",
+    "name_many": "Acessos"
+  },
+  "action": {
+    "add": "Adicionar Acesso",
+    "new": "Novo Acesso",
+    "delete": "Eliminar Acesso"
+  },
+  "message": {
+    "save_success": "Acesso guardado com sucesso!",
+    "delete_success": "Acesso apagado com sucesso!",
+    "delete_success_plural": "Acessos apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Acesso com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Acessos selecionados?",
+    "predefined_subscription_changed_success": "Subscrição pré-definida alterada com sucesso",
+    "predefined_subscription_changed_error": "Não foi possivel alterar a subscrião pré-definida"
+  },
+  "model": {
+    "entity2__name": "Subscrição",
+    "entity2__complete_relation": "Termo a pesquisar",
+    "pre_define": "Pré-definir",
+    "entity2_description": "Subscrição"
+  }
+}

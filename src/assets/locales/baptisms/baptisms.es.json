@@ -1,0 +1,138 @@
+{
+    "module": {
+        "name_singular": "Bautismo",
+        "name_many": "Bautismos"
+    },
+    "model": {
+        "emolument_description": "Emolumento",
+        "seat_number": "Asiento nº",
+        "entity_priest_description": "Rvdo. Don",
+        "baptisms_attachments": {
+            "description": "Descripción",
+            "attachment": "Anexo"
+        },
+        "entity": {
+            "entity_person": {
+                "entity_mother": {
+                    "entity_person": {
+                        "entity_mother": {
+                            "name": "Abuela materna"
+                        },
+                        "entity_father": {
+                            "name": "Abuelo materno"
+                        }
+                    }
+                },
+                "entity_father": {
+                    "entity_person": {
+                        "entity_mother": {
+                            "name": "Abuela paterna"
+                        },
+                        "entity_father": {
+                            "name": "Abuelo paterno"
+                        }
+                    }
+                },
+                "entity_mother_description": "Madre",
+                "entity_father_description": "Padre"
+            }
+        },
+        "godfathers_preparation_priest_description": "Sacerdote asignado al Curso de Preparación para el Bautismo",
+        "parents_preparation_priest_description": "Sacerdote asignado al Curso de Preparación al Bautismo",
+        "entity_parishioner_of_description": "Rvdo. Don de",
+        "suitability_request_godfather_godmother": "Remitir este documento a",
+        "certificate_comments": "Observaciones sobre el Certificado de bautismo",
+        "certificate_wedding": "Incluir información sobre el Matrimonio",
+        "certificate_chrism": "Incluir información sobre la Confirmación",
+        "certificate_first_communion": "Incluir información sobre la Eucaristía",
+        "certificate_no_info_on_margin": "No hay nada en el margen del asiento",
+        "wich_will": "Quien firma conmigo (Firme, o de quien conmigo solo firme...)",
+        "seat_parson_pronoun": "Párroco",
+        "seat_officiant_pronoun": "Oficiante",
+        "seat_godmother_pronoun": "Madrina",
+        "seat_godfather_pronoun": "Padrino",
+        "preparation_reunion_hours": "Horario de la reunión",
+        "preparation_reunion_date_2": "2ª reunión de preparación",
+        "preparation_reunion_date_1": "1ª reunión de preparación",
+        "preparation_reunion_location_description": "Lugar de encuentro para la preparación",
+        "has_more_kids": "¿Los padres tienen más hijos?",
+        "entity_godmother_representative_description": "Representante",
+        "entity_godfather_representative_description": "Representante",
+        "entity_godmother_is_not_confirmed": "Testigo",
+        "entity_godmother_description": "Madrina",
+        "entity_godfather_is_not_confirmed": "Testigo",
+        "entity_godfather_description": "Padrino",
+        "mother_residence_chapelry_description": "Parroquia de residencia de la madre",
+        "father_residence_chapelry_description": "Parroquia de residencia del padre",
+        "maternal_grandmother_description": "Abuela materna",
+        "maternal_grandfather_description": "Abuelo materno",
+        "paternal_grandmother_description": "Abuela paterna",
+        "paternal_grandfather_description": "Abuelo paterno",
+        "mother_description": "Madre",
+        "father_description": "Padre",
+        "document_entity_description": "Entidad que debe figurar en el documento",
+        "tax": "Taxa",
+        "entity_baptized_authorization_description": "Autorizado por",
+        "entity_baptized_by_description": "Bautizado por",
+        "entity_baptized_location_county": "Ayuntamiento de bautismo",
+        "entity_baptized_location_description": "Lugar del bautismo",
+        "in_danger_of_life": "En peligro de muerte",
+        "time_of_birth": "Hora de nacimiento",
+        "sheet": "Hoja",
+        "curia_status": "Estado",
+        "baptism_hour": "Hora del bautismo",
+        "baptism_date": "Fecha de bautismo",
+        "age_at_subscription": "Inscripción de edad.",
+        "date": "Fecha de inscripción",
+        "entity_description": "Bautizado",
+        "serie_number": "Nº de registro",
+        "comments": "Observaciones"
+    },
+    "pronouns": {
+        "female": {
+            "by_the": "Para la",
+            "the": "La"
+        },
+        "male": {
+            "by_the": "Para la",
+            "the": "El"
+        }
+    },
+    "header": {
+        "preparation_courses": "Cursos de preparación al bautismo",
+        "suitability_request": "Solicitud de idoneidad",
+        "baptism_certificate": "Certificado de bautismo",
+        "baptism_entry": "Asiento de bautismo",
+        "baptism_inscription": "Registro de bautismo",
+        "godmother": "Madrina",
+        "godfather": "Padrino",
+        "maternal_grandparents": "Abuelos maternos",
+        "paternal_grandparents": "Abuelos paternos",
+        "parents": "Padres",
+        "treasury_document": "Documento de la tesorería",
+        "baptism_data": "Datos de Bautismo",
+        "process_data": "Datos del proceso"
+    },
+    "tabs": {
+        "attachments": "Adjunto",
+        "reports": "Informes",
+        "godparents": "Padrinos",
+        "parents_grandparents": "Padres y Abuelos",
+        "main_tab": "Bautismo"
+    },
+    "message": {
+        "error_invalid_attachments": "Algunos de los archivos adjuntos no son válidos",
+        "grandparents_text": "Identificar a la madre y al padre para poder seleccionar a los abuelos del niño bautizado, respectivamente.",
+        "selected_plural": "{{ count }} seleccionados",
+        "selected": "{{ count }} seleccionado",
+        "delete_are_you_sure_plural": "¿Estás seguro de que quieres eliminar los <b>{{ count }}</b> Bautismos seleccionados?",
+        "delete_are_you_sure": "¿Está seguro de que quieres eliminar el Bautismo de <b>{{ name }}</b>?",
+        "delete_success": "Bautismo eliminado con éxito!",
+        "save_success": "Bautismo guardado con éxito!"
+    },
+    "action": {
+        "delete": "¿Eliminar el Bautismo?",
+        "edit": "Editar el Bautismo",
+        "new": "Nuevo Bautismo"
+    }
+}

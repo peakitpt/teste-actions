@@ -1,0 +1,64 @@
+{
+  "module": {
+    "name_singular": "Avença",
+    "name_many": "Avenças"
+  },
+  "action": {
+    "new": "Nova Avença",
+    "edit": "Editar Avença",
+    "delete": "Eliminar Avença?",
+    "generate_card": "Gerar cartão"
+  },
+  "message": {
+    "save_success": "Avença guardada com sucesso!",
+    "delete_success": "Avença apagada com sucesso!",
+    "delete_success_plural": "Avenças apagadas com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Avença com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Avenças selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas",
+    "total": "Total",
+    "auto_complete_title": "Preencher dados automaticamente",
+    "auto_complete_data_confirmation": "Ao clicar em Popular, os dados preechidos serão alterados assim como os emolumentos.",
+    "populate": "Popular"
+  },
+  "model": {
+    "client_name": "Cliente",
+    "accrual_type_description": "Tipo de Avença",
+    "active": "Activa",
+    "validity_date_start": "Data Inicial",
+    "validity_date_end": "Data Final",
+    "processing_next_date": "Próx. Processamento",
+    "processing_last_date": "Últ. Processamento",
+    "document_to_generate_document_type_description": "Tipo de Documento",
+    "document_to_generate_serie": "Série",
+    "catechisms_sessions": "Observações",
+    "comments": "Observações",
+    "description": "Descrição",
+    "quantity": "Quantidade",
+    "value": "Preço",
+    "total": "Total",
+    "accruals_accruals_emoluments": {
+      "description": "Descrição",
+      "quantity": "Quantidade",
+      "value": "Preço",
+      "total": "Total"
+    },
+    "validity_date_start_start": "Data Inicial (Desde)",
+    "validity_date_start_end": "Data Inicial (Até)",
+    "processing_next_date_start": "Próx. Processamento (Desde)",
+    "processing_next_date_end": "Próx. Processamento (Até)",
+    "validity_date_end_start": "Data Final (Desde)",
+    "validity_date_end_end": "Data Final (Até)"
+  },
+  "header": {
+    "validity": "Validade",
+    "processing": "Processamento",
+    "document_to_generate": "Documento a Gerar",
+    "observations": "Observações"
+  },
+  "tabs": {
+    "general": "Geral",
+    "emoluments": "Emolumentos"
+  }
+}

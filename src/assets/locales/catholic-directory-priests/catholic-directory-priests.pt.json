@@ -1,0 +1,129 @@
+{
+  "module": {
+    "name_singular": "Elemento do Clero",
+    "name_many": "Elementos do Clero"
+  },
+  "message": {
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Nome",
+    "entity__name": "Nome",
+    "entity__entity_ekklesia_location__name": "Diocese",
+    "priestly_card": "Cartão Sacerdotal",
+    "priestly_fraternity": "Fraternidade Sacerdotal",
+    "private_mobilephone": "Telemóvel",
+    "active": "Ativo",
+    "deceased": "Falecido",
+    "clergy_type_description": "Tipo de Clero",
+    "abbreviated_name": "Nome Abreviado",
+    "priest_birth_date": "Data de Nascimento",
+    "priest_birth_date_start": "Nascimento Início",
+    "priest_birth_date_end": "Nascimento Fim",
+    "residence": "Residência",
+    "residence_chapelry_description": "Paróquia de Residência",
+    "ident_document_type": "Tipo de Identificação",
+    "ident_document_number": "Nº de Identificação Civil",
+    "ident_document_emission_date": "Data de Emissão",
+    "ident_document_emitted_by": "Emitido por",
+    "ident_document_validity_date": "Data de Validade",
+    "observations": "Observações",
+    "ordination_date": "Data de Ordenação",
+    "ordination_date_start": "Ordenação Início",
+    "ordination_date_end": "Ordenação Fim",
+    "episcopal_ordination_place": "Local de Ordenação",
+    "year": "Ano",
+    "place": "Local",
+    "appointments_curia_function_description": "Nomeação Atual",
+    "appointments_appointment_place_description": "Local de Nomeação Atual (igual a)",
+    "appointments_appointment_place_description_starts": "Local de Nomeação Atual (pertence a)",
+    "entity": {
+      "name": "Nome",
+      "phone": "Telefone",
+      "mobilephone": "Telemóvel",
+      "email": "Email",
+      "can_sign_documents": "Pode Assinar Documentos",
+      "address": "Morada",
+      "door_number": "Nº da Porta",
+      "postal_code": "Código Postal",
+      "place": "Localidade",
+      "county": "Concelho",
+      "district": "Distrito",
+      "country_description": "País",
+      "fax": "Fax",
+      "url": "Página web",
+      "taxpayer": "Nº de Contribuinte"
+    },
+    "entity_priest_appointments": {
+      "curia_function_description": "Função",
+      "nominee_description": "Local",
+      "start_date": "Início",
+      "end_date": "Fim",
+      "representing_description": "Representa",
+      "description": "Descrição"
+    },
+    "entity_priest_publications": {
+      "publication_date": "Data da Publicação",
+      "description": "Descrição"
+    },
+    "entity_priest_curriculums": {
+      "start_date": "Início",
+      "end_date": "Fim",
+      "description": "Descrição"
+    },
+    "entity_priest_academic_qualifications": {
+      "start_date": "Início",
+      "end_date": "Fim",
+      "description": "Descrição"
+    },
+    "entity_priest_ongoing_formations": {
+      "start_date": "Início",
+      "end_date": "Fim",
+      "description": "Descrição"
+    },
+    "birth_chapelry": {
+      "complete_relation": "Paróquia de Nascimento"
+    },
+    "entity_person": {
+      "title": "Título",
+      "entity_father_description": "Pai",
+      "entity_mother_description": "Mãe"
+    },
+    "entity_priest_priestly_cards": {
+      "renewal_date": "Data de Renovação"
+    }
+  },
+  "tabs": {
+    "personal_data": "Dados pessoais",
+    "ordenations_appointments": "Ordenação e Nomeações",
+    "other_info_tab": "Outras Informações"
+  },
+  "header": {
+    "personal_data": "Dados pessoais",
+    "contacts": "Contactos",
+    "current_appointments": "Nomeações Atuais",
+    "address": "Morada",
+    "identification_documents": "Documentos de identificação",
+    "filiation": "Filiação",
+    "other_info": "Outras informações",
+    "ordenation": "Ordenação",
+    "appointments": "Nomeações",
+    "priesty_card_renovation": "Renovações do Cartão Sacerdotal",
+    "retreats": "Retiros",
+    "ongoing_formations": "Formação Permanente",
+    "publications": "Publicações",
+    "curriculum": "Currículo",
+    "academic_qualifications": "Habilitações Académicas"
+  },
+  "option": {
+    "religious": "Religioso",
+    "archdiocesan": "Arquidiocesano",
+    "archdiocesan_residing_outside": "Arquidiocesano a residir fora",
+    "from_outside_residing_at_archdiocese": "De fora a residir na Arquidiocese",
+    "identity_card": "Bilhete de Identidade",
+    "citizen_card": "Cartão de Cidadão",
+    "passport": "Passaporte",
+    "residence_title": "Título de Residência"
+  }
+}

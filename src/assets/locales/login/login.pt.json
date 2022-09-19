@@ -1,0 +1,16 @@
+{
+  "login": "Entrar",
+  "email": "E-mail",
+  "email_invalid": "E-mail inválido",
+  "password": "Palavra-passe",
+  "forgot_my_password": "Esqueceu-se da palavra-passe?",
+  "register": "Registar",
+  "login_fail_message": "A autenticação falhou. Certifique-se de que os seus dados de acesso estão corretos",
+  "welcome_to_chms": "Bem-vindo ao {{ appName }} ChMS!",
+  "complete_management_church": "Gestão completa para a Igreja.",
+  "no_account_yet": "Ainda não tem conta?",
+  "sign_up": "Registe-se",
+  "privacy":"Privacidade",
+  "help":"Ajuda",
+  "contacts":"Contactos"
+}

@@ -1,0 +1,60 @@
+{
+    "module": {
+        "name_singular": "Subscription Settings",
+        "name_many": "Subscription Settings"
+    },
+    "option": {
+        "vodafone_pt": "Vodafone",
+        "parish_admin": "Parish Administrator",
+        "parson": "Parish Priest",
+        "plain": "Plain",
+        "login": "Login",
+        "cram_md5": "CRAM-MD5"
+    },
+    "text": {
+        "8th_paragraf": "Automatic STARTTLS detection - Leave this option disabled if you have problems with the server certificate",
+        "7th_paragraf": "Domain - In case you need to specify a HELO domain",
+        "6th_paragraf": "Make sure that the data for sending SMS is valid by sending a Test SMS, in the respective module",
+        "5th_paragraf": "The code of the Tax Offices is for the generation of the Modelo 25 Magnetic Support (.xml file) for submission in Finance Portal",
+        "4th_paragraf": "Layout to be used for the notification e-mail to be sent to the entities selected in the Current Accounts. The title of the layout will be used as the subject of the e-mail",
+        "3rd_paragraf": "All the documents generated through the button \"Save and issue doc.\" will be generated with this type of document and with its predefined series",
+        "2nd_paragraf": "This information will be used in reports and in the automatic completion of some forms.",
+        "1st_paragraf": "You cannot change the subscription currency because you already have accounting entries made in this currency"
+    },
+    "model": {
+        "hide_wizard_from_dash": "Do not show Setup Wizard on Dashboard",
+        "smtp_sender_name": "Name of sender",
+        "smtp_enable_starttls_auto": "Automatic STARTTLS detection",
+        "smtp_authentication": "Authentication type",
+        "smtp_password": "Password",
+        "smtp_user_name": "Username",
+        "smtp_use_ssl": "Use SSL",
+        "smtp_port": "Door",
+        "smtp_domain": "Domain",
+        "smtp_address": "Address",
+        "smtp_use_custom_settings": "Use custom SMTP configuration",
+        "sms_password": "Password",
+        "sms_msisdn": "MSISDN",
+        "sms_gateway": "Gateway",
+        "finance_department": "Finance Department",
+        "current_account_notification_layout_description": "Layout for Current Account notifications",
+        "treasury_default_document_type_description": "Default Document Type",
+        "priest_description": "Parish Priest/Parochial Administrator",
+        "hide_warnings_from_dash": "Do not show warnings on the Dashboard"
+    },
+    "message": {
+        "save_success": "Section successfully saved!",
+        "modal_closed": "Is the modal closed?"
+    },
+    "action": {
+        "open_again": "Open again"
+    },
+    "header": {
+        "smtp_email_configuration": "Configuration E-mail SMTP",
+        "sms_configuration": "SMS Configuration"
+    },
+    "tabs": {
+        "configuration_assist": "Configuration Assistant",
+        "defenitions": "Definitions"
+    }
+}

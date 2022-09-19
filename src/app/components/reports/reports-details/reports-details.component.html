@@ -1,0 +1,109 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.name }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model$ | async as model">
+          <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-button
+          *ngIf="canEdit"
+          [title]="'translation:action.edit' | i18next"
+          type='icon' icon="edit"
+          (onClickEvent)="editModal()">
+        </ui-button>
+        <ui-menu
+          [hoverTitle]="'translation:action.more' | i18next"
+          type="icons"
+          [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ui-tabs [tabs]="detailsTabs"></ui-tabs>
+</ng-template>
+
+<ng-template #reportTemplate>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.name' | i18next}}:</div>
+            <div fxFlex>{{ model.name }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.report_type' | i18next}}:</div>
+            <div fxFlex>{{ model.report_type }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.module' | i18next}}:</div>
+            <div fxFlex>{{ model.module }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.export_type' | i18next}}:</div>
+            <div fxFlex>{{ model.export_type }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.report_file' | i18next}}:</div>
+            <div fxFlex>{{ model.report_file }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.locked' | i18next}}:</div>
+            <ui-icon fxFlex [icon]="model.locked ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>

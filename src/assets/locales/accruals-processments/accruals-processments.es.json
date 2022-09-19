@@ -1,0 +1,31 @@
+{
+    "module": {
+        "name_singular": "Processamiento de Pacto",
+        "name_many": "Processamientos de Pactos"
+    },
+    "model": {
+        "processing_next_date": "Próx. Procesamiento",
+        "accrual_type_description": "Tipo de Avenza",
+        "client_name": "Usuario",
+        "processing_next_date_end": "Próximo Procesamiento (a)",
+        "processing_next_date_start": "Próx. Procesamiento (desde)"
+    },
+    "message": {
+        "total": "Total",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionado"
+    },
+    "action": {
+        "process_selected": "Procesar la Selección"
+    },
+    "tabs": {
+        "emoluments": "Emolumentos",
+        "general": "General"
+    },
+    "header": {
+        "observations": "Observaciones",
+        "document_to_generate": "Documento a Generar",
+        "processing": "Procesamiento",
+        "validity": "Validez"
+    }
+}

@@ -1,0 +1,59 @@
+{
+  "module": {
+    "name_singular": "Arciprestado",
+    "name_many": "Arciprestados"
+  },
+  "action": {
+    "new": "Novo Arciprestado",
+    "edit": "Editar Arciprestado",
+    "delete": "Eliminar Arciprestado?"
+  },
+  "message": {
+    "save_success": "Arciprestado guardado com sucesso!",
+    "delete_success": "Arciprestado apagado com sucesso!",
+    "delete_success_plural": "Arciprestados apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Arciprestado com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Arciprestados selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "search_term": "Termo a pesquisar",
+  "model": {
+    "entity_description": "Arciprestado",
+    "name": "Nome",
+    "district": "Distrito",
+    "parish": "Freguesia",
+    "country_description": "País",
+    "validated": "Validado",
+    "is_archdiocese": "Arquidiocese",
+    "reports_group_description": "Grupo de relatórios",
+    "tax_designation": "Designação fiscal",
+    "taxpayer": "Nº de contribuinte",
+    "address": "Morada",
+    "door_number": "Nº da porta",
+    "postal_code": "Código postal",
+    "place": "Localidade",
+    "county": "Concelho",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "mobilephone": "Telemóvel",
+    "phone": "Telefone",
+    "fax": "Fax",
+    "email": "E-mail",
+    "url": "Página web",
+    "entity_relation_attributes":{
+      "diocese_description": "Diocese",
+      "diocese_id": "Diocese"
+    }
+  },
+  "header": {
+    "address": "Morada",
+    "contacts": "Contactos",
+    "app": "Aplicação",
+    "module": "Módulo"
+  },
+  "tabs": {
+    "bishopric": "Arciprestado",
+    "permissions_modules": "Permissões a Módulos"
+  }
+}

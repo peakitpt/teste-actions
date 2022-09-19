@@ -1,0 +1,72 @@
+<ui-dialog #modal [inputHeaderTemplate]="header" [inputBodyTemplate]="body" [inputFooterTemplate]="footer"
+  (modalClosed)="navigate('/' + modulePath)" [disableClose]="true">
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') |
+      i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()">
+      </ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ui-tabs [tabs]="formTabs"></ui-tabs>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <!-- <ui-button *ngIf="canEdit" type="flat" icon="save" [label]="'translation:action.save' | i18next" color="accent"
+      (onClickEvent)="onSubmit()">
+    </ui-button> -->
+    <ui-button type="flat" icon="save" [label]="'translation:action.save' | i18next" color="accent"
+      (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #reportTemplate>
+  <form [formGroup]="form">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+      <ui-input fxFlex [label]="modulePath + ':model.name'| i18next" [required]="true"
+        [placeholder]="modulePath + ':model.name'| i18next" [control]="form.get('name')"></ui-input>
+    </div>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+      <ui-select fxFlex [label]="modulePath + ':model.report_type' | i18next" [required]="true"
+        [control]="form.get('report_type')" [options]="reportTypeOptions"
+        [hintMessage]="form.value.report_type === 'DetailsList' ? (modulePath + ':message.report_type_hint' | i18next) : ''">
+      </ui-select>
+      <ui-autocomplete-dynamic *ngIf="(views$ | async)" fxFlex [label]="modulePath + ':model.module' | i18next"
+        [required]="true" [control]="form.get('module')" [options]="moduleOptions" [readonly]="id ? true : false">
+      </ui-autocomplete-dynamic>
+      <ui-select fxFlex [label]="modulePath + ':model.export_type' | i18next" [required]="true"
+        [control]="form.get('export_type')" [options]="exportTypeOptions"></ui-select>
+    </div>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+      <ui-input fxFlex (change)="changeReportFile($event.target.files)"
+        [label]="modulePath + ':model.report_file'| i18next" type="file" [required]="id ? false : true"
+        [placeholder]="modulePath + ':model.report_file'| i18next" [fileName]="form.get('report_file').value"
+        [control]="form.get('report_file')">
+      </ui-input>
+    </div>
+  </form>
+</ng-template>

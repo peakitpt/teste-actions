@@ -1,0 +1,68 @@
+{
+    "model": {
+        "name": "Nombre",
+        "dash_calendar_attributes": "Calendarios",
+        "newsletter_attributes": "Newsletters",
+        "active": "Activo",
+        "email": "Correo electrónico",
+        "subscription_admin_attributes": "Administrador de Suscripción",
+        "entity_type": "Tipo de entidad",
+        "expiration_date": "Expira en",
+        "current_sign_in_at": "Último acceso",
+        "approved_at": "Aprobado a",
+        "locale": "Idioma",
+        "is_subscription_admin": "Administrador de Suscripción",
+        "accounting_attributes": "Contabilidad",
+        "admin_attributes": "Administrador",
+        "archive_attributes": "Archivos",
+        "catholic_directory_attributes": "Anuarios",
+        "cms_attributes": "CMS",
+        "dms_attributes": "DMS",
+        "reporting_attributes": "Informes",
+        "sacraments_attributes": "Sacramentos",
+        "settings_attributes": "Definiciones",
+        "treasury_attributes": "Tesorería",
+        "accruals_attributes": "Provisiones",
+        "catechism_attributes": "Catequesis",
+        "places_attributes": "Lugares",
+        "processes_attributes": "Procesos",
+        "permission": "Permiso",
+        "access_only_to_own_catechisms": "Acceso sólo a los grupos de catequesis en los que usted es catequista"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que desea eliminar el usuario con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que desea eliminar los <strong> {{count}} </strong> usuarios seleccionados?",
+        "delete_success": "¡Usuario eliminado correctamente!",
+        "delete_success_plural": "¡Usuarios eliminados correctamente!",
+        "save_success": "¡Usuario guardado correctamente!"
+    },
+    "header": {
+        "activation": "Activación",
+        "subscription-user": "Usuario de suscripción",
+        "attributes": "Categorías",
+        "view_description": "Ver",
+        "can_read": "Leer",
+        "can_create": "Crear",
+        "can_edit": "Editar",
+        "can_delete": "Eliminar"
+    },
+    "module": {
+        "name_singular": "Usuario",
+        "name_many": "Usuarios"
+    },
+    "action": {
+        "addUser": "Agregar Usuario",
+        "new_user": "Nuevo Usuario",
+        "edit": "Editar Usuario",
+        "new": "Nuevo Usuario",
+        "delete": "Eliminar Usuario"
+    },
+    "tabs": {
+        "subscription-users": "Usuarios de Suscripción",
+        "permissions-modules": "Permisos del módulo",
+        "subscription_users": "Usuarios de la suscripción",
+        "permissions_modules": "Permisos para las aplicaciones"
+    }
+}

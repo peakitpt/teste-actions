@@ -1,0 +1,15 @@
+@import './node_modules/@peakitpt/ui-material/assets/theme.scss';
+
+
+@mixin search-text-theme($theme){
+  $background: map-get($theme, background);
+
+}
+
+.kyrios-theme-light {
+  @include search-text-theme($kyrios-theme-light);
+}
+
+.kyrios-theme-dark {
+  @include search-text-theme($kyrios-theme-dark);
+}

@@ -1,0 +1,50 @@
+{
+    "module": {
+        "name_singular": "Tipo de Documento",
+        "name_many": "Tipos de Documentos"
+    },
+    "action": {
+        "new": "Novo Tipo de Documento",
+        "edit": "Editar Tipo de Documento",
+        "delete": "Eliminar Tipo de Documento?"
+    },
+    "header": {
+        "series": "Séries"
+    },
+    "message": {
+        "save_success": "Tipo de Documento guardado com sucesso!",
+        "delete_success": "Tipo de Documento apagado com sucesso!",
+        "delete_success_plural": "Tipos de Documentos apagados com sucesso!",
+        "delete_are_you_sure": "Tem a certeza que pretende eliminar o Tipo de Documento com o nome \"<strong>{{ description }}</strong>\"?",
+        "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Tipos de Documentos selecionados?",
+        "selected": "{{ count }} selecionado",
+        "selected_plural": "{{ count }} selecionados",
+        "error": {
+            "no_series": "Adicione pelo menos uma Série"
+        }
+    },
+    "model": {
+        "name": "Nome",
+        "code": "Código",
+        "description": "Descrição",
+        "movement_type": "Tipo de movimento",
+        "active": "Ativo",
+        "self_assessment": "Autoliquidação",
+        "affects_legal_tax_reports": "Afeta modelo 25 ",
+        "movement_type_option": {
+            "c": "Crédito",
+            "d": "Débito"
+        },
+        "movement_operator": "Operador",
+        "numeration": {
+            "active": "Ativo",
+            "is_default": "Pré-definir",
+            "serie": "Série",
+            "ser_preffix": "Prefixo",
+            "ser_suffix": "Sufixo",
+            "ser_value": "Número atual",
+            "ser_max": "Número limite",
+            "ser_length": "Número de dígitos"
+        }
+    }
+}

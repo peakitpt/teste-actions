@@ -1,0 +1,77 @@
+{
+  "module": {
+    "name_singular": "Instituição",
+    "name_many": "Instituições"
+  },
+  "message": {
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Name",
+    "institution_type_description": "Tipo de Instituição",
+    "archpriestship_description": "Arciprestado",
+    "chapelry_description": "Paróquia",
+    "congregation_description": "Congregação",
+    "secular_institute_description": "Instituto Secular (Comunidade)",
+    "institution_gender": "Género da Instituição",
+    "mandate": "Mandato",
+    "community": "Casa/Comunidade",
+    "property": "Propriedade",
+    "scholarity": "Escolaridade",
+    "periodicity_description": "Descrição da Periodicidade",
+    "social_media_type_description": "Descrição do Tipo de Comunicação Social",
+    "social_media_institution_description": "Descrição da Instituição",
+    "website_type_id": "Tipo de Website",
+    "social_media_data_sheet": "Ficha Técnica",
+    "historical_note": "Nota Histórica",
+    "timetable": "Horário",
+    "holidays": "Feriados",
+    "observations": "Observações",
+    "entity__entity_ekklesia_location__name": "Diocese",
+    "entity_institution_appointments": {
+      "curia_function_description": "Função",
+      "nominee_description": "Entidade",
+      "start_date": "Início",
+      "end_date": "Fim",
+      "representing_description": "Representa",
+      "description": "Descrição"
+    },
+    "entity": {
+      "name": "Name",
+      "tax_designation": "Designação Fiscal",
+      "taxpayer": "Nº de Identificação Fiscal",
+      "address": "Morada",
+      "door_number": "Nº da Porta",
+      "parish": "Freguesia",
+      "postal_code": "Código Postal",
+      "place": "Localidade",
+      "county": "Concelho",
+      "district": "Distrito",
+      "country_description": "País",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "mobilephone": "Telemóvel",
+      "phone": "Telefone",
+      "fax": "Fax",
+      "email": "Email",
+      "url": "Página Web"
+    }
+  },
+  "tabs": {
+    "institution": "Instituição",
+    "appointments": "Nomeações"
+  },
+  "header": {
+    "valences": "Valências",
+    "address": "Morada",
+    "contacts": "Contactos",
+    "other_info": "Outras informações",
+    "appointments": "Nomeações"
+  },
+  "option": {
+    "male": "Masculino",
+    "female": "Feminino",
+    "undifferentiated": "Indiferenciado"
+  }
+}

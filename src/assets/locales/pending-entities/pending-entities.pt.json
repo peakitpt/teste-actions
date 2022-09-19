@@ -1,0 +1,50 @@
+{
+  "module": {
+    "name_singular": "Entidade Pendente",
+    "name_many": "Entidades Pendentes"
+  },
+  "action": {
+    "new": "Nova Entidade",
+    "continue": "Continuar",
+    "accept":"Aceitar",
+    "reject":"Rejeitar",
+    "cancel":"Cancelar",
+    "successful":"Operação realizada com sucesso",
+    "keep_data":"Manter os dados já existentes",
+    "update_existing_data":"Atualizar os dados já existentes"
+  },
+  "model": {
+    "id":"Id",
+    "serie_number": "Nº de registo",
+    "sex": "Género",
+    "title": "Título",
+    "birth_place_parish": "Freguesia de nascimento",
+    "birth_place_county": "Concelho de nascimento",
+    "name": "Nome",
+    "email": "E-mail",
+    "mobilephone": "Telemóvel",
+    "phone": "Telefone",
+    "fax": "Fax",
+    "address": "Morada",
+    "postal_code": "Código postal",
+    "county": "Concelho",
+    "district": "Distrito",
+    "door_number":"Nº da Porta",
+    "taxpayer":"NIF",
+    "reject_reason":"Motivo de rejeição",
+    "status":"Estado"
+  },
+  "similar_entities":{
+    "module": {
+      "name_singular": "Entidade Similar",
+      "name_many": "Entidades Similares"
+    }
+  },
+  "reject_reason_modal":{
+    "header":"Motivo de rejeição"
+  },
+  "status":{
+    "pending":"Pendente",
+    "rejected":"Rejeitado"
+  }
+}

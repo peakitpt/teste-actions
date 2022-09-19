@@ -1,0 +1,82 @@
+<router-outlet></router-outlet>
+<ng-container *ngIf="modelList$ | async as modelList">
+  <ui-card>
+    <div content>
+      <ng-container *ngIf="selectedRows$ | async as selectedRows">
+        <ui-toolbar
+          *ngIf="selectedRows.length"
+          [title]="modulePath + ':message.selected' | i18next: { count: selectedRows.length }"
+          [dataModel]="toolbarDataModel"
+          rowColor="accent"
+          (iconClickedEvent)="toolbarItemClick($event)"
+          >
+        </ui-toolbar>
+      </ng-container>
+
+      <ui-button *ngIf="!menuHelperService.getSideNavOpen()" class="float-button-mobile" fxLayoutAlign="end" type="mini_fab" icon="add" color="accent" [attr.aria-label]="'translation:action.add' | i18next"
+        (onClickEvent)="navigate('/' + modulePath + '/new')">
+      </ui-button>
+      <ui-table
+        #table
+        [dataSource]="modelList.results"
+        [tableColumns]="tableColumns"
+        [generalFilter]="false"
+        [checkboxes]="false"
+        stickyHeader="true"
+        (clickRowEvent)="changeSubscription($event)"
+        (checkboxSelectionEvent)="checkboxSelectionEvent($event)"
+        (columnFilterEvent)="columnFilterEvent($event)"
+        (columnOrdinationEvent)="columnOrdinationEvent($event)">
+      </ui-table>
+
+      <kyr-table-pagination>
+        <ui-paginator
+          [length]="modelList.total"
+          [pageIndex]="modelList.page - 1"
+          [pageSize]="limit"
+          (onChangeEvent)="paginationChangeEvent($event)"
+        ></ui-paginator>
+        <ui-menu
+          type="icons"
+          [model]="pagerMenu"
+          xPosition="before"
+          (sendValue)="menuClick($event)"
+        ></ui-menu>
+      </kyr-table-pagination>
+    </div>
+  </ui-card>
+</ng-container>
+
+<!-- TEMPLATES -->
+<ng-template #buttonsTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="menuClick('delete', data)"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #nameTemplate let-data="data">
+  <a class="clicable" (click)="changeSubscription(data)">
+    {{ data.entity2__name }}
+  </a>
+</ng-template>
+
+<ng-template #completeRelationTemplate let-data="data">
+  {{ data.entity2__complete_relation }}
+</ng-template>
+
+<ng-template #predefineTemplate let-data="data">
+  <ui-button
+    *ngIf="data.predefined"
+    type="icon"
+    color="accent"
+    icon="check_box">
+  </ui-button>
+  <ui-button
+    *ngIf="!data.predefined"
+    type="icon"
+    color="accent"
+    icon="check_box_outline_blank" (click)="predefineSubscription(data)">
+  </ui-button>
+</ng-template>
+
+<!-- TEMPLATES END -->

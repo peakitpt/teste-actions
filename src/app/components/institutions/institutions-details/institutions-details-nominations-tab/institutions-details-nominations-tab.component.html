@@ -1,0 +1,41 @@
+<section>
+  <h2>{{ modulePath + ':header.appointments' | i18next }}</h2>
+  <div class="scrollable-table">
+    <table class="mat-table" id="catechists-table">
+      <tr class="mat-header-row">
+        <th class="mat-header-cell col1">{{ modulePath +
+          ':model.entity_institution_appointments.curia_function_description' | i18next }}</th>
+        <th class="mat-header-cell col1">{{ modulePath + ':model.entity_institution_appointments.nominee_description' |
+          i18next }}</th>
+        <th class="mat-header-cell col1">{{ modulePath + ':model.entity_institution_appointments.start_date' | i18next
+          }}</th>
+        <th class="mat-header-cell col1">{{ modulePath + ':model.entity_institution_appointments.end_date' | i18next }}
+        </th>
+        <th class="mat-header-cell col1">{{ modulePath +
+          ':model.entity_institution_appointments.representing_description' | i18next }}</th>
+        <th class="mat-header-cell col1">{{ modulePath + ':model.entity_institution_appointments.description' | i18next
+          }}</th>
+      </tr>
+      <tr class="mat-row uiKyriosTableRow" *ngFor="let appointment of model.appointments_list">
+        <td class="mat-cell col1">
+          {{ appointment.curia_function_description }}
+        </td>
+        <td class="mat-cell col1">
+          {{ appointment.nominee_description }}
+        </td>
+        <td class="mat-cell col1">
+          {{ appointment.start_date | date:('translation:format.date' | i18next)}}
+        </td>
+        <td class="mat-cell col1">
+          {{ appointment.end_date | date:('translation:format.date' | i18next)}}
+        </td>
+        <td class="mat-cell col1">
+          {{ appointment.representing_description }}
+        </td>
+        <td class="mat-cell col1">
+          {{ appointment.description }}
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>

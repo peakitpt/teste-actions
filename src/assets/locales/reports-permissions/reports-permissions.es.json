@@ -1,0 +1,26 @@
+{
+    "module": {
+        "name_singular": "Permiso del Informe",
+        "name_many": "Permiso de Informe"
+    },
+    "action": {
+        "addUser": "Añadir Permiso del Informe",
+        "new": "Nuevo Permiso de Informe",
+        "edit": "Editar Permiso de Informe",
+        "delete": "Eliminar Permiso de Informe"
+    },
+    "message": {
+        "save_success": "¡Permiso de informe guardado con éxito!",
+        "delete_success": "¡Permiso de informe eliminado con éxito!",
+        "delete_success_plural": "¡Informe Permisos eliminados con éxito!",
+        "delete_are_you_sure": "¿Está seguro de que desea eliminar el Informe de Permiso\"<strong>{descripción }}</strong>\"?",
+        "delete_are_you_sure_plural": "Está seguro de que desea eliminar los <strong>{{ count }}</strong> Permisos de Informe seleccionados?",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionado"
+    },
+    "model": {
+        "entity_name": "Nombre de la Entidad",
+        "reporting_name": "Nombre a reportar",
+        "can_write": "Puede escribir"
+    }
+}

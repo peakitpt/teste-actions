@@ -1,0 +1,52 @@
+{
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionado",
+        "delete_success": "¡Las configuraciones de la Página web se han eliminado correctamente!",
+        "delete_success_plural": "¡Las configuraciones de la Página web se han eliminado correctamente!",
+        "modal_closed": "¿Está cerrada la ventana?",
+        "save_success": "¡Las configuraciones de la Página web se han guardado correctamente!",
+        "delete_are_you_sure": "¿Está seguro de que desea eliminar las configuraciones de la Página web con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que desea eliminar las <strong> {{count}} </strong> configuraciones de la Página web seleccionada?",
+        "no_website_found": "No se ha encontrado el sitio web"
+    },
+    "model": {
+        "email": "Correo electrónico",
+        "url": "URL",
+        "app_share": "Compartir contenido en la aplicación móvil {{ appName }}",
+        "url_facebook": "URL Facebook",
+        "url_youtube": "URL YouTube",
+        "url_twitter": "URL Twitter",
+        "seccao_boletim_description": "Sección de Newsletters",
+        "conteudo_informacoes_description": "Contenido de información",
+        "seccao_noticias_description": "Sección de noticias",
+        "masses_content_description": "Contenido de las Eucaristías",
+        "confessions_content_description": "Contenido de las confesiones",
+        "visits_to_the_sicks_content_description": "Contenido de las visitas a los pacientes",
+        "how_to_help_content_description": "Contenido de como ayudar",
+        "url_soundcloud": "URL SoundCloud",
+        "conteudo_ano_pastoral_description": "Contenido del Año Pastoral",
+        "parish_notary_content_description": "Contenido del Registro Parroquial",
+        "no_website_found": "No se encontró sitio web"
+    },
+    "action": {
+        "open_again": "Abrir de nuevo",
+        "add": "Agregar configuraciones de la Página web",
+        "new": "Nuevas configuraciones de la Página Web",
+        "edit": "Editar las configuraciones de la Página Web"
+    },
+    "header": {
+        "general_configurations": "Configuración general",
+        "social_network_configurations": "Configuración de las redes sociales",
+        "left_section": "Sección izquierda",
+        "main_section": "Sección principal",
+        "right_section": "Sección derecha",
+        "here": "aquí",
+        "general_content_configurations": "Contenidos Especiales",
+        "check_documentation": "Consulte la documentación sobre cómo configurar este módulo"
+    },
+    "module": {
+        "name_singular": "Configuraciones de la Página Web",
+        "name_many": "Configuraciones de la Página Web"
+    }
+}

@@ -1,0 +1,28 @@
+{
+  "module": {
+    "name_singular": "Configuração de Relatórios",
+    "name_many": "Configuração de Relatórios"
+  },
+  "action": {
+    "open_again": "Abrir de novo"
+  },
+  "message": {
+    "save_success": "Configuração de Relatórios guardadas com sucesso!",
+    "modal_closed": "A modal está fechada?",
+    "no_website_found": "Não foi encontrado uma configuração"
+  },
+  "model": {
+    "url": "URL",
+    "arciprestship_header": "Título/Arciprestado",
+    "chapelry_header": "Subtítulo/Paróquia",
+    "attachment_filename": "Logótipo",
+    "img_header_url": "Logótipo",
+    "address_footer": "Morada",
+    "contacts_footer": "Contactos"
+  },
+  "header": {
+    "header": "Cabeçalho",
+    "footer": "Rodapé",
+    "here": "aqui"
+  }
+}

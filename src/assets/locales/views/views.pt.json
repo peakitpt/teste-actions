@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name_singular": "Vista",
+    "name_many": "Vistas"
+  },
+  "model": {
+    "name": "Nome"
+  }
+}

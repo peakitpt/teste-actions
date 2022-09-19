@@ -1,0 +1,76 @@
+<ui-menu
+  type="hidden"
+  mainIcon="email"
+  [menuTemplate]="innerMessagesTemplate"
+  [hoverTitle]="'translation:notifications_messages.title' | i18next"
+  >
+</ui-menu>
+
+<span
+  *ngIf="totalNotifications > 0"
+  [ui-badge]="totalNotifications"
+  ui-badge-color="warn"
+  ui-badge-position="above after">
+</span>
+
+<ng-template #innerMessagesTemplate>
+  <div class="messages-alerts-container" fxLayout="column">
+
+    <div fxFlex="120px" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+      <div class="mat-body" style="font-size: 20px;">
+        {{ 'translation:notifications_messages.title' | i18next }}
+      </div>
+      <div *ngIf="totalMessages > 0; else zeroMessages">
+        <ui-button
+          [label]="'translation:notifications_messages.new_count' | i18next: { count: totalMessages }"
+          type="flat" color="accent"
+          (click)="goToMessages()"></ui-button>
+      </div>
+      <ng-template #zeroMessages>
+        <ui-button
+          [label]="'user-newsletters:module.name_many' | i18next"
+          type="flat" color="accent"
+          (click)="goToMessages()"></ui-button>
+      </ng-template>
+    </div>
+
+    <ui-divider></ui-divider>
+
+    <ng-container *ngIf="totalPentingEntities > 0">
+      <div class="mat-body" fxLayout="row" fxLayoutAlign="center center" class="no-messages-body">
+        <a [routerLink]="'/pending-entities'" class="clicable">
+          <h3>{{ 'translation:notifications_messages.new_pending_entities' | i18next: { count: totalPentingEntities} }}</h3>
+        </a>
+      </div>
+
+      <ui-divider></ui-divider>
+    </ng-container>
+
+
+    <div class="messages-container" fxFlex>
+      <ng-container *ngIf="totalMessages > 0 && newsletters$ | async as messages ; else noMessages">
+        <div *ngFor="let message of messages.results" fxLayout="row" class="message-alert-line" (click)="goToMessage(message.id)">
+          <div fxLayout="row" fxLayoutAlign="center center" fxFlex="15">
+            <ui-icon icon="email"></ui-icon>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="center start" fxFlex>
+            <div fxLayout="column" fxLayoutAlign="center start" fxFlex>
+              <div class="mat-body-strong message-subject">{{ message.subject }}</div>
+              <div *ngIf="message.sent_at !== null; else noDate" class="mat-body">{{ message.sent_at | date:"dd/MM/yyyy" }}</div>
+              <ng-template #noDate>
+                <div class="mat-body">{{ 'translation:notifications_messages.no_date' | i18next }}</div>
+              </ng-template>
+            </div>
+            <ui-divider style="width: 100%;"></ui-divider>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noMessages>
+        <div class="mat-body" fxLayout="row" fxLayoutAlign="center center" class="no-messages-body">
+          <h3>{{ 'translation:notifications_messages.no_new_messages' | i18next }}</h3>
+        </div>
+      </ng-template>
+    </div>
+
+  </div>
+</ng-template>

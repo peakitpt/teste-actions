@@ -1,0 +1,66 @@
+{
+    "module": {
+        "name_singular": "Newsletter",
+        "name_many": "Newsletters"
+    },
+    "action": {
+        "test_newsletter": "Probar Newsletter",
+        "new": "Nueva Newsletter",
+        "edit": "Editar Newsletter",
+        "delete": "¿Eliminar Newsletter?",
+        "send_test": "Probar Newsletter",
+        "send": "Enviar"
+    },
+    "message": {
+        "save_success": "¡Newsletter guardada con éxito!",
+        "delete_success": "¡Newsletters eliminada con éxito!",
+        "delete_success_plural": "¡Newsletters eliminadas con éxito!",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar la Newsletter \"<strong>{{ title }}</strong>?",
+        "delete_are_you_sure_plural": "¿Estás seguro de que quieres eliminar las \"<strong>{{ count }}</strong> Newsletters seleccionadas?",
+        "test_are_you_sure": "¿Seguro que quiere enviar la Newsletter \"<strong>{{ title }}</strong>\" para los correos electrónicos de prueba?<br/> Se enviará a:<strong>{{ emails }}</strong><br/><br/> Los ajustes se guardarán automáticamente.",
+        "test_are_you_sure_plural": "¿Estás seguro de que quieres enviar <strong>{{ count }}</strong> Newsletters para los respectivos correos electrónicos de prueba?",
+        "send_success": "¡Newsletter enviada con éxito!",
+        "error_no_test_recipient": "No se ha definido correos electrónicos de prueba",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionado"
+    },
+    "model": {
+        "frequency": "Frecuencia",
+        "sending_date": "Fecha de envío",
+        "title": "Título",
+        "sent": "Enviada",
+        "placeholder": {
+            "layout": "Utilice el diseño seleccionado como plantilla para el mensaje. Reemplaza el mensaje actual!",
+            "separated_by_semicolons": "Separados por punto y coma (;)"
+        },
+        "sending_hour": "Hora de envío",
+        "for_internal_read": "Leer en Kyrios",
+        "to": "Al (grupo)",
+        "additional_recipients": "A (correos electrónicos adicionales)",
+        "test_recipient": "Correos electrónicos de prueba",
+        "subject": "Asunto",
+        "newsletter_read_statuses_attributes": {
+            "recipient_email": "Destinatario",
+            "read_at": "Leído en"
+        },
+        "active": "Enviar",
+        "layout": "Diseño",
+        "message": "Mensaje"
+    },
+    "frequency": {
+        "unique": "Una vez",
+        "yearly": "Anual",
+        "daily": "Diario",
+        "monthly": "Mensualmente",
+        "weekly": "Semanalmente"
+    },
+    "header": {
+        "recipients": "Destinatarios",
+        "schedule": "Programar",
+        "message": "Mensaje"
+    },
+    "tabs": {
+        "main": "Newsletter",
+        "read_status": "Estado de lectura"
+    }
+}

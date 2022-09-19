@@ -1,0 +1,29 @@
+{
+  "module": {
+    "name_singular": "Tipo de Emolumento",
+    "name_many": "Tipos de Emolumentos"
+  },
+  "action": {
+    "add": "Adicionar Tipo de Emolumento",
+    "new": "Novo Tipo de Emolumento",
+    "edit": "Editar Tipo de Emolumento"
+  },
+  "message": {
+    "save_success": "Tipo de Emolumento guardado com sucesso!",
+    "delete_success": "Tipo de Emolumento apagado com sucesso!",
+    "delete_success_plural": "Tipos de Emolumentos apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Tipo de Emolumento com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Tipos de Emolumentos selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Nome",
+    "is_donation_emolument": "Para donativos"
+
+  },
+  "header": {
+    "menu": "Numerador",
+    "sub_menus": "Sub-menus"
+  }
+}

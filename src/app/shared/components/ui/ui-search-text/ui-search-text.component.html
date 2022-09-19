@@ -1,0 +1,14 @@
+<div fxLayout="row" fxLayoutGap="25px">
+  <div fxFlex="20" fxLayoutAlign="start center">{{ label }}:</div>
+
+  <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+    <ui-input
+      fxFlex
+      [placeholder]="placeholder"
+      [appearance]="'standard'"
+      [control]="control"
+      [type]="type"
+      (keyup.enter)="search()">
+    </ui-input>
+  </div>
+</div>

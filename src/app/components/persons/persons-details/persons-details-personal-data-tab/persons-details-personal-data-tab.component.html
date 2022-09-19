@@ -1,0 +1,283 @@
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
+  <div class="resume-links" fxLayout="row wrap" fxLayoutGap="5px" fxLayoutAlign="center center">
+    <ui-icon icon="file_copy"></ui-icon>
+    <div fxLayout="column" fxLayoutAlign="center start" >
+      <div class="mat-body-strong">{{ modulePath + ':header.processes' | i18next }}</div>
+      <a routerLink="/parishioner-processes/{{ model.entity.id }}" [queryParams]="{id: model.id}" target="_blank">{{ 'translation:action.view' | i18next }}</a>
+    </div>
+  </div>
+  <ng-container *ngIf="families?.length">
+    <div class="resume-links" fxLayout="row wrap" fxLayoutGap="5px" fxLayoutAlign="center center">
+      <ui-icon icon="family_restroom"></ui-icon>
+      <div fxLayout="column" fxLayoutAlign="center start" >
+        <div class="mat-body-strong">{{ modulePath + ':header.family' | i18next }}</div>
+        <ng-container *ngFor="let family of families">
+          <a href="families/{{family.id}}/details">{{ family.name }}</a>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<section id="personal-data-section">
+  <h2>{{ modulePath + ':header.personal_data' | i18next }}</h2>
+  <div fxLayout="row wrap">
+    <div [fxFlex.lt-md]="100" [fxFlex.gt-sm]="model.entity.photo_url ? 80 : 100" fxLayout="column" class="section-container">
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div [fxFlex]="model.entity.photo_url ? 62 : 50" class="mat-body-strong">{{ modulePath + ':model.serie_number' | i18next }}:</div>
+        <div fxFlex>{{ model.serie_number }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div [fxFlex]="model.entity.photo_url ? 62 : 50" class="mat-body-strong">{{ modulePath + ':model.entity.name' | i18next }}:</div>
+        <div fxFlex>{{ model.title ? '(' + model.title + ') ' : '' }}{{ model.entity.name }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div [fxFlex]="model.entity.photo_url ? 62 : 50" class="mat-body-strong">{{ modulePath + ':model.sex' | i18next }}:</div>
+        <div fxFlex>{{ (model.sex ? 'translation:gender.male' : 'translation:gender.female') | i18next }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div [fxFlex]="model.entity.photo_url ? 62 : 50" class="mat-body-strong">{{ modulePath + ':model.entity.disabled' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.entity.disabled ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div [fxFlex]="model.entity.photo_url ? 62 : 50" class="mat-body-strong">{{ modulePath + ':model.is_parishioner' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.is_parishioner ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+    </div>
+
+    <div [fxFlex.lt-md]="100" [fxFlex.gt-sm]="20" fxLayout="column" fxLayoutAlign="space-evenly center" *ngIf="model.entity.photo_url">
+      <a [href]="sharedModule.getUploadFileLink(environment, model.entity.photo_url)" target='_blank'>
+        <img class="photo-img-detail" [src]="sharedModule.getUploadFileLink(environment, model.entity.photo_url)" onerror="this.src='assets/image-placeholder-350x350.png'"/>
+      </a>
+      <p class="mat-small">{{model.entity.photo_filename}}</p>
+    </div>
+  </div>
+
+  <section *ngIf="model.birth_date || model.entity_birth_place_description || model.entity.civil_status || model.qualifications ||
+  model.entity.entity_birth_chapelry_description || (!model.entity.entity_birth_chapelry_description && model.entity.entity_birth_chapelry_free_text) ||
+  model.birth_place_parish || model.birth_place_county">
+    <div fxLayout="row" style="margin-top: 20px;">
+      <div class="section-container" fxLayout="column" fxFill>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.birth_date">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.birth_date' | i18next }}:</div>
+          <div fxFlex>{{ model.birth_date | date:('translation:format.date' | i18next) }} — {{ modulePath + ':placeholder.age' | i18next }}: {{ sharedModule.calculateAge(model.birth_date) }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity_birth_place_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_birth_place_description' | i18next }}:</div>
+          <div fxFlex>
+            <a (click)="openDetails('countries', model.entity_birth_place_id)">{{ model.entity_birth_place_description | i18next }}</a>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.civil_status">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.civil_status_id' | i18next }}:</div>
+          <div fxFlex>{{ model.entity.civil_status }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.qualifications">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.qualifications_id' | i18next }}:</div>
+          <div fxFlex>{{ model.qualifications }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_birth_chapelry_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_birth_chapelry_description' | i18next }}:</div>
+          <div fxFlex>
+            <a (click)="openDetails('chapelries', model.entity.entity_birth_chapelry_id)">{{ model.entity.entity_birth_chapelry_description | i18next }}</a>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="!model.entity.entity_birth_chapelry_description && model.entity.entity_birth_chapelry_free_text">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_birth_chapelry_free_text' | i18next }}:</div>
+          <div fxFlex>{{ model.entity.entity_birth_chapelry_free_text }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.birth_place_parish">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.birth_place_parish' | i18next }}:</div>
+          <div fxFlex>{{ model.birth_place_parish }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.birth_place_county">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.birth_place_county' | i18next }}:</div>
+          <div fxFlex>{{ model.birth_place_county }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section id="address-section" *ngIf="model.entity.residence_chapelry_description || model.entity.address || model.entity.door_number ||
+model.entity.postal_code || model.entity.place || model.entity.county || model.entity.district || model.entity.country_description ||
+model.previous_address">
+  <h2>{{ modulePath + ':header.address' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.residence_chapelry_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.residence_chapelry_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('chapelries', model.entity.residence_chapelry_id)">{{ model.entity.residence_chapelry_description | i18next }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.address">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.address' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.address }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.door_number">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.door_number' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.door_number }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.postal_code">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.postal_code' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.postal_code }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.place">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.place' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.place }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.county">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.county' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.county }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.district">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.district' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.district }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.country_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.country_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('countries', model.entity.country_id)">{{ model.entity.country_description | i18next }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.previous_address">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.previous_address' | i18next }}:</div>
+        <div fxFlex>{{ model.previous_address }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacts-section" *ngIf="model.entity.email || model.entity.mobilephone || model.entity.phone || model.entity.fax || model.entity.url">
+  <h2>{{ modulePath + ':header.contacts' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.email">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.email' | i18next }}:</div>
+        <div fxFlex>
+          <a [href]="'mailto:' + model.entity.email">{{ model.entity.email }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.mobilephone">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.mobilephone' | i18next }}:</div>
+        <div fxFlex>
+          <a [href]="'tel:' + model.entity.mobilephone">{{ model.entity.mobilephone }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.phone">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.phone' | i18next }}:</div>
+        <div fxFlex>
+          <a [href]="'tel:' + model.entity.phone">{{ model.entity.phone }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.fax">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.fax' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.fax }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.url">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.url' | i18next }}:</div>
+        <div fxFlex>
+          <a [href]="model.entity.url.startsWith('http') ? model.entity.url : 'http://' + model.entity.url" target="_blank">{{ model.entity.url }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="identification-docs-section" *ngIf="model.entity.taxpayer || model.ident_document_type || model.ident_document_number ||
+model.ident_document_emission_date || model.ident_document_emitted_by || model.ident_document_validity_date">
+  <h2>{{ modulePath + ':header.identification_docs' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.taxpayer">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.taxpayer' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.taxpayer }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.ident_document_type">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.ident_document_type' | i18next }}:</div>
+        <div fxFlex>{{ model.ident_document_type }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.ident_document_number">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.ident_document_number' | i18next }}:</div>
+        <div fxFlex>{{ model.ident_document_number }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.ident_document_emission_date">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.ident_document_emission_date' | i18next }}:</div>
+        <div fxFlex>{{ model.ident_document_emission_date | date:('translation:format.date' | i18next) }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.ident_document_emitted_by">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.ident_document_emitted_by' | i18next }}:</div>
+        <div fxFlex>{{ model.ident_document_emitted_by }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.ident_document_validity_date">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.ident_document_validity_date' | i18next }}:</div>
+        <div fxFlex>{{ model.ident_document_validity_date | date:('translation:format.date' | i18next) }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="family-section" *ngIf="model.entity_spouse_description || model.maritial_status || model.wedding_date ||
+model.entity_wedding_location_description || model.entity_father_description || model.entity_mother_description">
+  <h2>{{ modulePath + ':header.family' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity_spouse_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_spouse_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity_spouse?.entity_person.id)">{{ model.entity_spouse_description | i18next }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.maritial_status">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.maritial_status' | i18next }}:</div>
+        <div fxFlex>{{ model.maritial_status }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.wedding_date">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.wedding_date' | i18next }}:</div>
+        <div fxFlex>{{ model.wedding_date | date:('translation:format.date' | i18next)  }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity_wedding_location_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_wedding_location_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('worshipplaces', model.entity_wedding_location_id)">{{ model.entity_wedding_location_description | i18next }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.is_adopted' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.is_adopted ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity_father_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_father_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity_father?.entity_person.id)">{{ model.entity_father_description | i18next }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity_mother_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_mother_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity_mother?.entity_person.id)">{{ model.entity_mother_description | i18next }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="other-info-section" *ngIf="model.comments">
+  <h2>{{ modulePath + ':header.other_info' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.comments' | i18next }}:</div>
+        <div fxFlex>{{ model.comments }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+

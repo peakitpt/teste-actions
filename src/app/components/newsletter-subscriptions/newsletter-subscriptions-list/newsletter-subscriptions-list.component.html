@@ -1,0 +1,62 @@
+<router-outlet></router-outlet>
+<ng-container *ngIf="modelList$ | async as modelList">
+  <ui-card>
+    <div content>
+      <ng-container *ngIf="selectedRows$ | async as selectedRows">
+        <ui-toolbar
+          *ngIf="selectedRows.length"
+          [title]="modulePath + ':message.selected' | i18next: { count: selectedRows.length }"
+          [dataModel]="toolbarDataModel"
+          rowColor="accent"
+          (iconClickedEvent)="toolbarItemClick($event)"
+          ></ui-toolbar>
+      </ng-container>
+
+      <ui-table
+        #table
+        [dataSource]="modelList.results"
+        [tableColumns]="tableColumns"
+        checkboxes="true"
+        stickyHeader="true"
+        (checkboxSelectionEvent)="checkboxSelectionEvent($event)"
+        (columnFilterEvent)="columnFilterEvent($event)"
+        (columnOrdinationEvent)="columnOrdinationEvent($event)">
+      </ui-table>
+
+      <kyr-table-pagination>
+        <ui-paginator
+          [length]="modelList.total"
+          [pageIndex]="modelList.page - 1"
+          [pageSize]="limit"
+          (onChangeEvent)="paginationChangeEvent($event)"
+        ></ui-paginator>
+        <ui-menu
+          type="icons"
+          [model]="pagerMenu"
+          xPosition="before"
+          (sendValue)="menuClick($event)"
+        ></ui-menu>
+      </kyr-table-pagination>
+    </div>
+  </ui-card>
+</ng-container>
+
+<!-- TEMPLATES -->
+<ng-template #activeTemplate let-data="data">
+  <div fxFill fxLayoutAlign="start center">
+    <mat-checkbox [checked]="data.active" [disabled]="true"></mat-checkbox>
+  </div>
+</ng-template>
+
+<ng-template #buttonsTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ui-button [title]="modulePath + ':action.toggle_activation' | i18next" type="icon" icon="thumbs_up_down" (onClickEvent)="toggleActivation(data)"></ui-button>
+  </div>
+</ng-template>
+
+<kyr-newsletter-subscription-toggle-confirmation *ngIf="openToggleNewsletterSubscriptionModal"
+  [model]="selectedNewsletterSubscription"
+  (emitModalClose)="openToggleNewsletterSubscriptionModal = false"
+>
+</kyr-newsletter-subscription-toggle-confirmation>
+<!-- TEMPLATES END -->

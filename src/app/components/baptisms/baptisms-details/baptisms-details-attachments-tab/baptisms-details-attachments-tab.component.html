@@ -1,0 +1,16 @@
+<section id="attachments-section">
+  <div fxLayout="column">
+    <table class="mat-table">
+      <tr class="mat-header-row">
+        <th class="mat-header-cell">#</th>
+        <th class="mat-header-cell">{{ modulePath + ':model.baptisms_attachments.attachment' | i18next }}</th>
+        <th class="mat-header-cell">{{ modulePath + ':model.baptisms_attachments.description' | i18next }}</th>
+      </tr>
+      <tr class="mat-row uiKyriosTableRow" *ngFor="let attachment of model.baptisms_attachments; let i = index" [attr.data-index]="i">
+        <td class="mat-cell">{{ i + 1 }}</td>
+        <td class="mat-cell"><a [href]="getAttachmentUrl(attachment)">{{ attachment.attachment_name }}</a></td>
+        <td class="mat-cell">{{ attachment.description }}</td>
+      </tr>
+    </table>
+  </div>
+</section>

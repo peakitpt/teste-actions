@@ -1,0 +1,103 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="router.navigate([modulePath])"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu *ngIf="headerOptionsMenu.length" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+    <ui-button type="flat" [label]="'translation:action.save_new' | i18next" color="secondary" (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true"></ui-button>
+
+    <ui-button type="flat" [label]="'translation:action.save' | i18next" color="accent" (onClickEvent)="onSubmit()"></ui-button>
+  </div>
+</ng-template>
+
+<!-- TEMPLATES START -->
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body" (keydown.enter)="$event.preventDefault()">
+    <section id="scheduling-section">
+      <h2>{{ modulePath + ':header.schedule' | i18next }}</h2>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <div ngClass.gt-xs="center-checkbox">
+          <ui-checkbox [label]="modulePath + ':model.active' | i18next" [control]="form.get('active')"></ui-checkbox>
+        </div>
+        <ui-datepicker fxFlex fxHide.lt-sm="true" [label]="modulePath + ':model.sending_date' | i18next" [minDate]="minDate" [required]="true" [control]="form.get('sending_date')"></ui-datepicker>
+        <ui-datepicker fxFlex fxHide.gt-xs="true" touchMode="true" [label]="modulePath + ':model.sending_date' | i18next" [minDate]="minDate" [required]="true" [control]="form.get('sending_date')"></ui-datepicker>
+        <ui-input fxFlex [label]="modulePath + ':model.sending_hour' | i18next" [required]="true" placeholder="HH:MM" [control]="form.get('sending_hour')" [errorMessage]="'translation:message.hour_format_error' | i18next"></ui-input>
+        <ui-select fxFlex [label]="modulePath + ':model.frequency' | i18next" [required]="true" [control]="form.get('frequency')" [options]="frequencyOptions"></ui-select>
+      </div>
+    </section>
+    <div fxLayout="row wrap" fxLayoutGap="20px grid">
+      <div fxLayout="column" fxFlex>
+        <section id="message-section">
+          <h2>{{ modulePath + ':header.message' | i18next }}</h2>
+          <ui-input [label]="modulePath + ':model.description' | i18next" [required]="true" [control]="form.get('description')"></ui-input>
+          <ui-textarea fxHide.lt-sm="true" rows="6" [label]="modulePath + ':model.message' | i18next" [required]="true" [control]="form.get('message')"></ui-textarea>
+          <ui-textarea fxHide.gt-xs="true" [label]="modulePath + ':model.message' | i18next" [required]="true" [control]="form.get('message')"></ui-textarea>
+        </section>
+      </div>
+      <div fxLayout="column" fxFlex>
+        <section id="recipients-section">
+          <h2>{{ modulePath + ':header.recipients' | i18next }}</h2>
+          <ui-input [label]="modulePath + ':model.group' | i18next" readonly="true" [control]="form.get('group_description')" [rightTemplate]="{ template: groupRightTemplate }"></ui-input>
+          <ui-textarea [label]="modulePath + ':model.additional_recipients' | i18next" [placeholder]="modulePath + ':model.placeholder.additional_recipients' | i18next" [control]="form.get('additional_recipients')"></ui-textarea>
+          <ui-input [label]="modulePath + ':model.test_recipient' | i18next" [control]="form.get('test_recipient')"></ui-input>
+        </section>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #groupRightTemplate>
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('groups-modal', 'group')"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="groupsMenuOptions" (sendValue)="menuClick($event, 'group')"></ui-menu>
+  </div>
+</ng-template>
+
+<kyr-text-messages-send-test *ngIf="openSendTextMessageModal"
+  [model]="form.getRawValue()"
+  (emitModalClose)="openSendTextMessageModal = false"
+>
+</kyr-text-messages-send-test>
+<!-- TEMPLATES END -->

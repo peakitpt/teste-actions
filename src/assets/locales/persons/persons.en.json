@@ -1,0 +1,300 @@
+{
+    "module": {
+        "name_singular": "Individual Record",
+        "name_many": "Individual Records"
+    },
+    "action": {
+        "new": "New Individual Record",
+        "edit": "Edit Individual Record",
+        "delete": "Delete Individual Record?",
+        "continue": "Continue",
+        "group_toggle_subscription": "{{ action }} subscription in the group?",
+        "group_deactivate": "Deactivate",
+        "group_activate": "Activate"
+    },
+    "message": {
+        "save_success": "Individual Record successfully saved!",
+        "delete_success": "Individual Record successfully deleted!",
+        "delete_are_you_sure": "Are you sure that you want to delete the Individual Record with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Selected Individual Fact Sheets?",
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "field_deceased_affected": "The field \"Deceased\", on the \"Categories\" tab was affected",
+        "field_maritial_status_affected": "The field \"Wedding type\" was affected",
+        "field_civil_status_affected": "The field \"Maritial status\" was affected",
+        "error_blank_mec_renewals": "Please fill every field on the Renewals table, on the EMC tab",
+        "are_you_sure_you_want_to_save": "Are you sure you want to save it?",
+        "duplicated_vat": "There is already an entity with the VAT number \"<strong>{{ value }}</strong>\";",
+        "duplicated_name": "There is already an entity with the name \"<strong>{{ value }}</strong>\";",
+        "group_toggle_deactivated": "Subscription successfully deactivated!",
+        "group_toggle_activated": "Subscription successfully active!",
+        "group_toggle_are_you_sure": "Do you really want to {{ action }} subscription group \"<strong>{{ groupName }}</strong>\"?",
+        "error_appointments_dates": "The end dates must be longer than the start dates in the Nominations table on the Curia tab",
+        "error_blank_appointments": "Please fill in all the required fields of the Nominations table on the Curia tab",
+        "field_catechist_affected": "The \"Catechist\" field was affected",
+        "field_pastoral_agent_affected": "The \"Pastoral Agent\" field was affected",
+        "field_newsletter_subscriptor_affected": "The field \"Groups (Newsletter/SMS)\" has been affected"
+    },
+    "model": {
+        "birth_date": "Birthdate",
+        "is_parishioner": "Parishioner",
+        "serie_number": "Registration No.",
+        "deceased": "Deceased",
+        "sex": "Gender",
+        "is_catechized": "Catechizing",
+        "comments": "Observations",
+        "title": "Title",
+        "qualifications_id": "Qualifications",
+        "entity_birth_place_description": "Nationality",
+        "birth_place_parish": "Birth parish",
+        "birth_place_county": "Birth county",
+        "previous_address": "If you changed residence in the last year, indicate the previous address",
+        "ident_document_type": "Identification type",
+        "ident_document_number": "Identification nr.",
+        "ident_document_emission_date": "Emission date",
+        "ident_document_emitted_by": "Issued by",
+        "ident_document_validity_date": "Validity date",
+        "is_adopted": "Adopted",
+        "entity_father_description": "Father",
+        "entity_mother_description": "Mother",
+        "maritial_status": "Wedding type",
+        "entity_spouse_description": "Spouse",
+        "wedding_date": "Wedding date",
+        "entity_wedding_location_description": "Wedding place",
+        "professional_profession_description": "Profession",
+        "professional_post": "Post",
+        "professional_company": "Company",
+        "professional_address": "Address",
+        "professional_door_number": "Door nr.",
+        "professional_postal_code": "Postal code",
+        "professional_locality": "Locality",
+        "professional_parish": "Parish",
+        "professional_county": "County",
+        "professional_district": "District",
+        "professional_country_description": "Country",
+        "professional_mobilephone": "Mobilephone",
+        "professional_phone": "Phone",
+        "professional_fax": "Fax",
+        "professional_email": "Email",
+        "professional_url": "Website",
+        "outside_chapelry_description": "Baptism place",
+        "suitability_request": "Request of",
+        "baptized_chrismed_description": "Who will receive",
+        "entity": {
+            "name": "Name",
+            "email": "E-mail",
+            "mobilephone": "Mobile Phone",
+            "phone": "Cell Phone",
+            "fax": "Fax",
+            "url": "Website",
+            "disabled": "Active",
+            "taxpayer": "Tax ID",
+            "can_sign_documents": "Can sign documents",
+            "newsletter_subscriptor": "Groups",
+            "civil_status_id": "Maritial status",
+            "entity_birth_chapelry_description": "Birth parish",
+            "entity_birth_chapelry_free_text": "Birth parish (free text)",
+            "residence_chapelry_description": "Residence parish",
+            "address": "Adress",
+            "door_number": "Door nr.",
+            "postal_code": "Zip code",
+            "place": "Locality",
+            "county": "County",
+            "district": "District",
+            "country_description": "Country",
+            "is_public_profile": "Public",
+            "entity_elder_patient": {
+                "elder": "Elder",
+                "sick": "Sick",
+                "sunday_communion": "Sunday communion",
+                "sunday_communion_minister_description": "Minister of communion",
+                "anointing_ofthe_sick_date": "Date",
+                "anointing_ofthe_sick_locale": "Place"
+            },
+            "entity_catechist": {
+                "catechist": "Catechist",
+                "initiation_course_date": "Date",
+                "initiation_course_avaliation": "Evaluation",
+                "general_course_date": "Date",
+                "general_course_avaliation": "Evaluation",
+                "complementary_course_date": "Date",
+                "complementary_course_avaliation": "Evaluation"
+            },
+            "entity_mec": {
+                "mec": "EMC",
+                "mec_number": "EMC Nr.",
+                "magnetic_number": "Magnetic Nr.",
+                "institution_date": "Nomination date",
+                "institution_center_worshipplace_description": "Institution center",
+                "entities_mecs_lines": {
+                    "renewal_date": "Renewal date"
+                }
+            },
+            "entity_acolyte": {
+                "is_acolyte": "Acolyte"
+            },
+            "entity_pastoral_agent": {
+                "active": "Pastoral Agent"
+            },
+            "entity_reader": {
+                "is_reader": "Reader"
+            },
+            "photo_filename": "Photography"
+        },
+        "catechized_has_catechized_brothers": "Have any brothers in catechesis? Names",
+        "catechized_has_brothers_info": "Have any brothers? How many? Names and ages",
+        "lives_with_text": "With who?",
+        "lives_with": "Live with",
+        "christian_attended_catechism_district": "District",
+        "christian_attended_catechism_county": "County",
+        "christian_attended_catechism_worshipplace_description": "Place of worship",
+        "catechism_last_year": "Last year attended",
+        "christian_attended_catechism": "Frequent catechesis",
+        "christian_often_eucharist": "Frequency in the Eucharist",
+        "entity_person_appointments": {
+            "description": "Description",
+            "representing_description": "Represent",
+            "appointment_place_description": "Place",
+            "curia_function_description": "Function",
+            "end_date": "End",
+            "start_date": "Start"
+        }
+    },
+    "placeholder": {
+        "title": "Mr., Mrs., Eng., Dr., …",
+        "age": "Age",
+        "newsletter_subscriptor": "It is only possible if it is active. Allows the sending of Newsletters/SMS"
+    },
+    "tabs": {
+        "personal_data": "Personal Data",
+        "categories": "Categories",
+        "curia": "Curia",
+        "christian_life": "Christian life",
+        "professional_life": "Profissional life",
+        "catechist": "Catechist",
+        "mec": "EMC",
+        "elder_sick": "Elder/Sick",
+        "groups": "Groups",
+        "reports": "Reports"
+    },
+    "header": {
+        "personal_data": "Personal Data",
+        "address": "Adress",
+        "contacts": "Contact",
+        "identification_docs": "Identification documents",
+        "family": "Family",
+        "other_info": "Other information",
+        "profession": "Profession",
+        "catechist_introductory_course": "Introductory course",
+        "catechist_general_course": "General course",
+        "catechist_complementary_course": "Complementary course",
+        "elder_sick_sunday_communion": "Sunday communion",
+        "elder_sick_anointing_of_the_sick": "Anointing of the sick",
+        "reports_authorization_for_baptism_outside_parish": "Authorization for baptism outside the parish",
+        "reports_godparents_request_suitability": "Application for Certificate of Suitability for godfather/godmother",
+        "mec_extraordinary_minister_of_communion": "Extraordinary Minister of Communion",
+        "mec_renewals": "Renewals",
+        "subheader": {
+            "presences": "Registration / presences",
+            "parties": "Catechesis festivities",
+            "sacraments": "Sacraments"
+        },
+        "christian_life_catechism": "Catechesis",
+        "christian_life": "Christian life",
+        "processes": "Processes",
+        "groups": "Groups",
+        "curia_appointments": "Nominations"
+    },
+    "suitability_request_options": {
+        "baptism": "Baptism",
+        "chrism": "Chrism"
+    },
+    "presences_table": {
+        "years": {
+            "year_10": "10th year",
+            "year_9": "9th year",
+            "year_8": "8th year",
+            "year_7": "7th year",
+            "year_6": "6th year",
+            "year_5": "5th year",
+            "year_4": "4th year",
+            "year_3": "3rd year",
+            "year_2": "2nd year",
+            "year_1": "1st year"
+        },
+        "header": {
+            "comments": "Comments",
+            "failures": "Faults",
+            "attendance": "Presences",
+            "inscription": "Registration",
+            "year": "Year"
+        }
+    },
+    "parties_table": {
+        "parties": {
+            "year_10": "10th year",
+            "year_9": "9th year",
+            "year_8": "8th year",
+            "year_7": "7th year",
+            "year_6": "6th year (Prof. of Faith)",
+            "year_5": "5th year",
+            "year_4": "4th year",
+            "year_3": "3rd year",
+            "year_2": "2nd year",
+            "year_1": "1st year"
+        },
+        "header": {
+            "district": "District",
+            "county": "County",
+            "worshipplace": "Place of worship",
+            "date": "Date",
+            "party": "Party",
+            "year": "Year"
+        }
+    },
+    "sacraments_table": {
+        "sacraments": {
+            "chrism": "Confirmation",
+            "first_communion": "Communion",
+            "first_confession": "1st Confession",
+            "baptized": "Baptism"
+        },
+        "header": {
+            "district": "District",
+            "county": "County",
+            "worshipplace": "Place of worship",
+            "sheet": "Paper",
+            "seat_nr": "Entry nº",
+            "date": "Date",
+            "sacrament": "Sacrament"
+        }
+    },
+    "lives_with": {
+        "other": "Other",
+        "father": "Father",
+        "mother": "Mother",
+        "parents": "Contry"
+    },
+    "catechism_years": {
+        "10_year": "10th year",
+        "9_year": "9th year",
+        "8_year": "8th year",
+        "7_year": "7th year",
+        "6_year": "6th year",
+        "5_year": "5th year",
+        "4_year": "4th year",
+        "3_year": "3rd year",
+        "2_year": "2nd year",
+        "1_year": "1st year"
+    },
+    "filters": {
+        "does_xx_wedding_birthday": "Anniversary of Marriage",
+        "does_xx_wedding_birthday_hint": "Until the end of the current/initial month if no end date is given in the filter by date",
+        "others": "Others",
+        "does_birthday": "Birthday",
+        "does_birthday_hint": "It will ignore the year",
+        "does_wedding_birthday": "Marriage Anniversary",
+        "does_wedding_birthday_hint": "It will ignore the year",
+        "does_xx_wedding_birthday_placeholder": "No. of years"
+    }
+}

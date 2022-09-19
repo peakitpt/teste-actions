@@ -1,0 +1,41 @@
+{
+    "module": {
+        "name_singular": "Documento",
+        "name_many": "Documentos"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar el documento de \"<strong>{{ document_title }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quiere eliminar los <strong>{{ count }}</strong> Documentos seleccionados?",
+        "delete_success": "¡Documento eliminado con éxito!",
+        "save_success": "¡Documento guardado con éxito!"
+    },
+    "header": {
+        "content": "Contenido del Documento",
+        "recipient": "Destinatario",
+        "sender": "Remitente"
+    },
+    "model": {
+        "footnotes": "Notas a pie de página",
+        "document_text": "Estructura del documento",
+        "document_date": "Fecha",
+        "document_title": "Título",
+        "document_reference": "Referencia",
+        "entity_address": "Dirección",
+        "entity_name": "Nombre del destinatario",
+        "entity_title": "Título honorífico",
+        "institution_date": "Fecha",
+        "signature_post": "Cargo en la entidad",
+        "signature": "Firma",
+        "institution_reference": "Referencia",
+        "institution_service": "Servicio",
+        "institution_subject": "Asunto",
+        "institution_name": "Nombre del remitente"
+    },
+    "action": {
+        "delete": "¿Eliminar Documento?",
+        "edit": "Editar Documento",
+        "new": "Nuevo Documento"
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "module": {
+        "name_singular": "Exercise",
+        "name_many": "Exercises"
+    },
+    "action": {
+        "new": "New Exercise",
+        "next_year": "Passing Year",
+        "delete": "Delete Exercise?",
+        "edit": "Edit Exercise"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Exercise?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> selected Exercises?",
+        "delete_success": "Exercise successfully deleted!",
+        "delete_success_plural": "Exercises successfully deleted!",
+        "save_success": "Exercise successfully saved!"
+    },
+    "model": {
+        "active": "Active",
+        "taxonomy_reference_description": "Reference",
+        "end_date": "End",
+        "start_date": "Start",
+        "year": "Year"
+    }
+}

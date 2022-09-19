@@ -1,0 +1,104 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+  >
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.entity_description }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div class="header-buttons" fxLayout="row">
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : bodyTemplate;">
+  </ng-container>
+</ng-template>
+
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #bodyTemplate>
+  <router-outlet></router-outlet>
+  <div *ngIf="model$ | async as model" class="div-body">
+    <div class="tab-content">
+      <section>
+        <div fxLayout="row">
+          <div class="section-container" fxLayout="column" fxFill>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <div fxFlex><strong>{{ 'bishopric-integrated-views:model.diocese_description' | i18next }}:</strong></div>
+              <div fxFlex>{{ model.diocese_description  }}</div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <div fxFlex><strong>{{ 'bishopric-integrated-views:model.entity_description' | i18next }}:</strong></div>
+              <div fxFlex>{{ model.entity_description  }}</div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <section *ngIf="model.accounting_chart_account_balances && model.accounting_chart_account_balances.length">
+        <h2>{{ modulePath + ':header.accounting_chart_account_balances' | i18next }}</h2>
+        <div fxLayout="row">
+          <div class="section-container" fxLayout="column" fxFill>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <ui-input
+                fxFlex
+                [placeholder]="modulePath + ':model.year' | i18next"
+                [appearance]="'standard'"
+                [control]="yearForm"
+                [leftTemplate]="{ template: searchIcon }"
+                (keyup.enter)="onYearSearchClick()">
+              </ui-input>
+              <ui-button
+                style="position: relative; top: 15px;"
+                type="flat" icon="save"
+                [label]="'translation:action.search' | i18next"
+                color="accent" (onClickEvent)="onYearSearchClick()">
+              </ui-button>
+            </div>
+            <ui-table
+              #table
+              [dataSource]="accountingChartAccountBalancesDataFiltered"
+              [checkboxes]="false"
+              [tableColumns]="accountingChartAccountBalancesColumns">
+            </ui-table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #searchIcon>
+  <div>
+    <ui-icon icon="search" style="position: relative; top: 5px;"></ui-icon>
+  </div>
+</ng-template>
+
+<ng-template #creditTemplate let-data="data">
+  <div>{{ data.period_total_credit }}</div>
+</ng-template>
+
+<ng-template #debitTemplate let-data="data">
+  <div>{{ data.period_total_debit }}</div>
+</ng-template>
+
+<ng-template #balanceTemplate let-data="data">
+  <div [ngStyle]="{ 'color': +data.period_balance >= 0 ? sharedModule.SUCCESS_COLOR : sharedModule.ERROR_COLOR }">{{ data.period_balance }}</div>
+</ng-template>

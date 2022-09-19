@@ -1,0 +1,39 @@
+{
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "plus_one_message": " Si quiere que el numerador inicie en 1, ajuste \"Número actual\" a 0 (cero). El siguiente número generado será siempre el número actual + 1.",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar el numerador con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quiere eliminar los <strong>{{ count }}</strong> Numeradores seleccionados?",
+        "delete_success": "¡Numerador eliminado con éxito!",
+        "delete_success_plural": "¡Numeradores eliminados con éxito!",
+        "save_success": "¡Numerador guardado con éxito!"
+    },
+    "model": {
+        "active": "Activo",
+        "name": "Nombre",
+        "serie": "Serie",
+        "ser_year": "Año",
+        "ser_suffix": "Sufijo",
+        "ser_preffix": "Prefijo",
+        "ser_value": "Número actual",
+        "ser_max": "Número máximo",
+        "ser_length": "Número de dígitos",
+        "block_remove": "No se puede eliminar",
+        "block_edit": "No editable"
+    },
+    "action": {
+        "new": "Nuevo Numerador",
+        "add": "Añadir el Numerador",
+        "delete": "¿Eliminar Numerador?",
+        "edit": "Editar Numerador"
+    },
+    "module": {
+        "name_many": "Numeradores",
+        "name_singular": "Numerador"
+    },
+    "header": {
+        "sub_menus": "Sub-menús",
+        "menu": "Numerador"
+    }
+}

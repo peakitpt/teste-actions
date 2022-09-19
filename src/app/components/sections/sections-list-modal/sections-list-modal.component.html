@@ -1,0 +1,54 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [width]="800"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1>{{ 'sections:module.name_many' | i18next }}</h1>
+    <div class="header-buttons" fxLayout="row" fxLayoutAlign="center center">
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngIf="sections$ | async as sections; else loadingTemplate">
+    <ui-paginator
+      [length]="modelList.total"
+      [pageIndex]="modelList.page - 1"
+      [pageSize]="limit"
+      (onChangeEvent)="paginationChangeEvent($event)"
+    ></ui-paginator>
+
+    <ui-table
+      [dataSource]="sections.results"
+      [tableColumns]="tableColumns"
+      [generalFilter]="false"
+      stickyHeader="true"
+      [checkboxes]="false"
+      (clickRowEvent)="emitRowClick($event)"
+      (columnFilterEvent)="columnFilterEvent($event)"
+      (columnOrdinationEvent)="columnOrdinationEvent($event)">
+    </ui-table>
+  </ng-container>
+</ng-template>
+
+
+<!-- TEMPLATES -->
+<ng-template #blockRemoveTemplate let-data="data">
+  <ui-icon *ngIf="data.block_remove" icon="check_box"></ui-icon>
+  <ui-icon *ngIf="!data.block_remove" icon="check_box_outline_blank"></ui-icon>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+<!-- TEMPLATES END -->

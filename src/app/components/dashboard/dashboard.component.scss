@@ -1,0 +1,78 @@
+@import './node_modules/@peakitpt/ui-material/assets/theme.scss';
+
+
+@mixin dashboard-theme($theme){
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $foreground: map-get($theme, foreground);
+
+
+  .ngx-charts {
+    text {
+      fill: mat-color($foreground, text) !important;
+    }
+    foreignObject p {
+      color: mat-color($foreground, text) !important;
+    }
+  }
+
+  .mat-card-content a {
+    color: mat-color($foreground, text) !important;
+  }
+
+  ui-timeline a {
+    text-decoration: none;
+  }
+
+  .pieChartContainer {
+    display: flex;
+    justify-content: center;
+    max-width: 300px;
+    margin: auto;
+    ngx-charts-pie-chart {
+      margin: auto;
+      svg {
+        margin: auto;
+      }
+      max-width: 300px;
+      div {
+        max-width: 300px;
+      }
+    }
+  }
+
+  .accountingStatistics {
+    display: grid!important;
+    justify-content: center;
+    height: 100px;
+    max-width: 70vw;
+  }
+
+  @media (max-width: 399px) {
+    .accountingStatistics {
+      height: 200px;
+    }
+
+  }
+
+  .accountingLineChart {
+    display: grid!important;
+    justify-content: center;
+    height: 200px;
+    max-width: 70vw;
+  }
+
+}
+
+.kyrios-theme-light {
+  @include dashboard-theme($kyrios-theme-light);
+}
+
+.kyrios-theme-dark {
+  @include dashboard-theme($kyrios-theme-dark);
+}
+
+.tab-content {
+  margin-top: 20px;
+}

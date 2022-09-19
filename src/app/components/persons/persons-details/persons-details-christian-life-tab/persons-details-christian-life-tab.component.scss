@@ -1,0 +1,31 @@
+.table-divider {
+  margin-top: 20px;
+}
+
+.scrollable-table {
+  width: 100%;
+  overflow-x: scroll;
+
+  #person-form-sacraments-table {
+    .col1 { min-width: 100px !important; max-width: 100px !important; }
+    .col2 { min-width: 90px !important; max-width: 90px !important; }
+    .col3, .col4 { min-width: 60px !important; max-width: 60px !important; }
+    .col5 { min-width: 600px !important; max-width: 800px !important; }
+    .col6, .col7 { min-width: 90px !important; max-width: 180px !important; }
+  }
+
+  #person-form-parties-table {
+    .col1 { min-width: 125px !important; max-width: 125px !important; }
+    .col2 { min-width: 145px !important; max-width: 145px !important; }
+    .col3 { min-width: 90px !important; max-width: 90px !important; }
+    .col4 { min-width: 600px !important; max-width: 800px !important; }
+    .col5, .col6 { min-width: 90px !important; max-width: 180px !important; }
+  }
+
+  #person-form-presences-table {
+    .col1 { min-width: 55px !important; max-width: 55px !important; }
+    .col2 { min-width: 90px !important; max-width: 90px !important; }
+    .col3, .col4 { min-width: 55px !important; max-width: 55px !important; }
+    .col5 { min-width: 120px !important; max-width: 400px !important; }
+  }
+}

@@ -1,0 +1,25 @@
+{
+    "module": {
+        "name_singular": "Journal",
+        "name_many": "Journals"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Diary with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want delete the <strong>{{ count }}</strong> seleted Diaries?",
+        "delete_success": "Diary deleted successfully!",
+        "delete_success_plural": "Diaries deleted successfully!",
+        "save_success": "Diary successfully saved!"
+    },
+    "model": {
+        "description": "Description",
+        "code": "Code"
+    },
+    "action": {
+        "generate_card": "Create card",
+        "delete": "Delete Diary?",
+        "edit": "Edit Diary",
+        "new": "New Diary"
+    }
+}

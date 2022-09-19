@@ -1,0 +1,47 @@
+<ng-container *ngIf="componentOk">
+  <div fxLayout="row" fxlayout.lt-md="column">
+    <div
+      fxFlex
+      fxLayoutAlign="center center">
+      <a
+        [href]="currentImage.path ? currentImage.path : getUploadFileLink(imageValue)"
+        target='_blank'>
+        <img
+          class="photo-img-edit"
+          *ngIf="currentImage.path"
+          [src]="currentImage.path"
+          onerror="this.src='assets/image-placeholder-350x350.png'"/>
+        <img
+          class="photo-img-edit"
+          *ngIf="!currentImage.path"
+          [src]="getUploadFileLink(imageValue)"
+          onerror="this.src='assets/image-placeholder-350x350.png'"/>
+      </a>
+    </div>
+  </div>
+  <div fxLayout="row">
+    <ui-input
+      fxFlex
+      type="file"
+      accept="image/png, image/jpeg"
+      [label]="label | i18next"
+      [control]="form.get(name)"
+      [readonly]="readonly"
+      (change)="changeImage($event)"
+      [fileName]="form.get(name).value?.name ? form.get(name).value.name : form.get(name).value">
+    </ui-input>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!componentOk">
+  <div fxLayout="column" style="background-color: red; color: white">
+    <div fxFlex>Field `{{ label }}` errors:</div>
+    <div fxFlex>
+      <ul>
+        <li *ngFor="let error of componentErrors">
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-container>

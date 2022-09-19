@@ -1,0 +1,22 @@
+{
+    "module": {
+        "name_singular": "Matrimonio",
+        "name_many": "Matrimonios"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Estás seguro de que quiere eliminar el Matrimonio de <b>{{ groom_name }}</b> e <b>{{ bride_name }}</b>?",
+        "delete_are_you_sure_plural": "¿Estás seguro de que quiere eliminar los <b>{{ count }}</b> Matrimonios seleccionados?",
+        "delete_success": "Matrimonio eliminado con éxito!",
+        "save_success": "Matrimonio guardado con éxito!"
+    },
+    "action": {
+        "delete": "¿Eliminar Matrimonio?",
+        "edit": "Editar el Matrimonio",
+        "new": "Nuevo Matrimonio"
+    },
+    "model": {
+        "serie_number": "Nº de registro"
+    }
+}

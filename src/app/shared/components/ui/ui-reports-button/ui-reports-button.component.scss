@@ -1,0 +1,52 @@
+@import './node_modules/@peakitpt/ui-material/assets/theme.scss';
+
+
+@mixin reports-button-theme($theme){
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+
+  .main-container {
+    cursor: pointer;
+    padding: 8px 5px 0 10px;
+    border-radius: 1000px 1000px 1000px 1000px;
+    background-color: mat-color($accent, 200);
+    transition-duration: 0.5s;
+
+    .icon {
+      color: mat-color($accent);
+      transition-duration: 0.5s;
+    }
+
+    .text {
+      margin-right: 5px;
+      font-size: 16px;
+      color: rgba(black, 0.7);
+    }
+
+    .divider {
+      background-color: mat-color($accent);
+      height: 25px;
+    }
+
+    &:hover {
+      background-color: mat-color($accent);
+
+      .icon {
+        color: mat-color($accent, 100);
+      }
+
+      .divider {
+        background-color: mat-color($accent, 100);
+      }
+    }
+  }
+
+}
+
+.kyrios-theme-light {
+  @include reports-button-theme($kyrios-theme-light);
+}
+
+.kyrios-theme-dark {
+  @include reports-button-theme($kyrios-theme-dark);
+}

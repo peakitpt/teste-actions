@@ -1,0 +1,50 @@
+{
+  "module": {
+    "name_singular": "País",
+    "name_many": "Países"
+  },
+  "country": {
+    "USA": "United States of America",
+    "Portugal": "Portugal"
+  },
+  "action": {
+    "addCountry": "Adicionar País",
+    "new": "Novo País",
+    "edit": "Editar País",
+    "delete": "Eliminar País"
+  },
+  "message": {
+    "save_success": "País guardado com sucesso!",
+    "delete_success": "País apagado com sucesso!",
+    "delete_success_plural": "Países apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o País com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Países selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "placeholder": {
+    "name": "ex.: Portugal",
+    "officialName": "ex.: República Portuguesa",
+    "commonCode": "ex.: POR",
+    "officialCode1": "ex.: PT",
+    "officialCode2": "ex.: PRT"
+  },
+  "name": "Nome",
+  "officialName": "Nome oficial",
+  "commonCode": "Código comum",
+  "officialCode1": "Código oficial",
+  "officialCode2": "Código oficial 2",
+  "validated": "Validado",
+  "model": {
+    "name": "Nome",
+    "officialName": "Nome oficial",
+    "name_official": "Nome oficial",
+    "commonCode": "Código comum",
+    "cioc": "Código comum",
+    "officialCode1": "Código oficial",
+    "cca2": "Código oficial",
+    "officialCode2": "Código oficial 2",
+    "cca3": "Código oficial 2",
+    "validated": "Validado"
+  }
+}

@@ -1,0 +1,39 @@
+{
+    "module": {
+        "name_singular": "Numeration",
+        "name_many": "Numerations"
+    },
+    "model": {
+        "active": "Active",
+        "name": "Name",
+        "serie": "Series",
+        "ser_year": "Year",
+        "ser_suffix": "Suffix",
+        "ser_preffix": "Prefix",
+        "ser_value": "Current number",
+        "ser_max": "Limit number",
+        "ser_length": "Number of digits",
+        "block_remove": "Not erasable",
+        "block_edit": "Not editable"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "plus_one_message": " If you want the numerator to start at 1, set the \"Current number\" to 0 (zero). The next number generated will always be the Current number + 1.",
+        "delete_are_you_sure": "Are you sure you want to delete the Numerator with the name \"<strong>{{name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Selected Numerators?",
+        "delete_success": "Numerator successfully deleted!",
+        "delete_success_plural": "Numerators successfully deleted!",
+        "save_success": "Numerator successfully saved!"
+    },
+    "header": {
+        "sub_menus": "Sub-menus",
+        "menu": "Numerator"
+    },
+    "action": {
+        "delete": "Delete Numerator?",
+        "edit": "Edit Numerator",
+        "new": "New Numerator",
+        "add": "Add Numerator"
+    }
+}

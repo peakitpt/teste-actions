@@ -1,0 +1,37 @@
+export interface Websiteconfiguration {
+  app_share: boolean;
+  block_remove: boolean;
+  confessions_content_description?: string;
+  confessions_content_id: number;
+  conteudo_ano_pastoral_description?: string;
+  conteudo_ano_pastoral_id?: number;
+  conteudo_informacoes_description?: string;
+  conteudo_informacoes_id?: number;
+  created_at: string;
+  created_by_user_id: number;
+  deleted: boolean;
+  deleted_by_user_id?: number;
+  email: string;
+  entity_ekklesia_location_id: number;
+  id: number;
+  masses_content_description?: string;
+  masses_content_id: number;
+  parish_notary_content_description?: string;
+  parish_notary_content_id: number;
+  seccao_boletim_description?: string;
+  seccao_boletim_id?: number;
+  seccao_noticias_description?: string;
+  seccao_noticias_id: number;
+  sync_at: string;
+  updated_at: string;
+  updated_by_user_id: number;
+  url: string;
+  url_facebook: string;
+  url_soundcloud: string;
+  url_twitter?: string;
+  url_youtube: string;
+  visits_to_the_sicks_content_description?: string;
+  visits_to_the_sicks_content_id: number;
+  how_to_help_content_description?: string;
+  how_to_help_content_id: number;
+}

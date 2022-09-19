@@ -1,0 +1,54 @@
+{
+    "module": {
+        "name_singular": "Familia",
+        "name_many": "Familias"
+    },
+    "action": {
+        "new": "Nueva Familia",
+        "edit": "Editar Familia",
+        "delete": "¿Eliminar Familia?"
+    },
+    "message": {
+        "save_success": "¡Familia guardada con éxito!",
+        "delete_success": "¡Familia eliminada con éxito!",
+        "delete_success_plural": "¡Familias eliminadas con éxito!",
+        "delete_are_you_sure": "¿Estás seguro de que deseas eliminar la Familia con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Estás seguro de que deseas eliminar las <strong>{{ count }}</strong> Familias seleccionadas?",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionado",
+        "error_blank_families_entities": "Por favor, complete todos los campos de la tabla del miembro familiar",
+        "family_documents_will_be_here": "Aquí se enumerarán los documentos asociados con los elementos de esta familia",
+        "no_satistics_to_show": "No hay estadísticas para mostrar"
+    },
+    "model": {
+        "name": "Apellido",
+        "father_description": "1º cabeza de familia",
+        "mother_description": "2º cabeza de familia",
+        "disabled": "Activa",
+        "comments": "Observaciones",
+        "opt1_text": "¿Alguno de los miembros de la familia participa en algún movimiento religioso? ¿Quién?",
+        "opt1_text2_description": "¿En qué parroquia?",
+        "opt2_text": "¿Hay miembros disponibles para colaborar en esta parroquia? ¿Cuál / cuáles?",
+        "opt2_text2": "¿En que?",
+        "opt3_text": "'En su opinión, ¿qué cree que se podría hacer para promover una mayor conexión entre los habitantes y la parroquia?'",
+        "opt4_text": "¿Cuáles son los principales problemas de esta familia?",
+        "opt5_text": "¿La familia necesita algún tipo de apoyo? ¿De que tipo?",
+        "families_entities": {
+            "_destroy": "¿Eliminar?",
+            "entity_description": "Nombre",
+            "relationship_degree_description": "Parentesco",
+            "relation_with": "Relativo a"
+        }
+    },
+    "header": {
+        "family_data": "Datos de la familia",
+        "household": "Miembros familiares",
+        "other_info": "Otros datos"
+    },
+    "tabs": {
+        "family": "Familia",
+        "documents": "Documentos",
+        "statistic_data": "Datos estadísticos"
+    },
+    "relations_with_both": "Ambos cabeza de familia"
+}

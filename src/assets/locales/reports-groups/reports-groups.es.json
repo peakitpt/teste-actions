@@ -1,0 +1,30 @@
+{
+    "model": {
+        "name": "Nombre",
+        "enabled": "Activo",
+        "report_description": "Reporte",
+        "reports_grouper_description": "Agrupador"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_success": "¡Grupo de informes eliminado con éxito!",
+        "delete_success_plural": "¡Informe Grupos eliminados con éxito!",
+        "save_success": "¡Grupo de Reportes guardado con éxito!",
+        "delete_are_you_sure": "¿Está seguro de que desea eliminar el grupo de informes con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Estás seguro de que quieres eliminar el<strong>{{ count }}</strong> Grupos de Reportes seleccionados?"
+    },
+    "module": {
+        "name_singular": "Grupo de informes",
+        "name_many": "Grupos de informes"
+    },
+    "action": {
+        "add": "Agregar grupo de Reportes",
+        "new": "Nuevo Grupo de Reportes",
+        "edit": "Editar Grupo de Reportes",
+        "delete": "Eliminar Grupo de Informes"
+    },
+    "header": {
+        "reports_groups": "Agrupadores"
+    }
+}

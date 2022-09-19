@@ -1,0 +1,48 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2 style="color: white;">
+    {{ modulePath + ':message.modal_closed' | i18next }}
+  </h2>
+  <ui-button type="flat" icon="save" [label]="modulePath + ':action.open_again' | i18next" color="accent" (onClickEvent)="modal.open()">
+  </ui-button>
+</div>
+
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + ':module.name_singular' | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ui-button type="icon" icon="close" (onClickEvent)="closeModal()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate;">
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <form class="form-body">
+    <iframe [src]="iFrameUrl | safe" width="100%" height="500px"></iframe>
+  </form>
+</ng-template>
+
+<!-- TEMPLATES END -->

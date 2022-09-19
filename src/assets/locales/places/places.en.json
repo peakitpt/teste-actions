@@ -1,0 +1,17 @@
+{
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected"
+    },
+    "model": {
+        "complete_relation": "Search Term",
+        "entity_type": {
+            "name": "Type"
+        },
+        "name": "Place"
+    },
+    "module": {
+        "name_many": "Places",
+        "name_singular": "Place"
+    }
+}

@@ -1,0 +1,56 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="modalHeader"
+  [inputBodyTemplate]="modalBody"
+  [width]="1000"
+  (modalClosed)="onModalClose()"
+>
+</ui-dialog>
+
+<ng-template #modalHeader>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>
+      {{ modulePath + ':history.inscritions_history' | i18next: { name: data.name} }}
+    </h1>
+    <div class="header-buttons" fxLayout="row">
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #modalBody>
+  <div *ngIf="model$ | async as model; else loadingTemplate">
+    <table class="mat-table">
+      <tr class="mat-header-row">
+        <th class="mat-header-cell">{{ modulePath + ':history.table.event' | i18next }}</th>
+        <th class="mat-header-cell">{{ modulePath + ':history.table.schedule' | i18next }}</th>
+        <th class="mat-header-cell">{{ modulePath + ':history.table.name' | i18next }}</th>
+        <th class="mat-header-cell">{{ modulePath + ':history.table.email' | i18next }}</th>
+        <th class="mat-header-cell">{{ modulePath + ':history.table.phone' | i18next }}</th>
+        <th class="mat-header-cell">{{ modulePath + ':history.table.nr_people' | i18next }}</th>
+        <th class="mat-header-cell">{{ modulePath + ':history.table.observations' | i18next }}</th>
+        <th class="mat-header-cell">{{ modulePath + ':history.table.confirmed' | i18next }}</th>
+        <th class="mat-header-cell">{{ modulePath + ':history.table.present' | i18next }}</th>
+      </tr>
+      <tr class="mat-row uiKyriosTableRow" *ngFor="let content of model.results">
+        <td class="mat-cell">{{ content.content.title }}</td>
+        <td class="mat-cell">{{ content.content.event_from_date | date:('translation:format.date' | i18next) }} {{ content.content.event_from_hour }}</td>
+        <td class="mat-cell">{{ content.name }}</td>
+        <td class="mat-cell">{{ content.email }}</td>
+        <td class="mat-cell">{{ content.phone }}</td>
+        <td class="mat-cell">{{ content.nr_of_people}}</td>
+        <td class="mat-cell">{{ content.observations }}</td>
+        <td class="mat-cell"> <ui-icon [icon]="content.confirmed ? 'check_box' : 'check_box_outline_blank'"></ui-icon> </td>
+        <td class="mat-cell"> <ui-icon [icon]="content.present ? 'check_box' : 'check_box_outline_blank'"></ui-icon> </td>
+      </tr>
+    </table>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+

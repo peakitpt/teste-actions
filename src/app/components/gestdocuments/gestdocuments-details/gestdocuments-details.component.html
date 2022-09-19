@@ -1,0 +1,159 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model">: {{ model.document_title }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model">
+          <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-button [title]="'translation:action.edit' | i18next" type='icon' icon="edit" (onClickEvent)="editModal()"></ui-button>
+        <ui-menu
+          [hoverTitle]="'translation:action.more' | i18next"
+          type="icons"
+          [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model; else loadingTemplate">
+    <section id="sender-section">
+      <h2>{{ modulePath + ':header.sender' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.institution_name' | i18next }}:</div>
+            <div fxFlex>{{ model.institution_name }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.institution_subject' | i18next }}:</div>
+            <div fxFlex>{{ model.institution_subject }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.institution_service">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.institution_service' | i18next }}:</div>
+            <div fxFlex>{{ model.institution_service }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.institution_reference">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.institution_reference' | i18next }}:</div>
+            <div fxFlex>{{ model.institution_reference }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.signature">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.signature' | i18next }}:</div>
+            <div fxFlex>{{ model.signature }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.signature_post">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.signature_post' | i18next }}:</div>
+            <div fxFlex>{{ model.signature_post }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.institution_date">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.institution_date' | i18next }}:</div>
+            <div fxFlex>{{ model.institution_date | date:('translation:format.date' | i18next) }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="recipient-section">
+      <h2>{{ modulePath + ':header.recipient' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_title' | i18next }}:</div>
+            <div fxFlex>{{ model.entity_title }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_name' | i18next }}:</div>
+            <div fxFlex>{{ model.entity_name }}</div>
+          </div>
+          <div fxLayout="column" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_address' | i18next }}:</div>
+            <ui-card>
+              <div content fxFlex [innerHTML]="sanitizer.bypassSecurityTrustHtml(model.entity_address)"></div>
+            </ui-card>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="content-section">
+      <h2>{{ modulePath + ':header.content' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.document_reference' | i18next }}:</div>
+            <div fxFlex>{{ model.document_reference }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.document_title' | i18next }}:</div>
+            <div fxFlex>{{ model.document_title }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.document_date">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.document_date' | i18next }}:</div>
+            <div fxFlex>{{ model.document_date | date:('translation:format.date' | i18next) }}</div>
+          </div>
+          <div fxLayout="column" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.document_text' | i18next }}:</div>
+            <ui-card>
+              <div content fxFlex [innerHTML]="sanitizer.bypassSecurityTrustHtml(model.document_text)"></div>
+            </ui-card>
+          </div>
+          <div fxLayout="column" fxLayoutGap="10px" *ngIf="model.footnotes">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.footnotes' | i18next }}:</div>
+            <ui-card>
+              <div content fxFlex [innerHTML]="sanitizer.bypassSecurityTrustHtml(model.footnotes)"></div>
+            </ui-card>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</ng-template>
+
+<!-- TEMPLATES START -->
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+<!-- TEMPLATES END -->

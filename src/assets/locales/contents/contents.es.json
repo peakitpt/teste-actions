@@ -1,0 +1,64 @@
+{
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "save_success": "¡Contenido guardado con éxito!",
+        "delete_success": "¡Contenido eliminado correctamente!",
+        "delete_success_plural": "¡Contenidos eliminados correctamente!",
+        "delete_are_you_sure": "Está seguro de que desea eliminar el contenido con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Está seguro de que desea eliminar los <strong>{{ count }}</strong> Contenidos seleccionados?"
+    },
+    "model": {
+        "author": "Autor",
+        "online_to_hour": "Online hasta (hora)",
+        "attachment_filename": "Nombre del archivo",
+        "sections": "Sección",
+        "sections_names": "Nombres de las secciones",
+        "resume": "Resumen",
+        "content": "Contenido",
+        "locale": "Lugar",
+        "hashtags": "Palabras clave",
+        "cover_author": "Autor de la imagen",
+        "cover_locale": "Ubicación de la imagen",
+        "online": "Online",
+        "online_from_date": "Online desde (fecha)",
+        "online_from_hour": "Online desde (hora)",
+        "online_to_date": "Online hasta (fecha)",
+        "fotogalery_filename": "Archivo",
+        "thumbnail": "Imagen de portada",
+        "image_url_filename": "Archivo de imagen",
+        "caption": "Subtítulo",
+        "title": "Título",
+        "description": "Descripción",
+        "download_filename": "Agregar Archivo",
+        "contents_hashtags": "Palabra clave",
+        "event_from_date": "Online desde",
+        "online_from_date_start": "Online desde (inicio)",
+        "online_from_date_end": "Online desde (fin)",
+        "send_notification": "Enviar notificación",
+        "notification_sent_at_date": "Notificación enviada en"
+    },
+    "module": {
+        "name_singular": "Contenido",
+        "name_many": "Contenidos"
+    },
+    "action": {
+        "add": "Agregar Contenido",
+        "new": "Nuevo Contenido",
+        "edit": "Editar Contenido"
+    },
+    "header": {
+        "hashtags": "Palabras clave",
+        "content_details": "Detalles del contenido",
+        "sub_menus": "Sub-menús",
+        "thumbnail": "Imagen de portada",
+        "publish": "Publicar",
+        "sections": "Secciones"
+    },
+    "tabs": {
+        "content": "Contenido",
+        "related-content": "Contenido relacionado",
+        "fotogalery": "Galería de fotos",
+        "downloads": "Transferencias"
+    }
+}

@@ -1,0 +1,27 @@
+<section id="groups-section">
+  <h2>{{ modulePath + ':header.groups' | i18next }}</h2>
+  <ng-container *ngIf="modelList$ | async as modelList">
+    <div fxLayout="column">
+      <section>
+        <div class="scrollable-table">
+          <table class="mat-table" id="groups-table">
+            <tr class="mat-header-row">
+              <th class="mat-header-cell">#</th>
+              <th class="mat-header-cell col1">{{ 'newsletter-group-subscriptions:model.group.name' | i18next }}</th>
+              <th class="mat-header-cell col2">{{ 'newsletter-group-subscriptions:model.subscription_date' | i18next }}</th>
+              <th class="mat-header-cell col3">{{ 'newsletter-group-subscriptions:model.unsubscription_date' | i18next }}</th>
+              <th class="mat-header-cell col4">{{ 'newsletter-group-subscriptions:model.active' | i18next }}</th>
+            </tr>
+            <tr class="mat-row uiKyriosTableRow" *ngFor="let subscription of modelList.results; let i = index" [attr.data-index]="i">
+              <td class="mat-cell">{{ i + 1 }}</td>
+              <td class="mat-cell col1">{{ subscription.group.name }}</td>
+              <td class="mat-cell col2">{{ subscription.subscription_date | date:('translation:format.datetime_seconds' | i18next) }}</td>
+              <td class="mat-cell col3">{{ subscription.unsubscription_date | date:('translation:format.datetime_seconds' | i18next) }}</td>
+              <td class="mat-cell col4">{{ 'translation:' + (subscription.active ? 'yes' : 'no') | i18next }}</td>
+            </tr>
+          </table>
+        </div>
+      </section>
+    </div>
+  </ng-container>
+</section>

@@ -1,0 +1,41 @@
+{
+    "module": {
+        "name_singular": "Recibo de Cuenta Actual",
+        "name_many": "Recibo de Cuentas Actuales"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "total": "Total",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar el Recibo de la Cuenta Corriente con su nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quiere eliminar los <strong>{{ count }}</strong> Cuentas Corrientes seleccionadas?",
+        "delete_success": "Recibo de Cuenta Corriente eliminado con éxito!",
+        "delete_success_plural": "Cuentas Corrientes eliminados con éxito!",
+        "save_success": "Recibo de la Cuenta Corriente guardado con éxito!"
+    },
+    "model": {
+        "observations": "Observaciones",
+        "receipt_date": "Fecha del recibo",
+        "entity_description": "Entidad",
+        "current_accounts_lines": {
+            "pending_amount": "Valor Pendiente",
+            "received_amount": "Cantidad recibida",
+            "total_amount": "Valor",
+            "document_date": "Fecha",
+            "document_serie_number": "Documento"
+        },
+        "treasury_location": "Localización de la tesorería",
+        "payment_type_description": "Tipo de pago",
+        "total_amount": "Total",
+        "serie_number": "N. de Recibo"
+    },
+    "header": {
+        "resume": "Resumen"
+    },
+    "action": {
+        "confirm_delete": "¿Retirar el Recibo de la Cuenta Corriente?",
+        "edit": "Editar el Recibo de la Cuenta Corriente",
+        "new": "Nuevo Recibo de Cuenta Corriente",
+        "add": "Añadir Recibo de Cuenta Corriente"
+    }
+}

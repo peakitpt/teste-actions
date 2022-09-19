@@ -1,0 +1,24 @@
+{
+  "module": {
+    "name_singular": "Visão integrada da Diocese",
+    "name_many": "Visão integrada das Dioceses"
+  },
+  "message": {
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas"
+  },
+  "header": {
+    "accounting_chart_account_balances": "Contas"
+  },
+  "model": {
+    "entity_description": "Paróquia",
+    "diocese_description": "Diocese",
+    "year": "Ano",
+    "account_id": "Nº de Conta",
+    "account_description": "Conta",
+    "grouping_category": "Grupo",
+    "period_total_credit": "Crédito",
+    "period_total_debit": "Débito",
+    "period_balance": "Saldo"
+  }
+}

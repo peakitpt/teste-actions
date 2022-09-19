@@ -1,0 +1,50 @@
+{
+  "module": {
+    "name_singular": "Importador de Registos",
+    "name_many": "Importador de Registos"
+  },
+  "message": {
+    "save_success": "Registo importado com sucesso!",
+    "modal_closed": "A modal está fechada?"
+  },
+  "tabs": {
+    "kyrios": "Kyrios",
+    "chapelry": "A Paróquia"
+  },
+  "header": {
+    "export_csv": "Exportar (CSV)",
+    "import_csv": "Importar (CSV)",
+    "import": "Importar"
+  },
+  "action": {
+    "download_persons": "Fichas Individuais",
+    "download_families": "Famílias",
+    "open_again": "Abrir de novo"
+  },
+  "options": {
+    "persons": "Fichas Individuais",
+    "families": "Famílias",
+    "the_chapelry_sql": "A Paróquia (SQL)",
+    "the_chapelry_mdb": "A Paróquia (MDB)"
+  },
+  "model": {
+    "importer_type": "Tipo de Importador",
+    "attachment_filename": "Ficheiro"
+  },
+  "text": {
+    "1st_paragraf": "O delimitador de colunas <strong>tem de ser obrigatoriamente</strong> o <strong>ponto e vírgula (;)</strong>. Por favor tenha isto em atenção ao abrir o ficheiro para edição e principalmente ao <strong>guardar/exportar</strong> as alterações.",
+    "2nd_paragraf": "A codificação do ficheiro CSV está em <strong>UTF-8</strong>. Por favor certifique-se de que a codificação não é alterada ao guardar/exportar as alterações.",
+    "3rd_paragraf": "Os campos marcados com asterisco (*) são <strong>obrigatórios</strong>.",
+    "4th_paragraf": "Para uma fácil configuração destes aspetos, recomendamos a utilização dos seguintes programas de produtividade <strong>gratuitos</strong> para edição de CSV:",
+    "5th_paragraf": "Para abrir no <strong>Microsoft Excel</strong>:",
+    "1st_bullet_point": "abra o programa com um livro em branco;",
+    "2nd_bullet_point": "no separador \"Dados\", clique no botão \"A Partir de Texto\" e selecione o ficheiro CSV;",
+    "3rd_bullet_point": "selecione \"Delimitado\" e na Origem do ficheiro selecione \"Unicode (UTF-8)\". Clique em Seguinte;",
+    "4th_bullet_point": "nos Delimitadores, selecione <strong>apenas</strong> \"Ponto e vírgula\". Clique em Concluir e de seguida em OK.",
+    "5th_bullet_point": "ao guardar o ficheiro, selecione o Formato de Ficheiro <strong>CSV UTF-8 (Delimitado por vírgulas) (.csv)</strong>",
+    "6th_paragraf": "Poderá continuar a usar o Kyrios normalmente e acompanhar o estado da importação no ícone de notificações () no canto superior direito. A importação estará concluída quando não tiver nenhuma mensagem relativa à mesma.",
+    "7th_paragraf": "Tenha em atenção que <strong>todos os dados serão atualizados/reescritos</strong> pelos dados contidos no ficheiro a importar! <strong>Se fez alterações nos registos desde a última importação, é provável que as mesmas sejam perdidas/reescritas!</strong>",
+    "8th_paragraf": "A importação poderá demorar <strong>vários minutos/horas</strong>, dependendo da quantidade de registos a importar.",
+    "9th_paragraf": "Poderá continuar a usar o Kyrios normalmente e acompanhar o estado da importação no ícone de notificações no canto superior direito. A importação estará concluída quando não tiver nenhuma mensagem relativa à mesma."
+  }
+}

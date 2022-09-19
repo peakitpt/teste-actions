@@ -1,0 +1,36 @@
+{
+    "module": {
+        "name_singular": "Emolument",
+        "name_many": "Emoluments"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Emolument with the name \"<strong>{{name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Selected Emoluments?",
+        "delete_success": "Emolument successfully deleted!",
+        "delete_success_plural": "Emoluments successfully deleted!",
+        "save_success": "Emolument successfully saved!"
+    },
+    "model": {
+        "currency": "Coin",
+        "name": "Name",
+        "type": "Type",
+        "description": "Long description",
+        "is_parochial_right": "Parish Right",
+        "emoluments_type": "Type of emolument",
+        "value": "Value",
+        "description_short": "Short description"
+    },
+    "action": {
+        "add": "Add Emolument",
+        "edit": "Edit Emolument",
+        "new": "New Emolument"
+    },
+    "header": {
+        "sub_menus": "Sub-menus",
+        "menu": "Numerator",
+        "amount": "Amount",
+        "emolunment": "Emolument"
+    }
+}

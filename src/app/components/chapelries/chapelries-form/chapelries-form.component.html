@@ -1,0 +1,394 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="onModalClose()"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+    <ui-button
+      *ngIf="!isQuickInsertion"
+      type="flat" icon="save"
+      [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true">
+    </ui-button>
+
+    <ui-button
+      type="flat" icon="save"
+      [label]="(isQuickInsertion ? 'translation:action.create_insert' : 'translation:action.save') | i18next"
+      color="accent" (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu [hoverTitle]="'translation:action.more' | i18next" *ngIf="headerOptionsMenu.length && !isQuickInsertion" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body">
+    <ui-tabs [tabs]="formTabs"></ui-tabs>
+  </form>
+</ng-template>
+
+<ng-template #chapelryTemplate>
+  <div class="tab-content">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'chapelries:model.name' | i18next" [required]="true" [control]="form.get('name')"></ui-input>
+      <div ngClass.gt-xs="center-checkbox" fxFlex="15">
+        <ui-checkbox class="center-checkbox" [label]="'chapelries:model.validated' | i18next" [control]="form.get('validated')"></ui-checkbox>
+      </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutGap="5px">
+      <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <ui-input fxFlex
+          (change)="changeImage($event)"
+          [label]="modulePath + ':model.photo_url'| i18next"
+          type="file" accept="image/png, image/jpeg"
+          [fileName]="form.get('photo_filename').value ? form.get('photo_filename').value : form.get('photo_filename').value"
+          [control]="form.get('photo_url')"></ui-input>
+        <div fxFlex="50" fxLayoutAlign="center center">
+          <img *ngIf="currentImagePath.thumbnail" [src]="currentImagePath.thumbnail" onerror="this.src='assets/image-placeholder-350x350.png'" height="200px">
+          <img *ngIf="!currentImagePath.thumbnail" [src]="baseFilePath + '/' + form.value.photo_url" onerror="this.src='assets/image-placeholder-350x350.png'" height="200px">
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [required]="true" [readonly]="true" [label]="'chapelries:model.entity_relation_attributes.arciprestado_description' | i18next" [control]="form.get('entity_relation_attributes.arciprestado_description')" [rightTemplate]="{ template: archpristshipTemplate }"></ui-input>
+
+      <ng-template #archpristshipTemplate let-inputName="inputName">
+        <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+          <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('archpristships-modal')"></ui-button>
+          <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="archpristshipModalMenu" (sendValue)="menuClick($event)"></ui-menu>
+
+        </div>
+      </ng-template>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'chapelries:model.tax_designation' | i18next" [control]="form.get('tax_designation')"></ui-input>
+      <ui-input fxFlex [label]="'chapelries:model.taxpayer' | i18next" [control]="form.get('taxpayer')"></ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'chapelries:model.patron_description' | i18next" [control]="form.get('patron_description')" [rightTemplate]="{ template: patronTemplate }"></ui-input>
+
+      <ng-template #patronIconTemplate>
+        <div style="margin-right: 2px;">
+          <ui-icon icon="article"></ui-icon>
+        </div>
+      </ng-template>
+
+      <ng-template #patronTemplate let-inputName="inputName">
+        <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+          <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('patrons-modal')"></ui-button>
+          <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="patronModalMenu" (sendValue)="menuClick($event)"></ui-menu>
+        </div>
+      </ng-template>
+    </div>
+    <h2>{{ 'chapelries:header.address' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'chapelries:model.address' | i18next" [control]="form.get('address')"></ui-input>
+      <ui-input fxFlex [label]="'chapelries:model.door_number' | i18next" [control]="form.get('door_number')"></ui-input>
+      <ui-input fxFlex [label]="'chapelries:model.postal_code' | i18next" [control]="form.get('postal_code')"></ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'chapelries:model.parish' | i18next" [control]="form.get('parish')"></ui-input>
+      <ui-input fxFlex [label]="'chapelries:model.place' | i18next" [control]="form.get('place')"></ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'chapelries:model.county' | i18next" [control]="form.get('county')"></ui-input>
+      <ui-input fxFlex [label]="'chapelries:model.district' | i18next" [control]="form.get('district')"></ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'chapelries:model.latitude' | i18next" [control]="form.get('latitude')"></ui-input>
+      <ui-input fxFlex [label]="'chapelries:model.longitude' | i18next" [control]="form.get('longitude')"></ui-input>
+    </div>
+    <h2>{{ 'chapelries:header.contacts' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'chapelries:model.mobilephone' | i18next" [control]="form.get('mobilephone')"></ui-input>
+      <ui-input fxFlex [label]="'chapelries:model.phone' | i18next" [control]="form.get('phone')"></ui-input>
+      <ui-input fxFlex [label]="'chapelries:model.fax' | i18next" [control]="form.get('fax')"></ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'chapelries:model.email' | i18next" [control]="form.get('email')"></ui-input>
+      <ui-input fxFlex [label]="'chapelries:model.url' | i18next" [control]="form.get('url')"></ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-textarea fxFlex
+        rows="3"
+        [label]="modulePath + ':model.notes' | i18next"
+        [control]="form.get('notes')">
+      </ui-textarea>
+    </div>
+  </div>
+</ng-template>
+
+<!-- MASSES  -->
+<ng-template #massesSchedulesTemplate>
+  <div class="tab-content">
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <ui-table
+            #table
+            [dataSource]="massSchedulesDS"
+            [checkboxes]="false"
+            [tableColumns]="massSchedulesColumns">
+          </ui-table>
+          <div class="add-table-line" (click)="addTableLine(newMass, massSchedulesFormArray, massSchedulesDS)">
+            {{ 'translation:action.add' | i18next }}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</ng-template>
+
+
+<ng-template #deleteMassLineTableTemplate let-index="index" let-row="row">
+  <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index, massSchedulesFormArray, massSchedulesDS)"></ui-button>
+</ng-template>
+<ng-template #worshipplaceDescriptionTableTemplate let-index="index">
+  <ui-input fxFlex [label]="'chapelries:model.masses_schedules_attributes.worshipplace_description' | i18next" [control]="massSchedulesFormArray.controls[index].get('worshipplace_description')" [rightTemplate]="{ template: worshipplaceRightTemplate, context: {index: index} }"></ui-input>
+  <ng-template #worshipplaceRightTemplate let-index="index">
+    <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+      <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('worshipplaces-modal', 'worshipplaces#' + index, { chapelry_id: id })"></ui-button>
+      <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="worshipplaceModalMenu" (sendValue)="menuClick($event, 'worshipplaces#' + index)"></ui-menu>
+    </div>
+  </ng-template>
+</ng-template>
+<ng-template #startHourTableTemplate let-index="index">
+  <ui-input
+  [errorMessage]="'translation:message.hour_format_error' | i18next"
+  placeholder="HH:MM"
+  [label]="modulePath + ':model.masses_schedules_attributes.start_hour' | i18next"
+  [control]="massSchedulesFormArray.controls[index].get('start_hour')"
+  [required]="true"
+  ></ui-input>
+</ng-template>
+<ng-template #endHourTableTemplate let-index="index">
+  <ui-input
+  [errorMessage]="'translation:message.hour_format_error' | i18next"
+  placeholder="HH:MM"
+  [label]="modulePath + ':model.masses_schedules_attributes.end_hour' | i18next"
+  [control]="massSchedulesFormArray.controls[index].get('end_hour')"
+  ></ui-input>
+</ng-template>
+<ng-template #startDateTableTemplate let-index="index">
+  <ui-datepicker
+  [label]="modulePath + ':model.masses_schedules_attributes.start_date' | i18next"
+  [control]="massSchedulesFormArray.controls[index].get('start_date')"
+  ></ui-datepicker>
+</ng-template>
+<ng-template #endDateTableTemplate let-index="index">
+  <ui-datepicker
+  [label]="modulePath + ':model.masses_schedules_attributes.end_date' | i18next"
+  [control]="massSchedulesFormArray.controls[index].get('end_date')"
+  ></ui-datepicker>
+</ng-template>
+<ng-template #frequencyTableTemplate let-index="index">
+  <ui-select
+  [label]="modulePath + ':model.masses_schedules_attributes.frequency' | i18next"
+  [options]="massFrequencyOptions"
+  [control]="massSchedulesFormArray.controls[index].get('frequency')"
+  [required]="true"
+  ></ui-select>
+</ng-template>
+<ng-template #monthsTableTemplate let-index="index">
+  <ui-select
+    [label]="modulePath + ':model.masses_schedules_attributes.months' | i18next"
+    [options]="monthsOptions"
+    [multiple]="true"
+    [control]="massSchedulesFormArray.controls[index].get('months')"
+    [required]="true"
+    ></ui-select>
+</ng-template>
+<ng-template #weekdaysTableTemplate let-index="index">
+  <ui-select
+    [label]="modulePath + ':model.masses_schedules_attributes.weekdays' | i18next"
+    [options]="weekdaysOptions"
+    [multiple]="true"
+    [control]="massSchedulesFormArray.controls[index].get('weekdays')"
+    [required]="true"
+    ></ui-select>
+  </ng-template>
+  <ng-template #confessionsTableTemplate let-index="index">
+    <ui-checkbox
+    class="center-checkbox"
+    [control]="massSchedulesFormArray.controls[index].get('for_confessions')"
+  ></ui-checkbox>
+</ng-template>
+<!-- MASSES  -->
+
+<!-- NOMINATIONS  -->
+<ng-template #nominationsTemplate>
+  <div class="tab-content">
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <ui-table
+            #table
+            [dataSource]="nominationsDS"
+            [checkboxes]="false"
+            [tableColumns]="nominationsColumns">
+          </ui-table>
+        </div>
+      </div>
+    </section>
+  </div>
+</ng-template>
+
+<ng-template #startDateInputTemplate let-index="index">
+  <div fxLayout="column" fxFlex="200px">
+    <ui-datepicker
+    fxFlexOffset="20px"
+    readonly=false
+    [label]="modulePath + ':model.entity_priest_appointments_attributes.start_date' | i18next"
+    [control]="nominationsFormArray.controls[index].get('start_date')"
+    [required]="true"
+    ></ui-datepicker>
+  </div>
+</ng-template>
+
+<ng-template #endDateInputTemplate let-index="index">
+  <div fxLayout="column" fxFlex="200px">
+    <ui-datepicker
+    fxFlexOffset="20px"
+    readonly=false
+    [label]="modulePath + ':model.entity_priest_appointments_attributes.end_date' | i18next"
+    [control]="nominationsFormArray.controls[index].get('end_date')"
+    ></ui-datepicker>
+  </div>
+</ng-template>
+<!-- NOMINATIONS  -->
+
+<ng-template #permissionsAttributesCheckboxTemplate let-data="data">
+  <mat-checkbox (change)="$event ? masterToggle() : null; checkboxEvent()"
+    [checked]="selection.hasValue() && isAllSelected()"
+    [indeterminate]="selection.hasValue() && !isAllSelected()"
+    [aria-label]="checkboxLabel()"
+    >
+  </mat-checkbox>
+</ng-template>
+
+<ng-template #permissionsModulesTemplateCheckbox let-data="data">
+  <mat-checkbox (click)="$event.stopPropagation()"
+      (change)="$event ? selection.toggle(data) : null; checkboxEvent()"
+      [checked]="selection.isSelected(data)"
+      [aria-label]="checkboxLabel(data)"
+      >
+  </mat-checkbox>
+</ng-template>
+
+<ng-template #permissionsModulesTemplate>
+  <div class="tab-content">
+    <ui-table
+      #table
+      [dataSource]="permissionsAttributesDS"
+      [checkboxes]="false"
+      [tableColumns]="permissionsAttributesColumns">
+    </ui-table>
+  </div>
+</ng-template>
+
+<!-- BEGIN PERMISSION MODULOS -->
+
+<!-- HEADER TEMPLATES -->
+<ng-template #permissionsModulesModule let-row="data">
+  <div fxFill>
+    <ui-autocomplete [control]="moduleForm" [options]="moduleOptions" [label]="row.title" [placeholder]="row.title"></ui-autocomplete>
+  </div>
+</ng-template>
+
+<ng-template #permissionsModulesApp let-row="data">
+
+  <div fxFill>
+    <ui-autocomplete [control]="appForm" [options]="appOptions" [label]="row.title" [placeholder]="row.title"></ui-autocomplete>
+  </div>
+</ng-template>
+<!--  -->
+
+<!-- END PERMISSION MODULOS -->
+
+<!-- Populate DefaultsModal Modal -->
+
+<ui-dialog #populateDefaultsModal
+  *ngIf="isSuperUser"
+  [inputHeaderTemplate]="populateDefaultsHeader"
+  [inputBodyTemplate]="populateDefaultsBody"
+  [inputFooterTemplate]="populateDefaultsFooter"
+  [width]="800"
+>
+</ui-dialog>
+
+<ng-template #populateDefaultsHeader>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1>
+      {{ 'translation:action.populate_defaults' | i18next }}
+    </h1>
+    <div class="header-buttons" fxLayout="row">
+      <ui-button type='icon' icon="close" disableRipple="true" disableFocusRipple="true" (onClickEvent)="populateDefaultsModal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #populateDefaultsBody>
+  {{ 'translation:populate.populate_local' | i18next }}
+  {{ 'translation:populate.action_creates' | i18next }}
+  <ul>
+    <li>{{ 'translation:populate.points.1st' | i18next }}</li>
+    <li>{{ 'translation:populate.points.2nd' | i18next }}</li>
+    <li>{{ 'translation:populate.points.3rd' | i18next }}</li>
+    <li>{{ 'translation:populate.points.4th' | i18next }}</li>
+    <li>{{ 'translation:populate.points.5th' | i18next }}</li>
+  </ul>
+  {{ 'translation:populate.if_exists' | i18next }}
+</ng-template>
+
+<ng-template #populateDefaultsFooter>
+  <div class="footer-buttons" fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" [label]="'translation:action.cancel' | i18next" (onClickEvent)="populateDefaultsModal.close()"></ui-button>
+    <ui-button type="flat" [label]="'translation:action.populate' | i18next" color="warn" (onClickEvent)="populateDefaults()"></ui-button>
+  </div>
+</ng-template>
+
+<!-- Subscriptions Modal -->

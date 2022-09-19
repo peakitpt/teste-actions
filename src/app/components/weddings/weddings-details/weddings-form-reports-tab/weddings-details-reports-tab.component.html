@@ -1,0 +1,874 @@
+<section id="reports-section">
+  <ui-expansion-panel [panels]="expansionPanels" displayMode="flat" togglePosition="before"></ui-expansion-panel>
+</section>
+
+<ng-template #mod3Template>
+  <div *ngIf="model.mod3_entity_reference" fxLayout="row" fxLayoutGap="10px">
+    <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod3_entity_reference' | i18next }}:</div>
+    <div fxFlex>
+      <div fxFlex>{{ groomBrideOptions[model.mod3_entity_reference ? 'true' : 'false'] }}</div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #mod4Template>
+  <div class="section-container" fxLayout="column" fxFill>
+    <div *ngIf="model.exemption_impediment" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.exemption_impediment' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.exemption_impediment }}
+      </div>
+    </div>
+    <div *ngIf="model.exemptions_impediments" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.exemptions_impediments' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.exemptions_impediments }}
+      </div>
+    </div>
+    <div *ngIf="model.exemption_impediments_because" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.exemption_impediments_because' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.exemption_impediments_because }}
+      </div>
+    </div>
+    <div *ngIf="model.exemptions_due_to" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.exemptions_due_to' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.exemptions_due_to }}
+      </div>
+    </div>
+    <div *ngIf="model.economical_situation" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.economical_situation' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.economical_situation }}
+      </div>
+    </div>
+    <div *ngIf="model.fees" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.fees' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.fees }}
+      </div>
+    </div>
+  </div>
+
+  <div class="section-container" fxLayout="column" fxFill>
+    <h2>{{ modulePath + ':header.groom' | i18next }}</h2>
+    <div *ngIf="model.grooms_kinship_type" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.grooms_kinship_type' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.grooms_kinship_type }}
+      </div>
+    </div>
+    <div *ngIf="model.grooms_degree_of_kinship" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.grooms_degree_of_kinship' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.grooms_degree_of_kinship }}
+      </div>
+    </div>
+    <div *ngIf="model.grooms_degree_of_kinship_lineage" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.grooms_degree_of_kinship_lineage' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.grooms_degree_of_kinship_lineage }}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-container" fxLayout="column" fxFill>
+    <div fxLayout="row" fxFlex fxLayoutGap="10px">
+      <div class="section-container" fxLayout="column" fxFlex>
+        <h2>{{ modulePath + ':header.groom_geneologic_tree' | i18next }}</h2>
+        <div *ngIf="model.groom_family_tree_1" fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_family_tree_1' | i18next }}:</div>
+          <div fxFlex>
+            <div fxFlex>{{ model.groom_family_tree_1 }}</div>
+          </div>
+        </div>
+        <div *ngIf="model.groom_family_tree_2" fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_family_tree_2' | i18next }}:</div>
+          <div fxFlex>
+            <div fxFlex>{{ model.groom_family_tree_2 }}</div>
+          </div>
+        </div>
+        <div *ngIf="model.groom_family_tree_3" fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_family_tree_3' | i18next }}:</div>
+          <div fxFlex>
+            <div fxFlex>{{ model.groom_family_tree_3 }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="section-container" fxLayout="column" fxFlex>
+        <h2>{{ modulePath + ':header.bride_geneologic_tree' | i18next }}</h2>
+        <div *ngIf="model.bride_family_tree_1" fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_family_tree_1' | i18next }}:</div>
+          <div fxFlex>
+            <div fxFlex>{{ model.bride_family_tree_1 }}</div>
+          </div>
+        </div>
+        <div *ngIf="model.bride_family_tree_2" fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_family_tree_2' | i18next }}:</div>
+          <div fxFlex>
+            <div fxFlex>{{ model.bride_family_tree_2 }}</div>
+          </div>
+        </div>
+        <div *ngIf="model.bride_family_tree_3" fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_family_tree_3' | i18next }}:</div>
+          <div fxFlex>
+            <div fxFlex>{{ model.bride_family_tree_3 }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="model.mod4_common_relative" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod4_common_relative' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod4_common_relative }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #mod5Template>
+  <div class="section-container" fxLayout="column" fxFill>
+    <div *ngIf="model.mod5_entity_reference" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod5_entity_reference' | i18next }}:</div>
+      <div fxFlex>
+        {{ groomBrideOptions[model.mod5_entity_reference ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.opt_mod1_opt2_text" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod1_opt2_text' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.opt_mod1_opt2_text }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #mod6Template>
+  <div class="section-container" fxLayout="column" fxFill>
+    <div *ngIf="model.mod6_groom_bride" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod6_groom_bride' | i18next }}:</div>
+      <div fxFlex>
+        {{ groomBrideOptions[model.mod6_groom_bride ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.mod6_justify_absence" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod6_justify_absence' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod6_justify_absence }}
+      </div>
+    </div>
+    <div *ngIf="model.mod6_for_that_know" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod6_for_that_know' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod6_for_that_know }}
+      </div>
+    </div>
+    <div *ngIf="model.mod6_declared_that" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod6_declared_that' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod6_declared_that }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #mod7Template>
+
+  <div class="section-container" fxLayout="column" fxFill>
+    <div *ngIf="model.mod7_groom_bride" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod7_groom_bride' | i18next }}:</div>
+      <div fxFlex>
+        {{ groomBrideOptions[model.mod7_groom_bride ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.mod7_baptism_witness1_description" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod7_baptism_witness1_description' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod7_baptism_witness1_description }}
+      </div>
+    </div>
+    <div *ngIf="model.mod7_baptism_witness2_description" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod7_baptism_witness2_description' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod7_baptism_witness2_description }}
+      </div>
+    </div>
+    <div *ngIf="model.mod7_father_civil_status" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod7_father_civil_status' | i18next }}:</div>
+      <div fxFlex>
+        {{ civilStatusOptions[model.mod7_father_civil_status] }}
+      </div>
+    </div>
+    <div *ngIf="model.mod7_mother_civil_status" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod7_mother_civil_status' | i18next }}:</div>
+      <div fxFlex>
+        {{ civilStatusOptions[model.mod7_mother_civil_status] }}
+      </div>
+    </div>
+    <div *ngIf="model.mod7_parents_residence" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod7_parents_residence' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod7_parents_residence }}
+      </div>
+    </div>
+    <div *ngIf="model.mod7_justfifiers_knows_because" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod7_justfifiers_knows_because' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod7_justfifiers_knows_because }}
+      </div>
+    </div>
+    <div *ngIf="model.mod7_witnesses_watched_baptizm_as" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod7_witnesses_watched_baptizm_as' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod7_witnesses_watched_baptizm_as }}
+      </div>
+    </div>
+    <div *ngIf="model.mod7_witnesses_watched_baptizm_that" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod7_witnesses_watched_baptizm_that' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod7_witnesses_watched_baptizm_that }}
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<ng-template #mod8Template>
+  <div class="section-container" fxLayout="column" fxFill>
+
+    <div *ngIf="model.civil_registration_documents" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.civil_registration_documents' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.civil_registration_documents }}
+      </div>
+    </div>
+    <div *ngIf="model.subject_field" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.subject_field' | i18next }}:</div>
+      <div fxFlex>
+        {{ articleOptions[model.subject_field] }}
+      </div>
+    </div>
+    <div *ngIf="model.declaration_field" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.declaration_field' | i18next }}:</div>
+      <div fxFlex>
+        {{ declareOptions[model.declaration_field] }}
+      </div>
+    </div>
+    <div *ngIf="model.certificate_field" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.certificate_field' | i18next }}:</div>
+      <div fxFlex>
+        {{ certificateOptions[model.certificate_field] }}
+      </div>
+    </div>
+
+    <div *ngIf="model.mod8_groom_assento_number" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod8_groom_assento_number' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod8_groom_assento_number }}
+      </div>
+    </div>
+    <div *ngIf="model.mod8_groom_assento_year" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod8_groom_assento_year' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod8_groom_assento_year }}
+      </div>
+    </div>
+    <div *ngIf="model.mod8_bride_assento_number" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod8_bride_assento_number' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod8_bride_assento_number }}
+      </div>
+    </div>
+    <div *ngIf="model.mod8_bride_assento_year" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod8_bride_assento_year' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod8_bride_assento_year }}
+      </div>
+    </div>
+    <div *ngIf="model.mod8_civil_registry_notes" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod8_civil_registry_notes' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.mod8_civil_registry_notes }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #mod9Template>
+  <div class="section-container" fxLayout="column" fxFill>
+    <div *ngIf="model.mod9_groom_or_bride" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod9_groom_or_bride' | i18next }}:</div>
+      <div fxFlex>
+        {{ groomBrideOptions[model.mod9_groom_or_bride ? 'true' : 'false'] }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #mod12Template>
+  <div class="section-container" fxLayout="column" fxFill>
+    <h2>{{ modulePath + ':header.sender' | i18next }}</h2>
+
+    <div *ngIf="model.sender_address" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.sender_address' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.sender_address }}
+      </div>
+    </div>
+    <div *ngIf="model.sender_postal_code" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.sender_postal_code' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.sender_postal_code }}
+      </div>
+    </div>
+  </div>
+  <div class="section-container" fxLayout="column" fxFill>
+    <h2>{{ modulePath + ':header.recipient' | i18next }}</h2>
+
+    <div *ngIf="model.recipient_name" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.recipient_name' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.recipient_name }}
+      </div>
+    </div>
+    <div *ngIf="model.recipient_address" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.recipient_address' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.recipient_address }}
+      </div>
+    </div>
+    <div *ngIf="model.recipient_postal_code" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.recipient_postal_code' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.recipient_postal_code }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #groomDialogTemplate>
+  <div class="section-container" fxLayout="column" fxFill>
+    <h2>{{ modulePath + ':header.domicile' | i18next }}</h2>
+
+    <div *ngIf="model.groom_here_lived_after_fourteen" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_here_lived_after_fourteen' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.groom_here_lived_after_fourteen }}
+      </div>
+    </div>
+  </div>
+
+  <div class="section-container" fxLayout="column" fxFill>
+    <h2>{{ modulePath + ':header.marriage_preparation' | i18next }}</h2>
+
+    <div *ngIf="model.groom_religious_status" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_religious_status' | i18next }}:</div>
+      <div fxFlex>
+        {{ religiousSituationOptions[model.groom_religious_status] }}
+      </div>
+    </div>
+  </div>
+
+  <div class="section-container" fxLayout="column" fxFill>
+    <h2>{{ modulePath + ':header.free_state' | i18next }}</h2>
+
+    <div *ngIf="model.groom_married_civilly" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_married_civilly' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_married_civilly  ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_married_by_church" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_married_by_church' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_married_by_church  ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_married_had_children" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_married_had_children' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_married_had_children  ? 'true' : 'false'] }}
+      </div>
+    </div>
+
+    <div *ngIf="model.groom_married_with_who_description" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_married_with_who_description' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.groom_married_with_who_description }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_is_previous_union_over" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_is_previous_union_over' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.groom_is_previous_union_over }}
+      </div>
+    </div>
+
+    <div *ngIf="model.groom_impediment_to_marry" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_impediment_to_marry' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_impediment_to_marry ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_impediment_to_marry_which" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_impediment_to_marry_which' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.groom_impediment_to_marry_which }}
+      </div>
+    </div>
+
+    <div *ngIf="model.groom_marry_by_free_will" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_marry_by_free_will' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_marry_by_free_will ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_reason_beside_love" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_reason_beside_love' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_reason_beside_love ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_difficulty_to_marry" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_difficulty_to_marry' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_difficulty_to_marry ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_intimicy_and_love" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_intimicy_and_love' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_intimicy_and_love ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_faithful_to_wife" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_faithful_to_wife' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_faithful_to_wife ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_will_not_divorce" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_will_not_divorce' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_will_not_divorce ? 'true' : 'false'] }}
+      </div>
+    </div>
+
+    <div *ngIf="model.groom_will_accept_children" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_will_accept_children' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_will_accept_children ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_knowledge_raise_children" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_knowledge_raise_children' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_knowledge_raise_children ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_will_raise_children" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_will_raise_children' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_will_raise_children ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_christian_education_children" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_christian_education_children' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_christian_education_children ? 'true' : 'false'] }}
+      </div>
+    </div>
+
+    <div *ngIf="model.groom_will_consent_marriage" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_will_consent_marriage' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_will_consent_marriage ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_has_hid_information" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_has_hid_information' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_has_hid_information ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_bride_same_ideas_about_marriage" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_bride_same_ideas_about_marriage' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_bride_same_ideas_about_marriage ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_bride_talk_about_marriage" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_bride_talk_about_marriage' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_bride_talk_about_marriage ? 'true' : 'false'] }}
+      </div>
+    </div>
+
+    <div *ngIf="model.groom_minor_parents_agree" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_minor_parents_agree' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_minor_parents_agree ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_minor_parents_agree_why" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_minor_parents_agree_why' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.groom_minor_parents_agree_why }}
+      </div>
+    </div>
+
+    <h2>{{ modulePath + ':header.concent' | i18next }}</h2>
+    <div *ngIf="model.groom_minor_parents_agree" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_minor_parents_agree' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_minor_parents_agree ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_minor_parents_agree_why" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_minor_parents_agree_why' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.groom_minor_parents_agree_why }}
+      </div>
+    </div>
+
+    <div *ngIf="model.groom_wish_to_correct_information" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_wish_to_correct_information' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.groom_wish_to_correct_information ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_wish_to_correct_information_text" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_wish_to_correct_information_text' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.groom_wish_to_correct_information_text }}
+      </div>
+    </div>
+
+    <div *ngIf="model.groom_dialog_worshipplace_description" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_dialog_worshipplace_description' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.groom_dialog_worshipplace_description }}
+      </div>
+    </div>
+    <div *ngIf="model.groom_dialog_vicar_description" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_dialog_vicar_description' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.groom_dialog_vicar_description }}
+      </div>
+    </div>
+
+    <div *ngIf="model.groom_dialog_date" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_dialog_date' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.groom_dialog_date  | date:('translation:format.date' | i18next) }}
+      </div>
+    </div>
+
+  </div>
+</ng-template>
+
+<ng-template #brideDialogTemplate>
+  <div class="section-container" fxLayout="column" fxFill>
+    <h2>{{ modulePath + ':header.domicile' | i18next }}</h2>
+
+    <div *ngIf="model.bride_here_lived_after_fourteen" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_here_lived_after_fourteen' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.bride_here_lived_after_fourteen }}
+      </div>
+    </div>
+  </div>
+
+  <div class="section-container" fxLayout="column" fxFill>
+    <h2>{{ modulePath + ':header.marriage_preparation' | i18next }}</h2>
+
+    <div *ngIf="model.bride_religious_status" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_religious_status' | i18next }}:</div>
+      <div fxFlex>
+        {{ religiousSituationOptions[model.bride_religious_status] }}
+      </div>
+    </div>
+  </div>
+
+  <div class="section-container" fxLayout="column" fxFill>
+    <h2>{{ modulePath + ':header.free_state' | i18next }}</h2>
+
+    <div *ngIf="model.bride_married_civilly" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_married_civilly' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_married_civilly  ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_married_by_church" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_married_by_church' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_married_by_church  ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_married_had_children" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_married_had_children' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_married_had_children  ? 'true' : 'false'] }}
+      </div>
+    </div>
+
+    <div *ngIf="model.bride_married_with_who_description" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_married_with_who_description' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.bride_married_with_who_description }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_is_previous_union_over" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_is_previous_union_over' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.bride_is_previous_union_over }}
+      </div>
+    </div>
+
+    <div *ngIf="model.bride_impediment_to_marry" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_impediment_to_marry' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_impediment_to_marry ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_impediment_to_marry_which" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_impediment_to_marry_which' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.bride_impediment_to_marry_which }}
+      </div>
+    </div>
+
+    <div *ngIf="model.bride_marry_by_free_will" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_marry_by_free_will' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_marry_by_free_will ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_reason_beside_love" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_reason_beside_love' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_reason_beside_love ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_difficulty_to_marry" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_difficulty_to_marry' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_difficulty_to_marry ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_intimicy_and_love" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_intimicy_and_love' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_intimicy_and_love ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_faithful_to_husband" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_faithful_to_husband' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_faithful_to_husband ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_will_not_divorce" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_will_not_divorce' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_will_not_divorce ? 'true' : 'false'] }}
+      </div>
+    </div>
+
+    <div *ngIf="model.bride_will_accept_children" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_will_accept_children' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_will_accept_children ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_knowledge_raise_children" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_knowledge_raise_children' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_knowledge_raise_children ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_will_raise_children" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_will_raise_children' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_will_raise_children ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_christian_education_children" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_christian_education_children' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_christian_education_children ? 'true' : 'false'] }}
+      </div>
+    </div>
+
+    <div *ngIf="model.bride_will_consent_marriage" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_will_consent_marriage' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_will_consent_marriage ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_has_hid_information" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_has_hid_information' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_has_hid_information ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_groom_same_ideas_about_marriage" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_groom_same_ideas_about_marriage' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_groom_same_ideas_about_marriage ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_groom_talk_about_marriage" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_groom_talk_about_marriage' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_groom_talk_about_marriage ? 'true' : 'false'] }}
+      </div>
+    </div>
+
+    <div *ngIf="model.bride_minor_parents_agree" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_minor_parents_agree' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_minor_parents_agree ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_minor_parents_agree_why" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_minor_parents_agree_why' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.bride_minor_parents_agree_why }}
+      </div>
+    </div>
+
+    <h2>{{ modulePath + ':header.concent' | i18next }}</h2>
+    <div *ngIf="model.bride_minor_parents_agree" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_minor_parents_agree' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_minor_parents_agree ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_minor_parents_agree_why" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_minor_parents_agree_why' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.bride_minor_parents_agree_why }}
+      </div>
+    </div>
+
+    <div *ngIf="model.bride_wish_to_correct_information" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_wish_to_correct_information' | i18next }}:</div>
+      <div fxFlex>
+        {{ booleanOptions[model.bride_wish_to_correct_information ? 'true' : 'false'] }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_wish_to_correct_information_text" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_wish_to_correct_information_text' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.bride_wish_to_correct_information_text }}
+      </div>
+    </div>
+
+    <div *ngIf="model.bride_dialog_worshipplace_description" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_dialog_worshipplace_description' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.bride_dialog_worshipplace_description }}
+      </div>
+    </div>
+    <div *ngIf="model.bride_dialog_vicar_description" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_dialog_vicar_description' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.bride_dialog_vicar_description }}
+      </div>
+    </div>
+
+    <div *ngIf="model.bride_dialog_date" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bride_dialog_date' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.bride_dialog_date  | date:('translation:format.date' | i18next) }}
+      </div>
+    </div>
+
+  </div>
+</ng-template>
+
+
+
+<ng-template #frequenceInscriptionsCPMTemplate>
+
+  <div class="section-container" fxLayout="column" fxFill>
+
+    <div *ngIf="model.cpm_number" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.cpm_number' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.cpm_number }}
+      </div>
+    </div>
+    <div *ngIf="model.cpm_chapelry_registration_description" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.cpm_chapelry_registration_description' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.cpm_chapelry_registration_description }}
+      </div>
+    </div>
+    <div *ngIf="model.cpm_worshipplace_description" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.cpm_worshipplace_description' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.cpm_worshipplace_description }}
+      </div>
+    </div>
+    <div *ngIf="model.cpm_knowledge_of" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.cpm_knowledge_of' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.cpm_knowledge_of }}
+      </div>
+    </div>
+    <div *ngIf="model.cpm_time_dating" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.cpm_time_dating' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.cpm_time_dating }}
+      </div>
+    </div>
+    <div *ngIf="model.cpm_reception_worshipplace_description" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.cpm_reception_worshipplace_description' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.cpm_reception_worshipplace_description }}
+      </div>
+    </div>
+    <div *ngIf="model.cpm_reception_entity_description" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.cpm_reception_entity_description' | i18next }}:</div>
+      <div fxFlex>
+        {{ model.cpm_reception_entity_description }}
+      </div>
+    </div>
+
+    <div *ngIf="model.cpm_reception_date" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.cpm_reception_date' | i18next }}:</div>
+      <div fxFlex>{{ model.cpm_reception_date | date:('translation:format.date' | i18next) }}</div>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.cpm_chapelry_colaboration_groom' | i18next }}:</div>
+      <div fxFlex>
+        <ui-icon [icon]="model.cpm_chapelry_colaboration_groom ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.cpm_chapelry_colaboration_bride' | i18next }}:</div>
+      <div fxFlex>
+        <ui-icon [icon]="model.cpm_chapelry_colaboration_bride ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<ng-template #birthCertificateTemplate>
+  <div class="section-container" fxLayout="column" fxFill>
+
+    <div *ngIf="model.groom_bride_birth_certificate_request" fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex class="mat-body-strong">{{ modulePath + ':model.groom_bride_birth_certificate_request' | i18next }}:</div>
+      <div fxFlex>
+        {{ groomBrideOptions[model.groom_bride_birth_certificate_request ? 'true' : 'false'] }}
+      </div>
+    </div>
+  </div>
+</ng-template>

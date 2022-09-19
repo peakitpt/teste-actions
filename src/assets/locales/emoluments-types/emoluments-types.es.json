@@ -1,0 +1,28 @@
+{
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar el tipo de emolumento con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quiere eliminar los <strong>{{ count }}</strong> Tipos de Emolumentos seleccionados?",
+        "delete_success": "¡Tipo de emolumento eliminado con éxito!",
+        "delete_success_plural": "¡Tipos de emolumentos eliminados con éxito!",
+        "save_success": "¡Tipo de emolumento guardado con éxito!"
+    },
+    "model": {
+        "name": "Nombre",
+        "is_donation_emolument": "Para donativos"
+    },
+    "header": {
+        "menu": "Numerador",
+        "sub_menus": "Sub-menús"
+    },
+    "action": {
+        "edit": "Editar Tipo de Emolumento",
+        "new": "Nuevo Tipo de Emolumento",
+        "add": "Añadir Tipo de Emolumento"
+    },
+    "module": {
+        "name_many": "Tipos de Emolumentos",
+        "name_singular": "Tipo de Emolumento"
+    }
+}

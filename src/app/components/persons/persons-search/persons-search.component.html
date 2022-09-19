@@ -1,0 +1,164 @@
+<div fxLayout="column" fxFlex="99" class="topbar-search-form-container">
+  <form [formGroup]="form" fxLayout="column" fxLayoutAlign="center center">
+    <ng-container *ngTemplateOutlet="baseTemplate"></ng-container>
+    <ui-expansion-panel [panels]="expansionPanels" displayMode="flat" togglePosition="before"></ui-expansion-panel>
+  </form>
+
+  <div fxLayout="column" fxLayoutGap="15px" class="sticky-footer">
+    <ui-divider></ui-divider>
+    <div fxLayout="row" fxLayoutAlign="end center" fxFlex="95" style="padding-bottom: 10px;">
+      <ui-button [label]="'translation:action.clear' | i18next" type="flat" (click)="clearSearch()"></ui-button>
+      <ui-button [label]="'translation:action.search' | i18next" type="raised" color="primary" (click)="onSearchClick()"></ui-button>
+    </div>
+  </div>
+</div>
+
+
+<!-- TEMPLATES -->
+<ng-template #baseTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid" style="padding: 0 15px 10px 15px;">
+    <div fxLayout="column" fxFlex>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'name', label: modulePath + ':model.entity.name' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'serie_number', label: modulePath + ':model.serie_number' | i18next }"></ng-container>
+    </div>
+
+    <div fxLayout="column" fxFlex>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'disabled', label: modulePath + ':model.entity.disabled' | i18next, options: booleanOptions }"></ng-container>
+      <ng-container *ngTemplateOutlet="dateRangeInput; context: { field: 'birth_date', label: modulePath + ':model.birth_date' | i18next }"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #personalDataTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid">
+    <div fxLayout="column" fxFlex>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'professional_profession_description', label: modulePath + ':model.professional_profession_description' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'sex', label: modulePath + ':model.sex' | i18next, options: genderOptions }"></ng-container>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'ident_document_number', label: modulePath + ':model.ident_document_number' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'taxpayer', label: modulePath + ':model.entity.taxpayer' | i18next }"></ng-container>
+    </div>
+
+    <div fxLayout="column" fxFlex>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'entity_father_description', label: modulePath + ':model.entity_father_description' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'entity_mother_description', label: modulePath + ':model.entity_mother_description' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'entity_spouse_description', label: modulePath + ':model.entity_spouse_description' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="dateRangeInput; context: { field: 'wedding_date', label: modulePath + ':model.wedding_date' | i18next }"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #categoriesTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid">
+    <div fxLayout="column" fxFlex>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'is_parishioner', label: modulePath + ':model.is_parishioner' | i18next, options: booleanOptions }"></ng-container>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'catechist', label: modulePath + ':model.entity.entity_catechist.catechist' | i18next, options: booleanOptions }"></ng-container>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'is_catechized', label: modulePath + ':model.is_catechized' | i18next, options: booleanOptions }"></ng-container>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'mec', label: modulePath + ':model.entity.entity_mec.mec' | i18next, options: booleanOptions }"></ng-container>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'elder', label: modulePath + ':model.entity.entity_elder_patient.elder' | i18next, options: booleanOptions }"></ng-container>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'sick', label: modulePath + ':model.entity.entity_elder_patient.sick' | i18next, options: booleanOptions }"></ng-container>
+    </div>
+    <div fxLayout="column" fxFlex>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'is_acolyte', label: modulePath + ':model.entity.entity_acolyte.is_acolyte' | i18next, options: booleanOptions }"></ng-container>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'is_pastoral_agent', label: modulePath + ':model.entity.entity_pastoral_agent.active' | i18next, options: booleanOptions }"></ng-container>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'sick', label: modulePath + ':model.entity.entity_reader.is_reader' | i18next, options: booleanOptions }"></ng-container>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'can_sign_documents', label: modulePath + ':model.entity.can_sign_documents' | i18next, options: booleanOptions }"></ng-container>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'newsletter_subscriptor', label: modulePath + ':model.entity.newsletter_subscriptor' | i18next, options: booleanOptions }"></ng-container>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'deceased', label: modulePath + ':model.deceased' | i18next, options: booleanOptions }"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #contactsTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid">
+    <div fxLayout="column" fxFlex>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'mobilephone', label: modulePath + ':model.entity.mobilephone' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'phone', label: modulePath + ':model.entity.phone' | i18next }"></ng-container>
+    </div>
+    <div fxLayout="column" fxFlex>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'email', label: modulePath + ':model.entity.email' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'url', label: modulePath + ':model.entity.url' | i18next }"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #addressTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid">
+    <div fxLayout="column" fxFlex>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'address', label: modulePath + ':model.entity.address' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'door_number', label: modulePath + ':model.entity.door_number' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'postal_code', label: modulePath + ':model.entity.postal_code' | i18next }"></ng-container>
+    </div>
+    <div fxLayout="column" fxFlex>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'place', label: modulePath + ':model.entity.place' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'county', label: modulePath + ':model.entity.county' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'country_description', label: modulePath + ':model.entity.country_description' | i18next }"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #othersTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid">
+    <div fxLayout="column" fxFlex>
+      <ng-container *ngTemplateOutlet="selectInput; context: { field: 'groups', label: modulePath + ':header.groups' | i18next, options: groupsOptions, multiple: true }"></ng-container>
+      <ng-container *ngTemplateOutlet="dateRangeInput; context: { field: 'does_birthday', label: modulePath + ':filters.does_birthday' | i18next, startView: 'year', hint: modulePath + ':filters.does_birthday_hint' | i18next }"></ng-container>
+    </div>
+    <div fxLayout="column" fxFlex>
+      <ng-container *ngTemplateOutlet="dateRangeInput; context: { field: 'does_wedding_birthday', label: modulePath + ':filters.does_wedding_birthday' | i18next, startView: 'year', hint: modulePath + ':filters.does_wedding_birthday_hint' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'does_xx_wedding_birthday', label: modulePath + ':filters.does_xx_wedding_birthday' | i18next, inputType: 'number', placeholder: modulePath + ':filters.does_xx_wedding_birthday_placeholder' | i18next, hint: modulePath + ':filters.does_xx_wedding_birthday_hint' | i18next }"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #textInput let-field="field" let-label="label" let-placeholder="placeholder" let-inputType="inputType" let-hint="hint">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="25" fxLayoutAlign="start center">{{ label }}:</div>
+
+    <div fxFlex="70" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-input
+        fxFlex
+        [placeholder]="placeholder ? placeholder : label"
+        [appearance]="'standard'"
+        [control]="form.get('searchFields').get(field).get('value')"
+        [type]="inputType ? inputType : 'text'"
+        [hintMessage]="hint"
+        (keyup.enter)="onSearchClick()">
+      </ui-input>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #dateRangeInput let-field="field" let-label="label" let-startView="startView" let-hint="hint">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="25" fxLayoutAlign="start center">{{ label }}:</div>
+
+    <div fxFlex="70" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="20px">
+      <ui-datepicker-range
+        fxFlex
+        [startView]="startView || 'multi-year'"
+        [appearance]="'standard'"
+        [controlStart]="form.get('searchFields').get(field + '_start').get('value')"
+        [controlEnd]="form.get('searchFields').get(field + '_end').get('value')"
+        [hintMessage]="hint"
+        (keyup.enter)="onSearchClick()">
+      </ui-datepicker-range>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #selectInput let-field="field" let-label="label" let-options="options" let-multiple="multiple" let-hint="hint">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="25" fxLayoutAlign="start center">{{ label }}:</div>
+
+    <div fxFlex="70" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-select
+        fxFlex
+        [placeholder]="'translation:all' | i18next"
+        [appearance]="'standard'"
+        [options]="options"
+        [hintMessage]="hint"
+        [multiple]="multiple"
+        [control]="form.get('searchFields').get(field).get('value')">
+      </ui-select>
+    </div>
+  </div>
+</ng-template>

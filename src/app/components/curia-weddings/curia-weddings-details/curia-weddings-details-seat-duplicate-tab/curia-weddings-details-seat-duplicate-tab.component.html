@@ -1,0 +1,81 @@
+<section id="main-section">
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.seat_duplicate_attestation_number">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.seat_duplicate_attestation_number' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.seat_duplicate_attestation_number }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.seat_duplicate_baptism_endorsement_date">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.seat_duplicate_baptism_endorsement_date' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.seat_duplicate_baptism_endorsement_date | date:('translation:format.date' | i18next) }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.seat_duplicate_officiating_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.seat_duplicate_officiating_description' | i18next }}:</div>
+        <div fxFlex>
+          <div>
+            {{ model.seat_duplicate_officiating_description }}
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.wedding_parson_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.wedding_parson_description' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.wedding_parson_description }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.seat_duplicate_present">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.seat_duplicate_present' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.seat_duplicate_present }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.seat_duplicate_special_mentions">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.seat_duplicate_special_mentions' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.seat_duplicate_special_mentions }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.seat_duplicate_witnesses_identification_groom1_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.seat_duplicate_witnesses_identification_groom1_description' | i18next }}:</div>
+        <div fxFlex>
+            <a (click)="openDetails('persons', model.seat_duplicate_witnesses_identification_groom1.entity_person.id)">{{ model.seat_duplicate_witnesses_identification_groom1_description }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.seat_duplicate_witnesses_identification_groom2_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.seat_duplicate_witnesses_identification_groom2_description' | i18next }}:</div>
+        <div fxFlex>
+            <a (click)="openDetails('persons', model.seat_duplicate_witnesses_identification_groom2.entity_person.id)">{{ model.seat_duplicate_witnesses_identification_groom2_description }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.seat_duplicate_witnesses_identification_bride1_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.seat_duplicate_witnesses_identification_bride1_description' | i18next }}:</div>
+        <div fxFlex>
+            <a (click)="openDetails('persons', model.seat_duplicate_witnesses_identification_bride1.entity_person.id)">{{ model.seat_duplicate_witnesses_identification_bride1_description }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.seat_duplicate_witnesses_identification_bride2_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.seat_duplicate_witnesses_identification_bride2_description' | i18next }}:</div>
+        <div fxFlex>
+            <a (click)="openDetails('persons', model.seat_duplicate_witnesses_identification_bride2.entity_person.id)">{{ model.seat_duplicate_witnesses_identification_bride2_description }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.seat_duplicate_will_be_signed">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.seat_duplicate_will_be_signed' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.seat_duplicate_will_be_signed }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.seat_duplicate_comments_edge_seat">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.seat_duplicate_comments_edge_seat' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.seat_duplicate_comments_edge_seat }}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

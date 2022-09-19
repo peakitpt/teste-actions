@@ -1,0 +1,20 @@
+{
+    "module": {
+        "name_many": "Statement of Accounts",
+        "name_singular": "Statement of Account"
+    },
+    "model": {
+        "credit_amount": "Credit",
+        "debit_amount": "Debit",
+        "accounting_chart_account_description": "Count",
+        "trans_date_end": "Date (until)",
+        "trans_date_start": "Date (Since)",
+        "trans_date": "Date",
+        "description": "Description",
+        "options": {
+            "abertura": "Opening"
+        },
+        "period": "Period",
+        "accounting_chart_account_id": "Account Id"
+    }
+}

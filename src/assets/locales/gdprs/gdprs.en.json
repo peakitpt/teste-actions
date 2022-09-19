@@ -1,0 +1,12 @@
+{
+  "module": {
+    "name_singular": "GDPR",
+    "name_many": "GDPRs"
+  },
+  "message": {
+    "modal_closed": "Is modal closed?"
+  },
+  "action": {
+      "open_again": "Open again"
+  }
+}

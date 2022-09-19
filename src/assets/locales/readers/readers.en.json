@@ -1,0 +1,115 @@
+{
+    "options": {
+        "not_available": "N/D",
+        "no": "No",
+        "yes": "Yes"
+    },
+    "header": {
+        "address": "Adress",
+        "contacts": "Contact",
+        "renewal": "Renewals",
+        "formations": "Formation",
+        "ecclesial_formations": "Ecclesial Formations",
+        "ecclesial_activities": "Church activities",
+        "identi_documents": "Identification documents"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Reader with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the selected <strong> {{count}} </strong> Readers?",
+        "delete_success": "Reader successfully deleted!",
+        "delete_success_plural": "Readers successfully deleted!",
+        "save_success": "Reader saved successfully!"
+    },
+    "action": {
+        "generate_card": "Create card",
+        "delete": "Delete Reader?",
+        "edit": "Edit Reader",
+        "new": "New Reader"
+    },
+    "model": {
+        "institution_center_worshipplace_description": "Place of worship",
+        "ecclesial_formation_theological_pastorails_courses": "Theological-pastoral courses",
+        "formation_courses": "Formation courses",
+        "institution_date": "Nomination date",
+        "institution_time": "How many years have you been",
+        "entity": {
+            "county": "County",
+            "mobilephone": "Mobile Phone",
+            "entity_catechist": {
+                "catechist": "Catechist"
+            },
+            "entity_person": {
+                "birth_date": "Date of birth",
+                "professional_profession_description": "Profession",
+                "comments": "Comments",
+                "sex": "Genre",
+                "ident_document_number": "Identification number",
+                "ident_document_emitted_by": "Emitted by",
+                "is_parishioner": "Parishioner",
+                "serie_number": "Registration number",
+                "age": "Age",
+                "qualifications": "Abilities",
+                "ident_document_emission_date": "Date of issue",
+                "ident_document_validity_date": "Expiration date",
+                "ident_document_type": "Identification type"
+            },
+            "name": "Name",
+            "civil_status": "Marital status",
+            "residence_chapelry_description": "Residence parish",
+            "fax": "Fax",
+            "url": "Web Page",
+            "entity_reader": {
+                "is_reader": "Reader"
+            },
+            "address": "Adress",
+            "door_number": "Number",
+            "place": "Locality",
+            "latitude": "Latitud",
+            "longitude": "Longitud",
+            "phone": "Cell Phone",
+            "email": "E-mail",
+            "is_public_profile": "Public",
+            "entity_acolyte": {
+                "is_acolyte": "Acolyte"
+            },
+            "entity_birth_chapelry_description": "Birth parish",
+            "postal_code": "Zip code",
+            "entity_mec": {
+                "mec": "Acolyte"
+            }
+        },
+        "magnetic_number": "Magnetic Number",
+        "congregation": "Congregation",
+        "ecclesial_formation_biblical_courses": "Bible courses",
+        "ecclesial_formation_other": "Other",
+        "ecclesial_activities_caretaker": "Keeper",
+        "ecclesial_activities_other_description": "Another ecclesial activity",
+        "is_coordinator": "Coordinator",
+        "ecclesial_formation_other_description": "Another ecclesial formation",
+        "ecclesial_activities_other": "Other",
+        "ecclesial_activities_singer": "Singer",
+        "ecclesial_activities_association_of_faithful_direction_member": "Member of the board of an association of the faithful",
+        "ecclesial_activities_economic_council_member": "Member of the economic council",
+        "entities_readers_formations": {
+            "formation_date": "Date",
+            "formation_description": "Formation"
+        },
+        "entities_readers_lines": {
+            "renewal_date": "Date"
+        },
+        "reader_number": "Nr Reader",
+        "is_reader": "Active"
+    },
+    "tabs": {
+        "personal-data": "Personal data",
+        "formations": "Renewals and formations",
+        "categories": "Categories",
+        "reader": "Reader"
+    },
+    "module": {
+        "name_many": "Readers",
+        "name_singular": "Reader"
+    }
+}

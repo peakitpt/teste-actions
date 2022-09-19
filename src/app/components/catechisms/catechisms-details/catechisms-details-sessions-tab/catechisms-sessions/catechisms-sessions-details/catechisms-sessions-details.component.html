@@ -1,0 +1,85 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+        {{ modulePath + ':module.name_session_singular' | i18next }}
+      </h1>
+      <ng-template #smallHeader>
+        {{ modulePath + ':module.name_session_singular' | i18next }}
+      </ng-template>
+      <div class="header-buttons" fxLayout="row">
+        <ng-container *ngIf="model$ | async as model">
+          <ui-button *ngIf="!finalized" type='icon' icon="edit" disableRipple="true" disableFocusRipple="true" (onClickEvent)="menuClick('edit', model)"></ui-button>
+          <ui-menu *ngIf="!finalized"
+            type="icons"
+            [model]="headerOptionsMenu"
+            (sendValue)="menuClick($event, model)"
+          >
+          </ui-menu>
+        </ng-container>
+        <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+      </div>
+    </div>
+    <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.catechisms_sessions.date' | i18next }}:</div>
+            <div fxFlex>{{ model.date | date:('translation:format.date' | i18next) }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.catechisms_sessions.summary' | i18next}}:</div>
+            <div fxFlex>{{ model.summary }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.observations">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.catechisms_sessions.observations' | i18next }}:</div>
+            <div fxFlex>{{ model.observations }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="model.catechisms_sessions_presences_attributes">
+      <h2>{{ modulePath + ':model.catechisms_sessions.presences' | i18next }}</h2>
+      <div fxLayout="column">
+        <table class="mat-table">
+          <tr class="mat-header-row">
+            <th class="mat-header-cell">#</th>
+            <th class="mat-header-cell">{{ modulePath + ':model.catechisms_sessions.catechisms_sessions_presences_attributes.entity_description' | i18next }}</th>
+            <th class="mat-header-cell">{{ modulePath + ':model.catechisms_sessions.catechisms_sessions_presences_attributes.present' | i18next }}</th>
+          </tr>
+          <tr class="mat-row uiKyriosTableRow" *ngFor="let session_presence of model.catechisms_sessions_presences_attributes; let i = index" [attr.data-index]="i">
+            <td class="mat-cell">{{ i + 1 }}</td>
+            <td class="mat-cell"><a (click)="openDetails('persons', session_presence.entity.entity_person.id)">{{ session_presence.entity_description }}</a></td>
+            <td class="mat-cell">
+              <ui-icon [icon]="session_presence.present ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<kyr-catechisms-sessions-delete *ngIf="isSessionDeleteOpen"
+  (emitModalClose)="closeSessionDeleteModal($event)">
+</kyr-catechisms-sessions-delete>

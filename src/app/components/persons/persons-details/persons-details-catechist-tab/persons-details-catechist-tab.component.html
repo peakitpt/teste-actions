@@ -1,0 +1,50 @@
+<section id="catechist-introductory-course-section" *ngIf="model.entity.entity_catechist.initiation_course_date
+        || model.entity.entity_catechist.initiation_course_avaliation">
+  <h2>{{ modulePath + ':header.catechist_introductory_course' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_catechist.initiation_course_date">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_catechist.initiation_course_date' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.entity_catechist.initiation_course_date | date:('translation:format.date' | i18next) }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_catechist.initiation_course_avaliation">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_catechist.initiation_course_avaliation' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.entity_catechist.initiation_course_avaliation }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="catechist-general-course-section" *ngIf="model.entity.entity_catechist.general_course_date
+        || model.entity.entity_catechist.general_course_avaliation">
+  <h2>{{ modulePath + ':header.catechist_general_course' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_catechist.general_course_date">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_catechist.general_course_date' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.entity_catechist.general_course_date | date:('translation:format.date' | i18next) }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_catechist.general_course_avaliation">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_catechist.general_course_avaliation' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.entity_catechist.general_course_avaliation }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="catechist-complementary-course-section" *ngIf="model.entity.entity_catechist.complementary_course_date
+        || model.entity.entity_catechist.complementary_course_avaliation">
+  <h2>{{ modulePath + ':header.catechist_complementary_course' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_catechist.complementary_course_date">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_catechist.complementary_course_date' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.entity_catechist.complementary_course_date | date:('translation:format.date' | i18next) }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_catechist.complementary_course_avaliation">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_catechist.complementary_course_avaliation' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.entity_catechist.complementary_course_avaliation }}</div>
+      </div>
+    </div>
+  </div>
+</section>

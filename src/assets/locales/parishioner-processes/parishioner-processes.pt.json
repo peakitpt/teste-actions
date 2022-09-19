@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name_singular": "Processo",
+    "name_many": "Processos"
+  },
+  "model": {
+    "view_description": "Tipo",
+    "serie_number": "Nº de Registo",
+    "process_description": "Descrição"
+  }
+}

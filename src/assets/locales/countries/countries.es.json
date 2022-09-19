@@ -1,0 +1,59 @@
+{
+    "module": {
+        "name_singular": "País",
+        "name_many": "Países"
+    },
+    "country": {
+        "USA": "Estados Unidos de América",
+        "Portugal": "Portugal"
+    },
+    "action": {
+        "addCountry": "Añadir País",
+        "new_country": "Nuevo país",
+        "edit-country": "Editar país",
+        "edit": "Editar el País",
+        "new": "Nuevo país",
+        "delete": "Eliminar País"
+    },
+    "example": {
+        "name": "ej.: Portugal",
+        "officialName": "ej.: República of Portugal",
+        "commonCode": "ej.: POR",
+        "officialCode1": "ej.: PT",
+        "officialCode2": "ej.: PRT"
+    },
+    "model": {
+        "name": "Nombre",
+        "officialName": "Nombre oficial",
+        "commonCode": "Código común",
+        "officialCode1": "Código oficial",
+        "officialCode2": "Código oficial 2",
+        "validated": "Validado",
+        "cca3": "Código oficial 2",
+        "cca2": "Código oficial",
+        "cioc": "Código común",
+        "name_official": "Nombre oficial"
+    },
+    "placeholder": {
+        "officialCode2": "ej.: ESP",
+        "officialCode1": "ej.: ES",
+        "commonCode": "ej.: ES",
+        "officialName": "ej .: España",
+        "name": "ej .: España"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "Está seguro de que desea eliminar el país con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Estás seguro de que quieres eliminar todos los  <strong>{{ count }}</strong> Países seleccionados?",
+        "delete_success": "¡País eliminado correctamente!",
+        "delete_success_plural": "¡Países eliminados correctamente!",
+        "save_success": "¡País guardado correctamente!"
+    },
+    "validated": "Validado",
+    "officialCode2": "Código oficial 2",
+    "officialCode1": "Código oficial",
+    "commonCode": "Código común",
+    "officialName": "Nombre oficial",
+    "name": "Nombre"
+}

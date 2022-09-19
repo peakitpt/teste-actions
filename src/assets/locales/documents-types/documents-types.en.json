@@ -1,0 +1,50 @@
+{
+    "module": {
+        "name_singular": "Document Type",
+        "name_many": "Documents Types"
+    },
+    "model": {
+        "description": "Description",
+        "code": "Code",
+        "active": "Active",
+        "name": "Name",
+        "numeration": {
+            "ser_length": "Number of digits",
+            "ser_max": "Limit number",
+            "ser_value": "Current No.",
+            "ser_suffix": "Suffix",
+            "ser_preffix": "Prefix",
+            "serie": "Serie",
+            "is_default": "Pre-define",
+            "active": "Active"
+        },
+        "movement_operator": "Operator",
+        "movement_type_option": {
+            "d": "Debit",
+            "c": "Credit"
+        },
+        "affects_legal_tax_reports": "Affects model 25 ",
+        "self_assessment": "Self-liquidation",
+        "movement_type": "Type of movement"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "error": {
+            "no_series": "Add at least one Series"
+        },
+        "delete_are_you_sure": "Are you sure you want to delete the Document Type named \"<strong>{{ description }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Selected Document Types?",
+        "delete_success": "Document Type successfully deleted!",
+        "delete_success_plural": "Document Types successfully deleted!",
+        "save_success": "Document Type successfully saved!"
+    },
+    "header": {
+        "series": "Series"
+    },
+    "action": {
+        "delete": "Delete Document Type?",
+        "edit": "Edit Document Type",
+        "new": "New Document Type"
+    }
+}

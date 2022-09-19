@@ -1,0 +1,57 @@
+{
+  "module": {
+    "name_singular": "Lançamento",
+    "name_many": "Lançamentos"
+  },
+  "action": {
+    "new": "Novo Lançamento",
+    "edit": "Editar Lançamento",
+    "delete": "Eliminar Lançamento?"
+  },
+  "message": {
+    "save_success": "Lançamento guardado com sucesso!",
+    "delete_success": "Lançamento apagado com sucesso!",
+    "delete_success_plural": "Lançamentos apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Lançamento com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Lançamentos selecionados?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas"
+  },
+  "model": {
+    "transaction_id": "Código do Movimento",
+    "description": "Descrição",
+    "transaction_date": "Data",
+    "transaction_date_start": "Data (desde)",
+    "transaction_date_end": "Data (até)",
+    "period": "Período contabilístico",
+    "transaction_type": "Tipificação do Movimento",
+    "accounting_transaction_document_type_description": "Tipo de Documento",
+    "transaction_serie_number": "Nº de Documento",
+    "accounting_journal_description": "Diário",
+    "doc_archival_number": "Nº Arquivo",
+    "accounting_transaction_lines": {
+      "accounting_chart_account_description": "Conta",
+      "credit_amount": "Cŕedito",
+      "debit_amount": "Débito",
+      "description": "Descrição",
+      "accounting_cost_center_description": "Centro de Custo"
+    },
+    "credit": "Crédito",
+    "debit": "Débito",
+    "total": "Total",
+    "total_amount": "Balanceado",
+    "accounting_chart_account": "Conta",
+    "accounting_cost_center": "Centro de Custo",
+    "options": {
+      "opened": "Abertura"
+    },
+    "attachment": "Anexo"
+  },
+  "tabs": {
+    "general": "Lançamento",
+    "attachments": "Anexos"
+  },
+  "errors": {
+    "total_amount_not_zero": "Valor total deve ser 0"
+  }
+}

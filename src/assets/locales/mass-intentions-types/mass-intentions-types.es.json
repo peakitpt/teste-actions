@@ -1,0 +1,22 @@
+{
+    "module": {
+        "name_singular": "Tipo de Intención de Misa",
+        "name_many": "Tipos de Intención de Misa"
+    },
+    "model": {
+        "name": "Descripción"
+    },
+    "message": {
+        "delete_are_you_sure": "¿Estás seguro de que deseas eliminar el Tipo de Intención de Misa \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que desea eliminar los <strong>{{count}}</strong> Tipos de Intención de Misa seleccionados?",
+        "delete_success": "¡Tipo de Intención de Misa eliminada con éxito!",
+        "save_success": "¡Tipo de Intención de Misa guardada con éxito!",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados"
+    },
+    "action": {
+        "delete": "¿Eliminar Tipo de Intención de Misa?",
+        "edit": "Editar Tipo de Intención de Misa",
+        "new": "Nuevo Tipo de Intención de Misa"
+    }
+}

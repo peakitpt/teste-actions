@@ -1,0 +1,64 @@
+<router-outlet></router-outlet>
+
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2 style="color: white;">
+    {{ modulePath + ':message.modal_closed' | i18next }}
+  </h2>
+  <ui-button type="flat" icon="save" [label]="modulePath + ':action.open_again' | i18next" color="accent" (onClickEvent)="modal.open()">
+  </ui-button>
+</div>
+
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + ':module.name_singular' | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ui-button type="icon" icon="close" (onClickEvent)="closeModal()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate;">
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="30px" fxLayoutAlign="flex-start">
+    <section fxFlex="30" *ngFor="let view of kpisResults | keyvalue">
+      <h2>{{ modulePath + ':header.' + view.key | i18next }}</h2>
+      <div fxLayout="row">
+        <div *ngFor="let result of view.value" fxFlex fxLayout="row" fxLayoutAlign="start center">
+          <ui-icon icon="bar_chart" size="50px"></ui-icon>
+          <div fxLayout="column">
+            <div class="mat-body-strong" style="font-weight: bold;"> {{result.kpi_translated_label}} </div>
+            <div> {{result.kpi_value}} </div>
+            <div class="see-more-link" (click)="openNewTab(view.value.link)"> {{ 'translation:action.view' | i18next }} </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</ng-template>
+
+<!-- TEMPLATES -->
+
+<!-- TEMPLATES END -->

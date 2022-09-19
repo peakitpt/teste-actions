@@ -1,0 +1,24 @@
+{
+    "module": {
+        "name_singular": "Document Type",
+        "name_many": "Document Types"
+    },
+    "message": {
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Document Typology with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Documents Typology selected?",
+        "delete_success": "Document type successfully deleted!",
+        "delete_success_plural": "Documents type successfully deleted!",
+        "save_success": "Tipology of Document successfully saved!"
+    },
+    "action": {
+        "process_selected": "Processing Selected",
+        "delete": "Delete Document Typology?",
+        "edit": "Edit Document Typology",
+        "new": "New Document Typology"
+    },
+    "model": {
+        "description": "Description"
+    }
+}

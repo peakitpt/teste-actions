@@ -1,0 +1,38 @@
+{
+  "module": {
+    "name_singular": "Catecumenato",
+    "name_many": "Catecumenato"
+  },
+  "action": {
+    "new": "Novo Catecumenato",
+    "edit": "Editar Catecumenato",
+    "delete": "Eliminar Catecumenato?"
+  },
+  "message": {
+    "save_success": "Catecumenato guardado com sucesso!",
+    "delete_success": "Catecumenato apagado com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Catecumenato de <b>{{ name }}</b>?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <b>{{ count }}</b> Catecumenatos selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "serie_number": "Nº de registo",
+    "entity_catechumen_description": "Nome",
+    "date": "Data de inscrição",
+    "admission_date": "Data de admissão",
+    "admission_hour": "Hora de admissão",
+    "seat_number": "Assento nº",
+    "sheet": "Folha",
+    "entity_by_description": "Admitido por",
+    "admission_local_description": "No local",
+    "comments": "Observações",
+    "emolument_description": "Emolumento",
+    "tax": "Taxa",
+    "document_entity_description": "Entidade a constar no documento"
+  },
+  "header": {
+    "admission_details": "Detalhes de admissão",
+    "treasury_document": "Documento de tesouraria"
+  }
+}

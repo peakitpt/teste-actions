@@ -1,0 +1,20 @@
+{
+  "module": {
+    "name_singular": "Extrato de Conta",
+    "name_many": "Extrato de Contas"
+  },
+  "model": {
+    "period": "Periodo",
+    "trans_date": "Data",
+    "trans_date_start": "Data (desde)",
+    "trans_date_end": "Data (até)",
+    "accounting_chart_account_id": "Id da Conta",
+    "accounting_chart_account_description": "Conta",
+    "description": "Descrição",
+    "debit_amount": "Débito",
+    "credit_amount": "Crédito",
+    "options": {
+      "abertura": "Abertura"
+    }
+  }
+}

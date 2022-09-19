@@ -1,0 +1,40 @@
+{
+  "module": {
+    "name_singular": "Numerador",
+    "name_many": "Numeradores"
+  },
+  "action": {
+    "add": "Adicionar Numerador",
+    "new": "Novo Numerador",
+    "edit": "Editar Numerador",
+    "delete": "Eliminar Numerador?"
+  },
+  "message": {
+    "save_success": "Numerador guardado com sucesso!",
+    "delete_success": "Numerador apagado com sucesso!",
+    "delete_success_plural": "Numeradores apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Numerador com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Numeradores selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados",
+    "plus_one_message": " Se pretender que o numerador comece em 1, defina o \"Número atual\" como 0 (zero). O próximo número gerado será sempre o Número atual + 1.",
+    "needs_numeration": "Este módulo precisa de um Numerador."
+  },
+  "model": {
+    "name": "Nome",
+    "active": "Activo",
+    "block_edit": "Não editável",
+    "block_remove": "Não apagável",
+    "ser_length": "Número de dígitos",
+    "ser_max": "Número limite",
+    "ser_value": "Número atual",
+    "ser_preffix": "Prefixo",
+    "ser_suffix": "Sufixo",
+    "ser_year": "Ano",
+    "serie": "Série"
+  },
+  "header": {
+    "menu": "Numerador",
+    "sub_menus": "Sub-menus"
+  }
+}

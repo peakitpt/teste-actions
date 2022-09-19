@@ -1,0 +1,26 @@
+{
+  "module": {
+    "name_singular": "Taxonomias - Referência",
+    "name_many": "Taxonomias - Referências"
+  },
+  "action": {
+    "new": "Nova Referência",
+    "edit": "Editar Referência",
+    "delete": "Eliminar Referência?"
+  },
+  "message": {
+    "save_success": "Referência guardada com sucesso!",
+    "delete_success": "Referência apagada com sucesso!",
+    "delete_success_plural": "Referências apagadas com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Referência com o código \"<strong>{{ code }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Referências selecionadas?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "locale": "Localização",
+    "code": "Código",
+    "description": "Descrição",
+    "is_default": "Pré-definida"
+  }
+}

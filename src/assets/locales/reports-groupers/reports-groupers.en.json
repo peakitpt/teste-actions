@@ -1,0 +1,26 @@
+{
+    "model": {
+        "locale": "Location",
+        "name": "Name",
+        "enabled": "Active"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Report Grouper with the name \"<strong>{{name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the selected <strong>{{ count }}</strong> Report Groupers?",
+        "delete_success": "Report Grouper successfully deleted!",
+        "delete_success_plural": "Report Groupers successfully deleted!",
+        "save_success": "Report Grouper successfully saved!"
+    },
+    "action": {
+        "delete": "Delete Report Grouper",
+        "edit": "Edit Report Grouper",
+        "new": "New Report Grouper",
+        "add": "Add Report Grouper"
+    },
+    "module": {
+        "name_many": "Report Groupers",
+        "name_singular": "Report Grouper"
+    }
+}

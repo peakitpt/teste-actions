@@ -1,0 +1,66 @@
+<div fxLayout="column" class="topbar-search-form-container">
+  <form [formGroup]="form" style="padding: 10px;">
+    <ng-container *ngTemplateOutlet="baseTemplate"></ng-container>
+  </form>
+
+  <div fxLayout="column" fxLayoutGap="15px" class="sticky-footer">
+    <ui-divider></ui-divider>
+    <div fxLayout="row" fxLayoutAlign="end center" fxFlex="95" style="padding-bottom: 10px;">
+      <ui-button [label]="'translation:action.clear' | i18next" type="flat" (click)="clearSearch()"></ui-button>
+      <ui-button [label]="'translation:action.search' | i18next" type="raised" color="primary" (click)="onSearchClick()"></ui-button>
+    </div>
+  </div>
+</div>
+
+
+<!-- TEMPLATES -->
+<ng-template #baseTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid" style="padding: 0 15px 10px 15px;">
+    <div fxLayout="column" fxFlex>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'serie_number', label: modulePath + ':model.serie_number' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="textInput; context: { field: 'title', label: modulePath + ':model.title' | i18next }"></ng-container>
+      <ng-container *ngTemplateOutlet="quickInsertInput; context: { field: 'curia_administrative_process_type_description', modal: 'curia-administrative-process-types-modal', inputname: 'curia_administrative_process_type_description' }"></ng-container>
+      <ng-container *ngTemplateOutlet="quickInsertInput; context: { field: 'document_entity_description', modal: 'parishioners-modal', inputname: 'document_entity_description', params: parishionersQueryStringParams }"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #textInput let-field="field" let-label="label" let-placeholder="placeholder" let-inputType="inputType" let-hint="hint">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="25" fxLayoutAlign="start center">{{ label }}:</div>
+
+    <div fxFlex="70" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-input
+        fxFlex
+        [placeholder]="placeholder ? placeholder : label"
+        [appearance]="'standard'"
+        [control]="form.get('searchFields').get(field).get('value')"
+        [type]="inputType ? inputType : 'text'"
+        [hintMessage]="hint"
+        (keyup.enter)="onSearchClick()">
+      </ui-input>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #quickInsertInput let-field="field" let-modal="modal" let-inputname="inputname" let-params="params">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="20" fxLayoutAlign="start center">{{ form.get('searchFields').get(field).get('searchWordLabel').value }}:</div>
+    <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-input
+        fxFlex
+        [appearance]="'standard'"
+        [control]="form.get('searchFields').get(field).get('value')"
+        [rightTemplate]="{ template: rightClickTemplate, context: { inputName: inputname} }"
+        (keyup.enter)="onSearchClick()"
+      ></ui-input>
+
+      <ng-template #rightClickTemplate let-inputName="inputName">
+        <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+          <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal(modal, inputName, {}, '', params)"></ui-button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</ng-template>
+

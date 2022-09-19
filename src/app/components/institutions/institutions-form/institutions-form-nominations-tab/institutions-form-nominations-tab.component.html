@@ -1,0 +1,6 @@
+<section>
+  <h2>{{ modulePath + ':header.appointments' | i18next }}</h2>
+  <ui-table #nominationsTabTemplate [checkboxes]="false" [dataSource]="nominationsDS"
+    [tableColumns]="nominationsColumns">
+  </ui-table>
+</section>

@@ -1,0 +1,64 @@
+{
+    "module": {
+        "name_singular": "Content",
+        "name_many": "Contents"
+    },
+    "action": {
+        "add": "Add Content",
+        "new": "New Content",
+        "edit": "Edit Content"
+    },
+    "message": {
+        "save_success": "Content successfully saved!",
+        "delete_success": "Content successfully deleted!",
+        "delete_success_plural": "Contents successfully deleted!",
+        "delete_are_you_sure": "Are you sure that you want to delete the Content with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure that you want to delete all the <strong>{{ count }}</strong> selected Contents?",
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected"
+    },
+    "model": {
+        "title": "Title",
+        "sections": "Sections",
+        "sections_names": "Sections names",
+        "resume": "Resume",
+        "content": "Content",
+        "author": "Author",
+        "locale": "Locale",
+        "hashtags": "Password",
+        "attachment_filename": "File name",
+        "cover_author": "Cover author",
+        "cover_locale": "Cover locale",
+        "online": "Online",
+        "online_from_date": "Online from (date)",
+        "online_from_hour": "Online from (hour)",
+        "online_to_date": "Online to (date)",
+        "online_to_hour": "Online to (hour)",
+        "fotogalery_filename": "Fotogalery file",
+        "thumbnail": "Thumbnail",
+        "description": "Description",
+        "image_url_filename": "Image file",
+        "caption": "Caption",
+        "download_filename": "Download file",
+        "contents_hashtags": "Hashtags",
+        "event_from_date": "Online from",
+        "online_from_date_start": "Online from (start)",
+        "online_from_date_end": "Online from (end)",
+        "notification_sent_at_date": "Notification sent at",
+        "send_notification": "Send notification"
+    },
+    "tabs": {
+        "content": "Content",
+        "related-content": "Related content",
+        "fotogalery": "Fotogalery",
+        "downloads": "Downloads"
+    },
+    "header": {
+        "content_details": "Content Details",
+        "sub_menus": "Sub-menus",
+        "thumbnail": "Thumbnail",
+        "publish": "Publish",
+        "sections": "Sections",
+        "hashtags": "Hashtags"
+    }
+}

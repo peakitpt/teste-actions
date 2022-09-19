@@ -1,0 +1,9 @@
+{
+    "model": {
+        "name": "Nombre"
+    },
+    "module": {
+        "name_many": "Diseños",
+        "name_singular": "Diseño"
+    }
+}

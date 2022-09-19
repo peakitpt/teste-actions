@@ -1,0 +1,240 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="onModalClose()"
+  [disableClose]="true"
+  [headerBottomMargin]="false"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row wrap" fxLayoutGap="20px">
+      <div *ngIf="model?.curia_status" class="curia-status">
+        <ui-chip class="{{ model.curia_status }}" [disableRipple]="true" [content]="'translation:curia_status.' + model.curia_status | i18next"></ui-chip>
+      </div>
+      <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}</h1>
+      <ng-template #smallHeader>
+        {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+      </ng-template>
+    </div>
+
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu [hoverTitle]="'translation:action.more' | i18next" *ngIf="headerOptionsMenu.length && !isQuickInsertion" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" fxHide.gt-sm="true"
+      *ngIf="footerOptionsMenu.length && !isQuickInsertion" type="icons" mainIcon="more_horiz"
+      yPosition="above" [model]="footerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+
+    <ui-button
+      *ngIf="!isQuickInsertion"
+      type="flat" icon="save"
+      [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true">
+    </ui-button>
+
+    <ui-button
+      *ngIf="!duplicateMode && !isQuickInsertion && sharedModule.visibleSendToCuria(model)"
+      fxHide.lt-md="true"
+      type="flat" icon="send"
+      [label]="'translation:action.send_to_curia' | i18next" color="primary"
+      (onClickEvent)="menuClick('send_to_curia')">
+    </ui-button>
+
+    <ui-button
+      *ngIf="!isQuickInsertion && (model?.id && !model?.document_id)"
+      fxHide.lt-md="true"
+      type="flat" icon="save"
+      [label]="'translation:action.save_generate_document' | i18next" color="primary"
+      (onClickEvent)="menuClick('save_generate_document')">
+    </ui-button>
+
+    <ui-button
+      type="flat" icon="save"
+      [label]="(isQuickInsertion ? 'translation:action.create_insert' : 'translation:action.save') | i18next"
+      color="accent" (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body" (keydown.enter)="$event.preventDefault()">
+    <ui-tabs [tabs]="formTabs"></ui-tabs>
+  </form>
+</ng-template>
+
+
+<!-- TABS -->
+<ng-template #mainTabTemplate>
+  <kyr-baptisms-form-main-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [id]="id"
+    [leftTemplate]="leftTemplate"
+    [personsRightTemplate]="personsRightTemplate"
+    [emolumentsRightTemplate]="emolumentsRightTemplate"
+    [parishionersRightTemplate]="parishionersRightTemplate"
+    [worshipplacesRightTemplate]="worshipplacesRightTemplate"
+    [priestsAndPersonsRightTemplate]="priestsAndPersonsRightTemplate"
+    [priestsRightTemplate]="priestsRightTemplate"
+  ></kyr-baptisms-form-main-tab>
+</ng-template>
+
+<ng-template #parentsGrandParentsTabTemplate>
+  <kyr-baptisms-form-parents-grandparents-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [leftTemplate]="leftTemplate"
+    [personsRightTemplate]="personsRightTemplate"
+    [chapelriesRightTemplate]="chapelriesRightTemplate"
+  ></kyr-baptisms-form-parents-grandparents-tab>
+</ng-template>
+
+<ng-template #godparentsTabTemplate>
+  <kyr-baptisms-form-godparents-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [leftTemplate]="leftTemplate"
+    [personsRightTemplate]="personsRightTemplate"
+  ></kyr-baptisms-form-godparents-tab>
+</ng-template>
+
+<ng-template #reportsTabTemplate>
+  <kyr-baptisms-form-reports-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [worshipplacesRightTemplate]="worshipplacesRightTemplate"
+    [priestsRightTemplate]="priestsRightTemplate"
+  ></kyr-baptisms-form-reports-tab>
+</ng-template>
+
+<ng-template #attachmentsTabTemplate>
+  <kyr-baptisms-form-attachments-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [attachmentsFormArray]="attachmentsFormArray"
+    [attachmentsDS]="attachmentsDS"
+    [attachmentsColumns]="attachmentsColumns"
+    [subs]="subs"
+  ></kyr-baptisms-form-attachments-tab>
+</ng-template>
+<!-- END TABS -->
+
+
+<!-- TEMPLATES -->
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #leftTemplate let-icon="icon">
+  <div style="margin-right: 2px;">
+    <ui-icon class="input-icon" [icon]="icon"></ui-icon>
+  </div>
+</ng-template>
+
+<ng-template #personsRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('persons-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="personsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #emolumentsRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('emoluments-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="emolumentsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #parishionersRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams" let-queryStringParams="queryStringParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('parishioners-modal', inputName, modalParams ? modalParams : {}, modalTitle, queryStringParams ? queryStringParams : {})"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="parishionersMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #worshipplacesRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('worshipplaces-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="worshipplacesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #priestsRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('priests-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="priestsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #priestsAndPersonsRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('priests-and-persons-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="priestsAndPersonsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #chapelriesRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('chapelries-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="chapelriesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+
+<ng-template #deleteAttachmentTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index, attachmentsFormArray, attachmentsDS)"></ui-button>
+</ng-template>
+
+<ng-template #attachmentTemplate let-index="index">
+  <ng-container *ngIf="attachmentsFormArray.controls[index].get('attachment').value">
+    <a [href]="getAttachmentUrl(attachmentsFormArray.controls[index])">{{ attachmentsFormArray.controls[index].get('attachment_name').value }}</a>
+  </ng-container>
+
+  <ng-container *ngIf="!attachmentsFormArray.controls[index].get('attachment').value">
+    {{ attachmentsFormArray.controls[index].get('attachment_name').value }}
+  </ng-container>
+</ng-template>
+
+<ng-template #attachmentDescriptionTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" [control]="attachmentsFormArray.controls[index].get('description')"></ui-input>
+</ng-template>
+
+<kyr-generate-doc-confirmation-modal *ngIf="openGenerateDocModal"
+  [form]="form.getRawValue()"
+  [modulePath]="modulePath"
+  [actionRequestSaveAndGenerateDocument]="actionRequestSaveAndGenerateDocument"
+  [actionRequestFailSaveAndGenerateDocument]="actionRequestFailSaveAndGenerateDocument"
+  [actionSuccessSaveAndGenerateDocument]="actionSuccessSaveAndGenerateDocument"
+  (emitModalClose)="closeGenerateDocModal($event)"
+>
+</kyr-generate-doc-confirmation-modal>
+<!-- TEMPLATES END -->

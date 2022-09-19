@@ -1,0 +1,66 @@
+{
+    "module": {
+        "name_singular": "Newsletter",
+        "name_many": "Newsletters"
+    },
+    "action": {
+        "new": "Nova Newsletter",
+        "edit": "Editar Newsletter",
+        "delete": "Eliminar Newsletter?",
+        "test_newsletter": "Testar Newsletter",
+        "send_test": "Testar Newsletter",
+        "send": "Enviar"
+    },
+    "message": {
+        "save_success": "Newsletter guardada com sucesso!",
+        "delete_success": "Newsletter apagada com sucesso!",
+        "delete_success_plural": "Newsletters apagadas com sucesso!",
+        "send_success": "Newsletter enviada com sucesso!",
+        "delete_are_you_sure": "Tem a certeza que pretende eliminar a Newsletter \"<strong>{{ title }}</strong>\"?",
+        "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Newsletters selecionadas?",
+        "error_no_test_recipient": "Não tem e-mails de teste definidos",
+        "selected": "{{ count }} selecionada",
+        "selected_plural": "{{ count }} selecionadas",
+        "test_are_you_sure": "Tem a certeza de que pretende enviar a Newsletter \"<strong>{{ title }}</strong>\" para os e-mails de teste?<br/>Será enviada para: <strong>{{ emails }}</strong><br/><br/>As alterações serão guardadas automaticamente.",
+        "test_are_you_sure_plural": "Tem a certeza de que pretende enviar <strong>{{ count }}</strong> Newsletters para os respetivos e-mails de teste?"
+    },
+    "model": {
+        "title": "Título",
+        "frequency": "Frequência",
+        "sending_date": "Data de envio",
+        "sending_hour": "Hora de envio",
+        "active": "Enviar",
+        "for_internal_read": "Ler no Kyrios",
+        "sent": "Enviada",
+        "to": "Para (grupo)",
+        "additional_recipients": "Para (e-mails adicionais)",
+        "test_recipient": "E-mails para teste",
+        "subject": "Assunto",
+        "layout": "Layout",
+        "message": "Mensagem",
+        "newsletter_read_statuses_attributes": {
+            "recipient_email": "Destinatário",
+            "read_at": "Lida em"
+        },
+        "placeholder": {
+            "separated_by_semicolons": "Separados por ponto e vírgula (;)",
+            "layout": "Utiliza o layout selecionado como template para a mensagem. Substitui a mensagem atual!"
+        }
+    },
+    "header": {
+        "schedule": "Agendar",
+        "recipients": "Destinatários",
+        "message": "Mensagem"
+    },
+    "tabs": {
+        "main": "Newsletter",
+        "read_status": "Estado de leitura"
+    },
+    "frequency": {
+        "unique": "Única",
+        "daily": "Diária",
+        "weekly": "Semanal",
+        "monthly": "Mensal",
+        "yearly": "Anual"
+    }
+}

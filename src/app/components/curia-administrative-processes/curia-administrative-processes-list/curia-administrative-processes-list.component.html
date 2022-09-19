@@ -1,0 +1,98 @@
+<router-outlet></router-outlet>
+<ng-container *ngIf="modelList$ | async as modelList">
+  <ui-card>
+    <div content>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+
+        <ui-button
+          class="subModuleButton"
+          type="flat"
+          color="accent"
+          [label]="('curia-administrative-process-types:module.name_many' | i18next)"
+          [attr.aria-label]="'curia-administrative-process-types:module:module.name_many' | i18next"
+          [routerLink]="'/curia-administrative-process-types'">
+        </ui-button>
+      </div>
+      <ng-container *ngIf="selectedRows$ | async as selectedRows">
+        <ui-toolbar
+          *ngIf="selectedRows.length"
+          [title]="modulePath + ':message.selected' | i18next: { count: selectedRows.length }"
+          [dataModel]="toolbarDataModel"
+          rowColor="accent"
+          (iconClickedEvent)="toolbarItemClick($event)"
+        ></ui-toolbar>
+      </ng-container>
+
+      <ui-button *ngIf="!menuHelperService.getSideNavOpen()" class="float-button-mobile" [title]="'translation:action.add' | i18next" fxLayoutAlign="end" type="mini_fab" icon="add" color="accent" [attr.aria-label]="'translation:action.add' | i18next"
+        (onClickEvent)="navigate('/' + modulePath + '/new')">
+      </ui-button>
+      <ui-table
+        #table
+        [dataSource]="modelList.results"
+        [tableColumns]="tableColumns"
+        [generalFilter]="false"
+        checkboxes="true"
+        stickyHeader="true"
+        (clickRowEvent)="navigate('/' + modulePath + '/' + $event.id + '/details')"
+        (checkboxSelectionEvent)="checkboxSelectionEvent($event)"
+        (columnFilterEvent)="columnFilterEvent($event)"
+        (columnOrdinationEvent)="columnOrdinationEvent($event)">
+      </ui-table>
+
+      <kyr-table-pagination>
+        <ui-paginator
+          [length]="modelList.total"
+          [pageIndex]="modelList.page - 1"
+          [pageSize]="limit"
+          (onChangeEvent)="paginationChangeEvent($event)"
+        ></ui-paginator>
+        <ui-menu
+          type="icons"
+          [model]="pagerMenu"
+          xPosition="before"
+          (sendValue)="menuClick($event)"
+        ></ui-menu>
+      </kyr-table-pagination>
+    </div>
+  </ui-card>
+</ng-container>
+
+<!-- TEMPLATES -->
+
+<ng-template #entity_description let-data="data">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    {{ modulePath + 'model.options.' + data.entity_description }}
+  </div>
+</ng-template>
+
+<ng-template #buttonsTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ui-button [title]="'translation:action.edit' | i18next" type="icon" icon="edit" (onClickEvent)="navigate('/' + modulePath + '/' + data.id + '/edit')"></ui-button>
+    <ui-menu
+      [hoverTitle]="'translation:action.more' | i18next"
+      type="icons"
+      [model]="headerOptionsMenu"
+      (sendValue)="menuClick($event, data)"
+    >
+    </ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #curiaAdministrativeProcessTypeTemplate let-data="data">
+  {{ data.curia_administrative_process_type.name }}
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+<!-- TEMPLATES END -->

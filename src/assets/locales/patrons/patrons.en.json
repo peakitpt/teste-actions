@@ -1,0 +1,29 @@
+{
+    "model": {
+        "validated": "Validated",
+        "name": "Name"
+    },
+    "options": {
+        "not_available": "N/D",
+        "no": "No",
+        "yes": "Yes"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete Patron Saint with the name \"<strong> {{name}} </strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the selected <strong> {{count}} </strong> Patron Saint?",
+        "delete_success": "Patron Saint successfully deleted!",
+        "delete_success_plural": "Patron Saint successfully deleted!",
+        "save_success": "Patron Saint saved successfully!"
+    },
+    "module": {
+        "name_singular": "Patron Saint",
+        "name_many": "Patron Saint"
+    },
+    "action": {
+        "delete": "Delete Patron Saint?",
+        "edit": "Edit Patron Saint",
+        "new": "New Patron Saint"
+    }
+}

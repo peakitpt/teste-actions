@@ -1,0 +1,25 @@
+{
+  "module": {
+    "name_singular": "Diário",
+    "name_many": "Diários"
+  },
+  "action": {
+    "new": "Novo Diário",
+    "edit": "Editar Diário",
+    "delete": "Eliminar Diário?",
+    "generate_card": "Gerar cartão"
+  },
+  "message": {
+    "save_success": "Diário guardado com sucesso!",
+    "delete_success": "Diário apagado com sucesso!",
+    "delete_success_plural": "Diários apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Diário com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Diários selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "code": "Código",
+    "description": "Descrição"
+  }
+}

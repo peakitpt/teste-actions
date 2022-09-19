@@ -1,0 +1,32 @@
+{
+  "module": {
+    "name_singular": "Balancete Analítico",
+    "name_many": "Balancetes Analíticos"
+  },
+  "actions": {
+    "recalculate": "Recalcular",
+    "recalculating": "A recalcular os valores da contabilidade",
+    "recalculating_failed": "A operação falhou"
+  },
+  "recalculate": {
+    "title": "Recalcular",
+    "body": "Este processo não é imediato e poderá demorar alguns minutos. Poderá continuar a utilizar o Kyrios, enquanto os cálculos são feitos em segundo plano.",
+    "confirm_question": "Tem a certeza que pretende continuar?"
+  },
+  "model": {
+    "period": "Periodo",
+    "account_id": "Conta",
+    "account_description": "Descrição",
+    "account_id_start": "Código da Conta Início",
+    "account_id_end": "Código da Conta Fim",
+    "exclude_blank_periods": "Excluir contas sem lançamentos no período",
+    "period_total_debit": "Valor a Débito no Período",
+    "period_total_credit": "Valor a Crédito no Período",
+    "period_aggregated_debit_amount": "Acumulado a Débito",
+    "period_aggregated_credit_amount": "Acumulado a Crédito",
+    "period_aggregated_balance": "Saldo Acumulado",
+    "options": {
+      "abertura": "Abertura"
+    }
+  }
+}

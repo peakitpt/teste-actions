@@ -1,0 +1,227 @@
+<ui-dialog #modal [inputHeaderTemplate]="header" [inputBodyTemplate]="body" [inputFooterTemplate]="footer"
+  (modalClosed)="router.navigate([modulePath])" [disableClose]="true" [headerBottomMargin]="false">
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') |
+      i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu *ngIf="headerOptionsMenu.length" type="icons" [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()">
+      </ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save" [label]="'translation:action.cancel' | i18next"
+      color="secondary" (onClickEvent)="onCancelClick()">
+    </ui-button>
+
+    <ui-button type="flat" [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')" fxHide.lt-sm="true"></ui-button>
+
+    <ui-button type="flat" [label]="'translation:action.save' | i18next" color="accent" (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<!-- TABS -->
+<ng-template #familyTabTemplate>
+  <section id="family-data-section">
+    <h2>{{ modulePath + ':header.family_data' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <div ngClass.gt-xs="center-checkbox" fxFlex="15">
+        <ui-checkbox [label]="modulePath + ':model.disabled' | i18next" [control]="form.get('disabled')"></ui-checkbox>
+      </div>
+      <ui-input fxFlex [label]="modulePath + ':model.name' | i18next" [required]="true" [control]="form.get('name')">
+      </ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayoutGap="20px grid">
+      <ui-input fxFlex [label]="modulePath + ':model.father_description' | i18next" [readonly]="true" [required]="true"
+        [control]="form.get('father_description')" [leftTemplate]="{ template: personsLeftTemplate }"
+        [rightTemplate]="{ template: fatherRightTemplate }"></ui-input>
+      <ui-input fxFlex [label]="modulePath + ':model.mother_description' | i18next" [readonly]="true"
+        [control]="form.get('mother_description')" [leftTemplate]="{ template: personsLeftTemplate }"
+        [rightTemplate]="{ template: motherRightTemplate }"></ui-input>
+    </div>
+  </section>
+
+  <section id="household-section">
+    <h2>{{ modulePath + ':header.household' | i18next }}</h2>
+    <ui-table #familiesEntitiesTable [checkboxes]="false" [dataSource]="familiesEntitiesDS"
+      [tableColumns]="familiesEntitiesColumns" stickyHeader="true">
+    </ui-table>
+    <div class="add-table-line" (click)="addTableLine(newFamilyEntity, familiesEntitiesFormArray, familiesEntitiesDS)">
+      {{ 'translation:action.add' | i18next }}
+    </div>
+  </section>
+
+  <section id="other-info-section">
+    <h2>{{ modulePath + ':header.other_info' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayoutGap="20px grid">
+      <ui-textarea fxFlex fxHide.lt-sm="true" rows="3" [label]="modulePath + ':model.comments' | i18next"
+        [control]="form.get('comments')"></ui-textarea>
+      <ui-textarea fxFlex fxHide.gt-xs="true" [label]="modulePath + ':model.comments' | i18next"
+        [control]="form.get('comments')"></ui-textarea>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #documentsTabTemplate>
+  <kyr-families-documents-tab [modulePath]="modulePath"></kyr-families-documents-tab>
+</ng-template>
+
+<ng-template #statisticDataTabTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="10px grid">
+    <ui-input fxFlex.lt-md="100" fxFlex.gt-sm="50" [label]="modulePath + ':model.opt1_text' | i18next"
+      [control]="form.get('opt1_text')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.opt1_text2_description' | i18next" [readonly]="true"
+      [control]="form.get('opt1_text2_description')" [rightTemplate]="{ template: opt1Text2RightTemplate }"></ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="10px grid">
+    <ui-input fxFlex.lt-md="100" fxFlex.gt-sm="65" [label]="modulePath + ':model.opt2_text' | i18next"
+      [control]="form.get('opt2_text')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.opt2_text2' | i18next" [control]="form.get('opt2_text2')"></ui-input>
+  </div>
+  <ui-input [label]="modulePath + ':model.opt3_text' | i18next" [control]="form.get('opt3_text')"></ui-input>
+  <ui-input [label]="modulePath + ':model.opt4_text' | i18next" [control]="form.get('opt4_text')"></ui-input>
+  <ui-input [label]="modulePath + ':model.opt5_text' | i18next" [control]="form.get('opt5_text')"></ui-input>
+</ng-template>
+<!-- END TABS -->
+
+<!-- TEMPLATES -->
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body" (keydown.enter)="$event.preventDefault()">
+    <ui-tabs [tabs]="formTabs"></ui-tabs>
+  </form>
+</ng-template>
+
+<ng-template #personsLeftTemplate>
+  <div style="margin-right: 2px;">
+    <ui-icon icon="person"></ui-icon>
+  </div>
+</ng-template>
+
+<ng-template #personsRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('persons-modal', inputName)">
+    </ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="personsMenuOptions"
+      (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #fatherRightTemplate>
+  <ng-container *ngTemplateOutlet="personsRightTemplate; context: { inputName: 'father' }"></ng-container>
+</ng-template>
+
+<ng-template #motherRightTemplate>
+  <ng-container *ngTemplateOutlet="personsRightTemplate; context: { inputName: 'mother' }"></ng-container>
+</ng-template>
+
+<ng-template #deleteTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn"
+    (onClickEvent)="deleteTableLine(index, familiesEntitiesFormArray, familiesEntitiesDS)"></ui-button>
+</ng-template>
+
+<ng-template #entityTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" [readonly]="true" [required]="true"
+    [control]="familiesEntitiesFormArray.controls[index].get('entity_description')"
+    [leftTemplate]="{ template: personsLeftTemplate }"
+    [rightTemplate]="{ template: familiesEntityRightTemplate, context: { index: index } }"></ui-input>
+</ng-template>
+
+<ng-template #familiesEntityRightTemplate let-index="index">
+  <ng-container
+    *ngTemplateOutlet="personsRightTemplate; context: { inputName: 'families_entities.entity#' + index, index: index }">
+  </ng-container>
+</ng-template>
+
+<ng-template #relationshipDegreeTemplate let-index="index">
+  <ui-autocomplete customClass="remove-bottom-padding" [required]="true"
+    [control]="familiesEntitiesFormArray.controls[index].get('relationship_degree_description')"
+    [options]="relationshipOptions"></ui-autocomplete>
+</ng-template>
+
+<ng-template #relationTemplate let-index="index">
+  <ui-select customClass="remove-bottom-padding" [required]="true"
+    [control]="familiesEntitiesFormArray.controls[index].get('relation_with')" [options]="relationWithOptions">
+  </ui-select>
+</ng-template>
+
+<ng-template #opt1Text2RightTemplate>
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new"
+      (onClickEvent)="openSelectionModal('chapelries-modal', 'opt1_text2')"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="chapelriesMenuOptions"
+      (sendValue)="menuClick($event, 'opt1_text2')"></ui-menu>
+  </div>
+</ng-template>
+<!-- TEMPLATES END -->
+
+<!--WARNINGS MODAL-->
+<ui-dialog #populateDefaultsModal [inputHeaderTemplate]="populateDefaultsHeader"
+  [inputBodyTemplate]="populateDefaultsBody" [inputFooterTemplate]="populateDefaultsFooter" [width]="800">
+</ui-dialog>
+
+<ng-template #populateDefaultsHeader>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1>
+      {{ modulePath + ':header.warning' | i18next }}
+    </h1>
+    <!-- <div class="header-buttons" fxLayout="row">
+      <ui-button type='icon' icon="close" disableRipple="true" disableFocusRipple="true"
+        (onClickEvent)="populateDefaultsModal.close()"></ui-button>
+    </div> -->
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #populateDefaultsBody let-data="data">
+  {{ modulePath + ':model.already_on_family_warning' | i18next }}
+  <ul>
+    <li *ngFor="let family of families">
+      <a class="link" target="_blank" [href]="'families/' + family.id + '/details'">
+        {{ family.name }}
+      </a>
+    </li>
+  </ul>
+  {{ modulePath + ':model.choose_an_option' | i18next }}
+
+</ng-template>
+
+<ng-template #populateDefaultsFooter>
+  <div class="footer-buttons" fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" [label]="'translation:action.cancel' | i18next"
+      (onClickEvent)="populateDefaultsModal.close()"></ui-button>
+
+    <ui-button type="flat" [label]="modulePath+':action.continue' | i18next" color="warn"
+      (onClickEvent)="addNewAssociationToFamily()"></ui-button>
+  </div>
+</ng-template>

@@ -1,0 +1,17 @@
+{
+  "module": {
+    "name_singular": "Local",
+    "name_many": "Locais"
+  },
+  "message": {
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "complete_relation": "Termo a pesquisar",
+    "name": "Local",
+    "entity_type": {
+      "name": "Tipo"
+    }
+  }
+}

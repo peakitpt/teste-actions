@@ -1,0 +1,71 @@
+{
+  "module": {
+    "except_users_with_demo": "Entidades",
+    "priests_and_persons": "Fichas Individuais e Elementos do Clero"
+  },
+  "action": {
+    "new": "Novo"
+  },
+  "model": {
+    "id": "Número de Registo",
+    "name": "Nome",
+    "entity_type__name": "Tipo",
+    "address": "Morada",
+    "email": "E-mail",
+    "entity_type_description": "Tipo",
+    "birth_date": "Aniversário",
+    "taxpayer": "Nº de Contribuinte",
+    "diocese_id": "Diocese (Elem. do Clero e Instituições)",
+    "entity_ekklesia_location_id": "Diocese (Elem. do Clero e Instituições)",
+    "complete_relation": "Termo a pesquisar",
+    "is_parishioner": "Paroquiano(a)",
+    "catechist": "Catequista",
+    "is_catechized": "Catequizando(a)",
+    "sex": "Género",
+    "entity_birth_place_id": "Nacionalidade",
+    "civil_status": "Estado Civil",
+    "maritial_status": "Tipo de Casamento",
+    "door_number": "Nº de Portas",
+    "postal_code": "Código Postal",
+    "place": "Localidade",
+    "county": "Concelho",
+    "district": "Distrito",
+    "country_id": "País",
+    "mobilephone": "Telemóvel",
+    "phone": "Telefone",
+    "ident_document_type": "Tipo de Identificação",
+    "ident_document_number": "Nº de Identificação",
+    "ident_document_validity_date": "Data de Validade",
+    "ident_document_emission_date": "Data de Emissão",
+    "ident_document_emitted_by": "Emitido por",
+    "options": {
+      "catholic_married": "Casado(a) Catolicamente",
+      "civil_married": "Casado(a) Civilmente",
+      "divorced": "Divorciado(a)",
+      "civil_divorced": "Divorciado(a) Civilmente",
+      "divorced_not_remarried": "Divorciado(a) não Recasado(a)",
+      "divorced_remarried": "Divorciado(a) Recasado",
+      "judicial_separated": "Separado(a) Judicialmente",
+      "single": "Solteiro",
+      "union_of_fact": "União de Facto",
+      "widow": "Viúvo(a)",
+      "death": "Falecido(a)",
+      "other": "Outro",
+      "catholic": "Católico",
+      "civil": "Civil",
+      "not_married": "Não Casado",
+      "identification_card": "Bilhete de Identidade",
+      "citizenship_card": "Cartão de Cidadão",
+      "passport": "Passaporte",
+      "residence_title": "Título de Residência"
+    },
+    "entity__birth_date": "Nascimento",
+    "birth_date_start": "Nascimento Início",
+    "birth_date_end": "Nascimento Fim"
+  },
+  "header": {
+    "address": "Morada",
+    "contacts": "Contactos",
+    "identification_documents": "Documentos de Identificação"
+  }
+}

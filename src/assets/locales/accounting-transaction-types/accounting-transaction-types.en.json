@@ -1,0 +1,30 @@
+{
+    "module": {
+        "name_singular": "Movement Typification",
+        "name_many": "Movement Types"
+    },
+    "error": {
+        "code": "Mandatory Code. Must be only 1 character."
+    },
+    "model": {
+        "is_default": "Pre-defined",
+        "code": "Code",
+        "locale": "Location",
+        "description": "Description"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Movement Type with the description {{ name }}?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the selected <strong>{{ count }}</strong> Movement Types?",
+        "delete_success": "Movement type successfully deleted!",
+        "delete_success_plural": "Movement types successfully deleted!",
+        "save_success": "Movement type successfully saved!"
+    },
+    "action": {
+        "next_year": "Passing Year",
+        "delete": "Delete Movement Typification?",
+        "edit": "Edit Movement Typification",
+        "new": "New Movement Typification"
+    }
+}

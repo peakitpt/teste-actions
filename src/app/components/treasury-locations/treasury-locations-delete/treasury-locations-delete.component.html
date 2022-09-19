@@ -1,0 +1,41 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="modalClose()"
+  [width]="600"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxFill fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>{{ 'treasury-locations:action.delete' | i18next }}</h1>
+    <div class="header-buttons" fxLayout="row">
+      <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngIf="!isLoading && modelList; else loadingTemplate">
+    <div class="body-content" [innerHTML]="modulePath + ':message.delete_are_you_sure' | i18next: { count: modelList.length, name: modelList.length === 1 ? modelList[0].name : '' }"></div>
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <ng-container *ngIf="!isLoading && modelList">
+    <div class="footer-buttons" fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <ui-button type="flat" [label]="'translation:action.cancel' | i18next" (onClickEvent)="modal.close()"></ui-button>
+      <ui-button type="flat" [label]="'translation:action.delete' | i18next" color="warn" (onClickEvent)="delete()"></ui-button>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>

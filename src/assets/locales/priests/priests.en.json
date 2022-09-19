@@ -1,0 +1,194 @@
+{
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Clergy Element with the name \"<strong>{{name }}</strong>\"?",
+        "delete_success": "Clergy Element successfully deleted!",
+        "save_success": "Clergy Element successfully saved!",
+        "group_toggle_deactivated": "Subscription successfully deactivated!",
+        "group_toggle_activated": "Subscription successfully active!",
+        "group_toggle_are_you_sure_deactivate": "Do you really want to Disable the subscription in the \"<strong>{{groupName }}</strong>\" group?",
+        "group_toggle_are_you_sure_activate": "Do you really want to Activate the subscription on the group \"<strong>{{groupName }}</strong>\"?"
+    },
+    "module": {
+        "name_many": "Clergy Members",
+        "name_singular": "Clergy Member"
+    },
+    "model": {
+        "entity": {
+            "name": "Name",
+            "taxpayer": "Contributor No.",
+            "door_number": "Door nr.",
+            "can_sign_documents": "Can sign documents",
+            "disabled": "Active",
+            "newsletter_subscriptor": "Groups (Newsletters/SMS)",
+            "url": "Web Page",
+            "email": "E-mail",
+            "fax": "Fax",
+            "phone": "Cell Phone",
+            "mobilephone": "Mobile Phone",
+            "country_description": "Country",
+            "district": "District",
+            "county": "County",
+            "place": "Locality",
+            "postal_code": "Zip code",
+            "address": "Adress",
+            "complete_relation": "Name",
+            "photo_url": "Photo"
+        },
+        "clergy_type": {
+            "abbreviated_name": "Type",
+            "name": "Type"
+        },
+        "entity_person": {
+            "ident_document_number": "Civil Identification No.",
+            "ident_document_validity_date": "Expiry Date",
+            "ident_document_emitted_by": "Emitted by",
+            "ident_document_emission_date": "Date of Issue",
+            "ident_document_type": "Type of Identification"
+        },
+        "entity__disabled": "Active",
+        "priest_academic_qualifications": "Academic Qualifications",
+        "curriculum": "Curriculum",
+        "publications": "Publications",
+        "ongoing_formations": "Permanent Formation",
+        "coat_of_arms_filename": "Coat",
+        "attachment_filename": "Photography",
+        "appointments": "Nominations (imported)",
+        "imported_actual_appointments": "Current Nominations (imported)",
+        "ordination_place": "Place of Ordering",
+        "ordination_date": "Ordering Date",
+        "mother_description": "Mother",
+        "father_description": "Father",
+        "private_mobilephone": "Mobile phone",
+        "residence_chapelry_description": "Residence parish",
+        "residence": "Residence",
+        "birth_chapelry_description": "Birth parish",
+        "priest_birth_date": "Date of birth",
+        "title_for_documents": "Title for documents",
+        "abbreviated_name": "Short Name",
+        "clergy_type_description": "Clergy Type",
+        "death_date": "Deceased in",
+        "deceased": "Deceased",
+        "entity_priest_hashtags": {
+            "tag": "Label"
+        },
+        "entity_priest_academic_qualifications": {
+            "description": "Description",
+            "end_date": "End",
+            "start_date": "Start"
+        },
+        "entity_priest_curriculums": {
+            "description": "Description",
+            "end_date": "End",
+            "start_date": "Start"
+        },
+        "entity_priest_publications": {
+            "description": "Description",
+            "publication_date": "Date of Publication"
+        },
+        "entity_priest_ongoing_formations": {
+            "description": "Description",
+            "end_date": "End",
+            "start_date": "Start"
+        },
+        "entity_priest_retreats": {
+            "retreat_place": "Place",
+            "retreat_year": "Year"
+        },
+        "entity_priest_priestly_cards": {
+            "renewal_date": "Renewal Date"
+        },
+        "entity_priest_appointments": {
+            "description": "Description",
+            "representing_description": "Represent",
+            "appointment_place_description": "Place",
+            "curia_function_description": "Function",
+            "end_date": "End",
+            "start_date": "Start"
+        },
+        "changes_request": "Request for data update",
+        "appointments_appointment_place_description_starts": "Current Place of Nomination (belongs to)",
+        "appointments_appointment_place_description": "Current Place of Nomination (equal to)",
+        "appointments_curia_function_description": "Current Nomination",
+        "hashtag_tag": "Search labels",
+        "observations": "Observations"
+    },
+    "placeholder": {
+        "age": "Age"
+    },
+    "action": {
+        "delete": "Eliminate Clergy?",
+        "edit": "Edit Clergy Element",
+        "new": "New Element of Clergy",
+        "group_deactivate": "Deactivate",
+        "group_activate": "Activate",
+        "group_toggle_subscription_deactivate": "Deactivate group subscription?",
+        "group_toggle_subscription_activate": "Activate subscription in the group?"
+    },
+    "current_account_curia": {
+        "document_date": "Doc. Date",
+        "pending_amount": "Pending Value",
+        "total_amount": "Total Value",
+        "currency": "Coin",
+        "serie_number": "Doc. Nº",
+        "documents_status_description": "Status"
+    },
+    "current_account_priestly_fraternity": {
+        "document_date": "Doc. Date",
+        "pending_amount": "Pending Value",
+        "currency": "Coin",
+        "total_amount": "Total Value",
+        "serie_number": "Doc. Nº",
+        "documents_status_description": "Status"
+    },
+    "header": {
+        "groups": "Groups",
+        "current_account_curia": "Curia Current Account",
+        "current_account_priestly_fraternity": "Fraternity of Priests Current Account",
+        "coat_of_arms": "Coat",
+        "hashtags": "Hashtags",
+        "attachment": "Photography",
+        "academic_qualifications": "Academic Qualifications",
+        "curriculum": "Curriculum",
+        "publications": "Publications",
+        "permanent_formation": "Permanent Formation",
+        "retreats": "Retreats",
+        "priest_card_renewals": "Renewals of Priestly Card",
+        "appoitments": "Nominations",
+        "ordination": "Ordering",
+        "other_informations": "Other information",
+        "filiation": "Affiliation",
+        "identification_documents": "Identification documents",
+        "personal_data": "Personal Data",
+        "contacts": "Contact",
+        "address": "Adress"
+    },
+    "tabs": {
+        "other_infos": "Other information",
+        "groups": "Groups",
+        "current_accounts": "Current Accounts",
+        "ordination_appointmens": "Ordination and Nominations",
+        "personal_data": "Personal Data"
+    },
+    "types": {
+        "tit_resi": "Residence Title",
+        "passaport": "Passport",
+        "cc": "Citizen Card",
+        "bi": "Identity Card",
+        "arquidiocesano2": "From outside residing in the Archdiocese",
+        "arquidiocesano1": "Archdiocesan residing abroad",
+        "arquidiocesano": "Archdiocesan",
+        "religious": "Religious",
+        "canceled": "Cancelled",
+        "paid": "Paid",
+        "partially_paid": "Partly paid",
+        "pending": "Pendant"
+    },
+    "groups": {
+        "active": "Activate/Deactivate",
+        "unsubscription_date": "Cancellation Date",
+        "subscription_date": "Subscription Date",
+        "group_name": "Group"
+    }
+}

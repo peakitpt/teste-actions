@@ -1,0 +1,24 @@
+{
+    "module": {
+        "name_singular": "Accounting Cost Center",
+        "name_many": "Accounting Cost Centers"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Cost Center with the name \"<strong>{{name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> selected Cost Centers?",
+        "delete_success": "Cost Center deleted successfully!",
+        "delete_success_plural": "Cost Centers deleted successfully!",
+        "save_success": "Cost Center successfully saved!"
+    },
+    "model": {
+        "description": "Description",
+        "code": "Code"
+    },
+    "action": {
+        "delete": "Delete Cost Center?",
+        "edit": "Edit Cost Centre",
+        "new": "New Cost Centre"
+    }
+}

@@ -1,0 +1,126 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.title }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model$ | async as model">
+          <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-button [title]="'translation:action.edit' | i18next" type='icon' icon="edit" (onClickEvent)="editModal()"></ui-button>
+        <ui-menu
+          type="icons"
+          [model]="model.block_remove ? optionsNoDeleteMenu : headerOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <section>
+      <h2>{{ modulePath + ':header.menu' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.title' | i18next }}:</div>
+            <div fxFlex>{{ model.title }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.emenu_type' | i18next }}:</div>
+            <div fxFlex>{{ model.emenu_type }}</div>
+          </div>
+          <div *ngIf="model.emenu_type == 'url'" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.url' | i18next }}:</div>
+            <div fxFlex>{{ model.url }}</div>
+          </div>
+          <div *ngIf="model.emenu_type == 'section'" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.section_description' | i18next }}:</div>
+            <div fxFlex>{{ model.section_description }}</div>
+          </div>
+          <div *ngIf="model.emenu_type == 'content'" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.content_description' | i18next }}:</div>
+            <div fxFlex>{{ model.content_description }}</div>
+          </div>
+          <div *ngIf="model.emenu_type != 'url'"fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.template_description' | i18next }}:</div>
+            <div fxFlex>{{ model.template_description }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.block_remove' | i18next }}:</div>
+            <ui-icon fxFlex [icon]="model.block_remove ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section *ngIf="model.child_menus">
+      <h2>{{ modulePath + ':header.sub_menus' | i18next }}</h2>
+      <div fxLayout="column">
+        <table class="mat-table">
+          <tr class="mat-header-row">
+            <th class="mat-header-cell">{{ modulePath + ':model.order' | i18next }}</th>
+            <th class="mat-header-cell">{{ modulePath + ':model.title' | i18next }}</th>
+            <th class="mat-header-cell">{{ modulePath + ':model.emenu_type' | i18next }}</th>
+            <th class="mat-header-cell">{{ modulePath + ':model.url' | i18next }} | {{ modulePath + ':model.content_description' | i18next }} | {{ modulePath + ':model.section_description' | i18next }}</th>
+            <th class="mat-header-cell">{{ modulePath + ':model.template_description' | i18next }}</th>
+          </tr>
+          <tr class="mat-row uiKyriosTableRow" *ngFor="let child of model.child_menus">
+            <td class="mat-cell">{{ child.order_nr }}</td>
+            <td class="mat-cell">{{ child.title }}</td>
+            <td class="mat-cell">{{ modulePath + ':model.' + child.emenu_type | i18next }}</td>
+            <td *ngIf="child.emenu_type == 'url'" class="mat-cell">{{ child.url }}</td>
+            <td *ngIf="child.emenu_type == 'content'" class="mat-cell">{{ child.content_description }}</td>
+            <td *ngIf="child.emenu_type == 'section'" class="mat-cell">{{ child.section_description }}</td>
+            <td *ngIf="child.emenu_type != 'url'"  class="mat-cell">{{ child.template_description }}</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>

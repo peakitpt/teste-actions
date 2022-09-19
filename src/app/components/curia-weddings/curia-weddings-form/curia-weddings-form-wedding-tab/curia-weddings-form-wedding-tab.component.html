@@ -1,0 +1,91 @@
+<section id="process-data-section">
+  <h2>{{ modulePath + ':header.process_data' | i18next }}</h2>
+  <div *ngIf="id" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="25" [label]="modulePath + ':model.serie_number' | i18next" [readonly]="true" [control]="form.get('serie_number')"></ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex [label]="modulePath + ':model.date' | i18next" [control]="form.get('date')"></ui-datepicker>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.document_date' | i18next" [control]="form.get('document_date')"></ui-datepicker>
+    <ui-input fxFlex [label]="modulePath + ':model.seat_number' | i18next" [control]="form.get('seat_number')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.sheet' | i18next" [control]="form.get('sheet')"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="60" [readonly]="true" [label]="modulePath + ':model.emolument_description' | i18next" [control]="form.get('emolument_description')" [rightTemplate]="{ template: emolumentsRightTemplate, context: { inputName: 'emolument' } }"></ui-input>
+    <ui-input fxFlex="10" [readonly]="true" [label]="modulePath + ':model.tax' | i18next" [control]="form.get('tax')"></ui-input>
+    <ui-input fxFlex="30" [readonly]="true" [label]="modulePath + ':model.document_entity_description' | i18next" [control]="form.get('document_entity_description')" [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'document_entity', queryStringParams: documentEntityDescriptionQP } }"></ui-input>
+  </div>
+</section>
+
+<section id="weddingdata-section">
+  <h2>{{ modulePath + ':header.wedding_data' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="66.66" [readonly]="true" [required]="true" [label]="modulePath + ':model.entity_location_description' | i18next" [control]="form.get('entity_location_description')" [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'entity_location' } }"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity_location_county' | i18next" [control]="form.get('entity_location_county')"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <div fxFlex ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.mass' | i18next" [control]="form.get('mass')"></ui-checkbox>
+    </div>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.wedding_date' | i18next" [control]="form.get('wedding_date')"></ui-datepicker>
+    <ui-input fxFlex [label]="modulePath + ':model.wedding_hour' | i18next" [control]="form.get('wedding_hour')" placeholder="HH:MM" [errorMessage]="'translation:message.hour_format_error' | i18next"></ui-input>
+  </div>
+</section>
+
+<section id="civil-process-data-section">
+  <h2>{{ modulePath + ':header.civil_process_data' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.civil_registration_number' | i18next" [control]="form.get('civil_registration_number')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.civil_registration_date' | i18next" [control]="form.get('civil_registration_date')"></ui-datepicker>
+    <ui-input fxFlex [label]="modulePath + ':model.civil_registration_name' | i18next" [control]="form.get('civil_registration_name')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.conservatory_endorsement_date' | i18next" [control]="form.get('conservatory_endorsement_date')"></ui-datepicker>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <div fxFlex ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.civil_registration_convention' | i18next" [control]="form.get('civil_registration_convention')"></ui-checkbox>
+    </div>
+    <ui-textarea *ngIf="form.value.civil_registration_convention === true" fxFlex rows="1" [label]="modulePath + ':model.civil_registration_convention_text' | i18next" [control]="form.get('civil_registration_convention_text')"></ui-textarea>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [label]="modulePath + ':model.civil_registration_certificates' | i18next" [options]="civilRegistrationCertificatesOptions" [control]="form.get('civil_registration_certificates')"></ui-select>
+    <ui-select fxFlex [label]="modulePath + ':model.property_regime' | i18next" [options]="propertyRegimeOptions" [control]="form.get('property_regime')"></ui-select>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex="100" rows="2" [label]="modulePath + ':model.civil_registration_address' | i18next" [control]="form.get('civil_registration_address')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-textarea>
+  </div>
+</section>
+
+<section id="canonic-process-section">
+  <h2>{{ modulePath + ':header.canonic_process_data' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.canonical_process_oratory' | i18next" [control]="form.get('canonical_process_oratory')"></ui-input>
+    <div fxFlex ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.no_proclamations_exemption' | i18next" [control]="form.get('no_proclamations_exemption')"></ui-checkbox>
+    </div>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.canonical_process_start_date' | i18next" [control]="form.get('canonical_process_start_date')"></ui-datepicker>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.canonical_process_end_date' | i18next" [control]="form.get('canonical_process_end_date')"></ui-datepicker>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <div fxFlex ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.canonical_process_absences' | i18next" [control]="form.get('canonical_process_absences')"></ui-checkbox>
+    </div>
+    <ui-input *ngIf="form.value.canonical_process_absences === true" fxFlex [label]="modulePath + ':model.canonical_process_absences_text' | i18next" [control]="form.get('canonical_process_absences_text')" [errorMessage]="'translation:message.max_character_error' | i18next"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex [label]="modulePath + ':model.canonical_process_data_mod_1' | i18next" [control]="form.get('canonical_process_data_mod_1')"></ui-datepicker>
+    <ui-textarea fxFlex rows="2" [label]="modulePath + ':model.canonical_process_comments' | i18next" [control]="form.get('canonical_process_comments')"></ui-textarea>
+  </div>
+</section>
+
+<section id="observations-section">
+  <h2>{{ modulePath + ':header.observations' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex rows="2" [label]="modulePath + ':model.document_observations' | i18next" [control]="form.get('document_observations')"></ui-textarea>
+  </div>
+</section>

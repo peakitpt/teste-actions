@@ -1,0 +1,118 @@
+{
+  "module": {
+    "name_singular": "Evento",
+    "name_many": "Eventos"
+  },
+  "action": {
+    "add": "Adicionar Evento",
+    "new": "Novo Evento",
+    "edit": "Editar Evento",
+    "delete": "Eliminar Evento",
+    "save_and_notify": "Guardar e notificar todos via e-mail"
+  },
+  "message": {
+    "save_success": "Evento guardado com sucesso!",
+    "delete_success": "Evento apagado com sucesso!",
+    "delete_success_plural": "Eventos apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Evento com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Eventos selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados",
+    "notification_sent_at": "Notificação enviada às",
+    "notification_complete": "Notificação enviada"
+  },
+  "model": {
+    "title": "Título",
+    "sections": "Secção",
+    "sections_names": "Nomes das secções",
+    "resume": "Resumo",
+    "content": "Conteúdo",
+    "author": "Autor",
+    "locale": "Local",
+    "attachment_filename": "Nome do ficheiro",
+    "cover_author": "Autor da imagem",
+    "cover_locale": "Local da imagem",
+    "online": "Online",
+    "online_from_date": "Online desde (data)",
+    "online_from_hour": "Online desde (hora)",
+    "online_to_date": "Online até (data)",
+    "online_to_hour": "Online até (hora)",
+    "fotogalery_filename": "Ficheiro",
+    "thumbnail": "Imagem de capa",
+    "description": "Descrição",
+    "image_url_filename": "Ficheiro da imagem",
+    "caption": "Legenda",
+    "download_filename": "Ficheiro da transferência",
+    "contents_hashtags": "Palavra-chave",
+    "contents": "Conteúdos",
+    "event_from_date": "Data de início",
+    "event_from_date_start": "Desde (data início)",
+    "event_from_date_end": "Desde (data fim)",
+    "event_from_hour": "Hora de início",
+    "event_to_date": "Data de fim",
+    "event_to_date_start": "Até (data início)",
+    "event_to_date_end": "Até (data fim)",
+    "event_to_hour": "Hora de fim",
+    "event_from_hour_start": "Desde (hora de início)",
+    "event_from_hour_end": "Desde (hora de fim)",
+    "event_to_hour_start": "Até (hora de início)",
+    "event_to_hour_end": "Até (hora de fim)",
+    "hashtags": "Palavras-chave",
+    "accept_registrations": "Aceita inscrições",
+    "registrations_start": "Início das inscrições",
+    "registrations_start_hour": "Hora de início",
+    "registrations_end": "Fim das inscrições",
+    "registrations_end_hour": "Hora de fim",
+    "limited_spaces": "Total de vagas",
+    "name": "Nome",
+    "email": "Email",
+    "phone": "Telefone",
+    "nr_of_people": "Nº de pessoas",
+    "observations": "Observações",
+    "confirmed": "Confirmado",
+    "present": "Presente",
+    "occupied_spaces": "Espaços ocupados",
+    "send_notification": "Enviar notificação",
+    "notification_sent_at_date": "Notificação enviada em",
+    "send_scheduled_notification": "Agendar Notificação",
+    "scheduled_notification_date_to_send": "Data para envio de notificação",
+    "scheduled_notification_hour_to_send": "Hora para envio de notificação",
+    "scheduled_notification_sent_at_date": "Notificação Agendada enviada em",
+    "slug":"Slug"
+  },
+  "tabs": {
+    "content": "Conteúdo",
+    "event": "Evento",
+    "related-content": "Conteúdo relacionado",
+    "fotogalery": "Fotogaleria",
+    "downloads": "Transferências",
+    "registrations": "Inscrições"
+  },
+  "header": {
+    "schedule": "Agenda",
+    "event_details": "Detalhes do evento",
+    "sub_menus": "Sub-menus",
+    "thumbnail": "Imagem de capa",
+    "publish": "Publicar",
+    "seccions": "Secções",
+    "hashtags": "Palavras-chave",
+    "registrations": "Inscrições"
+  },
+  "history": {
+    "inscritions_history": "Histórico de inscrições de {{name}}",
+    "table": {
+      "event": "Evento",
+      "schedule": "Horário",
+      "name": "Nome",
+      "email": "Email",
+      "phone": "Telefone",
+      "nr_people": "Nr. de pessoas",
+      "observations": "Observações",
+      "confirmed": "Confirmado",
+      "present": "Presente"
+    }
+  }
+}
+
+
+

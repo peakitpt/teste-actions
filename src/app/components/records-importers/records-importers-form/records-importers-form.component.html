@@ -1,0 +1,188 @@
+<router-outlet></router-outlet>
+
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2 style="color: white;">
+    {{ modulePath + ':message.modal_closed' | i18next }}
+  </h2>
+  <ui-button type="flat" icon="save" [label]="modulePath + ':action.open_again' | i18next" color="accent" (onClickEvent)="modal.open()">
+  </ui-button>
+</div>
+
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + ':module.name_singular' | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+      </ng-container>
+
+      <ui-button type="icon" icon="close" (onClickEvent)="closeModal()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="modal.close()">
+    </ui-button>
+    <ui-button type="flat" icon="save" [label]="'translation:action.save' | i18next" color="accent" (onClickEvent)="onSubmit()"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <form [formGroup]="form" class="form-body">
+    <ui-tabs [tabs]="formTabs" (selectedIndexChange)="clearFileUploaded()"></ui-tabs>
+  </form>
+</ng-template>
+
+<!-- TEMPLATES -->
+<ng-template #buttonsTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ui-button [title]="'translation:action.edit' | i18next" type="icon" icon="edit" (onClickEvent)="navigate('/' + modulePath + '/' + data.id + '/edit')"></ui-button>
+    <ui-menu
+      type="icons"
+      [model]="headerOptionsMenu"
+      (sendValue)="menuClick($event)"
+    >
+    </ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #kyriosTabTemplate>
+  <section>
+    <div>
+      <div fxLayout="column wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <ui-icon [ngStyle]="{ 'color': (sharedModule.WARN_COLOR) }" icon="warning"></ui-icon>
+          <div [innerHTML]="modulePath + ':text.1st_paragraf' | i18next"></div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <ui-icon [ngStyle]="{ 'color': (sharedModule.WARN_COLOR) }" icon="warning"></ui-icon>
+          <div [innerHTML]="modulePath + ':text.2nd_paragraf' | i18next"></div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <ui-icon [ngStyle]="{ 'color': (sharedModule.WARN_COLOR) }" icon="warning"></ui-icon>
+          <div [innerHTML]="modulePath + ':text.3rd_paragraf' | i18next"></div>
+        </div>
+
+        <div xLayout="column">
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <ui-icon [ngStyle]="{ 'color': (sharedModule.SUCCESS_COLOR) }" icon="check_circle"></ui-icon>
+            <div [innerHTML]="modulePath + ':text.4th_paragraf' | i18next"></div>
+          </div>
+          <ul>
+            <li>
+              <a href="https://www.libreoffice.org/" target="_blank">LibreOffice</a>
+            </li>
+            <li>
+              <a href="https://www.openoffice.org/" target="_blank">OpenOffice</a>
+            </li>
+          </ul>
+        </div>
+        <div xLayout="column">
+          <div [innerHTML]="modulePath + ':text.5th_paragraf' | i18next"></div>
+          <ul>
+            <li [innerHTML]="modulePath + ':text.1st_bullet_point' | i18next"></li>
+            <li [innerHTML]="modulePath + ':text.2nd_bullet_point' | i18next"></li>
+            <li [innerHTML]="modulePath + ':text.3rd_bullet_point' | i18next"></li>
+            <li [innerHTML]="modulePath + ':text.4th_bullet_point' | i18next"></li>
+            <li [innerHTML]="modulePath + ':text.5th_bullet_point' | i18next"></li>
+          </ul>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <ui-icon [ngStyle]="{ 'color': (sharedModule.SUCCESS_COLOR) }" icon="check_circle"></ui-icon>
+          <div [innerHTML]="modulePath + ':text.6th_paragraf' | i18next"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section fxLayout="row" fxLayout.lt-sm="column">
+    <div fxFlex fxLayout="column">
+      <h2>{{ modulePath + ':header.export_csv' | i18next }}</h2>
+      <div fxFlex fxLayout="row" fxLayoutGap="15px" fxLayout.lt-sm="column">
+        <ui-button leftIcon="get_app" type="raised" color="primary" icon="save" [label]="modulePath + ':action.download_persons' | i18next" (onClickEvent)="downloadPersons()"></ui-button>
+        <ui-button leftIcon="get_app" type="raised" color="primary" icon="save" [label]="modulePath + ':action.download_families' | i18next" (onClickEvent)="downloadFamilies()"></ui-button>
+      </div>
+
+    </div>
+    <div fxFlex fxLayout="column">
+      <h2>{{ modulePath + ':header.import_csv' | i18next }}</h2>
+      <ui-select fxFlex [required]="true" [label]="modulePath + ':model.importer_type' | i18next" [options]="importOptionsKyrios" [control]="form.get('importer_type')"></ui-select>
+      <ui-input fxFlex
+        (change)="changeFile($event)"
+        [label]="modulePath + ':model.attachment_filename'| i18next"
+        type="file" accept=".csv" [required]="true"
+        [fileName]="form.get('attachment_filename').value?.name ? form.get('attachment_filename').value.name : form.get('attachment_filename').value"
+        [control]="form.get('attachment_filename')">
+      </ui-input>
+    </div>
+
+  </section>
+
+</ng-template>
+
+<ng-template #chapelryTabTemplate>
+  <section>
+    <div>
+      <div fxLayout="column wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <ui-icon [ngStyle]="{ 'color': (sharedModule.ERROR_COLOR) }" icon="report"></ui-icon>
+          <div [innerHTML]="modulePath + ':text.7th_paragraf' | i18next"></div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <ui-icon [ngStyle]="{ 'color': (sharedModule.WARN_COLOR) }" icon="warning"></ui-icon>
+          <div [innerHTML]="modulePath + ':text.8th_paragraf' | i18next"></div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <ui-icon [ngStyle]="{ 'color': (sharedModule.SUCCESS_COLOR) }" icon="check_circle"></ui-icon>
+          <div [innerHTML]="modulePath + ':text.9th_paragraf' | i18next"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section fxLayout="column">
+    <h2>{{ modulePath + ':header.import' | i18next }}</h2>
+    <div fxFlex fxLayout="row" fxLayoutGap="15px" fxLayout.lt-sm="column" >
+      <ui-select fxFlex [required]="true" [label]="modulePath + ':model.importer_type' | i18next" [options]="importOptionsChapelry" [control]="form.get('importer_type')"></ui-select>
+      <ui-input fxFlex
+        (change)="changeFile($event)"
+        [label]="modulePath + ':model.attachment_filename'| i18next"
+        type="file" accept="*" [required]="true"
+        [fileName]="form.get('attachment_filename').value?.name ? form.get('attachment_filename').value.name : form.get('attachment_filename').value"
+        [control]="form.get('attachment_filename')">
+      </ui-input>
+    </div>
+  </section>
+
+</ng-template>
+<!-- TEMPLATES END -->

@@ -1,0 +1,167 @@
+<div fxLayout="column" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+
+  <!-- ALERTS -->
+  <div fxLayout="column" fxLayoutGap="10px grid" *ngIf="alerts">
+    <ng-container *ngFor="let alert of alerts; let index = index">
+      <ui-alert [message]="alert"></ui-alert>
+    </ng-container>
+  </div>
+ <!-- ALERTS -->
+
+ <!-- LINE 1 -->
+ <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+   <ui-card fxFlex *ngIf="entities" >
+      <div content>
+        <a [routerLink]="'/persons'" style="text-decoration: none;">
+          <h2>{{ 'dashboard:entities' | i18next }}</h2>
+        </a>
+
+        <a *ngIf="showPendingEntities" [routerLink]="'/pending-entities'">
+          <h3>{{ 'pending-entities:module.name_many' | i18next }}</h3>
+        </a>
+
+        <div class="pieChartContainer">
+          <ngx-charts-pie-chart [scheme]="DASHBOARD_COLORS" [trimLabels]="false" [labels]="true"  [doughnut]="false"
+          [results]="entities">
+          </ngx-charts-pie-chart>
+        </div>
+      </div>
+    </ui-card>
+    <ui-card fxFlex *ngIf="baptisms" >
+      <div content>
+        <a [routerLink]="'/baptisms'" style="text-decoration: none;">
+          <h2>{{ 'dashboard:baptisms' | i18next }}</h2>
+        </a>
+        <div class="pieChartContainer">
+          <ngx-charts-pie-chart [scheme]="DASHBOARD_COLORS" [trimLabels]="false" [labels]="true"  [doughnut]="false"
+            [results]="baptisms">
+          </ngx-charts-pie-chart>
+        </div>
+      </div>
+    </ui-card>
+    <ui-card fxFlex *ngIf="weddings" >
+      <div content>
+        <a [routerLink]="'/weddings'" style="text-decoration: none;">
+          <h2>{{ 'dashboard:weddings' | i18next }}</h2>
+        </a>
+        <div class="pieChartContainer">
+          <ngx-charts-pie-chart [scheme]="DASHBOARD_COLORS" [trimLabels]="false" [labels]="true"  [doughnut]="false"
+            [results]="weddings">
+          </ngx-charts-pie-chart>
+        </div>
+      </div>
+    </ui-card>
+    <ui-card fxFlex *ngIf="baptismsCuria" >
+      <div content>
+        <a [routerLink]="'/curia-baptisms'" style="text-decoration: none;">
+          <h2>{{ 'dashboard:baptisms' | i18next }}</h2>
+        </a>
+        <div class="pieChartContainer">
+          <ngx-charts-pie-chart [scheme]="DASHBOARD_COLORS" [trimLabels]="false" [labels]="true"  [doughnut]="false"
+            [results]="baptismsCuria">
+          </ngx-charts-pie-chart>
+        </div>
+      </div>
+    </ui-card>
+    <ui-card fxFlex *ngIf="weddingsCuria" >
+      <div content>
+        <a [routerLink]="'/curia-weddings'" style="text-decoration: none;">
+          <h2>{{ 'dashboard:weddings' | i18next }}</h2>
+        </a>
+        <div class="pieChartContainer">
+          <ngx-charts-pie-chart [scheme]="DASHBOARD_COLORS" [trimLabels]="false" [labels]="true"  [doughnut]="false"
+            [results]="weddingsCuria">
+          </ngx-charts-pie-chart>
+        </div>
+      </div>
+    </ui-card>
+  </div>
+  <!-- LINE 1 -->
+
+  <!-- LINE 2 -->
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <div fxFlex="67%">
+      <ui-card fxFlex *ngIf="accounting" >
+        <div content fxLayout="column">
+          <h2>{{ 'dashboard:accounting.title' | i18next }}</h2>
+          <div class="accountingStatistics" fxLayout="row wrap" fxLayout.lt-sm="column" fxFlex>
+            <ngx-charts-number-card [scheme]="DASHBOARD_COLORS" [results]="accountingStatisticsTop">
+            </ngx-charts-number-card>
+          </div>
+          <div class="accountingStatistics" fxLayout="row wrap" fxLayout.lt-sm="column" fxFlex>
+            <ngx-charts-number-card [scheme]="DASHBOARD_COLORS" [results]="accountingStatisticsBottom">
+            </ngx-charts-number-card>
+          </div>
+          <div class="accountingLineChart">
+            <ngx-charts-line-chart
+              [scheme]="DASHBOARD_COLORS"
+              [showXAxisLabel]="true"
+              [showYAxisLabel]="true"
+              [xAxis]="true"
+              [yAxis]="true"
+              [xAxisLabel]="'dashboard:accounting.xlabel' | i18next"
+              [yAxisLabel]="'dashboard:accounting.ylabel' | i18next"
+              [timeline]="false"
+              [results]="accountingChartData"
+              >
+            </ngx-charts-line-chart>
+          </div>
+        </div>
+      </ui-card>
+    </div>
+    <ui-card fxFlex="33%" *ngIf="pendingProcesses">
+      <div content>
+        <h2>{{ 'dashboard:pending_processes' | i18next }}</h2>
+        <ui-timeline
+          [toggle]="false"
+          [alternate]="false"
+          [entries]="pendingProcesses"
+        ></ui-timeline>
+      </div>
+    </ui-card>
+    <ui-card fxFlex="33%" *ngIf="curiaPendingProcesses">
+      <div content>
+        <h2>{{ 'dashboard:pending_processes' | i18next }}</h2>
+        <ui-timeline
+          [toggle]="false"
+          [alternate]="false"
+          [entries]="curiaPendingProcesses"
+        ></ui-timeline>
+      </div>
+    </ui-card>
+  </div>
+<!-- LINE 2 -->
+<!-- LINE 3 -->
+  <div fxLayout="column" fxLayoutGap="10px grid">
+    <ui-card fxFlex *ngIf="lastProcesses">
+      <div content>
+        <h2>{{ 'dashboard:last_processes' | i18next }}</h2>
+        <div class="pieChartContainer">
+          <ngx-charts-pie-chart [scheme]="DASHBOARD_COLORS" [trimLabels]="false" [labels]="true"  [doughnut]="false"
+            [results]="lastProcesses">
+          </ngx-charts-pie-chart>
+        </div>
+      </div>
+    </ui-card>
+  </div>
+  <!-- LINE 3 -->
+  <!-- LINE 4 -->
+  <div fxLayout="column" fxLayoutGap="10px grid">
+    <ui-card fxFlex *ngIf="priestsChangesRequests.length > 0 && sharedModule.isDiocese()">
+      <div content>
+        <h2>{{ 'dashboard:module.priests_changes_requests' | i18next }}</h2>
+        <ui-table
+          [dataSource]="priestsChangesRequests"
+          [tableColumns]="priestsChangesRequestsTableColumns"
+          [generalFilter]="false"
+          [checkboxes]="false"
+          [stickyHeader]="false"
+          [tableFooter]="true"
+          [stickyFooter]="true"
+          (clickRowEvent)="goToPriestsChangesRequests($event)">
+        </ui-table>
+      </div>
+    </ui-card>
+  </div>
+  <!-- LINE 4 -->
+</div>

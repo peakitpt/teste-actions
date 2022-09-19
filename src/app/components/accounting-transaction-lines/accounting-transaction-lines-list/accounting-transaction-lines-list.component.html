@@ -1,0 +1,85 @@
+<router-outlet></router-outlet>
+<ng-container *ngIf="modelList$ | async as modelList">
+  <ui-card>
+    <div content>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+
+        <ui-button
+          [style.margin]="'0 0 10px 10px'"
+          type="flat"
+          color="accent"
+          [label]="'accounting-balance-sheets:module.name_many' | i18next"
+          [attr.aria-label]="'accounting-balance-sheets:module.name_many' | i18next"
+          (onClickEvent)="navigate('/accounting-balance-sheets')">
+        </ui-button>
+      </div>
+
+      <ui-button *ngIf="!menuHelperService.getSideNavOpen()" class="float-button-mobile" [title]="'translation:action.add' | i18next" fxLayoutAlign="end" type="mini_fab" icon="add" color="accent" [attr.aria-label]="'translation:action.add' | i18next"
+        (onClickEvent)="navigate('/' + modulePath + '/new')">
+      </ui-button>
+      <ui-table
+        #table
+        [dataSource]="modelList.results"
+        [tableColumns]="tableColumns"
+        [generalFilter]="false"
+        [checkboxes]="false"
+        stickyHeader="true"
+        [tableFooter]="true"
+        [stickyFooter]="true"
+        (clickRowEvent)="navigate('/accounting-transactions/' + $event.accounting_transaction_id + '/details')"
+        (columnFilterEvent)="columnFilterEvent($event)"
+        (columnOrdinationEvent)="columnOrdinationEvent($event)">
+      </ui-table>
+
+      <kyr-table-pagination>
+        <ui-paginator
+          [length]="modelList.total"
+          [pageIndex]="modelList.page - 1"
+          [pageSize]="limit"
+          (onChangeEvent)="paginationChangeEvent($event)"
+        ></ui-paginator>
+        <ui-menu
+          type="icons"
+          [model]="pagerMenu"
+          xPosition="before"
+          (sendValue)="menuClick($event)"
+        ></ui-menu>
+      </kyr-table-pagination>
+    </div>
+  </ui-card>
+</ng-container>
+
+<!-- TEMPLATES -->
+
+<ng-template #transDateTemplate let-data="data">
+    {{ data.trans_date | date:('translation:format.date' | i18next) }}
+</ng-template>
+<ng-template #debitAmountTemplate let-data="data">
+  <div [ngClass]="+data.debit_amount < 0 ? 'negative' : 'positive'" class="number">
+    {{ data.debit_amount | number : '1.2-2' }}
+  </div>
+</ng-template>
+<ng-template #creditAmountTemplate let-data="data">
+  <div [ngClass]="+data.credit_amount >= 0 ? 'negative' : 'positive'" class="number">
+    {{ data.credit_amount | number : '1.2-2' }}
+  </div>
+</ng-template>
+<ng-template #footerTableTemplate let-data="data">
+  <div [ngClass]="getColumnTotal(data.id).color" class="number">
+    {{ getColumnTotal(data.id).value | number : '1.2-2' }}
+  </div>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+<!-- TEMPLATES END -->

@@ -1,0 +1,26 @@
+{
+    "module": {
+        "name_singular": "Subscription",
+        "name_many": "Subscriptions",
+        "name_many_alternative": "Newsletter/SMS Subscriptions",
+        "name_singular_alternative": "Newsletter/SMS Subscription"
+    },
+    "model": {
+        "email": "E-mail",
+        "name": "Name",
+        "active": "Active",
+        "mobilephone": "Mobile phone"
+    },
+    "message": {
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "activated_success": "Subscription successfully activated!",
+        "deactivated_success": "Subscription successfully deactivated!",
+        "toggle_are_you_sure": "Are you sure you want to <b>{ action }}</b> subscribe to <b>{ name }}</b>?"
+    },
+    "action": {
+        "activate": "Activate",
+        "deactivate": "Deactivate",
+        "toggle_activation": "Activate /Deactivate"
+    }
+}

@@ -1,0 +1,77 @@
+import { EntityPerson } from 'src/app/shared/components/modals/persons-modal/persons-modal.model';
+import { Entity } from '../users/user.model';
+
+export interface CatholicDirectoryPriestResponse {
+  results: CatholicDirectoryPriest[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
+export interface CatholicDirectoryPriest {
+  abbreviated_name: string;
+  actual_appointments: string;
+  appointments: string;
+  attachment: string;
+  attachment_filename: string;
+  birth_chapelry: any;
+  birth_chapelry_description: string;
+  birth_chapelry_id: number;
+  changes_request: any;
+  clergy_group_id: number;
+  clergy_type: any;
+  clergy_type_description: string;
+  clergy_type_id: number;
+  coat_of_arms: string;
+  coat_of_arms_filename: string;
+  coordinator_delegate: string;
+  created_at: string;
+  curriculum: any;
+  death_date: any;
+  deceased: boolean;
+  documents: any[];
+  entity: Entity;
+  entity_id: number;
+  entity_person: EntityPerson;
+  entity_priest_academic_qualifications: any[];
+  entity_priest_appointments: any[];
+  entity_priest_curriculums: any[];
+  entity_priest_hashtags: any[];
+  entity_priest_ongoing_formations: any[];
+  entity_priest_priestly_cards: any[];
+  entity_priest_publications: any[];
+  entity_priest_retreats: any[];
+  episcopal_nomination_date: string;
+  episcopal_ordination_date: string;
+  episcopal_ordination_place: string;
+  father_description: string;
+  father_id: number;
+  id: number;
+  ident_document_emission_date: string;
+  ident_document_emitted_by: string;
+  ident_document_number: number;
+  ident_document_type: string;
+  ident_document_validity_date: string;
+  imported_actual_appointments: string;
+  mother_description: string;
+  mother_id: number;
+  observations: string;
+  ongoing_formations: string;
+  ordination_date: string;
+  ordination_place: string;
+  pastoral_service: string;
+  priest_academic_qualifications: string;
+  priest_birth_date: string;
+  priest_birth_place: string;
+  priestly_fraternity: boolean;
+  priestly_reference: string;
+  private_mobilephone: string;
+  publications: any;
+  residence: number;
+  residence_chapelry_description: string;
+  residence_chapelry_id: number;
+  resignation_date: string;
+  taken_date: string;
+  title_for_documents: string;
+  updated_at: string;
+}

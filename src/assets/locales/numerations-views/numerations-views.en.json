@@ -1,0 +1,30 @@
+{
+    "module": {
+        "name_singular": "Numeration View",
+        "name_many": "Numerations Views"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Module Numerator?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the selected <strong>{{ count }}</strong> Module Numerators?",
+        "delete_success": "Module numberer successfully deleted!",
+        "delete_success_plural": "Module Numberers successfully deleted!",
+        "save_success": "Module numerator successfully saved!"
+    },
+    "model": {
+        "name": "Name",
+        "numeration_description": "Numerator",
+        "view": "Module"
+    },
+    "header": {
+        "sub_menus": "Sub-menus",
+        "menu": "Module Numerator"
+    },
+    "action": {
+        "delete": "Delete Module Numerator?",
+        "edit": "Edit Module Numerator",
+        "new": "New Module Numerator",
+        "add": "Add Module Numerator"
+    }
+}

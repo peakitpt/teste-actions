@@ -1,0 +1,125 @@
+<ui-dialog #modal class="modal-list"
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>{{ modalTitle ? modalTitle : (modulePath + ':module.name_many' | i18next) }}</h1>
+    <div fxLayout="row" class="header-buttons">
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : bodyTemplate;"></ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center">
+    <ui-paginator #paginator
+      [length]="total"
+      [pageIndex]="page - 1"
+      [pageSize]="limit"
+      (onChangeEvent)="paginationChangeEvent($event)"
+    ></ui-paginator>
+  </div>
+</ng-template>
+
+<!-- TEMPLATES -->
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #bodyTemplate>
+  <div style="padding: 2% 1% 0 1%">
+    <kyr-table-search
+      [menuTemplate]="menuTemplate" [searchWordControl]="form.get('searchWord')"
+      (searchEvent)="searchWordSearch()" (clearEvent)="clearSearch()">
+    </kyr-table-search>
+    <!-- <ui-button fxFlex="nogrow" type="icon" icon="filter_list" color="accent"></ui-button>
+    <div fxFlex fxLayoutAlign="start center">
+      <ui-chip-list [chipList]="[{color: 'yellow', value: 'chip1', removable: true, disabled: false, selectable: true},{color: 'yellow', value: 'chip1', removable: true, disabled: false, selectable: true},{color: 'yellow', value: 'chip1', removable: true, disabled: false, selectable: true},{color: 'yellow', value: 'chip1', removable: true, disabled: false, selectable: true},{color: 'yellow', value: 'chip1', removable: true, disabled: false, selectable: true},{color: 'yellow', value: 'chip1', removable: true, disabled: false, selectable: true},{color: 'yellow', value: 'chip1', removable: true, disabled: false, selectable: true},{color: 'yellow', value: 'chip1', removable: true, disabled: false, selectable: true},{color: 'yellow', value: 'chip1', removable: true, disabled: false, selectable: true}]"></ui-chip-list>
+    </div> -->
+  </div>
+  <ui-table
+    #table
+    [dataSource]="dataSource"
+    [tableColumns]="tableColumns"
+    [checkboxes]="false"
+    (columnOrdinationEvent)="columnOrdinationEvent($event)"
+    (clickRowEvent)="return($event)"
+    stickyHeader="true">
+  </ui-table>
+  <br/>
+</ng-template>
+
+<ng-template #validityDateStartTemplate let-data="data">
+  {{ data.validity_date_start | date:('translation:format.date' | i18next) }}
+</ng-template>
+
+<ng-template #validityDateEndTemplate let-data="data">
+  {{ data.validity_date_end | date:('translation:format.date' | i18next) }}
+</ng-template>
+
+<ng-template #periodicityTypeTemplate let-data="data">
+  {{ periodicityTypeTranslator[data.periodicity_type] }}
+</ng-template>
+
+<ng-template #menuTemplate>
+  <div fxLayout="column" fxFlex="800px" class="modal-search-menu">
+    <form [formGroup]="form" style="padding: 10px;">
+
+      <kyr-search-text
+        [label]="modulePath + ':model.code' | i18next"
+        [placeholder]="modulePath + ':model.code' | i18next"
+        [control]="form.get('searchFields').get('code').get('value')"
+        (searchEvent)="searchFieldSearch()">
+      </kyr-search-text>
+
+      <kyr-search-text
+        [label]="modulePath + ':model.description' | i18next"
+        [placeholder]="modulePath + ':model.description' | i18next"
+        [control]="form.get('searchFields').get('description').get('value')"
+        (searchEvent)="searchFieldSearch()">
+      </kyr-search-text>
+
+      <div fxLayout="row" fxLayoutGap="25px">
+        <div fxFlex="20" fxLayoutAlign="start center">{{ modulePath + ':model.periodicity_type' | i18next }}:</div>
+        <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+          <ui-datepicker-range
+            fxFlex
+            [appearance]="'standard'"
+            [controlStart]="form.get('searchFields').get('validity_date_start').get('value')"
+            [controlEnd]="form.get('searchFields').get('validity_date_end').get('value')"
+            (keyup.enter)="searchFieldSearch()">
+          </ui-datepicker-range>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="25px">
+        <div fxFlex="20" fxLayoutAlign="start center">{{ modulePath + ':model.periodicity_type' | i18next }}:</div>
+        <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+          <ui-select
+            fxFlex
+            [appearance]="'standard'"
+            [options]="periodicityTypeOptions"
+            [control]="form.get('searchFields').get('periodicity_type').get('value')">
+          </ui-select>
+        </div>
+      </div>
+
+    </form>
+    <div fxLayout="row" fxLayoutAlign="end center" fxFlex="95" fxLayoutGap="15px">
+      <ui-button [label]="'translation:action.clear' | i18next" type="flat" (click)="clearSearch()"></ui-button>
+      <ui-button [label]="'translation:action.search' | i18next" type="raised" color="primary" (click)="searchFieldSearch()"></ui-button>
+    </div>
+  </div>
+</ng-template>
+<!-- TEMPLATES END -->

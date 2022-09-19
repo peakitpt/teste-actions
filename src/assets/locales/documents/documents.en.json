@@ -1,0 +1,76 @@
+{
+    "module": {
+        "name_singular": "Document",
+        "name_many": "Documents"
+    },
+    "action": {
+        "new": "New Document",
+        "edit": "Edit Document",
+        "delete": "Delete Document?",
+        "generate_doc_title": "Send a treasury document?",
+        "treasury_doc": {
+            "generate_doc": "Send document",
+            "title": "Treasury document",
+            "view_doc": "View document",
+            "download_doc": "Download document"
+        },
+        "identify_finance_repartition": "Identify Tax Office",
+        "model_25": "Model 25",
+        "model_25_subs_decl": "Sup. Magnetic (replacement decl.)",
+        "model_25_1st_decl": "Sup. Magnetic (1st decl.)"
+    },
+    "message": {
+        "save_success": "Document successfully saved!",
+        "delete_success": "Document successfully deleted!",
+        "delete_success_plural": "Documents successfully deleted!",
+        "delete_are_you_sure": "Are you sure that you want to delete the Document with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure that you want to delete all the <strong>{{ count }}</strong> selected Documents?",
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "generate_doc_body": "Do you really want to send the treasury document?",
+        "generate_doc_success": "Document successfully issued!",
+        "total": "Total",
+        "points": {
+            "2nd": "Check the list to see which ones do not have the associated VAT number and, if necessary, rectify the Individual Forms of the respective entities and re-generate the Form 25.",
+            "1st": "Documents without an associated VAT number, if any, will not be included in Form 25.",
+            "header": "Model 25"
+        }
+    },
+    "model": {
+        "paid": "Paid",
+        "total_amount": "Total",
+        "name": "Description",
+        "serie_number": "Registration No.",
+        "entity_description": "Entity",
+        "document_date": "Date of document",
+        "document_line_attributes": {
+            "price_value": "Value",
+            "emolument_description": "Emolument"
+        },
+        "canceled": "Cancelled",
+        "document_date_end": "Document Date (End)",
+        "document_date_start": "Document date (Start)",
+        "affects_legal_tax_reports": "Affects Model 25",
+        "has_parochial_rights": "Parish Rights",
+        "taxpayer": "Contributor No",
+        "entity__taxpayer": "Contributor No",
+        "documents_type_serie_id": "Series",
+        "currency": "Coin",
+        "waiting": "Pendent",
+        "price_value": "Value",
+        "emolument_description": "Emolument",
+        "description": "Description",
+        "document_to_generate_serie": "Series",
+        "documents_type_description": "Type",
+        "document": "Document",
+        "partially_paid": "Partially Paid"
+    },
+    "placeholder": {
+        "has_parochial_rights": "Parish rights"
+    },
+    "header": {
+        "see_document": "View Document",
+        "documents": "Documents",
+        "resume": "Resume"
+    }
+}

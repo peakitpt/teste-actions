@@ -1,0 +1,37 @@
+{
+    "module": {
+        "name_singular": "Account",
+        "name_many": "Accounts"
+    },
+    "message": {
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Account with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Selected accounts?",
+        "delete_success": "Account successfully deleted!",
+        "delete_success_plural": "Accounts successfully deleted!",
+        "save_success": "Account successfully saved!"
+    },
+    "model": {
+        "grouping_category": "Type",
+        "taxonomy_code_description": "Taxonomy Code",
+        "grouping_code_description": "Aggregator account",
+        "included_on_profit_loss": "Include in the presentation of accounts",
+        "account_id_as_text_end": "Code Until",
+        "account_id_as_text_start": "Code From",
+        "options": {
+            "loss": "Expense",
+            "profit": "Income"
+        },
+        "profit": "Income or Expense",
+        "account_description": "Description",
+        "account_id_as_text": "Code",
+        "account_id": "Code",
+        "year": "Exercise"
+    },
+    "action": {
+        "delete": "Delete Account?",
+        "edit": "Edit Account",
+        "new": "New Account"
+    }
+}

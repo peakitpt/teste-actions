@@ -1,0 +1,31 @@
+{
+  "module": {
+    "name_singular": "Código de Taxonomia",
+    "name_many": "Códigos de Taxonomias"
+  },
+  "action": {
+    "new": "Novo Códigos de Taxonomia",
+    "edit": "Editar Códigos de Taxonomia",
+    "delete": "Eliminar Códigos de Taxonomia?"
+  },
+  "message": {
+    "save_success": "Código de Taxonomia guardado com sucesso!",
+    "delete_success": "Código de Taxonomia apagado com sucesso!",
+    "delete_success_plural": "Códigos de Taxonomias apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Código de Taxonomia com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Código de Taxonomias selecionados?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas"
+  },
+  "model": {
+    "locale": "Localização",
+    "taxonomy_reference_code": "Ref.",
+    "taxonomy_reference_description": "Descrição do Código de Referencia",
+    "taxonomy_code": "Código da Taxonomia",
+    "base_code": "Código SNC base",
+    "description": "Descrição",
+    "observations": "Observações",
+    "accounting_taxonomy_reference_description": "Referência de Taxonomia",
+    "taxonomy_reference_id": "Código da Ref. de Taxonomia"
+  }
+}

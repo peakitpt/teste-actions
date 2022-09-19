@@ -1,0 +1,50 @@
+{
+    "tabs": {
+        "attachments": "Adjunto",
+        "clergy_nomination": "Nombramiento del Clero"
+    },
+    "model": {
+        "options": {
+            "parishioner": "Párroco",
+            "not_parishioner": "Sin Párroco"
+        },
+        "nomination_attachments": {
+            "attachment_description": "Descripción",
+            "attachment_filename": "Adjunto"
+        },
+        "observations": "Observaciones",
+        "function_details": "Descripción de Funciones",
+        "moderator_description": "Moderador",
+        "subscriber2_description": "Suscriptor 2",
+        "subscriber1_description": "Suscriptor 1",
+        "bishop_description": "Obispo/Arzobispo",
+        "expiration_date": "Fecha de Caducidad",
+        "birth_place": "Naturalidad",
+        "enabled": "Activo",
+        "nomination_date": "Fecha de Nombramiento",
+        "place_description": "Lugar",
+        "function_description": "Función",
+        "nomination_type_id": "Tipo de Nombrado",
+        "entity_priest_description": "Nombrado",
+        "serie_number": "Número de Registro"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionado",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar el Nombramiento con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Estás seguro de que quieres eliminar el <strong>{{ count }}</strong> Nombramientos seleccionados?",
+        "delete_success": "¡Nombramiento eliminado con éxito!",
+        "delete_success_plural": "¡Nombramientos eliminados con éxito!",
+        "save_success": "¡Nombramiento guardado con éxito!"
+    },
+    "action": {
+        "delete": "¿Eliminar Nombramiento?",
+        "edit": "Editar Nombramiento",
+        "new": "Nuevo Nombramiento",
+        "add": "Añadir Nombramiento"
+    },
+    "module": {
+        "name_many": "Nombramientos",
+        "name_singular": "Nombramiento"
+    }
+}

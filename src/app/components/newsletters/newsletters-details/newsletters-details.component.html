@@ -1,0 +1,172 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+        {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model">: {{ model.title }}</ng-container>
+      </h1>
+      <ng-template #smallHeader>
+        {{ modulePath + ':module.name_singular' | i18next }}
+      </ng-template>
+      <div fxLayout="row" class="header-buttons">
+        <ng-container *ngIf="model">
+          <ui-menu
+            *ngIf="reportMenuOptionsModel.length"
+            fxHide.lt-md="true"
+            class="reports-list-button"
+            type="nested"
+            [menuClickTemplate]="reportsClickableTemplate"
+            color="accent"
+            [model]="reportMenuOptionsModel"
+            (sendValue)="reportMenuClick($event)"
+          ></ui-menu>
+          <ui-menu
+            *ngIf="reportMenuOptionsModel.length"
+            fxHide.gt-sm="true"
+            [hoverTitle]="'reports:module.name_many' | i18next"
+            type="nested"
+            mainIcon="insert_drive_file"
+            [model]="reportMenuOptionsModel"
+            (sendValue)="reportMenuClick($event)"
+          ></ui-menu>
+          <ui-button [title]="'translation:action.edit' | i18next" type='icon' icon="edit" (onClickEvent)="editModal()"></ui-button>
+          <ui-menu
+            [hoverTitle]="'translation:action.more' | i18next"
+            type="icons"
+            [model]="headerOptionsMenu"
+            (sendValue)="menuClick($event, model)"
+          >
+          </ui-menu>
+        </ng-container>
+        <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+      </div>
+    </div>
+    <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model; else loadingTemplate">
+    <ng-container *ngIf="model.id && model.for_internal_read; else mainTabTemplate">
+      <ui-tabs *ngIf="detailsTabs" [tabs]="detailsTabs"></ui-tabs>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<!-- TABS START -->
+<ng-template #mainTabTemplate>
+  <section id="schedule-section">
+    <h2>{{ modulePath + ':header.schedule' | i18next }}</h2>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.active' | i18next }}:</div>
+          <div fxFlex>
+            <ui-icon [icon]="model.active ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.for_internal_read' | i18next }}:</div>
+          <div fxFlex>
+            <ui-icon [icon]="model.for_internal_read ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.sending_date' | i18next }}:</div>
+          <div fxFlex>{{ model.sending_date | date:('translation:format.date_weekday' | i18next) }} {{ model.sending_hour }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.frequency' | i18next }}:</div>
+          <div fxFlex>{{ get_frequency_name(model.frequency) }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="recipients-section">
+    <h2>{{ modulePath + ':header.recipients' | i18next }}</h2>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="groupName">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.to' | i18next }}:</div>
+          <div fxFlex>{{ groupName }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.additional_recipients">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.additional_recipients' | i18next }}:</div>
+          <div fxFlex>{{ model.additional_recipients }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.test_recipient">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.test_recipient' | i18next }}:</div>
+          <div fxFlex>{{ model.test_recipient }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="message-section">
+    <h2>{{ modulePath + ':header.message' | i18next }}</h2>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.title' | i18next }}:</div>
+          <div fxFlex>{{ model.title }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.subject' | i18next }}:</div>
+          <div fxFlex>{{ model.subject }}</div>
+        </div>
+        <div fxLayout="column" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.message' | i18next }}:</div>
+          <ui-card>
+            <div content fxFlex [innerHTML]="sanitizer.bypassSecurityTrustHtml(model.message)"></div>
+          </ui-card>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #readStatusTabTemplate>
+  <section>
+    <div fxLayout="column">
+      <table class="mat-table">
+        <tr class="mat-header-row">
+          <th class="mat-header-cell">#</th>
+          <th class="mat-header-cell">{{ modulePath + ':model.newsletter_read_statuses_attributes.recipient_email' | i18next }}</th>
+          <th class="mat-header-cell">{{ modulePath + ':model.newsletter_read_statuses_attributes.read_at' | i18next }}</th>
+        </tr>
+        <tr class="mat-row uiKyriosTableRow" *ngFor="let status of model.newsletter_read_statuses_attributes; let i = index" [attr.data-index]="i">
+          <td class="mat-cell">{{ i + 1 }}</td>
+          <td class="mat-cell">{{ status.recipient_email }}</td>
+          <td class="mat-cell">{{ status.read_at | date:('translation:format.datetime_weekday' | i18next) }}</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+</ng-template>
+<!-- TABS END -->
+
+
+<!-- TEMPLATES START -->
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<kyr-newsletters-send-test *ngIf="openSendNewsletterModal"
+  [model]="selectedNewsletter"
+  (emitModalClose)="openSendNewsletterModal = false"
+>
+</kyr-newsletters-send-test>
+<!-- TEMPLATES END -->

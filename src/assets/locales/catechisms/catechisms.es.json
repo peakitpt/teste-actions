@@ -1,0 +1,118 @@
+{
+    "module": {
+        "name_singular": "Catequesis",
+        "name_many": "Catequesis",
+        "name_session_many": "Sesiones de catequesis",
+        "name_session_singular": "Sesión de catequesis"
+    },
+    "message": {
+        "delete_session_success": "¡Sesión de catequesis eliminada con éxito!",
+        "save_session_success": "¡Sesión de catequesis guardada con éxito!",
+        "error_blank_transfers": "Por favor, rellene todos los campos obligatorios de la tabla de Transferencias",
+        "error_blank_students": "Por favor, rellene todos los campos obligatorios de la tabla de los Catequizandos",
+        "error_blank_catechists": "Por favor, rellene todos los campos obligatorios de la tabla de Catequistas",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que quieres eliminar el Grupo de Catequesis <br>\"<strong>{{ year }} {{ classYear }} — {{ name }}</strong>\"<br>de los catequistas<br><strong>{{ catechists }}</strong>??",
+        "delete_are_you_sure_plural": "¿Está seguro de que quieres eliminar los <strong>{{ count }}</strong> Grupos de Catequesis seleccionados?",
+        "delete_success": "¡Grupo de catequesis eliminado con éxito!",
+        "save_success": "¡Grupo de Catequesis guardado con éxito!",
+        "finalize_message": "¿Quieres terminar esta clase?<br/><br/><strong>Las asistencias se contarán en las hojas de Catequesis y ya no será posible editar la clase.</strong>",
+        "passing_grade_message": "¿Quieres pasar el año sin terminar esta clase?<br/><br/><strong>Esta clase permanecerá editable y la asistencia no se contará en las hojas de Catequesis hasta que se termine.</strong>",
+        "passing_grade_finalize_message": "¿Quieres terminar esta clase al final del año?<br/><br/>>strong>Esta clase se terminará y se abrirá una nueva ventana para que puedas crear la nueva clase.<br>La asistencia de esta clase se contará en las hojas de Catequesis y ya no será posible editarla.</strong>",
+        "error_blank_presences": "Por favor, rellene todos los campos obligatorios de la tabla de Asistencia.",
+        "delete_session_are_you_sure": "¿Está seguro de que quiere eliminar la Sesión de Catequesis con el resumen<br>\"<strong>{{{{ summary }}</strong>\"?",
+        "delete_session_are_you_sure_plural": "¿Está seguro de que quiere eliminar las  <strong>{{ count }}</strong>  Sesiones de Catequesis seleccionadas?",
+        "cant_edit_finalized_catechism": "Este Grupo de Catequesis ya ha sido finalizado. No es posible editarlo",
+        "finalized_success": "El grupo de Catequesis ha concluido con éxito!",
+        "cant_manage_finalized_catechism_session": "No es posible realizar sesiones porque el Grupo de Catequesis ya está finalizado",
+        "missing_sponsors_message": "Este grupo de catequesis no está marcado como <strong>\"Para los adultos\"</strong> y hay niños catequizados sin progenitor responsable.<br/><br/><strong>¿Todavía quieres mantenerlo?</strong>",
+        "student_exists_on_another_catechism_message": "El catequizado <strong>{{ student_names }}</strong> ya existe otro Grupo Catequético para el año pastoral <strong>{{ class_year }}</strong>.<br/><br/><strong>¿Todavía quieres mantenerlo?</strong>",
+        "student_exists_on_another_catechism_message_plural": "Los Catequizandos <strong>{{ student_names }}</strong> ya existen en otro Grupo de Catequesis para el año pastoral<strong>{{ class_year }}</strong>.<br/><br/><strong>¿Todavía quieres mantenerlo?</strong>"
+    },
+    "action": {
+        "finalize": "Finalizar",
+        "passing_grade": "Pasar de año",
+        "passing_grade_finalize": "Finalizar y pasar de año",
+        "delete_session": "¿Eliminar la Sesión de Catequesis?",
+        "edit_session": "Editar sesión de catequesis",
+        "new_session": "Nueva sesión de catequesis",
+        "add_session": "Añadir sesión",
+        "delete": "¿Eliminar grupo de catequesis?",
+        "edit": "Editar Grupo de Catequesis",
+        "new": "Nuevo grupo de Catequesis",
+        "save_with_missing_sponsors": "Guardar sin Encargados de la Educación",
+        "save_when_student_exists_on_another_catechism": "Guardar"
+    },
+    "catechism_years": {
+        "10_year": "10º año",
+        "9_year": "9º año",
+        "8_year": "8º año",
+        "7_year": "7º año",
+        "6_year": "6º año",
+        "5_year": "5º año",
+        "4_year": "4º año",
+        "3_year": "3º año",
+        "2_year": "2º año",
+        "1_year": "1º año"
+    },
+    "header": {
+        "students": "Catequizandos",
+        "catechists": "Catequistas"
+    },
+    "tabs": {
+        "individual_docs": "Documentos individuales",
+        "transfers": "Transferencias",
+        "sessions": "Sesiones",
+        "catechism": "Catequesis"
+    },
+    "placeholder": {
+        "schedule": "Horario",
+        "class_year": "aaaa/aaaa"
+    },
+    "model": {
+        "catechisms_individual_documents": {
+            "doc_transfer_url": "Transferencia",
+            "doc_attendance_sheet_url": "Ficha de asistencia",
+            "doc_historic_url": "Historial",
+            "doc_inscription_url": "Registro",
+            "entity_description": "Catequizando"
+        },
+        "catechisms_sessions": {
+            "catechisms_sessions_presences_attributes": {
+                "present": "Presente",
+                "entity_description": "Catequizando"
+            },
+            "observations": "Observaciones",
+            "summary": "Resumen",
+            "presences": "Asistencia",
+            "date": "Fecha"
+        },
+        "catechisms_transfers": {
+            "transfer_date": "Fecha",
+            "chapelry_description": "Parroquia de destino",
+            "entity_description": "Catequizando",
+            "next_class_year_inscription": "¿Sólo para el próximo año pastoral?",
+            "transited": "¿Pasó?"
+        },
+        "catechisms_students": {
+            "inscription_date": "Registro",
+            "observations": "Observaciones",
+            "education_sponsor_description": "Encargado de la educación",
+            "entity_description": "Catequizando"
+        },
+        "catechisms_catechists": {
+            "entity_description": "Catequista"
+        },
+        "finalized": "Finalizado",
+        "is_for_adults_abrev": "Adultos",
+        "is_for_adults": "Para adultos",
+        "end_time": "Hora de fin",
+        "start_time": "Hora de inicio",
+        "week_day": "Día de la semana",
+        "catechists_names_for_search": "Catequista",
+        "name": "Descripción",
+        "year": "Año",
+        "class_year": "Año Pastoral"
+    }
+}

@@ -1,0 +1,38 @@
+{
+  "module": {
+    "name_singular": "Intenção de Missa",
+    "name_many": "Intenções de Missa"
+  },
+  "action": {
+    "new": "Nova Intenção de Missa",
+    "edit": "Editar Intenção de Missa",
+    "delete": "Eliminar Intenção de Missa?"
+  },
+  "message": {
+    "save_success": "Intenção de Missa guardada com sucesso!",
+    "delete_success": "Intenção de Missa apagada com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Intenção de Missa \"<strong>{{ intention_description }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Intenções de Missa selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas"
+  },
+  "model": {
+    "serie_number": "Nº de registo",
+    "intention_description": "Descrição",
+    "type_name": "Tipo",
+    "intention_type_id": "Tipo de intenção",
+    "intention_date": "Data",
+    "intention_time": "Hora",
+    "celebrated_by_description": "Celebrada por",
+    "location_description": "Local",
+    "paid": "Paga",
+    "requested_by_description": "Requerente",
+    "comments": "Observações",
+    "emolument_description": "Emolumento",
+    "tax": "Taxa",
+    "document_entity_description": "Entidade a constar no documento"
+  },
+  "header": {
+    "treasury_document": "Documento de tesouraria"
+  }
+}

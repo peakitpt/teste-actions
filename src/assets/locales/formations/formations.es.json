@@ -1,0 +1,34 @@
+{
+    "module": {
+        "name_singular": "Formación",
+        "name_many": "Formaciones"
+    },
+    "model": {
+        "description": "Descripción",
+        "type": "Tipo",
+        "id": "ID",
+        "formation-type": "Tipo de Formación"
+    },
+    "id": "Id",
+    "formation-type": "Tipo de formación",
+    "delete-formation-type": "Eliminar tipo de formación",
+    "delete-formation-type-message": "¿Está seguro de que desea eliminar el tipo de formación {{ description }}?",
+    "actions": "Acciones",
+    "edit-formation-type": "Editar tipo de formación",
+    "delete-multiple-formation-type-message": "¿Está seguro de que desea eliminar los tipos de formación {{ description }} ?",
+    "new-formation-type": "Nuevo tipo de formación",
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que desea eliminar la formación con la descripción \"<strong> {{description}} </strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que desea eliminar las formaciones <strong> {{count}} </strong> seleccionadas?",
+        "delete_success": "¡Formación eliminada correctamente!",
+        "delete_success_plural": "¡Formaciones eliminadas correctamente!",
+        "save_success": "¡Formación guardada con éxito!"
+    },
+    "action": {
+        "new": "Formación guardada con éxito!",
+        "delete": "Eliminar Formación?",
+        "edit": "Editar Formación"
+    }
+}

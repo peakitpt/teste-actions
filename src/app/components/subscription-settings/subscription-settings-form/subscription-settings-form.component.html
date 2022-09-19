@@ -1,0 +1,293 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2 style="color: white;">
+    {{ modulePath + ':message.modal_closed' | i18next }}
+  </h2>
+  <ui-button type="flat" icon="save" [label]="modulePath + ':action.open_again' | i18next" color="accent" (onClickEvent)="modal.open()">
+  </ui-button>
+</div>
+
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + ':module.name_singular' | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+      </ng-container>
+      <ui-button type="icon" icon="close" (onClickEvent)="closeModal()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate;">
+  </ng-container>
+</ng-template>
+
+<ng-template #formTemplate>
+  <form class="form-body">
+    <ui-tabs #tabsComponent [tabs]="tabs"></ui-tabs>
+  </form>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="modal.close()">
+    </ui-button>
+    <ui-button type="flat" icon="save" [label]="'translation:action.save' | i18next" color="accent" (onClickEvent)="onSubmit()"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #defenitionsTemplate>
+  <section>
+    <div>
+      <div fxLayout="column wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.hide_warnings_from_dash' | i18next" [control]="form.get('hide_warnings_from_dash')"></ui-checkbox>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+          <ui-select
+            fxFlex
+            [options]="currencyOptions"
+            [control]="form.get('currency')">
+          </ui-select>
+          <div *ngIf="currencyLocked" fxFlex="25" fxLayout="row" fxLayoutAlign="center start" class="left-side-text">
+            <ui-icon [ngStyle]="{ 'color': (sharedModule.ERROR_COLOR) }" icon="info"></ui-icon>
+            {{ modulePath + ':text.1st_paragraf' | i18next }}
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+          <ui-select
+            fxFlex
+            [options]="signAsOptions"
+            [label]="modulePath + ':model.sign_as' | i18next"
+            [control]="form.get('sign_as')">
+          </ui-select>
+          <ui-input fxFlex
+            [label]="modulePath + ':model.priest_description' | i18next"
+            readonly="true" [control]="form.get('priest_description')"
+            [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'priest'} }">
+          </ui-input>
+          <div fxFlex="25" fxLayout="row" fxLayoutAlign="center start" class="left-side-text">
+            <ui-icon icon="info"></ui-icon>
+            {{ modulePath + ':text.2nd_paragraf' | i18next }}
+          </div>
+        </div>
+        <div *ngIf="canSeePriestlyFraternity()" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+          <ui-input fxFlex
+            [label]="modulePath + ':model.priestly_fraternity_institution_description' | i18next"
+            readonly="true" [control]="form.get('priestly_fraternity_institution_description')"
+            [rightTemplate]="{ template: institutionsRightTemplate, context: { inputName: 'priestly_fraternity_institution'} }">
+          </ui-input>
+          <div fxFlex="25" fxLayout="row" fxLayoutAlign="center start" class="left-side-text">
+            <ui-icon icon="info"></ui-icon>
+            {{ modulePath + ':text.priestly_fraternity_institution_paragraph' | i18next }}
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+          <ui-input fxFlex
+            [label]="modulePath + ':model.treasury_default_document_type_description' | i18next"
+            readonly="true" [control]="form.get('treasury_default_document_type_description')"
+            [rightTemplate]="{ template: documentsTypesRightTemplate, context: { inputName: 'treasury_default_document_type'} }">
+          </ui-input>
+          <div fxFlex="25" fxLayout="row" fxLayoutAlign="center start" class="left-side-text">
+            <ui-icon icon="info"></ui-icon>
+            {{ modulePath + ':text.3rd_paragraf' | i18next }}
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+          <ui-input fxFlex
+            [label]="modulePath + ':model.current_account_notification_layout_description' | i18next"
+            readonly="true" [control]="form.get('current_account_notification_layout_description')"
+            [rightTemplate]="{ template: newslettersLayoutsRightTemplate, context: { inputName: 'current_account_notification_layout'} }">
+          </ui-input>
+          <div fxFlex="25" fxLayout="row" fxLayoutAlign="center start" class="left-side-text">
+            <ui-icon icon="info"></ui-icon>
+            {{ modulePath + ':text.4th_paragraf' | i18next }}
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+          <ui-input fxFlex
+            [label]="modulePath + ':model.finance_department' | i18next"
+            [control]="form.get('finance_department')">
+          </ui-input>
+          <div fxFlex="25" fxLayout="row" fxLayoutAlign="center start" class="left-side-text">
+            <ui-icon icon="info"></ui-icon>
+            {{ modulePath + ':text.5th_paragraf' | i18next }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div>
+      <div fxLayout="column wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <h2>{{ modulePath + ':header.sms_configuration' | i18next }}</h2>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+          <ui-select
+            fxFlex
+            [label]="modulePath + ':model.sms_gateway' | i18next"
+            [options]="smsGatewayOptions"
+            [control]="form.get('sms_gateway')">
+          </ui-select>
+          <ui-input fxFlex
+            [label]="modulePath + ':model.sms_msisdn' | i18next"
+            [control]="form.get('sms_msisdn')">
+          </ui-input>
+          <ui-input fxFlex
+            type="password"
+            [label]="modulePath + ':model.sms_password' | i18next"
+            [control]="form.get('sms_password')">
+          </ui-input>
+          <div fxFlex="25" fxLayout="row" fxLayoutAlign="center start" class="left-side-text">
+            <ui-icon icon="info"></ui-icon>
+            {{ modulePath + ':text.6th_paragraf' | i18next }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div>
+      <div fxLayout="column wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <h2>{{ modulePath + ':header.smtp_email_configuration' | i18next }}</h2>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+          <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.smtp_use_custom_settings' | i18next" [control]="form.get('smtp_use_custom_settings')"></ui-checkbox>
+          <div fxFlex="40" xLayout="column" class="left-side-text">
+            <div fxLayout="row" fxLayoutAlign="center start">
+              <ui-icon icon="info"></ui-icon>
+              {{ modulePath + ':text.7th_paragraf' | i18next }}
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center start">
+              <ui-icon icon="info"></ui-icon>
+              {{ modulePath + ':text.8th_paragraf' | i18next }}
+            </div>
+
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+          <ui-input fxFlex
+            [label]="modulePath + ':model.smtp_address' | i18next"
+            [control]="form.get('smtp_address')">
+          </ui-input>
+          <ui-input fxFlex
+            [label]="modulePath + ':model.smtp_domain' | i18next"
+            [control]="form.get('smtp_domain')">
+          </ui-input>
+          <ui-input fxFlex
+            [label]="modulePath + ':model.smtp_port' | i18next"
+            [control]="form.get('smtp_port')">
+          </ui-input>
+          <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.smtp_use_ssl' | i18next" [control]="form.get('smtp_use_ssl')"></ui-checkbox>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+          <ui-input fxFlex
+            [label]="modulePath + ':model.smtp_user_name' | i18next"
+            [control]="form.get('smtp_user_name')">
+          </ui-input>
+          <ui-input fxFlex
+            type="password"
+            [label]="modulePath + ':model.smtp_password' | i18next"
+            [control]="form.get('smtp_password')">
+          </ui-input>
+          <ui-select
+            fxFlex
+            [label]="modulePath + ':model.smtp_authentication' | i18next"
+            [options]="smtpAuthenticationTypes"
+            [control]="form.get('smtp_authentication')">
+          </ui-select>
+          <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.smtp_enable_starttls_auto' | i18next" [control]="form.get('smtp_enable_starttls_auto')"></ui-checkbox>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+          <ui-input fxFlex="25"
+            [label]="modulePath + ':model.smtp_sender_name' | i18next"
+            [control]="form.get('smtp_sender_name')">
+          </ui-input>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #configurationAssistTemplate>
+  <section>
+    <div>
+      <div fxLayout="column wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+          <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.hide_wizard_from_dash' | i18next" [control]="form.get('hide_wizard_from_dash')"></ui-checkbox>
+        </div>
+        <div>
+          <iframe src="https://www.kyrioschms.com/pt/kyrios-wizard" width="100%" height="500px">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<!-- TEMPLATES -->
+<ng-template #buttonsTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ui-button [title]="'translation:action.edit' | i18next" type="icon" icon="edit" (onClickEvent)="navigate('/' + modulePath + '/' + data.id + '/edit')"></ui-button>
+    <ui-menu
+      type="icons"
+      [model]="headerOptionsMenu"
+      (sendValue)="menuClick($event)"
+    >
+    </ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #parishionersRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('parishioners-modal', inputName,{},'', parishionerParams)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="parishionersMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #documentsTypesRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('documents-types-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="documentsTypesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #newslettersLayoutsRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('newsletters-layouts-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="newslettersLayoutsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #institutionsRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('institutions-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="institutionsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<!-- TEMPLATES END -->

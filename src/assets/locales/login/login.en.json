@@ -1,0 +1,16 @@
+{
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "forgot_my_password": "Forgot my password",
+    "register": "Register",
+    "login_fail_message": "Login failed, please check your credentials",
+    "welcome_to_chms": "Welcome to {{ appName }} ChMS!",
+    "complete_management_church": "Complete management for the Church.",
+    "no_account_yet": "Don't have an account yet?",
+    "sign_up": "Sign Up",
+    "privacy": "Privacy",
+    "help": "Help",
+    "contacts": "Contacts",
+    "email_invalid": "Invalid e-mail"
+}

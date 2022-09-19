@@ -1,0 +1,54 @@
+{
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados"
+    },
+    "action": {
+        "disable_subscriptions_and_users": "Deshabilitar suscripción y usuario",
+        "disable_users": "Desactivar usuario",
+        "enable_users": "Activar usuario",
+        "disable_subscriptions": "Suscripción inactiva",
+        "new": "Añadir suscripción"
+    },
+    "model": {
+        "entity2": {
+            "entities_relation": {
+                "diocese_description": "Descripción diócesis",
+                "paroquia_description": "Descripción de la parroquia",
+                "arciprestado_description": "Descripción arciprestazgos"
+            },
+            "entity_type": {
+                "name": "Tipo (suscripción)",
+                "active": "Activo"
+            },
+            "complete_relation": "Suscripción",
+            "country_description": "Descripción del país"
+        },
+        "entity1": {
+            "user": {
+                "email": "Correo Electrónico",
+                "name": "Nombre"
+            },
+            "entity_type": {
+                "active": "Activo",
+                "name": "Tipo (usuario)",
+                "expiration": "Caducidad"
+            }
+        },
+        "entity1_email": "Correo Electrónico",
+        "entity2_type": "Tipo (suscripción)",
+        "paroquia_description": "Descripción de la parroquia",
+        "active": "Activo",
+        "entity1_name": "Nombre",
+        "complete_relation": "Suscripción",
+        "entity1_type": "Tipo (usuario)",
+        "expiration": "Vencimiento",
+        "country_description": "Descripción del país",
+        "diocese_description": "Descripción diócesis",
+        "arciprestado_description": "Descripción arciprestazgos"
+    },
+    "module": {
+        "name_singular": "Suscripción",
+        "name_many": "Suscripciones"
+    }
+}

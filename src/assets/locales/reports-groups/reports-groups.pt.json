@@ -1,0 +1,30 @@
+{
+  "module": {
+    "name_singular": "Grupo de Relatórios",
+    "name_many": "Grupos de Relatórios"
+  },
+  "action": {
+    "add": "Adicionar Grupo de Relatórios",
+    "new": "Novo Grupo de Relatórios",
+    "edit": "Editar Grupo de Relatórios",
+    "delete": "Apagar Grupo de Relatórios"
+  },
+  "message": {
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados",
+    "save_success": "Grupo de Relatórios guardado com sucesso!",
+    "delete_success": "Grupo de Relatórios apagado com sucesso!",
+    "delete_success_plural": "Grupos de Relatórios apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Grupo de Relatórios com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Grupos de Relatórios selecionados?"
+  },
+  "model": {
+    "name": "Nome",
+    "enabled": "Ativo",
+    "report_description": "Relatório",
+    "reports_grouper_description": "Agrupador"
+  },
+  "header": {
+    "reports_groups": "Agrupadores"
+  }
+}

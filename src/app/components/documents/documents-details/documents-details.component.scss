@@ -1,0 +1,51 @@
+@import './node_modules/@peakitpt/ui-material/assets/theme.scss';
+
+
+@mixin documents-details-theme($theme){
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+
+  section {
+    h2 {
+      padding: 10px;
+      border-top: 1px solid mat-color($background, hover, 0.12);
+      background-color: mat-color($background, hover, 0.07);
+    }
+
+    .section-container > div {
+      padding-left: 20px;
+      padding-right: 20px;
+      padding: 10px;
+    }
+
+    .section-container > div:nth-child(even) {
+      background-color: mat-color($background, hover, 0.02);
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+      color: mat-color($accent);
+    }
+
+    margin-bottom: 20px;
+  }
+
+}
+
+.kyrios-theme-light {
+  @include documents-details-theme($kyrios-theme-light);
+}
+
+.kyrios-theme-dark {
+  @include documents-details-theme($kyrios-theme-dark);
+}
+
+.tab-content {
+  margin-top: 20px;
+}
+
+.top-title {
+  font-weight: 600;
+  font-size: 16px;
+}

@@ -1,0 +1,23 @@
+<section id="credentials-section">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <div fxFlex class="is_free_text">
+      <b>
+        {{ modulePath + ':message.is_free_text' | i18next }}
+      </b>
+    </div>
+    <ui-checkbox fxFlex class="margin-checkbox"
+      [label]="modulePath + ':model.is_free_text' | i18next"
+      [control]="form.get('is_free_text')">
+    </ui-checkbox>
+  </div>
+
+  <div *ngIf="form.value.is_free_text" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-text-area-ckeditor fxFlex
+      #free_textTextEditor
+      [environment]="environment"
+      [label]="modulePath + ':model.free_text' | i18next"
+      [control]="form.get('free_text')"
+      config="">
+    </ui-text-area-ckeditor>
+  </div>
+</section>

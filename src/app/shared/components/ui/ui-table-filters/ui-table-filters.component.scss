@@ -1,0 +1,18 @@
+@import './node_modules/@peakitpt/ui-material/assets/theme.scss';
+
+
+@mixin table-filters-theme($theme){
+  $background: map-get($theme, background);
+
+  .table-filter-list {
+    padding: 8px 12px;
+  }
+}
+
+.kyrios-theme-light {
+  @include table-filters-theme($kyrios-theme-light);
+}
+
+.kyrios-theme-dark {
+  @include table-filters-theme($kyrios-theme-dark);
+}

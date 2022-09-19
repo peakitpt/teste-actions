@@ -1,0 +1,58 @@
+<ui-dialog #modal class="views-modal"
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+>
+</ui-dialog>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center">
+    <ui-paginator #paginator
+      [length]="total"
+      [pageIndex]="page - 1"
+      [pageSize]="limit"
+      (onChangeEvent)="paginationChangeEvent($event)"
+    ></ui-paginator>
+  </div>
+</ng-template>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>{{ 'views:module.name_many' | i18next }}</h1>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #body>
+  <div class="noborder">
+    <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : bodyTemplate;"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #bodyTemplate>
+  <ui-table
+    #table
+    [dataSource]="dataSource"
+    [tableColumns]="tableColumns"
+    [checkboxes]="false"
+    (columnOrdinationEvent)="columnOrdinationEvent($event)"
+    stickyHeader="true">
+  </ui-table>
+  <br/>
+</ng-template>
+
+<ng-template #nameColumnTemplate let-data="data">
+  <div fxFill (click)="return(data)">{{ data.transl_name ? data.transl_name : data.name }}</div>
+</ng-template>

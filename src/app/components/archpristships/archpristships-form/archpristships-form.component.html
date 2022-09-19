@@ -1,0 +1,217 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="onModalClose()"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+    [label]="'translation:action.cancel' | i18next" color="secondary"
+    (onClickEvent)="onCancelClick()">
+    </ui-button>
+    <ui-button
+      *ngIf="!isQuickInsertion"
+      type="flat" icon="save"
+      [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true">
+    </ui-button>
+
+    <ui-button
+      type="flat" icon="save"
+      [label]="(isQuickInsertion ? 'translation:action.create_insert' : 'translation:action.save') | i18next"
+      color="accent" (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <form [formGroup]="form" class="form-body">
+    <ui-tabs [tabs]="formTabs"></ui-tabs>
+  </form>
+</ng-template>
+
+<ng-template #archpristshipTemplate>
+  <router-outlet></router-outlet>
+  <div class="tab-content">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'archpristships:model.name' | i18next" [required]="true" [control]="form.get('name')"></ui-input>
+      <div ngClass.gt-xs="center-checkbox" fxFlex="15">
+        <ui-checkbox class="center-checkbox" [label]="'archpristships:model.validated' | i18next" [control]="form.get('validated')"></ui-checkbox>
+      </div>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [required]="true" [label]="'archpristships:model.entity_relation_attributes.diocese_description' | i18next" [control]="form.get('entity_relation_attributes.diocese_description')" [rightTemplate]="{ template: diocesessTemplate }"></ui-input>
+
+      <ng-template #diocesessTemplate let-inputName="inputName">
+        <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+          <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('bishoprics-modal', inputName)"></ui-button>
+          <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="groupModalMenu" (sendValue)="menuClick($event)"></ui-menu>
+        </div>
+      </ng-template>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'archpristships:model.tax_designation' | i18next" [control]="form.get('tax_designation')"></ui-input>
+      <ui-input fxFlex [label]="'archpristships:model.taxpayer' | i18next" [control]="form.get('taxpayer')"></ui-input>
+    </div>
+    <h2>{{ 'archpristships:header.address' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'archpristships:model.address' | i18next" [control]="form.get('address')"></ui-input>
+      <ui-input fxFlex [label]="'archpristships:model.door_number' | i18next" [control]="form.get('door_number')"></ui-input>
+      <ui-input fxFlex [label]="'archpristships:model.postal_code' | i18next" [control]="form.get('postal_code')"></ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'archpristships:model.parish' | i18next" [control]="form.get('parish')"></ui-input>
+      <ui-input fxFlex [label]="'archpristships:model.place' | i18next" [control]="form.get('place')"></ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'archpristships:model.county' | i18next" [control]="form.get('county')"></ui-input>
+      <ui-input fxFlex [label]="'archpristships:model.district' | i18next" [control]="form.get('district')"></ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'archpristships:model.latitude' | i18next" [control]="form.get('latitude')"></ui-input>
+      <ui-input fxFlex [label]="'archpristships:model.longitude' | i18next" [control]="form.get('longitude')"></ui-input>
+    </div>
+    <h2>{{ 'archpristships:header.contacts' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'archpristships:model.mobilephone' | i18next" [control]="form.get('mobilephone')"></ui-input>
+      <ui-input fxFlex [label]="'archpristships:model.phone' | i18next" [control]="form.get('phone')"></ui-input>
+      <ui-input fxFlex [label]="'archpristships:model.fax' | i18next" [control]="form.get('fax')"></ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [label]="'archpristships:model.email' | i18next" [control]="form.get('email')"></ui-input>
+      <ui-input fxFlex [label]="'archpristships:model.url' | i18next" [control]="form.get('url')"></ui-input>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #permissionsAttributesCheckboxTemplate let-data="data">
+  <mat-checkbox (change)="$event ? masterToggle() : null; checkboxEvent()"
+    [checked]="selection.hasValue() && isAllSelected()"
+    [indeterminate]="selection.hasValue() && !isAllSelected()"
+    [aria-label]="checkboxLabel()"
+    >
+  </mat-checkbox>
+</ng-template>
+
+<ng-template #permissionsModulesTemplateCheckbox let-data="data">
+  <mat-checkbox (click)="$event.stopPropagation()"
+      (change)="$event ? selection.toggle(data) : null; checkboxEvent()"
+      [checked]="selection.isSelected(data)"
+      [aria-label]="checkboxLabel(data)"
+      >
+  </mat-checkbox>
+</ng-template>
+
+<ng-template #permissionsModulesTemplate>
+  <div class="tab-content">
+    <ui-table
+      #table
+      [dataSource]="permissionsAttributesDS"
+      [checkboxes]="false"
+      [tableColumns]="permissionsAttributesColumns">
+    </ui-table>
+  </div>
+</ng-template>
+
+<!-- BEGIN PERMISSION MODULOS -->
+
+<!-- HEADER TEMPLATES -->
+<ng-template #permissionsModulesModule let-row="data">
+  <div fxFill>
+    <ui-autocomplete [control]="moduleForm" [options]="moduleOptions" [label]="row.title" [placeholder]="row.title"></ui-autocomplete>
+  </div>
+</ng-template>
+
+<ng-template #permissionsModulesApp let-row="data">
+
+  <div fxFill>
+    <ui-autocomplete [control]="appForm" [options]="appOptions" [label]="row.title" [placeholder]="row.title"></ui-autocomplete>
+  </div>
+</ng-template>
+<!--  -->
+
+<!-- END PERMISSION MODULOS -->
+
+<!-- Populate DefaultsModal Modal -->
+
+<ui-dialog #populateDefaultsModal
+  *ngIf="isSuperUser"
+  [inputHeaderTemplate]="populateDefaultsHeader"
+  [inputBodyTemplate]="populateDefaultsBody"
+  [inputFooterTemplate]="populateDefaultsFooter"
+  [width]="800"
+>
+</ui-dialog>
+
+<ng-template #populateDefaultsHeader>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1>
+      {{ 'translation:action.populate_defaults' | i18next }}
+    </h1>
+    <div class="header-buttons" fxLayout="row">
+      <ui-button type='icon' icon="close" disableRipple="true" disableFocusRipple="true" (onClickEvent)="populateDefaultsModal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #populateDefaultsBody>
+  {{ 'translation:populate.populate_local' | i18next }}
+  {{ 'translation:populate.action_creates' | i18next }}
+  <ul>
+    <li>{{ 'translation:populate.points.1st' | i18next }}</li>
+    <li>{{ 'translation:populate.points.2nd' | i18next }}</li>
+    <li>{{ 'translation:populate.points.3rd' | i18next }}</li>
+    <li>{{ 'translation:populate.points.4th' | i18next }}</li>
+    <li>{{ 'translation:populate.points.5th' | i18next }}</li>
+  </ul>
+  {{ 'translation:populate.if_exists' | i18next }}
+</ng-template>
+
+<ng-template #populateDefaultsFooter>
+  <div class="footer-buttons" fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" [label]="'translation:action.cancel' | i18next" (onClickEvent)="populateDefaultsModal.close()"></ui-button>
+    <ui-button type="flat" [label]="'translation:action.populate' | i18next" color="warn" (onClickEvent)="populateDefaults()"></ui-button>
+  </div>
+</ng-template>
+
+<!-- Subscriptions Modal -->
+

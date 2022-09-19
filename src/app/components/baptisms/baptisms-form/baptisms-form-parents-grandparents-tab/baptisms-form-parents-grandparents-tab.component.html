@@ -1,0 +1,74 @@
+<section id="parents-section">
+  <h2>{{ modulePath + ':header.parents' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <div fxFlex fxLayout="column">
+      <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.father_description' | i18next"
+        [control]="form.get('entity.entity_person.entity_father_description')"
+        [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }"
+        [rightTemplate]="{ template: personsRightTemplate, context: { modalTitle: ('persons:module.name_many' | i18next) + ' (' + ('translation:gender.male_plural' | i18next) + ')', inputName: 'father', modalParams: { sex: 'true' } } }">
+      </ui-input>
+      <ui-input fxFlex *ngIf="form.get('entity.entity_person.entity_father_description').value" [readonly]="true"
+        [label]="modulePath + ':model.father_residence_chapelry_description' | i18next"
+        [control]="form.get('father_residence_chapelry_description')"
+        [rightTemplate]="{ template: chapelriesRightTemplate, context: { inputName: 'father_residence_chapelry' } }">
+      </ui-input>
+    </div>
+
+    <div fxFlex fxLayout="column">
+      <ui-input [readonly]="true" [label]="modulePath + ':model.mother_description' | i18next"
+        [control]="form.get('entity.entity_person.entity_mother_description')"
+        [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }"
+        [rightTemplate]="{ template: personsRightTemplate, context: { modalTitle: ('persons:module.name_many' | i18next) + ' (' + ('translation:gender.female_plural' | i18next) + ')', inputName: 'mother', modalParams: { sex: 'false' } } }">
+      </ui-input>
+      <ui-input *ngIf="form.get('entity.entity_person.entity_mother_description').value" [readonly]="true"
+        [label]="modulePath + ':model.mother_residence_chapelry_description' | i18next"
+        [control]="form.get('mother_residence_chapelry_description')"
+        [rightTemplate]="{ template: chapelriesRightTemplate, context: { inputName: 'mother_residence_chapelry' } }">
+      </ui-input>
+    </div>
+  </div>
+</section>
+
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+  <ng-container
+    *ngIf="!form.get('entity.entity_person.entity_father_description').value && !form.get('entity.entity_person.entity_mother_description').value; else grandparentsTemplate">
+    <b style="margin-bottom: 20px;">{{ modulePath + ':message.grandparents_text' | i18next }}</b>
+  </ng-container>
+</div>
+
+
+<ng-template #grandparentsTemplate>
+  <section fxFlex id="paternal-grandparents-section"
+    *ngIf="form.get('entity.entity_person.entity_father_description').value">
+    <h2>{{ modulePath + ':header.paternal_grandparents' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.paternal_grandfather_description' | i18next"
+        [control]="form.get('entity.entity_person.entity_father.entity_person.entity_father.name')"
+        [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }"
+        [rightTemplate]="{ template: personsRightTemplate, context: { modalTitle: ('persons:module.name_many' | i18next) + ' (' + ('translation:gender.male_plural' | i18next) + ')', inputName: 'paternal_grandfather', modalParams: { sex: 'true' } } }">
+      </ui-input>
+      <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.paternal_grandmother_description' | i18next"
+        [control]="form.get('entity.entity_person.entity_father.entity_person.entity_mother.name')"
+        [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }"
+        [rightTemplate]="{ template: personsRightTemplate, context: { modalTitle: ('persons:module.name_many' | i18next) + ' (' + ('translation:gender.female_plural' | i18next) + ')', inputName: 'paternal_grandmother', modalParams: { sex: 'false' } } }">
+      </ui-input>
+    </div>
+  </section>
+
+  <section fxFlex id="maternal-grandparents-section"
+    *ngIf="form.get('entity.entity_person.entity_mother_description').value">
+    <h2>{{ modulePath + ':header.maternal_grandparents' | i18next }}</h2>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.maternal_grandfather_description' | i18next"
+        [control]="form.get('entity.entity_person.entity_mother.entity_person.entity_father.name')"
+        [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }"
+        [rightTemplate]="{ template: personsRightTemplate, context: { modalTitle: ('persons:module.name_many' | i18next) + ' (' + ('translation:gender.male_plural' | i18next) + ')', inputName: 'maternal_grandfather', modalParams: { sex: 'true' } } }">
+      </ui-input>
+      <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.maternal_grandmother_description' | i18next"
+        [control]="form.get('entity.entity_person.entity_mother.entity_person.entity_mother.name')"
+        [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }"
+        [rightTemplate]="{ template: personsRightTemplate, context: { modalTitle: ('persons:module.name_many' | i18next) + ' (' + ('translation:gender.female_plural' | i18next) + ')', inputName: 'maternal_grandmother', modalParams: { sex: 'false' } } }">
+      </ui-input>
+    </div>
+  </section>
+</ng-template>

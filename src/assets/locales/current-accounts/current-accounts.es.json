@@ -1,0 +1,71 @@
+{
+    "module": {
+        "name_singular": "Cuenta Corriente",
+        "name_many": "Cuentas Corrientes"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "total": "Total",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar la Cuenta Corriente con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quiere eliminar las <strong>{{ count }}</strong> Cuentas Corrientes seleccionadas?",
+        "delete_success": "Cuenta corriente eliminada con éxito!",
+        "delete_success_plural": "Cuentas corrientes eliminadas con éxito!",
+        "save_success": "Cuenta corriente guardada con éxito!"
+    },
+    "model": {
+        "documents_type_description": "Tipo",
+        "extracts_pendents_only": "Sólo pendientes",
+        "extracts_period": "Sólo los movimientos entre",
+        "amount_to_receive": "A recibir",
+        "virtual_pending_amount": "Valor pendiente",
+        "document_date": "Fecha del doc.",
+        "documents_status_description": "Estado",
+        "currency": "Moneda",
+        "total_amount": "Valor total",
+        "serie_number": "Doc. Nº",
+        "observations": "Observaciones sobre el pago",
+        "treasury_location": "Localización de la tesorería",
+        "payment_type_id": "Tipo de pago",
+        "receipt_date": "Fecha del recibo",
+        "current_accounts_lines": {
+            "amount_to_receive": "A recibir",
+            "pending_amount": "Valor pendiente",
+            "total_amount": "Valor total",
+            "currency": "Moneda",
+            "serie_number": "Doc. Nº",
+            "documents_type_description": "Tipo",
+            "document_date": "Fecha del doc.",
+            "documents_status_description": "Estado"
+        },
+        "balance": "Saldo",
+        "entity_description": "Entidad",
+        "payment_type": {
+            "VISA": "VISA",
+            "Cheque": "Cheque",
+            "Multibanco": "ATM",
+            "Transferência": "Transferencia",
+            "Numerário": "Efectivo"
+        }
+    },
+    "delete": {
+        "2nd": "Esto modificará todos los documentos introducidos al estado anterior y afectará al saldo de la cuenta corriente.",
+        "1st": "¿Realmente quiere eliminar el recibo de la cuenta corriente Nº <strong>{{ name }}</strong>?"
+    },
+    "header": {
+        "current_account": "Cuenta Corriente"
+    },
+    "tabs": {
+        "receipts": "Recibos",
+        "history": "Historial",
+        "pending": "Pendientes"
+    },
+    "action": {
+        "add_document": "Agregar Documento",
+        "notify_selected": "Notificar Seleccionados",
+        "confirm_delete": "¿Eliminar recibo de la cuenta corriente?",
+        "edit": "Editar Cuenta Corriente",
+        "new": "Nueva Cuenta Corriente",
+        "add": "Agregar Cuenta Corriente"
+    }
+}

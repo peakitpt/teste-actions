@@ -1,0 +1,26 @@
+{
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar el Mero de Informes con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quiere eliminar los <strong>{{ count }}</strong> Mero Informes seleccionado?",
+        "delete_success": "¡Informe de Mero eliminado con éxito!",
+        "delete_success_plural": "¡Informes Mero eliminado con éxito!",
+        "save_success": "¡Informe Mero guardado con éxito!"
+    },
+    "model": {
+        "locale": "Ubicación",
+        "name": "Nombre",
+        "enabled": "Activo"
+    },
+    "action": {
+        "delete": "Eliminar Informe Mero",
+        "edit": "Editar Informe Mero",
+        "new": "Nuevo Informe Mero",
+        "add": "Añadir Informe Mero"
+    },
+    "module": {
+        "name_many": "Informes Meros",
+        "name_singular": "Informes Mero"
+    }
+}

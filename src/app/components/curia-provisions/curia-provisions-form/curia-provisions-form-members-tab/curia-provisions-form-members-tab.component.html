@@ -1,0 +1,19 @@
+<section id="members-section">
+  <h2>{{ modulePath + ':header.members' | i18next }}</h2>
+  <div fxLayout="column" fxLayoutGap="10px">
+    <div fxLayout="row">
+      <div fxFlex fxLayout="column" class="tab-content">
+        <ui-table
+          #entitiesTable
+          [checkboxes]="false"
+          [dataSource]="membersDS"
+          [tableColumns]="membersColumns"
+          stickyHeader="true">
+        </ui-table>
+        <div class="add-table-line" (click)="addTableLine(newMember, membersFormArray, membersDS)">
+          {{ 'translation:action.add' | i18next }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

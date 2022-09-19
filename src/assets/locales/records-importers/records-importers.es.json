@@ -1,0 +1,50 @@
+{
+    "message": {
+        "modal_closed": "¿Está cerrada la ventana?",
+        "save_success": "¡Registro importado con éxito!"
+    },
+    "action": {
+        "open_again": "Abrir de nuevo",
+        "download_families": "Familias",
+        "download_persons": "Fichas Individuales"
+    },
+    "text": {
+        "9th_paragraf": "Puedes seguir utilizando Kyrios como siempre y seguir el estado de la importación en el icono de notificaciones de la esquina superior derecha. La importación está terminada cuando no tiene ningún mensaje relativo a la importación.",
+        "8th_paragraf": "La importación puede tardar <strong>varios minutos/horas</strong>, dependiendo de la cantidad de registros a importar.",
+        "7th_paragraf": "¡Tenga en cuenta que <strong>todos los datos se actualizarán/escribirán por encima</strong> de los datos contenidos en el archivo a importar! <strong>Si ha realizado cambios en los registros desde la última importación, es probable que éstos se pierdan/se reescriban</strong>",
+        "6th_paragraf": "Puedes seguir utilizando Kyrios como siempre y seguir el estado de la importación en el icono de notificaciones () de la esquina superior derecha. La importación está terminada cuando no tiene ningún mensaje relativo a la importación.",
+        "5th_bullet_point": "al guardar el archivo, seleccione el Formato de Archivo <strong>CSV UTF-8 (delimitado por comas) (.csv)</strong>",
+        "4th_bullet_point": "en los Delimitadores, elija <strong>sólo</strong> \"Punto y coma\". Haga clic en Finalizar y luego en Aceptar.",
+        "3rd_bullet_point": "seleccione \"Delimitado\" y en Origen del archivo seleccione \"Unicode (UTF-8)\". Haga clic en Siguiente;",
+        "2nd_bullet_point": "en la pestaña \"Datos\", haga clic en el botón \"Desde el texto\" y seleccione el archivo CSV;",
+        "1st_bullet_point": "abrir el programa con un libro en blanco;",
+        "5th_paragraf": "Para abrir en <strong>Microsoft Excel</strong>:",
+        "4th_paragraf": "Para facilitar la configuración de estos aspectos, recomendamos utilizar los siguientes programas de productividad <strong>gratis</strong> para la edición de CSV:",
+        "3rd_paragraf": "Los campos marcados con un asterisco (*) son <strong>obligatorio</strong>.",
+        "2nd_paragraf": "La codificación del archivo CSV está en <strong>UTF-8</strong>. Por favor, asegúrese de que la codificación no se cambia al salvar/exportar los cambios.",
+        "1st_paragraf": "El delimitador de columna <strong> debe ser </strong> el <strong> punto y coma (;) </strong>. Por favor, tenga esto en cuenta al abrir el archivo para editarlo y especialmente cuando <strong>guardar/exportar</strong> las modificaciones."
+    },
+    "model": {
+        "attachment_filename": "Archivo",
+        "importer_type": "Tipo de Importación"
+    },
+    "options": {
+        "the_chapelry_mdb": "Programa \"A Paróquia (MDB)\"",
+        "the_chapelry_sql": "Programa \"A Paróquia (SQL)\"",
+        "families": "Familias",
+        "persons": "Fichas Individuales"
+    },
+    "header": {
+        "import": "Importación",
+        "import_csv": "Importación (CSV)",
+        "export_csv": "Exportación (CSV)"
+    },
+    "tabs": {
+        "chapelry": "Programa \"A Paróquia\"",
+        "kyrios": "Kyrios"
+    },
+    "module": {
+        "name_many": "Importación de Registros",
+        "name_singular": "Importación de Registros"
+    }
+}

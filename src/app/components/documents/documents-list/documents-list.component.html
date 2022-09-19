@@ -1,0 +1,150 @@
+<router-outlet></router-outlet>
+<ng-container *ngIf="modelList$ | async as modelList">
+  <ui-card>
+    <div content>
+      <div class="over-table-buttons" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+
+        <ui-button
+          [style.margin]="'0 0 10px 10px'"
+          type="flat"
+          color="accent"
+          [label]="('documents-types:module.name_many' | i18next)"
+          [attr.aria-label]="'documents-types:module:module.name_many' | i18next"
+          [routerLink]="'/documents-types'">
+        </ui-button>
+
+        <ui-menu
+          [title]="modulePath + ':header.documents' | i18next"
+          type="costumize_click"
+          [menuClickTemplate]="model25ClickTemplate"
+          color="accent"
+          [model]="model25Model"
+          (sendValue)="model25ModelClick($event)"
+        >
+        </ui-menu>
+        <ng-template #model25ClickTemplate>
+          <ui-button
+            [style.margin]="'0 0 10px 10px'"
+            type="flat"
+            color="primary"
+            [label]="modulePath + ':action.model_25' | i18next"
+            [attr.aria-label]="modulePath + ':action.model_25'| i18next">
+          </ui-button>
+        </ng-template>
+
+      </div>
+      <ng-container *ngIf="selectedRows$ | async as selectedRows">
+        <ui-toolbar
+          *ngIf="selectedRows.length"
+          [title]="modulePath + ':message.selected' | i18next: { count: selectedRows.length }"
+          [dataModel]="toolbarDataModel"
+          rowColor="accent"
+          (iconClickedEvent)="toolbarItemClick($event)"
+        ></ui-toolbar>
+      </ng-container>
+
+      <ui-button *ngIf="!menuHelperService.getSideNavOpen()" class="float-button-mobile" [title]="'translation:action.add' | i18next" fxLayoutAlign="end" type="mini_fab" icon="add" color="accent" [attr.aria-label]="'translation:action.add' | i18next"
+        (onClickEvent)="navigate('/' + modulePath + '/new')">
+      </ui-button>
+      <ui-table
+        #table
+        [dataSource]="modelList.results"
+        [tableColumns]="tableColumns"
+        [generalFilter]="false"
+        checkboxes="true"
+        stickyHeader="true"
+        (clickRowEvent)="navigate('/' + modulePath + '/' + $event.id + '/details')"
+        (checkboxSelectionEvent)="checkboxSelectionEvent($event)"
+        (columnFilterEvent)="columnFilterEvent($event)"
+        (columnOrdinationEvent)="columnOrdinationEvent($event)">
+      </ui-table>
+
+      <kyr-table-pagination>
+        <ui-paginator
+          [length]="modelList.total"
+          [pageIndex]="modelList.page - 1"
+          [pageSize]="limit"
+          (onChangeEvent)="paginationChangeEvent($event)"
+        ></ui-paginator>
+        <ui-menu
+          type="icons"
+          [model]="pagerMenu"
+          xPosition="before"
+          (sendValue)="menuClick($event)"
+        ></ui-menu>
+      </kyr-table-pagination>
+    </div>
+  </ui-card>
+</ng-container>
+
+<!-- TEMPLATES -->
+<ng-template #paidTemplate let-data="data">
+  <ui-icon [icon]="data.paid ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+</ng-template>
+
+<ng-template #documentDateTemplate let-data="data">
+  {{ data.document_date | date:('translation:format.date' | i18next) }}
+</ng-template>
+
+<ng-template #buttonsTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ui-button *ngIf="!data.block_edit" [title]="'translation:action.edit' | i18next" type="icon" icon="edit" (onClickEvent)="navigate('/' + modulePath + '/' + data.id + '/edit')"></ui-button>
+    <ui-menu
+      [hoverTitle]="'translation:action.more' | i18next"
+      type="icons"
+      [model]="data | documentsRowMenuPipe"
+      (sendValue)="menuClick($event, data)"
+    >
+    </ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+<!-- TEMPLATES END -->
+
+<!-- Populate DefaultsModal Modal -->
+
+<ui-dialog #model25WarningModal
+  [inputHeaderTemplate]="model25WarningHeader"
+  [inputBodyTemplate]="model25WarningBody"
+  [inputFooterTemplate]="model25WarningFooter"
+  [width]="800"
+>
+</ui-dialog>
+
+<ng-template #model25WarningHeader>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1>
+      {{ modulePath + ':message.points.header' | i18next }}
+    </h1>
+    <div class="header-buttons" fxLayout="row">
+      <ui-button type='icon' icon="close" disableRipple="true" disableFocusRipple="true" (onClickEvent)="model25WarningModal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #model25WarningBody>
+    <p>{{ modulePath + ':message.points.1st' | i18next }}</p>
+    <p>{{ modulePath + ':message.points.2nd' | i18next }}</p>
+</ng-template>
+
+<ng-template #model25WarningFooter>
+  <div class="footer-buttons" fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" [label]="'translation:action.cancel' | i18next" (onClickEvent)="model25WarningModal.close()"></ui-button>
+    <ui-button type="flat" [label]="'Ok'" color="primary" (onClickEvent)="getDeclaration(currentSelectedType)"></ui-button>
+  </div>
+</ng-template>
+
+<!-- Subscriptions Modal -->

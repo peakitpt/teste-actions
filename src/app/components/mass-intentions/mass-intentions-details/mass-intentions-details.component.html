@@ -1,0 +1,156 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model">: {{ model.intention_description }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model">
+          <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="treasuryDocOptionsMenu.length"
+          [hoverTitle]="'documents:action.treasury_doc.title' | i18next"
+          type="icons"
+          mainIcon="request_quote"
+          [model]="treasuryDocOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+        <ui-button [title]="'translation:action.edit' | i18next" type='icon' icon="edit" (onClickEvent)="editModal()"></ui-button>
+        <ui-menu
+          [hoverTitle]="'translation:action.more' | i18next"
+          type="icons"
+          [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model; else loadingTemplate">
+    <section id="main-section">
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.serie_number' | i18next }}:</div>
+            <div fxFlex>{{ model.serie_number }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.requested_by_description' | i18next }}:</div>
+            <div fxFlex>{{ model.requested_by_description }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.intention_description' | i18next }}:</div>
+            <div fxFlex>{{ model.intention_description }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.type_name' | i18next }}:</div>
+            <div fxFlex>{{ model.intention_type.name }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.paid' | i18next }}:</div>
+            <div fxFlex>
+              <ui-icon [icon]="model.paid ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.location_description">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.location_description' | i18next }}:</div>
+            <div fxFlex>
+              <a (click)="openDetails('worshipplaces', model.location_id)">{{ model.location_description }}</a></div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.intention_date || model.intention_time">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.intention_date' | i18next }}/{{ modulePath + ':model.intention_time' | i18next }}:</div>
+            <div fxFlex><ng-container *ngIf="model.intention_date">{{ model.intention_date | date:('translation:format.date' | i18next) }} </ng-container><ng-container *ngIf="model.intention_time">{{ model.intention_time }}</ng-container></div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.celebrated_by_description">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.celebrated_by_description' | i18next }}:</div>
+            <div fxFlex>{{ model.celebrated_by_description }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.comments">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.comments' | i18next }}:</div>
+            <div fxFlex>{{ model.comments }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="treasury-document-section" *ngIf="model.emolument_description || model.tax != null || model.document_entity_description">
+      <h2>{{ modulePath + ':header.treasury_document' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.emolument_description">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.emolument_description' | i18next }}:</div>
+            <div fxFlex>
+              <a (click)="openDetails('emoluments', model.emolument_id)">{{ model.emolument_description }}</a>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.tax != null">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.tax' | i18next }}:</div>
+            <div fxFlex>{{ (model.tax | number:'.2-2') }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.document_entity_description">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.document_entity_description' | i18next }}:</div>
+            <div fxFlex>{{ model.document_entity_description }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</ng-template>
+
+<!-- TEMPLATES START -->
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<kyr-generate-doc-confirmation-modal *ngIf="openGenerateDocModal"
+  [form]="model"
+  [modulePath]="modulePath"
+  [actionRequestSaveAndGenerateDocument]="actionRequestSaveAndGenerateDocument"
+  [actionRequestFailSaveAndGenerateDocument]="actionRequestFailSaveAndGenerateDocument"
+  [actionSuccessSaveAndGenerateDocument]="actionSuccessSaveAndGenerateDocument"
+  (emitModalClose)="closeGenerateDocModal($event)"
+>
+</kyr-generate-doc-confirmation-modal>
+<!-- TEMPLATES END -->

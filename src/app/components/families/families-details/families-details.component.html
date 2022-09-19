@@ -1,0 +1,189 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+  [headerBottomMargin]="false"
+>
+</ui-dialog>
+
+<ng-template #header>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+        {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.name }}</ng-container>
+      </h1>
+      <ng-template #smallHeader>
+        {{ modulePath + ':module.name_singular' | i18next }}
+      </ng-template>
+      <div fxLayout="row" class="header-buttons">
+        <ng-container *ngIf="model">
+            <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-button [title]="'translation:action.edit' | i18next" type='icon' icon="edit" (onClickEvent)="editModal()"></ui-button>
+        <ui-menu
+          [hoverTitle]="'translation:action.more' | i18next"
+          type="icons"
+          [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+        </ng-container>
+        <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+      </div>
+    </div>
+    <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <ui-tabs [tabs]="detailsTabs"></ui-tabs>
+  </ng-container>
+</ng-template>
+
+<!-- TABS -->
+<ng-template #familyTabTemplate>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.disabled' | i18next }}:</div>
+            <div fxFlex>
+              <ui-icon [icon]="model.disabled ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.name' | i18next }}:</div>
+            <div fxFlex>{{ model.name }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.father_description' | i18next }}:</div>
+            <div fxFlex>
+              <a (click)="openDetails('persons', model.father?.entity_person.id)">{{ model.father_description | i18next }}</a>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.mother_description">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mother_description' | i18next }}:</div>
+            <div fxFlex>
+              <a (click)="openDetails('persons', model.mother?.entity_person.id)">{{ model.mother_description | i18next }}</a>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.comments">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.comments' | i18next }}:</div>
+            <div fxFlex>{{ model.comments | i18next }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="model.families_entities">
+      <h2>{{ modulePath + ':header.household' | i18next }}</h2>
+      <div fxLayout="column">
+        <table class="mat-table">
+          <tr class="mat-header-row">
+            <th class="mat-header-cell">#</th>
+            <th class="mat-header-cell">{{ modulePath + ':model.families_entities.entity_description' | i18next }}</th>
+            <th class="mat-header-cell">{{ modulePath + ':model.families_entities.relationship_degree_description' | i18next }}</th>
+            <th class="mat-header-cell">{{ modulePath + ':model.families_entities.relation_with' | i18next }}</th>
+          </tr>
+          <tr class="mat-row uiKyriosTableRow" *ngFor="let member of model.families_entities; let i = index" [attr.data-index]="i">
+            <td class="mat-cell">{{ i + 1 }}</td>
+            <td class="mat-cell"><a (click)="openDetails('persons', member.entity.entity_person.id)">{{ member.entity_description }}</a></td>
+            <td class="mat-cell">{{ member.relationship_degree_description }}</td>
+            <td class="mat-cell">{{ getRelationWithLabel(member.relation_with) }}</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </ng-container>
+</ng-template>
+
+<ng-template #documentsTabTemplate>
+    <kyr-families-documents-tab
+      [modulePath]="modulePath"
+    ></kyr-families-documents-tab>
+</ng-template>
+
+<ng-template #statisticDataTabTemplate>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <ng-container *ngIf="model.opt1_text || model.opt2_text || model.opt3_text || model.opt4_text || model.opt5_text; else noStatisticsTemplate">
+      <section>
+        <div fxLayout="row">
+          <div class="section-container" fxLayout="column" fxFill>
+            <ng-container *ngIf="model.opt1_text || model.opt1_text2_description">
+              <div fxLayout="row" fxLayoutGap="10px">
+                <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt1_text' | i18next }}</div>
+                <div fxFlex>{{ model.opt1_text }}</div>
+              </div>
+              <div fxLayout="row" fxLayoutGap="10px">
+                <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt1_text2_description' | i18next }}</div>
+                <div fxFlex>{{ model.opt1_text2_description }}</div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="model.opt2_text || model.opt2_text2">
+              <div fxLayout="row" fxLayoutGap="10px">
+                <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt2_text' | i18next }}</div>
+                <div fxFlex>{{ model.opt2_text }}</div>
+              </div>
+              <div fxLayout="row" fxLayoutGap="10px">
+                <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt2_text2' | i18next }}</div>
+                <div fxFlex>{{ model.opt2_text2 }}</div>
+              </div>
+            </ng-container>
+            <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.opt3_text">
+              <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt3_text' | i18next }}</div>
+              <div fxFlex>{{ model.opt3_text }}</div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.opt4_text">
+              <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt4_text' | i18next }}</div>
+              <div fxFlex>{{ model.opt4_text }}</div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.opt5_text">
+              <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt5_text' | i18next }}</div>
+              <div fxFlex>{{ model.opt5_text }}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ng-container>
+  </ng-container>
+</ng-template>
+<!-- TABS END -->
+
+<!-- TEMPLATES -->
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #noStatisticsTemplate>
+  <div fxLayout="row wrap" fxLayoutAlign="center none">
+    <h1>{{ modulePath + ':message.no_satistics_to_show' | i18next }}</h1>
+  </div>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+<!-- TEMPLATES END -->

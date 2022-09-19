@@ -1,0 +1,177 @@
+{
+    "tabs": {
+        "categories": "Categorías",
+        "personal-data": "Datos personales",
+        "ddbp": "Cursos Bíblicos (CB)",
+        "pu": "Pastoral Universitaria (PU)",
+        "emrc": "Clase de Religión Catolica (CRC)",
+        "ec": "Centros Educativos Católicos (CEC)",
+        "eca": "Educación Cristiana para Adultos (ECA)",
+        "dapj": "Delegación de Juventud (DDJ)",
+        "dac": "Delegación Episcopal de Catequesis (DEC)"
+    },
+    "header": {
+        "ecclesial_activities": "Actividades Eclesiales",
+        "ecclesial_formations": "Formación eclesial",
+        "identi_documents": "Documentos de identificación",
+        "contacts": "Contacto",
+        "address": "Dirección",
+        "coordinator": "Coordinador",
+        "dapj": "Datos de pastoral juvenil",
+        "dac": "Datos de catequesis",
+        "comments": "Observaciones",
+        "pastoral_agent": "Agente de pastoral",
+        "departments": "Departamentos",
+        "ddbp": "Datos del Departamento de Dinamización Pastoral Bíblica",
+        "pu": "Datos de Pastoral Universitaria",
+        "ec": "Datos de Escuelas Católicas",
+        "emrc": "Datos de Educación Moral y Religiosa Católica",
+        "eca": "Datos de Educación Cristiana para Adultos",
+        "pastoral_agents_formations": "Formaciones / Actividades eclesiales"
+    },
+    "model": {
+        "entity": {
+            "entity_person": {
+                "is_parishioner": "Parroquiano(a)",
+                "ident_document_emitted_by": "Emitido por",
+                "ident_document_validity_date": "Fecha de validez",
+                "ident_document_emission_date": "Fecha de emisión",
+                "ident_document_number": "Nº de identificación",
+                "comments": "Observaciones",
+                "professional_profession_description": "Profesión",
+                "qualifications": "Habilitaciones",
+                "age": "Edad",
+                "birth_date": "Fecha de nacimiento",
+                "sex": "Género",
+                "serie_number": "Nº de registro",
+                "ident_document_type": "Tipo de identificación"
+            },
+            "entity_catechist": {
+                "catechist": "Catequista"
+            },
+            "entity_reader": {
+                "is_reader": "Lector(a)"
+            },
+            "entity_mec": {
+                "mec": "Ministro Comunión"
+            },
+            "entity_acolyte": {
+                "is_acolyte": "Acólito(a)"
+            },
+            "is_public_profile": "Público",
+            "url": "Sitio web",
+            "email": "Correo electrónico",
+            "fax": "Fax",
+            "phone": "Teléfono",
+            "mobilephone": "Teléfono móvil",
+            "longitude": "Longitud",
+            "latitude": "Latitud",
+            "county": "Ayuntamiento",
+            "place": "Localidad",
+            "postal_code": "CP",
+            "door_number": "Nº",
+            "address": "Dirección",
+            "residence_chapelry_description": "Parroquia de residencia",
+            "civil_status": "Estado civil",
+            "entity_birth_chapelry_description": "Parroquia de nacimiento",
+            "name": "Nombre"
+        },
+        "ecclesial_activities_other_description": "Otra actividad eclesial",
+        "ecclesial_activities_other": "Otro",
+        "ecclesial_activities_economic_council_member": "Miembro del consejo económico",
+        "ecclesial_activities_association_of_faithful_direction_member": "Miembro de la junta directiva de una asociación de fieles",
+        "ecclesial_activities_caretaker": "Colaborador(a)",
+        "ecclesial_activities_singer": "Cantor(a)",
+        "ecclesial_formation_other_description": "Otra formación Eclesial",
+        "ecclesial_formation_other": "Otro",
+        "ecclesial_formation_theological_pastorails_courses": "Cursos teológico-pastorales",
+        "ecclesial_formation_biblical_courses": "Cursos de Biblia",
+        "institution_time": "Años en ejercicio",
+        "institution_date": "Fecha de nombramiento",
+        "formation_courses": "Cursos de Formación",
+        "congregation": "Congregación",
+        "is_coordinator": "Coordinador",
+        "institution_center_worshipplace_description": "Lugar de Culto",
+        "magnetic_number": "Nº magnético",
+        "dapj_type_id": "Tipo de catequista",
+        "eca_is_phase_coordinator": "Fase",
+        "eca_is_trainer": "Formador",
+        "active": "Activo(a)",
+        "approved": "Aprobado (a)",
+        "signature": "Firma",
+        "dac_is_card_emitted": "Tarjeta emitida",
+        "pastoral_agent_number": "Nº Agente de Pastoral",
+        "dac_type": "Tipo de Agente de Pastoral",
+        "dac_type_id": "Tipo de Agente de Pastoral",
+        "dac_date": "Fecha de inicio",
+        "dac_chapelry_description": "Parroquia donde colabora",
+        "dac_childhood": "Infancia",
+        "dac_adolescence": "Adolescencia",
+        "dac_youth": "Jóvenes",
+        "dac_adults": "Adultos",
+        "dac_is_parochial_coordinator": "Parroquial",
+        "dac_is_phase_coordinator": "Fase",
+        "dac_is_year_coordinator": "Año",
+        "dapj_is_card_emitted": "Tarjeta emitida",
+        "dapj_type": "Tipo de animador",
+        "dapj_date": "Fecha de inicio",
+        "dapj_chapelry_description": "Parroquia donde colabora",
+        "dapj_is_parochial_coordinator": "Coordinador parroquial",
+        "eca_is_card_emitted": "Tarjeta emitida",
+        "eca_type": "Tipo de educación cristiana para adultos",
+        "eca_type_id": "Tipo de educación cristiana para adultos",
+        "eca_date": "Fecha de inicio",
+        "eca_chapelry_description": "Parroquia donde colabora",
+        "eca_is_parochial_coordinator": "Parroquial",
+        "eca_is_year_coordinator": "Año",
+        "emrc_is_card_emitted": "Tarjeta emitida",
+        "emrc_type": "Tipo de profesor",
+        "emrc_type_id": "Tipo de profesor",
+        "emrc_chapelry_description": "Parroquia donde colabora",
+        "emrc_is_parochial_coordinator": "Coordinador parroquial",
+        "emrc_work_schools": "Escuelas en las que trabajó",
+        "ec_is_card_emitted": "Tarjeta emitida",
+        "ec_type": "Tipo de profesor",
+        "ec_type_id": "Tipo de profesor",
+        "ec_chapelry_description": "Parroquia donde colabora",
+        "ec_is_parochial_coordinator": "Coordinador parroquial",
+        "ec_work_schools": "Escuelas en las que trabajó",
+        "pu_type": "Universidad",
+        "pu_type_id": "Universidad",
+        "pu_comments": "Observaciones",
+        "ddbp_comments": "Observaciones",
+        "pastoral_agents_departments": {
+            "pastoral_agents_type_id": "Departamentos"
+        },
+        "pastoral_agents_formations": {
+            "formation_id": "Formación",
+            "formation": {
+                "id": "Formación"
+            }
+        }
+    },
+    "options": {
+        "not_available": "N/D",
+        "yes": "Sí",
+        "no": "No"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que desea eliminar al Agente Pastoral con el nombre \"<strong> {{name}} </strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que desea eliminar los <strong> {{count}} </strong> agentes de pastoral seleccionados?",
+        "save_success": "¡Agente pastoral guardado con éxito!",
+        "delete_success": "¡Agente pastoral eliminado con éxito!",
+        "delete_success_plural": "¡Agentes de pastoral eliminados con éxito!"
+    },
+    "module": {
+        "name_singular": "Agente de Pastoral",
+        "name_many": "Agentes de Pastoral"
+    },
+    "action": {
+        "new": "Nuevo Agente de Pastoral",
+        "edit": "Editar Agente de Pastoral",
+        "delete": "¿Eliminar Agente Pastoral?",
+        "generate_card": "Generar tarjeta"
+    }
+}

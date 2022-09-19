@@ -1,0 +1,50 @@
+{
+  "module": {
+    "name_singular": "Nomeação",
+    "name_many": "Nomeações"
+  },
+  "action": {
+    "add": "Adicionar Nomeação",
+    "new": "Nova Nomeação",
+    "edit": "Editar Nomeação",
+    "delete": "Eliminar Nomeação?"
+  },
+  "message": {
+    "save_success": "Nomeação guardada com sucesso!",
+    "delete_success": "Nomeação apagada com sucesso!",
+    "delete_success_plural": "Nomeações apagadas com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Nomeação com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> nomeações selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas"
+  },
+  "model": {
+    "serie_number": "Nº de Registo",
+    "entity_priest_description": "Nomeado",
+    "nomination_type_id": "Tipo de Nomeação",
+    "function_description": "Função",
+    "place_description": "Local",
+    "nomination_date": "Data da Nomeação",
+    "enabled": "Ativo",
+    "birth_place": "Naturalidade",
+    "expiration_date": "Data de Expiração",
+    "bishop_description": "Bispo/Arcebispo",
+    "subscriber1_description": "Assinante 1",
+    "subscriber2_description": "Assinante 2",
+    "moderator_description": "Moderador",
+    "function_details": "Descrição das Funções",
+    "observations": "Observações",
+    "nomination_attachments": {
+      "attachment_filename": "Anexo",
+      "attachment_description": "Descrição"
+    },
+    "options": {
+      "not_parishioner": "Não Pároco",
+      "parishioner": "Pároco"
+    }
+  },
+  "tabs": {
+    "clergy_nomination": "Nomeação de Clero",
+    "attachments": "Anexos"
+  }
+}

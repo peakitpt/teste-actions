@@ -1,0 +1,163 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="onModalClose()"
+  [disableClose]="true"
+  [headerBottomMargin]="false"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu [hoverTitle]="'translation:action.more' | i18next" *ngIf="headerOptionsMenu.length && !isQuickInsertion" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+
+    <ui-button
+      *ngIf="!isQuickInsertion"
+      type="flat" icon="save"
+      [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true">
+    </ui-button>
+
+    <ui-button
+      *ngIf="!isQuickInsertion && (model?.id && !model?.document_id)"
+      type="flat" icon="save"
+      [label]="'translation:action.save_generate_document' | i18next" color="primary"
+      (onClickEvent)="menuClick('save_generate_document')">
+    </ui-button>
+
+    <ui-button
+      type="flat" icon="save"
+      [label]="(isQuickInsertion ? 'translation:action.create_insert' : 'translation:action.save') | i18next"
+      color="accent" (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body" [style.padding-top]="'20px'" (keydown.enter)="$event.preventDefault()">
+    <section id="main-section">
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex *ngIf="id" [readonly]="true" [label]="modulePath + ':model.serie_number' | i18next" [control]="form.get('serie_number')"></ui-input>
+        <ui-datepicker fxFlex [label]="modulePath + ':model.date' | i18next" [control]="form.get('date')" [maxDate]="todayDate"></ui-datepicker>
+        <ui-input fxFlex [label]="modulePath + ':model.seat_number' | i18next" [control]="form.get('seat_number')"></ui-input>
+        <ui-input fxFlex [label]="modulePath + ':model.sheet' | i18next" [control]="form.get('sheet')"></ui-input>
+      </div>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex [readonly]="true" [required]="true" [label]="modulePath + ':model.entity_catechumen_description' | i18next" [control]="form.get('entity_catechumen_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }" [rightTemplate]="{ template: personsRightTemplate, context: { inputName: 'entity_catechumen' } }"></ui-input>
+      </div>
+    </section>
+
+    <section id="admission-section">
+      <h2>{{ modulePath + ':header.admission_details' | i18next }}</h2>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-datepicker fxFlex="25" [label]="modulePath + ':model.admission_date' | i18next" [control]="form.get('admission_date')" [maxDate]="todayDate"></ui-datepicker>
+        <ui-input fxFlex="25" [label]="modulePath + ':model.admission_hour' | i18next" [control]="form.get('admission_hour')" placeholder="HH:MM" [errorMessage]="'translation:message.hour_format_error' | i18next"></ui-input>
+        <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity_by_description' | i18next" [control]="form.get('entity_by_description')" [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'entity_by' } }"></ui-input>
+      </div>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.admission_local_description' | i18next" [control]="form.get('admission_local_description')" [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'admission_local' } }"></ui-input>
+        <ui-textarea fxFlex="100" [label]="modulePath + ':model.comments' | i18next" [control]="form.get('comments')"></ui-textarea>
+      </div>
+    </section>
+
+    <section id="treasury-document-section">
+      <h2>{{ modulePath + ':header.treasury_document' | i18next }}</h2>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex="80" [readonly]="true" [label]="modulePath + ':model.emolument_description' | i18next" [control]="form.get('emolument_description')" [rightTemplate]="{ template: emolumentsRightTemplate, context: { inputName: 'emolument' } }"></ui-input>
+        <ui-input fxFlex="20" [readonly]="true" [label]="modulePath + ':model.tax' | i18next" [control]="form.get('tax')"></ui-input>
+        <ui-input fxFlex="100" [readonly]="true" [label]="modulePath + ':model.document_entity_description' | i18next" [control]="form.get('document_entity_description')" [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'document_entity' } }"></ui-input>
+      </div>
+    </section>
+  </form>
+</ng-template>
+
+
+<!-- TEMPLATES -->
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #leftTemplate let-icon="icon">
+  <div style="margin-right: 2px;">
+    <ui-icon class="input-icon" [icon]="icon"></ui-icon>
+  </div>
+</ng-template>
+
+<ng-template #personsRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('persons-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="personsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #priestsRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('priests-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="priestsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #worshipplacesRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('worshipplaces-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="worshipplacesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #emolumentsRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('emoluments-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="emolumentsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #parishionersRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('parishioners-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="entitiesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<kyr-generate-doc-confirmation-modal *ngIf="openGenerateDocModal"
+  [form]="form.getRawValue()"
+  [modulePath]="modulePath"
+  [actionRequestSaveAndGenerateDocument]="actionRequestSaveAndGenerateDocument"
+  [actionRequestFailSaveAndGenerateDocument]="actionRequestFailSaveAndGenerateDocument"
+  [actionSuccessSaveAndGenerateDocument]="actionSuccessSaveAndGenerateDocument"
+  (emitModalClose)="closeGenerateDocModal($event)"
+>
+</kyr-generate-doc-confirmation-modal>
+<!-- TEMPLATES END -->

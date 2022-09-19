@@ -1,0 +1,102 @@
+<div fxLayout="column" fxFlex class="small-topbar-search-form-container">
+  <form [formGroup]="form" style="padding: 10px;">
+
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'name'}"></ng-container>
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'pastoral_agent_number'}"></ng-container>
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'reader_worshipplace' }">
+    </ng-container>
+    <ng-container
+      *ngTemplateOutlet="dateRangeInput; context: { field: 'reader_institution_date', label: modulePath + ':model.reader_institution_date' | i18next }">
+    </ng-container>
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'acolyte_worshipplace' }">
+    </ng-container>
+    <ng-container
+      *ngTemplateOutlet="dateRangeInput; context: { field: 'acolyte_institution_date', label: modulePath + ':model.acolyte_institution_date' | i18next }">
+    </ng-container>
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'mec_worshipplace' }">
+    </ng-container>
+    <ng-container
+      *ngTemplateOutlet="dateRangeInput; context: { field: 'mec_institution_date', label: modulePath + ':model.mec_institution_date' | i18next }">
+    </ng-container>
+    <ng-container readonly="true" *ngTemplateOutlet="formationsInput; context: { field: 'formations' }">
+    </ng-container>
+
+    <!-- <ng-container *ngTemplateOutlet="textInput; context: { field: 'email'}"></ng-container>
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'archpriestship'}"></ng-container>
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'chapelry'}"></ng-container>
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'serie_number'}"></ng-container>
+    <ng-container *ngTemplateOutlet="selectInput; context: { field: 'active', datasource: booleanOptions}"></ng-container>
+    <ng-container *ngTemplateOutlet="selectInput; context: { field: 'approved', datasource: booleanOptions}"></ng-container>
+    <ng-container *ngTemplateOutlet="selectInput; context: { field: 'is_parishioner', datasource: booleanOptions}"></ng-container> -->
+  </form>
+
+
+  <div fxLayout="row" fxLayoutAlign="end center" fxFlex="95" fxLayoutGap="15px">
+    <ui-button [label]="'translation:action.clear' | i18next" type="flat" (click)="clearSearch()"></ui-button>
+    <ui-button [label]="'translation:action.search' | i18next" type="raised" color="primary" (click)="onSearchClick()">
+
+    </ui-button>
+  </div>
+</div>
+
+
+
+
+<!-- TEMPLATES -->
+<ng-template #textInput let-field="field" let-index="index">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="20" fxLayoutAlign="start center">{{ form.get('searchFields').get(field).get('searchWordLabel').value
+      }}:</div>
+    <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-input fxFlex [placeholder]="form.get('searchFields').get(field).get('searchWordLabel').value"
+        [appearance]="'standard'" [control]="form.get('searchFields').get(field).get('value')"
+        (keyup.enter)="onSearchClick()">
+      </ui-input>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #selectInput let-field="field" let-index="index" let-datasource="datasource">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="20" fxLayoutAlign="start center">{{ form.get('searchFields').get(field).get('searchWordLabel').value
+      }}:</div>
+    <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-select fxFlex [appearance]="'standard'" [options]="datasource"
+        [control]="form.get('searchFields').get(field).get('value')">
+      </ui-select>
+    </div>
+  </div>
+
+</ng-template>
+
+<ng-template #dateRangeInput let-field="field" let-label="label" let-startView="startView">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="25" fxLayoutAlign="start center">{{ label }}:</div>
+    <div fxFlex="70" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="20px">
+      <ui-datepicker-range fxFlex [appearance]="'standard'"
+        [controlStart]="form.get('searchFields').get(field + '_start').get('value')"
+        [controlEnd]="form.get('searchFields').get(field + '_end').get('value')" (keyup.enter)="onSearchClick()">
+      </ui-datepicker-range>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #formationsInput let-field="field">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="20" fxLayoutAlign="start center">{{ form.get('searchFields').get(field).get('searchWordLabel').value
+      }}:</div>
+    <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-input fxFlex [appearance]="'standard'" [label]="modulePath + ':model.formations' | i18next"
+        [control]="form.get('searchFields').get(field).get('valueLabel')"
+        [rightTemplate]="{ template: formationTemplate }"></ui-input>
+
+      <ng-template #formationTemplate let-inputName="inputName">
+        <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+          <ui-button fxFlex type="icon" icon="open_in_new"
+            (onClickEvent)="openSelectionModal('formations-modal', inputName)"></ui-button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+</ng-template>

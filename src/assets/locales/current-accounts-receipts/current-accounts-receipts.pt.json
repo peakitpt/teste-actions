@@ -1,0 +1,53 @@
+{
+  "module": {
+    "name_singular": "Recibo de Conta Corrente",
+    "name_many": "Recibos de Contas Correntes"
+  },
+  "action": {
+    "add": "Adicionar Recibo de Conta Corrente",
+    "new": "Novo Recibo de Conta Corrente",
+    "edit": "Editar Recibo de Conta Corrente",
+    "confirm_delete": "Remover recibo de Recibo de conta corrente?",
+    "save_attachments": "Guardar Anexos"
+  },
+  "message": {
+    "save_success": "Recibo de Conta Corrente guardado com sucesso!",
+    "delete_success": "Recibo de Conta Corrente apagado com sucesso!",
+    "delete_success_plural": "Contas Correntes apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Recibo de Conta Corrente com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Contas Correntes selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados",
+    "total": "Total",
+    "sucess_update_attachments": "Anexos guardados com sucesso",
+    "error_invalid_attachments": "Erro ao guardar anexos"
+  },
+  "model": {
+    "serie_number": "Recibo Nº",
+    "entity_description": "Entidade",
+    "receipt_date": "Data do recibo",
+    "total_amount": "Total",
+    "payment_type_description": "Tipo de pagamento",
+    "treasury_location": "Local de tesouraria",
+    "observations": "Observações",
+    "current_accounts_lines": {
+      "document_serie_number": "Documento",
+      "document_date": "Data",
+      "total_amount": "Valor",
+      "received_amount": "V. Recebido",
+      "pending_amount": "V. Pendente"
+    },
+    "attachment": "Anexo",
+    "description": "Descrição"
+  },
+  "header": {
+    "resume": "Resumo"
+  },
+  "tabs": {
+    "current_accounts_receipts": "Recibo de Conta Corrente",
+    "attachments": "Anexos"
+  }
+}
+
+
+

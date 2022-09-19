@@ -1,0 +1,55 @@
+{
+  "module": {
+    "name_singular": "Conselho Económico",
+    "name_many": "Conselhos Económicos"
+  },
+  "action": {
+    "new": "Novo Conselho Económico",
+    "edit": "Editar Conselho Económico",
+    "delete": "Eliminar Conselho Económico?",
+    "save_generate_document": "Guardar e Gerar Doc."
+  },
+  "message": {
+    "save_success": "Conselho Económico guardado com sucesso!",
+    "delete_success": "Conselho Económico apagado com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Conselho Económico \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Conselhos Económicos selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados",
+    "is_free_text": "Marque esta caixa de seleção se pretender escrever um texto personalizado para o documento, ao invés de utilizar o texto pré-definido."
+  },
+  "header": {
+    "economic_council": "Conselho Económico",
+    "members": "Membros",
+    "attachments": "Anexos"
+  },
+  "tabs": {
+    "economic_council": "Conselho Económico",
+    "documents": "Documento",
+    "attachments_tab": "Anexos"
+  },
+  "model": {
+    "attachment": "Anexo",
+    "description": "Descrição",
+    "curia_function_description": "Função do requerente",
+    "entity_description": "Entidade",
+    "active": "Ativo",
+    "serie_number": "Nº de Registo",
+    "document_date": "Data do documento",
+    "expiration_date": "Data de validade",
+    "applicant_entity_description": "Requerente",
+    "applicant_function_description": "Função do Requerente",
+    "chapelry_description": "Paróquia",
+    "emolument_description": "Emolumento",
+    "tax": "Taxa",
+    "document_entity_description": "Entidade a constar no documento",
+    "archpriest_description": "Bispo/Arcebispo",
+    "president_description": "Presidente",
+    "vice_president_description": "Vice-Presidente",
+    "subscriber1_description": "Assinante 1",
+    "subscriber2_description": "Assinante 2",
+    "is_free_text": "Documento com corpo personalizado",
+    "free_text": "Corpo personalizado",
+    "county": "Concelho"
+  }
+}

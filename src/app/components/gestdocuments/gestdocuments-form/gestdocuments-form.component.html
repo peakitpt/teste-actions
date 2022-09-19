@@ -1,0 +1,131 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="onModalClose()"
+  [disableClose]="true"
+  [headerBottomMargin]="false"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu [hoverTitle]="'translation:action.more' | i18next" *ngIf="headerOptionsMenu.length && !isQuickInsertion" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+
+    <ui-button
+      *ngIf="!isQuickInsertion"
+      type="flat" icon="save"
+      [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true">
+    </ui-button>
+
+    <ui-button
+      type="flat" icon="save"
+      [label]="(isQuickInsertion ? 'translation:action.create_insert' : 'translation:action.save') | i18next"
+      color="accent" (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body" [style.padding-top]="'20px'" (keydown.enter)="$event.preventDefault()">
+    <section id="sender-section">
+      <h2>{{ modulePath + ':header.sender' | i18next }}</h2>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex="50" [required]="true" [label]="modulePath + ':model.institution_name' | i18next" [control]="form.get('institution_name')"></ui-input>
+        <ui-input fxFlex="25" [label]="modulePath + ':model.institution_service' | i18next" [control]="form.get('institution_service')"></ui-input>
+        <ui-input fxFlex="25" [label]="modulePath + ':model.institution_reference' | i18next" [control]="form.get('institution_reference')"></ui-input>
+      </div>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex [required]="true" [label]="modulePath + ':model.institution_subject' | i18next" [control]="form.get('institution_subject')"></ui-input>
+        <ui-input fxFlex [label]="modulePath + ':model.signature' | i18next" [control]="form.get('signature')"></ui-input>
+      </div>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex [label]="modulePath + ':model.signature_post' | i18next" [control]="form.get('signature_post')"></ui-input>
+        <ui-datepicker [label]="modulePath + ':model.institution_date' | i18next" [control]="form.get('institution_date')"></ui-datepicker>
+      </div>
+    </section>
+
+    <section id="recipient-section">
+      <h2>{{ modulePath + ':header.recipient' | i18next }}</h2>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex="50" [required]="true" [label]="modulePath + ':model.entity_title' | i18next" [control]="form.get('entity_title')"></ui-input>
+        <ui-input fxFlex="50" [required]="true" [label]="modulePath + ':model.entity_name' | i18next" [control]="form.get('entity_name')"></ui-input>
+        <ui-text-area-ckeditor
+          #entityAddressEditor
+          [environment]="environment"
+          fxFlex="100"
+          [required]="true"
+          [label]="modulePath + ':model.entity_address' | i18next"
+          [control]="form.get('entity_address')"
+          config="">
+        </ui-text-area-ckeditor>
+      </div>
+    </section>
+
+    <section id="content-section">
+      <h2>{{ modulePath + ':header.content' | i18next }}</h2>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex="33.33%" [required]="true" [label]="modulePath + ':model.document_reference' | i18next" [control]="form.get('document_reference')"></ui-input>
+        <ui-input fxFlex="33.33%" [required]="true" [label]="modulePath + ':model.document_title' | i18next" [control]="form.get('document_title')"></ui-input>
+        <ui-datepicker fxFlex="33.33%" [label]="modulePath + ':model.document_date' | i18next" [control]="form.get('document_date')"></ui-datepicker>
+        <ui-text-area-ckeditor
+          #documentTextEditor
+          [environment]="environment"
+          fxFlex="100"
+          [required]="true"
+          [label]="modulePath + ':model.document_text' | i18next"
+          [control]="form.get('document_text')"
+          config="">
+        </ui-text-area-ckeditor>
+        <ui-text-area-ckeditor
+          #footnotesEditor
+          [environment]="environment"
+          fxFlex="100"
+          [label]="modulePath + ':model.footnotes' | i18next"
+          [control]="form.get('footnotes')"
+          config="">
+        </ui-text-area-ckeditor>
+      </div>
+    </section>
+  </form>
+</ng-template>
+
+
+<!-- TEMPLATES -->
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+<!-- TEMPLATES END -->

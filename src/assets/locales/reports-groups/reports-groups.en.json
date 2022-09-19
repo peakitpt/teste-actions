@@ -1,0 +1,30 @@
+{
+    "model": {
+        "name": "Name",
+        "enabled": "Active",
+        "report_description": "Report",
+        "reports_grouper_description": "Grouper"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Report Group with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to eliminate \"<strong>{{ count }}</strong>\" selected Report Groups?",
+        "save_success": "Group Reports successfully saved!",
+        "delete_success": "Group Reports successfully deleted!",
+        "delete_success_plural": "Report groups successfully deleted!"
+    },
+    "module": {
+        "name_many": "Reporting Groups",
+        "name_singular": "Report Group"
+    },
+    "action": {
+        "add": "Add Report Group",
+        "new": "New Report Group",
+        "edit": "Edit Report Group",
+        "delete": "Delete Report Group"
+    },
+    "header": {
+        "reports_groups": "Groupers"
+    }
+}

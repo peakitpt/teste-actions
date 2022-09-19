@@ -1,0 +1,31 @@
+{
+  "module": {
+    "name_singular": "Processamento de Avença",
+    "name_many": "Processamentos de Avenças"
+  },
+  "action": {
+    "process_selected": "Processar Selecionadas"
+  },
+  "message": {
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas",
+    "total": "Total"
+  },
+  "model": {
+    "client_name": "Cliente",
+    "accrual_type_description": "Tipo de Avença",
+    "processing_next_date": "Próx. Processamento",
+    "processing_next_date_start": "Próx. Processamento (Desde)",
+    "processing_next_date_end": "Próx. Processamento (Até)"
+  },
+  "header": {
+    "validity": "Validade",
+    "processing": "Processamento",
+    "document_to_generate": "Documento a Gerar",
+    "observations": "Observações"
+  },
+  "tabs": {
+    "general": "Geral",
+    "emoluments": "Emolumentos"
+  }
+}

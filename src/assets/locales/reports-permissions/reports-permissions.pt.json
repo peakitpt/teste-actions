@@ -1,0 +1,26 @@
+{
+  "module": {
+    "name_singular": "Permissão de Relatório",
+    "name_many": "Permissões de Relatórios"
+  },
+  "action": {
+    "addUser": "Adicionar Permissão de Relatório",
+    "new": "Nova Permissão de Relatório",
+    "edit": "Editar Permissão de Relatório",
+    "delete": "Apagar Permissão de Relatório"
+  },
+  "message": {
+    "save_success": "Permissão de Relatório guardada com sucesso!",
+    "delete_success": "Permissão de Relatório apagada com sucesso!",
+    "delete_success_plural": "Permissões de Relatórios apagadas com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Permissão de Relatório com o nome \"<strong>{{ description }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Permissões de Relatórios selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas"
+  },
+  "model": {
+    "entity_name": "Nome da Entidade",
+    "reporting_name": "Nome a reportar",
+    "can_write": "Pode escrever"
+  }
+}

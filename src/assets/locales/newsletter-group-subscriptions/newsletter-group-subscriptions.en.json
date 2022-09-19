@@ -1,0 +1,33 @@
+{
+    "module": {
+        "name_singular": "Group Subscription",
+        "name_many": "Group Subscriptions"
+    },
+    "message": {
+        "activated_success": "Subscription successfully activated!",
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "save_success": "Group subscription successfully saved!",
+        "toggle_are_you_sure": "Are you sure you want to <b>{{ action }}</b> the subscription of<b>{{ subscriptor_name }}</b> in the group{{ group_name }}?",
+        "deactivated_success": "Subscription successfully deactivated!"
+    },
+    "action": {
+        "toggle_activation": "Activate /Deactivate",
+        "deactivate": "Deactivate",
+        "new": "New Group Subscription",
+        "activate": "Activate"
+    },
+    "model": {
+        "subscription_date": "Subscription date",
+        "unsubscription_date": "Cancellation date",
+        "group_id": "Group",
+        "newsletter_subscription_description": "Subscriber",
+        "group": {
+            "name": "Group"
+        },
+        "newsletter_subscription": {
+            "name": "Subscriber"
+        },
+        "active": "Active"
+    }
+}

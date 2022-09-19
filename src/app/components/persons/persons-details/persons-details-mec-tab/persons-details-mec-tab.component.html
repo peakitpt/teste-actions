@@ -1,0 +1,45 @@
+<section id="extraordinary-minister-of-communion-section" *ngIf="model.entity.entity_mec.mec_number
+        || model.entity.entity_mec.magnetic_number
+        || model.entity.entity_mec.institution_date
+        || model.entity.entity_mec.institution_center_worshipplace_description
+        || model.entity.entity_mec.entities_mecs_lines.length">
+  <h2>{{ modulePath + ':header.mec_extraordinary_minister_of_communion' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_mec.mec_number">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_mec.mec_number' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.entity_mec.mec_number }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_mec.magnetic_number">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_mec.magnetic_number' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.entity_mec.magnetic_number }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_mec.institution_date">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_mec.institution_date' | i18next }}:</div>
+        <div fxFlex>{{ model.entity.entity_mec.institution_date | date:('translation:format.date' | i18next) }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_mec.institution_center_worshipplace_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity.entity_mec.institution_center_worshipplace_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('worshipplaces', model.entity.entity_mec.institution_center_worshipplace_id)">{{ model.entity.entity_mec.institution_center_worshipplace_description | i18next }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mec-renewals-section" *ngIf="model.entity.entity_mec.entities_mecs_lines.length">
+  <h2>{{ modulePath + ':header.mec_renewals' | i18next }}</h2>
+  <div fxLayout="column">
+    <table class="mat-table">
+      <tr class="mat-header-row">
+        <th class="mat-header-cell">#</th>
+        <th class="mat-header-cell">{{ modulePath + ':model.entity.entity_mec.entities_mecs_lines.renewal_date' | i18next }}</th>
+      </tr>
+      <tr class="mat-row uiKyriosTableRow" *ngFor="let renewal of model.entity.entity_mec.entities_mecs_lines; let i = index" [attr.data-index]="i">
+        <td class="mat-cell">{{ i + 1 }}</td>
+        <td class="mat-cell">{{ renewal.renewal_date | date:('translation:format.date' | i18next) }}</td>
+      </tr>
+    </table>
+  </div>
+</section>

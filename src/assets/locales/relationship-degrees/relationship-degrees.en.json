@@ -1,0 +1,25 @@
+{
+    "module": {
+        "name_singular": "Relationship Degree",
+        "name_many": "Relationship Degrees"
+    },
+    "model": {
+        "locale": "Location",
+        "name": "Name",
+        "validated": "Validated"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Degree of relatedness with the name \"<strong>{{name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the selected <strong>{{ count }}</strong> Degree of relatedness?",
+        "delete_success": "Degree of relatedness successfully deleted!",
+        "delete_success_plural": "Degree of relatedness successfully deleted!",
+        "save_success": "Degree of relatedness successfully saved!"
+    },
+    "action": {
+        "edit": "Edit Degree of relatedness",
+        "new": "New Degree of relatedness",
+        "addCountry": "Add Degree of relatedness"
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "message": {
+        "modal_closed": "¿Está cerrada la ventana?",
+        "save_success": "La configuración del informe se ha guardado correctamente!",
+        "no_website_found": "No se ha encontrado ninguna configuración"
+    },
+    "action": {
+        "open_again": "Abrir de nuevo"
+    },
+    "module": {
+        "name_many": "Configuración de Informes",
+        "name_singular": "Configuración de Informes"
+    },
+    "header": {
+        "here": "aquí",
+        "footer": "Pie de página",
+        "header": "Encabezado"
+    },
+    "model": {
+        "contacts_footer": "Contacto",
+        "address_footer": "Dirección",
+        "img_header_url": "Logotipo",
+        "attachment_filename": "Logotipo",
+        "chapelry_header": "Subtítulo/Parroquia",
+        "arciprestship_header": "Título/Arciprestazgo",
+        "url": "URL"
+    }
+}

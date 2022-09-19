@@ -1,0 +1,66 @@
+{
+    "module": {
+        "name_singular": "Newsletter",
+        "name_many": "Newsletters"
+    },
+    "action": {
+        "send": "Send",
+        "test_newsletter": "Testing Newsletter",
+        "new": "New Newsletter",
+        "send_test": "Testing Newsletter",
+        "edit": "Edit Newsletter",
+        "delete": "Delete Newsletter?"
+    },
+    "message": {
+        "delete_success": "Newsletter successfully deleted!",
+        "delete_success_plural": "Newsletter successfully deleted!",
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "save_success": "Newsletter successfully saved!",
+        "send_success": "Newsletter successfully send!",
+        "delete_are_you_sure": "Are you sure you want to delete the Newsletter \"<strong>{{ title }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to eliminate the <strong>{{ count }}</strong> selected newsletters?",
+        "error_no_test_recipient": "No test emails defined",
+        "test_are_you_sure": "Are you sure you want to send the Newsletter \"<strong>{{ title }}</strong>\" for the test e-mails?<br/> will be sent to:<strong>{{ emails }}</strong><br/><br/>The changes will be saved automatically.",
+        "test_are_you_sure_plural": "Are you sure you want to send<strong>{{ count }}</strong> Newsletters for their test e-mails?"
+    },
+    "model": {
+        "title": "Title",
+        "sending_date": "Date of dispatch",
+        "frequency": "Frequency",
+        "active": "Send",
+        "sent": "Sent",
+        "sending_hour": "Dispatch time",
+        "for_internal_read": "Read in Kyrios",
+        "to": "For (group)",
+        "additional_recipients": "To (additional e-mails)",
+        "test_recipient": "Test Emails",
+        "subject": "Subject",
+        "newsletter_read_statuses_attributes": {
+            "recipient_email": "Destination",
+            "read_at": "Read in"
+        },
+        "placeholder": {
+            "separated_by_semicolons": "Separated by semicolon (;)",
+            "layout": "Use the selected layout as the template for the message. Replaces the current message!"
+        },
+        "message": "Message",
+        "layout": "Layout"
+    },
+    "frequency": {
+        "monthly": "Monthly",
+        "yearly": "Annual",
+        "unique": "Only",
+        "weekly": "Weekly",
+        "daily": "Daily"
+    },
+    "header": {
+        "schedule": "Schedule",
+        "recipients": "Destinations",
+        "message": "Message"
+    },
+    "tabs": {
+        "main": "Newsletter",
+        "read_status": "Read status"
+    }
+}

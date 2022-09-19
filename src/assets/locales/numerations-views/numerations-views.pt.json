@@ -1,0 +1,30 @@
+{
+  "module": {
+    "name_singular": "Numerador de Módulo",
+    "name_many": "Numeradores de Módulos"
+  },
+  "action": {
+    "add": "Adicionar Numerador de módulo",
+    "new": "Novo Numerador de módulo",
+    "edit": "Editar Numerador de módulo",
+    "delete": "Eliminar Numerador de módulo?"
+  },
+  "message": {
+    "save_success": "Numerador de módulo guardado com sucesso!",
+    "delete_success": "Numerador de módulo apagado com sucesso!",
+    "delete_success_plural": "Numeradores de Módulos apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Numerador de módulo?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Numeradores de Módulos selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Nome",
+    "view": "Módulo",
+    "numeration_description": "Numerador"
+  },
+  "header": {
+    "menu": "Numerador de módulo",
+    "sub_menus": "Sub-menus"
+  }
+}

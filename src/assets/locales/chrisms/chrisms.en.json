@@ -1,0 +1,37 @@
+{
+    "module": {
+        "name_singular": "Chrism",
+        "name_many": "Chrisms"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "error_blank_chrisms_entities": "Please fill in all the mandatory fields of the Catechists' table",
+        "delete_are_you_sure": "Are you sure you want to delete the Confirmation form for the day <b>{{date }}</b>?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the selected <b>{{ count }}</b> Chrismations?",
+        "delete_success": "Confirmation successfully deleted!",
+        "save_success": "Confirmation successfully saved!"
+    },
+    "model": {
+        "serie_number": "Registration No.",
+        "chrisms_entities_attributes": {
+            "document_entity_description": "Entity to be listed on the document",
+            "tax": "Tax",
+            "emolument_description": "Emolument",
+            "godfather_godmother_description": "Godfather/Godmother",
+            "entity_description": "Confirming"
+        },
+        "entity_chrism_location_description": "Place and worship",
+        "entity_rel_mec_description": "Confirming Minister",
+        "date": "Date",
+        "seat_number": "Certificate Nº"
+    },
+    "header": {
+        "candidates": "Confirmands"
+    },
+    "action": {
+        "delete": "Delete Confirmation?",
+        "edit": "Edit Confirmation",
+        "new": "New Confirmation"
+    }
+}

@@ -1,0 +1,29 @@
+<div fxLayout="column" fxFlex class="topbar-search-form-container">
+  <form [formGroup]="form" style="padding: 10px;">
+    <ng-container *ngTemplateOutlet="dateRangeInput; context: { field: 'processing_next_date', label: modulePath + ':model.processing_next_date' | i18next}"></ng-container>
+  </form>
+
+  <div fxLayout="column" fxLayoutGap="15px" class="sticky-footer">
+    <ui-divider></ui-divider>
+    <div fxLayout="row" fxLayoutAlign="end center" fxFlex="95" style="padding-bottom: 10px;">
+      <ui-button [label]="'translation:action.clear' | i18next" type="flat" (click)="clearSearch()"></ui-button>
+      <ui-button [label]="'translation:action.search' | i18next" type="raised" color="primary" (click)="onSearchClick()"></ui-button>
+    </div>
+  </div>
+</div>
+
+<ng-template #dateRangeInput let-field="field" let-label="label">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="25" fxLayoutAlign="start center">{{ label }}:</div>
+
+    <div fxFlex="70" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="20px">
+      <ui-datepicker-range
+        fxFlex
+        [appearance]="'standard'"
+        [controlStart]="form.get('searchFields').get(field + '_start').get('value')"
+        [controlEnd]="form.get('searchFields').get(field + '_end').get('value')"
+        (keyup.enter)="onSearchClick()">
+      </ui-datepicker-range>
+    </div>
+  </div>
+</ng-template>

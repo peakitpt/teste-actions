@@ -1,0 +1,97 @@
+<div fxLayout="column" fxFlex class="topbar-search-form-container">
+  <form [formGroup]="form" style="padding: 10px;">
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'country_description' }"></ng-container>
+    <ng-container *ngTemplateOutlet="archpristshipInput; context: { field: 'archpriestship_id' }"></ng-container>
+    <ng-container *ngTemplateOutlet="diocceseInput; context: { field: 'diocese_id' }"></ng-container>
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'entity_description' }"></ng-container>
+    <ng-container *ngTemplateOutlet="selectInput; context: { field: 'validated', datasource: booleanOptions }"></ng-container>
+  </form>
+
+
+  <div fxLayout="column" fxLayoutGap="15px" class="sticky-footer">
+    <ui-divider></ui-divider>
+    <div fxLayout="row" fxLayoutAlign="end center" fxFlex="95" style="padding-bottom: 10px;">
+      <ui-button [label]="'translation:action.clear' | i18next" type="flat" (click)="clearSearch()"></ui-button>
+      <ui-button [label]="'translation:action.search' | i18next" type="raised" color="primary" (click)="onSearchClick()"></ui-button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- TEMPLATES -->
+<ng-template #textInput let-field="field">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="20" fxLayoutAlign="start center">{{ form.get('searchFields').get(field).get('searchWordLabel').value }}:</div>
+    <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-input
+        fxFlex
+        [placeholder]="form.get('searchFields').get(field).get('searchWordLabel').value"
+        [appearance]="'standard'"
+        [control]="form.get('searchFields').get(field).get('value')"
+        (keyup.enter)="onSearchClick()">
+      </ui-input>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #selectInput let-field="field" let-index="index" let-datasource="datasource">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="20" fxLayoutAlign="start center">{{ form.get('searchFields').get(field).get('searchWordLabel').value }}:</div>
+    <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-select
+        fxFlex
+        [appearance]="'standard'"
+        [options]="datasource"
+        [control]="form.get('searchFields').get(field).get('value')">
+      </ui-select>
+    </div>
+  </div>
+</ng-template>
+
+
+
+<ng-template #diocceseInput let-field="field">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="20" fxLayoutAlign="start center">{{ form.get('searchFields').get(field).get('searchWordLabel').value }}:</div>
+    <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-input
+        fxFlex
+        [appearance]="'standard'"
+        [label]="'chapelries:model.entity_relation_attributes.diocese_description' | i18next"
+        [control]="form.get('searchFields').get(field).get('valueLabel')"
+        [rightTemplate]="{ template: diocesessTemplate }"
+      ></ui-input>
+
+      <ng-template #diocesessTemplate let-inputName="inputName">
+        <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+          <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('bishoprics-modal', inputName)"></ui-button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #archpristshipInput let-field="field">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="20" fxLayoutAlign="start center">{{ form.get('searchFields').get(field).get('searchWordLabel').value }}:</div>
+    <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-input
+        fxFlex
+        [appearance]="'standard'"
+        [label]="'chapelries:model.entity_relation_attributes.archpriestship_description' | i18next"
+        [control]="form.get('searchFields').get(field).get('valueLabel')"
+        [rightTemplate]="{ template: archpristshipTemplate }"
+      ></ui-input>
+
+      <ng-template #archpristshipTemplate let-inputName="inputName">
+        <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+          <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('archpristships-modal', inputName)"></ui-button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</ng-template>

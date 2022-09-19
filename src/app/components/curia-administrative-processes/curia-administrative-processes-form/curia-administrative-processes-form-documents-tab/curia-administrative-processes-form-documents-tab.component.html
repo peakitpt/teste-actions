@@ -1,0 +1,72 @@
+<section id="documents-data-section">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex [label]="modulePath + ':model.document_date' | i18next" [control]="form.get('document_date')"></ui-datepicker>
+  </div>
+</section>
+
+<section id="requirements-section">
+  <h2>{{ modulePath + ':header.requirements' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.subscriber_description' | i18next"
+      [control]="form.get('subscriber_description')"
+      [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'subscriber', queryStringParams: priestsQSP } }">
+    </ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.entity_description' | i18next"
+      [control]="form.get('entity_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'entity', queryStringParams: entityQSP } }">
+    </ui-input>
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.place_description' | i18next"
+      [control]="form.get('place_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'place', queryStringParams: placeQSP } }">
+    </ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex
+      [rows]="2"
+      [label]="modulePath + ':model.free_description' | i18next"
+      [control]="form.get('free_description')">
+    </ui-textarea>
+  </div>
+</section>
+
+<section id="personalize-text-section">
+  <h2>{{ modulePath + ':header.personalized_text' | i18next }}</h2>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-checkbox fxFlex class="margin-checkbox"
+      [label]="modulePath + ':model.is_free_text' | i18next"
+      [control]="form.get('is_free_text')">
+    </ui-checkbox>
+    <div fxFlex class="is_free_text_message">
+      <b>
+        {{ modulePath + ':message.is_free_text_message' | i18next }}
+      </b>
+    </div>
+  </div>
+
+  <ng-container *ngIf="form.value.is_free_text">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex
+        [label]="modulePath + ':model.free_text_title' | i18next"
+        [control]="form.get('free_text_title')">
+      </ui-input>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-text-area-ckeditor
+        #free_textTextEditor fxFlex
+        [environment]="environment"
+        [label]="modulePath + ':model.free_text' | i18next"
+        [control]="form.get('free_text')"
+        config="">
+      </ui-text-area-ckeditor>
+    </div>
+  </ng-container>
+</section>

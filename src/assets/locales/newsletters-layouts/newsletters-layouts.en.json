@@ -1,0 +1,22 @@
+{
+    "module": {
+        "name_singular": "Email Layout",
+        "name_many": "Email Layouts"
+    },
+    "message": {
+        "save_success": "Email Layout successfully saved!",
+        "delete_success": "Email Layout successfully deleted!",
+        "delete_are_you_sure": "Are you sure that you want to delete the Email Layout \"<strong>{{ title }}</strong>\"?",
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected"
+    },
+    "action": {
+        "delete": "Delete Email Layout?",
+        "new": "New Email Layout",
+        "edit": "Edit Email Layout"
+    },
+    "model": {
+        "title": "Title",
+        "layout": "Layout"
+    }
+}

@@ -1,0 +1,54 @@
+{
+  "module": {
+    "name_singular": "Configurações da Página de Internet",
+    "name_many": "Configurações da Página de Internet"
+  },
+  "action": {
+    "add": "Adicionar Configurações da Página de Internet",
+    "new": "Nova Configurações da Página de Internet",
+    "edit": "Editar Configurações da Página de Internet",
+    "open_again": "Abrir de novo"
+  },
+  "message": {
+    "save_success": "Configurações da Página de Internet guardadas com sucesso!",
+    "delete_success": "Configurações da Página de Internet apagadas com sucesso!",
+    "delete_success_plural": "Configurações da Página de Internet apagadas com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar as Configurações da Página de Internet com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Configurações da Página de Internet selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas",
+    "modal_closed": "A modal está fechada?",
+    "no_website_found": "Não foi encontrado um website"
+  },
+  "model": {
+    "url": "URL",
+    "email": "E-mail",
+    "app_share": "Partilhar conteúdos na aplicação móvel do {{ appName }}",
+    "url_facebook": "URL Facebook",
+    "url_youtube": "URL YouTube",
+    "url_twitter": "URL Twitter",
+    "url_soundcloud": "URL SoundCloud",
+    "conteudo_ano_pastoral_description": "Conteúdo de Ano Pastoral",
+    "seccao_boletim_description": "Secção de boletim",
+    "conteudo_informacoes_description": "Conteúdo de informações",
+    "seccao_noticias_description": "Secção de notícias",
+    "parish_notary_content_description": "Conteúdo do Cartório Paroquial",
+    "masses_content_description": "Conteúdo das Eucaristias",
+    "confessions_content_description": "Conteúdo das confissões",
+    "visits_to_the_sicks_content_description": "Conteúdo das visitas aos doentes",
+    "how_to_help_content_description": "Conteúdo de como ajudar",
+    "header_url":"Foto de Capa - Kyrios"
+  },
+  "header": {
+    "general_configurations": "Configurações gerais",
+    "social_network_configurations": "Configurações de redes sociais",
+    "general_content_configurations": "Conteúdos Especiais",
+    "left_section": "Secção esquerda",
+    "main_section": "Secção principal",
+    "right_section": "Secção direita",
+    "check_documentation": "Consulte a documentação sobre como configurar este módulo",
+    "here": "aqui"
+  }
+}
+
+

@@ -1,0 +1,8 @@
+@import './node_modules/@peakitpt/ui-material/assets/theme.scss';
+
+@mixin nominations-details-theme($theme) {
+  a.download {
+    color: mat-color($accent);
+    cursor: pointer;
+  }
+}

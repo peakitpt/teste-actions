@@ -1,0 +1,223 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="navigate('/' + modulePath)"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="model?.block_remove ? optionsNoDeleteMenu : headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+
+    <ui-button type="flat" icon="save" [label]="'translation:action.save_new' | i18next" color="secondary" (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true"></ui-button>
+
+    <ui-button type="flat" icon="save" [label]="'translation:action.save' | i18next" color="accent" (onClickEvent)="onSubmit()"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex
+        [label]="modulePath + ':model.title' | i18next"
+        [required]="true" [control]="form.get('title')">
+      </ui-input>
+      <ui-select
+        fxFlex
+        customClass="remove-bottom-padding"
+        [label]="modulePath + ':model.emenu_type' | i18next"
+        [options]="typeOptions"
+        [control]="form.get('emenu_type')">
+      </ui-select>
+    </div>
+    <div fxLayout="row wrap" fxLayoutGap="10px grid">
+      <ui-input
+        fxFlex
+        *ngIf="form.get('emenu_type') && form.get('emenu_type').value == 'content'"
+        [label]="modulePath + ':model.content_description' | i18next"
+        readonly="true" [label]="modulePath + ':model.content_description' | i18next"
+        [control]="form.get('content_description')"
+        [rightTemplate]="{ template: contentRightTemplate }">
+      </ui-input>
+      <ui-input
+        fxFlex
+        *ngIf="form.get('emenu_type') && form.get('emenu_type').value == 'url'"
+        [label]="modulePath + ':model.url' | i18next"
+        readonly="true" [label]="modulePath + ':model.url' | i18next"
+        [control]="form.get('url')"></ui-input>
+      <ui-input
+        fxFlex
+        *ngIf="form.get('emenu_type') && form.get('emenu_type').value == 'section'"
+        [label]="modulePath + ':model.section_description' | i18next"
+        readonly="true" [label]="modulePath + ':model.section_description' | i18next"
+        [control]="form.get('section_description')"
+        [rightTemplate]="{ template: sectionRightTemplate }"></ui-input>
+      <ui-input
+        fxFlex
+        *ngIf="form.get('emenu_type') && ![null, 'url'].includes(form.get('emenu_type').value)"
+        [label]="modulePath + ':model.template_description' | i18next"
+        readonly="true" [label]="modulePath + ':model.template_description' | i18next"
+        [control]="form.get('template_description')"
+        [rightTemplate]="{ template: templateRightTemplate }"></ui-input>
+    </div>
+
+    <div *ngIf="childMenusDS?.data">
+      <div fxLayout="row" fxLayoutAlign="space-between none">
+        <h2>{{ modulePath + ':header.sub_menus' | i18next }}</h2>
+      </div>
+      <ui-table
+        #childMenusTable
+        [checkboxes]="false"
+        [dataSource]="childMenusDS"
+        [tableColumns]="childMenusColumns"
+        stickyHeader="true">
+      </ui-table>
+      <div class="add-table-line" (click)="addTableLine(newChildMenu, childMenusFormArray, childMenusDS)">
+        {{ 'translation:action.add' | i18next }}
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!-- General Templates -->
+<ng-template #contentsRightTemplate let-inputName="inputName" let-index="index">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('contents-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="contentsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+<ng-template #sectionsRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('sections-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="sectionsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+<ng-template #templatesRightTemplate let-inputName="inputName">
+  <div *ngIf="hasSubscriptionLayouts" fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('templates-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="templatesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+<!-- General Templates -->
+
+<!-- Form Templates -->
+<ng-template #contentRightTemplate let-index="index">
+  <ng-container *ngTemplateOutlet="contentsRightTemplate; context: { inputName: 'content'}"></ng-container>
+</ng-template>
+
+<ng-template #sectionRightTemplate let-index="index">
+  <ng-container *ngTemplateOutlet="sectionsRightTemplate; context: { inputName: 'section'}"></ng-container>
+</ng-template>
+
+<ng-template #templateRightTemplate let-index="index">
+  <ng-container *ngTemplateOutlet="templatesRightTemplate; context: { inputName: 'template'}"></ng-container>
+</ng-template>
+<!-- Form Templates -->
+
+<!-- Table Templates -->
+<ng-template #deleteTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index, childMenusFormArray, childMenusDS)"></ui-button>
+</ng-template>
+
+<ng-template #orderTemplate let-index="index">
+  <ui-input
+    customClass="remove-bottom-padding" type="number" [required]="true"
+    [control]="childMenusFormArray.controls[index].get('order_nr')">
+  </ui-input>
+</ng-template>
+
+<ng-template #titleTemplate let-index="index">
+  <ui-input
+    customClass="remove-bottom-padding" type="text" [required]="true"
+    [control]="childMenusFormArray.controls[index].get('title')">
+  </ui-input>
+</ng-template>
+
+<ng-template #typeTemplate let-index="index">
+  <ui-select
+    customClass="remove-bottom-padding"
+    [required]="true"
+    [label]="modulePath + ':model.emenu_type' | i18next"
+    [options]="typeOptions"
+    [control]="childMenusFormArray.controls[index].get('emenu_type')" >
+  </ui-select>
+</ng-template>
+
+<ng-template #contentSectionUrlTemplate let-index="index">
+  <ui-input
+    *ngIf="childMenusFormArray.controls[index].get('emenu_type') && childMenusFormArray.controls[index].get('emenu_type').value == 'content'"
+    customClass="remove-bottom-padding"
+    readonly="true"
+    [required]="false"
+    [placeholder]="modulePath + ':model.content' | i18next"
+    [control]="childMenusFormArray.controls[index].get('content_description')"
+    [rightTemplate]="{ template: contentsRightTemplate, context: { inputName: 'contents#' + index, index: index } }">
+  </ui-input>
+  <ui-input
+    *ngIf="childMenusFormArray.controls[index].get('emenu_type') && childMenusFormArray.controls[index].get('emenu_type').value == 'section'"
+    customClass="remove-bottom-padding"
+    readonly="true"
+    [required]="true"
+    [placeholder]="modulePath + ':model.section' | i18next"
+    [control]="childMenusFormArray.controls[index].get('section_description')"
+    [rightTemplate]="{ template: sectionsRightTemplate, context: { inputName: 'sections#' + index, index: index } }">
+  </ui-input>
+  <ui-input
+    *ngIf="childMenusFormArray.controls[index].get('emenu_type') && childMenusFormArray.controls[index].get('emenu_type').value == 'url'"
+    customClass="remove-bottom-padding"
+    [required]="true"
+    [placeholder]="modulePath + ':model.url' | i18next"
+    [control]="childMenusFormArray.controls[index].get('url')">
+  </ui-input>
+</ng-template>
+
+<ng-template #layoutTemplate let-index="index">
+  <ui-input
+    *ngIf="childMenusFormArray.controls[index].get('emenu_type') && !['url', null].includes(childMenusFormArray.controls[index].get('emenu_type').value)"
+    customClass="remove-bottom-padding"
+    readonly="true"
+    [required]="true"
+    [control]="childMenusFormArray.controls[index].get('template_description')"
+    [rightTemplate]="{ template: templatesRightTemplate, context: { inputName: 'templates#' + index, index: index } }">
+  </ui-input>
+</ng-template>
+<!-- Table Templates -->
+

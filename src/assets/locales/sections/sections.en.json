@@ -1,0 +1,31 @@
+{
+    "module": {
+        "name_singular": "Section",
+        "name_many": "Sections"
+    },
+    "message": {
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Section with the description \"<strong> {{description}} </strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the selected <strong> {{count}} </strong> sections?",
+        "delete_success": "Section deleted successfully!",
+        "delete_success_plural": "Sections successfully deleted!",
+        "save_success": "Section successfully saved!"
+    },
+    "model": {
+        "description": "Description",
+        "reference": "Reference"
+    },
+    "options": "Options",
+    "section": "Section",
+    "edit-section": "Edit Section",
+    "new-section": "New Section",
+    "delete-section": "Delete Section",
+    "delete-section-message": "Are you sure you want do delete the section {{ description }} ?",
+    "delete-multiple-section-message": "Are you sure you want do delete {{ length }} sections ?",
+    "action": {
+        "delete": "Delete Section?",
+        "edit": "Edit Section",
+        "new": "New Section"
+    }
+}

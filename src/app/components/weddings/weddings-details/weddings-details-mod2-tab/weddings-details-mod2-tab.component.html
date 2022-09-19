@@ -1,0 +1,118 @@
+<section id="main-section">
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_groom_bride' | i18next }}:</div>
+        <div fxFlex>{{ groomGendersOptions[(model.opt_mod2_groom_bride ? 'true' : 'false')] }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.mod2_chapelry_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mod2_chapelry_description' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.mod2_chapelry_description }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt1' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.opt_mod2_opt1 ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt2' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.opt_mod2_opt2 ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt3' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.opt_mod2_opt3 ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.opt_mod2_opt3_text">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt3_text' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.opt_mod2_opt3_text }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt4' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.opt_mod2_opt4 ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.opt_mod2_opt4_input">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt4_input' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.opt_mod2_opt4_input }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt5' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.opt_mod2_opt5 ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.opt_mod2_opt5_text">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt5_text' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.opt_mod2_opt5_text }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt6' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.opt_mod2_opt6 ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.opt_mod2_opt6_text">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt6_text' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.opt_mod2_opt6_text }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.opt_mod2_opt6_text2">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt6_text2' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.opt_mod2_opt6_text2 }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt7' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.opt_mod2_opt7 ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.opt_mod2_opt7_text">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt7_text' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.opt_mod2_opt7_text }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.opt_mod2_opt7_text2">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt7_text2' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.opt_mod2_opt7_text2 }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt8' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.opt_mod2_opt8 ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.opt_mod2_opt8_text">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt8_text' | i18next }}:</div>
+        <div fxFlex>
+          <div>{{ model.opt_mod2_opt8_text }}</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.opt_mod2_opt8_text2">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.opt_mod2_opt8_text2' | i18next }}:</div>
+        <div fxFlex>
+          <a>{{ model.opt_mod2_opt8_text2 }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

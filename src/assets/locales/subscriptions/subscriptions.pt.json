@@ -1,0 +1,54 @@
+{
+  "module": {
+    "name_singular": "Subscrição",
+    "name_many": "Subscrições"
+  },
+  "action": {
+    "new": "Adicionar Subscrição",
+    "disable_users": "Inativar utilizador",
+    "enable_users": "Ativar utilizador",
+    "disable_subscriptions": "Inativar subscrição",
+    "disable_subscriptions_and_users": "Desativar subscrição e utilizador"
+  },
+  "message": {
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "entity1": {
+      "user": {
+        "name": "Nome",
+        "email": "E-mail"
+      },
+      "entity_type": {
+        "name": "Tipo (utilizador)",
+        "active": "Ativo",
+        "expiration": "Expiração"
+      }
+    },
+    "entity2": {
+      "complete_relation": "Subscrição",
+      "entity_type": {
+        "name": "Tipo (subscrição)",
+        "active": "Ativo"
+      },
+      "country_description": "Descrição país",
+      "entities_relation": {
+        "diocese_description": "Descrição diocese",
+        "arciprestado_description": "Descrição arciprestado",
+        "paroquia_description": "Descrição paróquia"
+      }
+    },
+    "entity1_name": "Nome",
+    "active": "Ativo",
+    "complete_relation": "Subscrição",
+    "entity1_type": "Tipo (utilizador)",
+    "entity1_email": "E-mail",
+    "expiration": "Expiração",
+    "entity2_type": "Tipo (subscrição)",
+    "country_description": "Descrição país",
+    "diocese_description": "Descrição diocese",
+    "arciprestado_description": "Descrição arciprestado",
+    "paroquia_description": "Descrição paróquia"
+  }
+}

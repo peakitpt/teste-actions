@@ -1,0 +1,570 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+  [headerBottomMargin]="false"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.entity.name }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model$ | async as model">
+          <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-button [title]="'translation:action.edit' | i18next" type='icon' icon="edit" (onClickEvent)="editModal()"></ui-button>
+        <ui-menu
+          [hoverTitle]="'translation:action.more' | i18next"
+          type="icons"
+          [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <ng-container *ngTemplateOutlet="formTemplate">
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #formTemplate>
+  <ui-tabs [tabs]="detailsTabs"></ui-tabs>
+</ng-template>
+
+<ng-template #personalDataTemplate>
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="model.entity.entity_person.serie_number" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_person.serie_number' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_person.serie_number}}</div>
+          </div>
+          <div *ngIf="model.entity.name" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.name' | i18next }}</strong></div>
+            <div fxFlex >
+              <a target="_blank" [routerLink]="'/persons/' + model.entity.entity_person.id +'/details'">{{ model.entity.name }}</a>
+            </div>
+          </div>
+          <div *ngIf="model.entity.entity_person.sex" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_person.sex' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_person.sex ? ('translation:gender.male' | i18next) : ('translation:gender.female' | i18next)  }}</div>
+          </div>
+          <div *ngIf="model.entity.entity_person.birth_date" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_person.birth_date' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_person.birth_date | date:('translation:format.date' | i18next) }}</div>
+          </div>
+          <div *ngIf="model.entity.entity_person.birth_date" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_person.age' | i18next }}</strong></div>
+            <div fxFlex>{{ sharedModule.calculateAge(model.entity.entity_person.birth_date) }}</div>
+          </div>
+          <div *ngIf="model.entity.civil_status" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.civil_status' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.civil_status}}</div>
+          </div>
+          <div *ngIf="model.entity.entity_person.qualifications" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_person.qualifications' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_person.qualifications}}</div>
+          </div>
+          <div *ngIf="model.entity.entity_person.professional_profession_description" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_person.professional_profession_description' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_person.professional_profession_description}}</div>
+          </div>
+          <div *ngIf="model.signature" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.signature' | i18next }}</strong></div>
+            <div fxFlex>{{ model.signature}}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="model.entity.address || model.entity.door_number || model.entity.postal_code || model.entity.place || model.entity.county">
+      <h2 >{{ modulePath + ':header.address' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill >
+          <div *ngIf="model.entity.address" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.address' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.address}}</div>
+          </div>
+          <div *ngIf="model.entity.door_number" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.door_number' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.door_number}}</div>
+          </div>
+          <div *ngIf="model.entity.postal_code" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.postal_code' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.postal_code}}</div>
+          </div>
+          <div *ngIf="model.entity.place" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.place' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.place}}</div>
+          </div>
+          <div *ngIf="model.entity.county" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.county' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.county}}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="model.entity.mobilephone || model.entity.phone || model.entity.fax || model.entity.email || model.entity.url">
+      <h2>{{ modulePath + ':header.contacts' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="model.entity.mobilephone" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.mobilephone' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.mobilephone}}</div>
+          </div>
+          <div *ngIf="model.entity.phone" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.phone' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.phone}}</div>
+          </div>
+          <div *ngIf="model.entity.fax" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.fax' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.fax}}</div>
+          </div>
+          <div *ngIf="model.entity.email" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.email' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.email}}</div>
+          </div>
+          <div *ngIf="model.entity.url" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.url' | i18next }}</strong></div>
+            <div fxFlex>
+              <ng-container >
+                <a [href]="model.entity.url" target="_blank">{{ model.entity.url }}</a>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section *ngIf="model.pastoral_agent_number || model.magnetic_number || model.entity.entity_person.ident_document_type || model.entity.entity_person.ident_document_number || model.entity.entity_person.ident_document_emission_date || model.entity.entity_person.ident_document_validity_date || model.entity.entity_person.ident_document_emitted_by">
+      <h2>{{ modulePath + ':header.identi_documents' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="model.pastoral_agent_number" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.pastoral_agent_number' | i18next }}</strong></div>
+            <div fxFlex>{{ model.pastoral_agent_number}}</div>
+          </div>
+          <div *ngIf="model.magnetic_number" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.magnetic_number' | i18next }}</strong></div>
+            <div fxFlex>{{ model.magnetic_number}}</div>
+          </div>
+          <div *ngIf="model.entity.entity_person.ident_document_type" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_person.ident_document_type' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_person.ident_document_type}}</div>
+          </div>
+          <div *ngIf="model.entity.entity_person.ident_document_number" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_person.ident_document_number' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_person.ident_document_number}}</div>
+          </div>
+          <div *ngIf="model.entity.entity_person.ident_document_emission_date" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_person.ident_document_emission_date' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_person.ident_document_emission_date | date:('translation:format.date' | i18next) }}</div>
+          </div>
+          <div *ngIf="model.entity.entity_person.ident_document_validity_date" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_person.ident_document_validity_date' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_person.ident_document_validity_date | date:('translation:format.date' | i18next) }}</div>
+          </div>
+          <div *ngIf="model.entity.entity_person.ident_document_emitted_by" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_person.ident_document_emitted_by' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_person.ident_document_emitted_by}}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section *ngIf="model.pastoral_agents_departments && model.pastoral_agents_departments.length" >
+      <h2>{{ modulePath + ':header.departments' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.pastoral_agents_departments.pastoral_agents_type_id' | i18next }}</strong></div>
+            <div fxFlex>
+              <ng-container *ngFor="let pastoral_agent_department of model.pastoral_agents_departments; let index = index">
+                <br *ngIf="index > 0" />{{ pastoral_agent_department.pastoral_agents_type.description }}
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section *ngIf="model.entity.entity_person.comments">
+      <h2>{{ modulePath + ':header.comments' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_person.comments' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_person.comments}}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+</ng-template>
+
+<ng-template #categoriesTemplate>
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.active' | i18next }}</strong></div>
+            <div fxFlex>{{ model.active ? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.approved' | i18next }}</strong></div>
+            <div fxFlex>{{ model.approved ? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.is_public_profile' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.is_public_profile ? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_person.is_parishioner' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_person.is_parishioner ? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_catechist.catechist' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_catechist.catechist ? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_mec.mec' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_mec.mec ? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_acolyte.is_acolyte' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_acolyte.is_acolyte ? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.entity.entity_reader.is_reader' | i18next }}</strong></div>
+            <div fxFlex>{{ model.entity.entity_reader.is_reader ? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+</ng-template>
+<ng-template #dacTemplate>
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <h2>{{ modulePath + ':header.dac' | i18next }}</h2>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.dac_is_card_emitted' | i18next }}</strong></div>
+            <div fxFlex>{{ model.dac_is_card_emitted ? ('translation:yes' | i18next) : ('translation:no' | i18next) }}</div>
+          </div>
+          <div *ngIf="model.dac_type_id" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.dac_type_id' | i18next }}</strong></div>
+            <div fxFlex>{{ getAgentTypeDescription(model.dac_type_id) }}</div>
+          </div>
+          <div *ngIf="model.dac_chapelry_description " fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.dac_chapelry_description' | i18next }}</strong></div>
+            <div fxFlex>{{ model.dac_chapelry_description }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.dac_childhood' | i18next }}</strong></div>
+            <div fxFlex>{{ model.dac_childhood ? ('translation:yes' | i18next) : ('translation:no' | i18next) }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.dac_adolescence' | i18next }}</strong></div>
+            <div fxFlex>{{ model.dac_adolescence ? ('translation:yes' | i18next) : ('translation:no' | i18next) }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.dac_youth' | i18next }}</strong></div>
+            <div fxFlex>{{ model.dac_youth ? ('translation:yes' | i18next) : ('translation:no' | i18next) }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.dac_adults' | i18next }}</strong></div>
+            <div fxFlex>{{ model.dac_adults ? ('translation:yes' | i18next) : ('translation:no' | i18next) }}</div>
+          </div>
+          <div *ngIf="model.dac_date" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.dac_date' | i18next }}</strong></div>
+            <div fxFlex>{{ model.dac_date | date:('translation:format.date' | i18next) }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.dac_is_parochial_coordinator' | i18next }}</strong></div>
+            <div fxFlex>{{ model.dac_is_parochial_coordinator? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.dac_is_phase_coordinator' | i18next }}</strong></div>
+            <div fxFlex>{{ model.dac_is_phase_coordinator ? ('translation:yes' | i18next) : ('translation:no' | i18next) }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.dac_is_year_coordinator' | i18next }}</strong></div>
+            <div fxFlex>{{ model.dac_is_year_coordinator ? ('translation:yes' | i18next) : ('translation:no' | i18next) }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section *ngIf="anyPastoralAgentTypesFormations('dac')">
+      <h2>{{ modulePath + ':header.pastoral_agents_formations' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="anyPastoralAgentTypesFormations('dac')" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.pastoral_agents_formations.formation_id' | i18next }}</strong></div>
+            <div fxFlex>
+              <ng-container *ngFor="let pastoral_agent_formation of model.pastoral_agents_formations; let index = index">
+                <ng-container *ngIf="pastoral_agent_formation.agent_type === 'dac'">
+                  <br *ngIf="index > 0" />{{ pastoral_agent_formation.formation.description }}
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</ng-template>
+<ng-template #dapjTemplate>
+  <section>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <h2>{{ modulePath + ':header.dapj' | i18next }}</h2>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex><strong>{{ modulePath + ':model.dapj_is_card_emitted' | i18next }}</strong></div>
+          <div fxFlex>{{ model.dapj_is_card_emitted ? ('translation:yes' | i18next) : ('translation:no' | i18next) }}</div>
+        </div>
+        <div *ngIf="model.dapj_type_id" fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex><strong>{{ modulePath + ':model.dapj_type_id' | i18next }}</strong></div>
+          <div fxFlex>{{ getAgentTypeDescription(model.dapj_type_id) }}</div>
+        </div>
+        <div *ngIf="model.dapj_chapelry_description " fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex><strong>{{ modulePath + ':model.dapj_chapelry_description' | i18next }}</strong></div>
+          <div fxFlex>{{ model.dapj_chapelry_description }}</div>
+        </div>
+        <div *ngIf="model.dapj_date" fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex><strong>{{ modulePath + ':model.dapj_date' | i18next }}</strong></div>
+          <div fxFlex>{{ model.dapj_date | date:('translation:format.date' | i18next) }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex><strong>{{ modulePath + ':model.dapj_is_parochial_coordinator' | i18next }}</strong></div>
+          <div fxFlex>{{ model.dapj_is_parochial_coordinator? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="anyPastoralAgentTypesFormations('dapj')">
+    <h2>{{ modulePath + ':header.pastoral_agents_formations' | i18next }}</h2>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <div *ngIf="anyPastoralAgentTypesFormations('dapj')" fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex><strong>{{ modulePath + ':model.pastoral_agents_formations.formation_id' | i18next }}</strong></div>
+          <div fxFlex>
+            <ng-container *ngFor="let pastoral_agent_formation of model.pastoral_agents_formations; let index = index">
+              <ng-container *ngIf="pastoral_agent_formation.agent_type === 'dapj'">
+                <br *ngIf="index > 0" />{{ pastoral_agent_formation.formation.description }}
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>
+<ng-template #ecaTemplate>
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <h2>{{ modulePath + ':header.eca' | i18next }}</h2>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.eca_is_card_emitted' | i18next }}</strong></div>
+            <div fxFlex>{{ model.eca_is_card_emitted ? ('translation:yes' | i18next) : ('translation:no' | i18next) }}</div>
+          </div>
+          <div *ngIf="model.eca_type_id" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.eca_type_id' | i18next }}</strong></div>
+            <div fxFlex>{{ getAgentTypeDescription(model.eca_type_id) }}</div>
+          </div>
+          <div *ngIf="model.eca_chapelry_description " fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.eca_chapelry_description' | i18next }}</strong></div>
+            <div fxFlex>{{ model.eca_chapelry_description }}</div>
+          </div>
+          <div *ngIf="model.eca_date" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.eca_date' | i18next }}</strong></div>
+            <div fxFlex>{{ model.eca_date | date:('translation:format.date' | i18next) }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.eca_is_parochial_coordinator' | i18next }}</strong></div>
+            <div fxFlex>{{ model.eca_is_parochial_coordinator? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.eca_is_phase_coordinator' | i18next }}</strong></div>
+            <div fxFlex>{{ model.eca_is_phase_coordinator ? ('translation:yes' | i18next) : ('translation:no' | i18next) }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.eca_is_year_coordinator' | i18next }}</strong></div>
+            <div fxFlex>{{ model.eca_is_year_coordinator ? ('translation:yes' | i18next) : ('translation:no' | i18next) }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section *ngIf="anyPastoralAgentTypesFormations('eca')">
+      <h2>{{ modulePath + ':header.pastoral_agents_formations' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="anyPastoralAgentTypesFormations('eca')" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.pastoral_agents_formations.formation_id' | i18next }}</strong></div>
+            <div fxFlex>
+              <ng-container *ngFor="let pastoral_agent_formation of model.pastoral_agents_formations; let index = index">
+                <ng-container *ngIf="pastoral_agent_formation.agent_type === 'eca'">
+                  <br *ngIf="index > 0" />{{ pastoral_agent_formation.formation.description }}
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</ng-template>
+<ng-template #emrcTemplate>
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <h2>{{ modulePath + ':header.emrc' | i18next }}</h2>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.emrc_is_card_emitted' | i18next }}</strong></div>
+            <div fxFlex>{{ model.emrc_is_card_emitted ? ('translation:yes' | i18next) : ('translation:no' | i18next) }}</div>
+          </div>
+          <div *ngIf="model.emrc_type_id" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.emrc_type_id' | i18next }}</strong></div>
+            <div fxFlex>{{ getAgentTypeDescription(model.emrc_type_id) }}</div>
+          </div>
+          <div *ngIf="model.emrc_chapelry_description " fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.emrc_chapelry_description' | i18next }}</strong></div>
+            <div fxFlex>{{ model.emrc_chapelry_description }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.emrc_is_parochial_coordinator' | i18next }}</strong></div>
+            <div fxFlex>{{ model.emrc_is_parochial_coordinator? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+          </div>
+          <div *ngIf="model.emrc_work_schools " fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.emrc_work_schools' | i18next }}</strong></div>
+            <div fxFlex>{{ model.emrc_work_schools }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section *ngIf="anyPastoralAgentTypesFormations('emrc')">
+      <h2>{{ modulePath + ':header.pastoral_agents_formations' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="anyPastoralAgentTypesFormations('emrc')" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.pastoral_agents_formations.formation_id' | i18next }}</strong></div>
+            <div fxFlex>
+              <ng-container *ngFor="let pastoral_agent_formation of model.pastoral_agents_formations; let index = index">
+                <ng-container *ngIf="pastoral_agent_formation.agent_type === 'emrc'">
+                  <br *ngIf="index > 0" />{{ pastoral_agent_formation.formation.description }}
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</ng-template>
+<ng-template #ecTemplate>
+  <section>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <h2>{{ modulePath + ':header.ec' | i18next }}</h2>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex><strong>{{ modulePath + ':model.ec_is_card_emitted' | i18next }}</strong></div>
+          <div fxFlex>{{ model.ec_is_card_emitted ? ('translation:yes' | i18next) : ('translation:no' | i18next) }}</div>
+        </div>
+        <div *ngIf="model.ec_type_id" fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex><strong>{{ modulePath + ':model.ec_type_id' | i18next }}</strong></div>
+          <div fxFlex>{{ getAgentTypeDescription(model.ec_type_id) }}</div>
+        </div>
+        <div *ngIf="model.ec_chapelry_description " fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex><strong>{{ modulePath + ':model.ec_chapelry_description' | i18next }}</strong></div>
+          <div fxFlex>{{ model.ec_chapelry_description }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex><strong>{{ modulePath + ':model.ec_is_parochial_coordinator' | i18next }}</strong></div>
+          <div fxFlex>{{ model.ec_is_parochial_coordinator? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+        </div>
+        <div *ngIf="model.ec_work_schools " fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex><strong>{{ modulePath + ':model.ec_work_schools' | i18next }}</strong></div>
+          <div fxFlex>{{ model.ec_work_schools }}</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section *ngIf="anyPastoralAgentTypesFormations('ec')">
+    <h2>{{ modulePath + ':header.pastoral_agents_formations' | i18next }}</h2>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <div *ngIf="anyPastoralAgentTypesFormations('ec')" fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex><strong>{{ modulePath + ':model.pastoral_agents_formations.formation_id' | i18next }}</strong></div>
+          <div fxFlex>
+            <ng-container *ngFor="let pastoral_agent_formation of model.pastoral_agents_formations; let index = index">
+              <ng-container *ngIf="pastoral_agent_formation.agent_type === 'ec'">
+                <br *ngIf="index > 0" />{{ pastoral_agent_formation.formation.description }}
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>
+<ng-template #puTemplate>
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="model.pu_type_id" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.pu_type_id' | i18next }}</strong></div>
+            <div fxFlex>{{ getAgentTypeDescription(model.pu_type_id) }}</div>
+          </div>
+          <div *ngIf="model.pu_comments " fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.pu_comments' | i18next }}</strong></div>
+            <div fxFlex>{{ model.pu_comments }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+</ng-template>
+<ng-template #ddbpTemplate>
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="model.ddbp_comments " fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ modulePath + ':model.ddbp_comments' | i18next }}</strong></div>
+            <div fxFlex>{{ model.ddbp_comments }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>

@@ -1,0 +1,25 @@
+{
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar el grado de parentesco del nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quiere eliminar los <strong>{{ count }}</strong> Grados de Parentesco seleccionados?",
+        "delete_success": "¡Grado de Parentesco eliminado con éxito!",
+        "delete_success_plural": "¡Grados de Parentesco eliminados con éxito!",
+        "save_success": "¡Grado de Parentesco guardado con éxito!"
+    },
+    "model": {
+        "locale": "Ubicación",
+        "name": "Nombre",
+        "validated": "Validado"
+    },
+    "action": {
+        "edit": "Editar Grado de Parentesco",
+        "new": "Nuevo Grado de Parentesco",
+        "addCountry": "Añadir Grado de Parentesco"
+    },
+    "module": {
+        "name_many": "Grados de Parentesco",
+        "name_singular": "Grado de parentesco"
+    }
+}

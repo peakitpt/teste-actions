@@ -1,0 +1,62 @@
+{
+  "module": {
+    "name_singular": "Local de Culto",
+    "name_many": "Locais de Culto"
+  },
+  "action": {
+    "new": "Novo Local de Culto",
+    "edit": "Editar Local de Culto",
+    "delete": "Eliminar Local de Culto?"
+  },
+  "message": {
+    "save_success": "Local de Culto guardado com sucesso!",
+    "delete_success": "Local de Culto apagado com sucesso!",
+    "delete_success_plural": "Locais de Culto apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Local de Culto com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Locais de Culto selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "search_term": "Termo a pesquisar",
+  "model": {
+    "entity_description": "Local de Culto",
+    "name": "Nome",
+    "district": "Distrito",
+    "parish": "Freguesia",
+    "country_description": "País",
+    "validated": "Validado",
+    "is_archdiocese": "Arquidiocese",
+    "reports_group_description": "Grupo de relatórios",
+    "tax_designation": "Designação fiscal",
+    "taxpayer": "Nº de contribuinte",
+    "address": "Morada",
+    "door_number": "Nº da porta",
+    "postal_code": "Código postal",
+    "place": "Localidade",
+    "county": "Concelho",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "mobilephone": "Telemóvel",
+    "phone": "Telefone",
+    "fax": "Fax",
+    "email": "E-mail",
+    "url": "Página web",
+    "entity_relation_attributes":{
+      "diocese_description": "Diocese",
+      "diocese_id": "Diocese",
+      "arciprestado_description": "Arciprestado",
+      "chapelry_description": "Paróquia",
+      "paroquia_description": "Paróquia"
+    }
+  },
+  "header": {
+    "address": "Morada",
+    "contacts": "Contactos",
+    "app": "Aplicação",
+    "module": "Módulo"
+  },
+  "tabs": {
+    "bishopric": "Local de Culto",
+    "permissions_modules": "Permissões a Módulos"
+  }
+}

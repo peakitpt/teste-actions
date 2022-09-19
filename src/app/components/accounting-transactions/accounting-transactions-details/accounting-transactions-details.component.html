@@ -1,0 +1,188 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.description }}</ng-container>
+    </h1>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model$ | async as model">
+          <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          color="accent"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-button type='icon' icon="edit" disableRipple="true" disableFocusRipple="true" (onClickEvent)="editModal()"></ui-button>
+        <ui-menu
+          type="icons"
+          [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+      </ng-container>
+      <ui-button type='icon' icon="close" disableRipple="true" disableFocusRipple="true" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <ui-tabs [tabs]="detailsTabs"></ui-tabs>
+  </ng-container>
+</ng-template>
+
+<ng-template #generalTab>
+  <section>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.transaction_id">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.transaction_id' | i18next }}:</div>
+          <div fxFlex>{{ model.transaction_id }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.description' | i18next }}:</div>
+          <div fxFlex>{{ model.description }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.transaction_date">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.transaction_date' | i18next }}:</div>
+          <div fxFlex>{{ model.transaction_date | date:('translation:format.date' | i18next) }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.period !== null">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.period' | i18next }}:</div>
+          <div fxFlex>{{ periodOptions ? periodOptions[model.period] : '' }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.transaction_type">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.transaction_type' | i18next }}:</div>
+          <div fxFlex>{{ transactionTypeOptions ? transactionTypeOptions[model.transaction_type] : '' }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.accounting_transaction_document_type_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.accounting_transaction_document_type_description' | i18next }}:</div>
+          <div fxFlex>{{ model.accounting_transaction_document_type_description }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.transaction_serie_number">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.transaction_serie_number' | i18next }}:</div>
+          <div fxFlex>{{ model.transaction_serie_number }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.accounting_journal_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.accounting_journal_description' | i18next }}:</div>
+          <div fxFlex>{{ model.accounting_journal_description }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.doc_archival_number">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.doc_archival_number' | i18next }}:</div>
+          <div fxFlex>{{ model.doc_archival_number }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scrollable-table">
+      <table class="mat-table" id="catechists-table">
+        <tr class="mat-header-row">
+          <th class="mat-header-cell col1">{{ modulePath + ':model.accounting_transaction_lines.accounting_chart_account_description' | i18next }}</th>
+          <th class="mat-header-cell col1">{{ modulePath + ':model.accounting_transaction_lines.credit_amount' | i18next }}</th>
+          <th class="mat-header-cell col1">{{ modulePath + ':model.accounting_transaction_lines.debit_amount' | i18next }}</th>
+          <th class="mat-header-cell col1">{{ modulePath + ':model.accounting_transaction_lines.description' | i18next }}</th>
+          <th class="mat-header-cell col1">{{ modulePath + ':model.accounting_transaction_lines.accounting_cost_center_description' | i18next }}</th>
+        </tr>
+        <tr class="mat-row uiKyriosTableRow" *ngFor="let emolument of model.accounting_transaction_lines">
+          <td class="mat-cell col1">
+            {{ emolument.accounting_chart_account_description }}
+          </td>
+          <td class="mat-cell col1">
+            {{ +emolument.credit_amount }}
+          </td>
+          <td class="mat-cell col1">
+            {{ +emolument.debit_amount }}
+          </td>
+          <td class="mat-cell col1">
+            {{ emolument.description }}
+          </td>
+          <td class="mat-cell col1">
+            {{ emolument.accounting_cost_center_description }}
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="15px">
+      <div fxLayout="row" fxFlex="25">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.credit' | i18next }}:</div>
+        <div fxFlex><b>{{ model.transaction_credit_amount }}</b></div>
+      </div>
+      <div fxLayout="row" fxFlex="25">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.debit' | i18next }}:</div>
+        <div fxFlex><b>{{ model.transaction_debit_amount }}</b></div>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+      <div fxLayout="row" fxFlex="25">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.total' | i18next }}:</div>
+        <div fxFlex><b>{{ model.total_amount }}</b></div>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #attachmentsTabsTemplate>
+  <section>
+    <div class="scrollable-table">
+      <table class="mat-table" id="catechists-table">
+        <tr class="mat-header-row">
+          <th class="mat-header-cell col1">{{ modulePath + ':model.attachment' | i18next }}</th>
+          <th class="mat-header-cell col1">{{ modulePath + ':model.description' | i18next }}</th>
+        </tr>
+        <tr class="mat-row uiKyriosTableRow" *ngFor="let attachment of model.accounting_transactions_attachments">
+          <td class="mat-cell col1">
+            <a class="download" (click)="downloadAttachment(attachment)">
+              {{ attachment.attachment_name }}
+            </a>
+          </td>
+          <td class="mat-cell col1">
+            {{ attachment.description }}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+
+
+
+
+

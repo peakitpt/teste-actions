@@ -1,0 +1,25 @@
+{
+  "module": {
+    "name_singular": "Valência",
+    "name_many": "Valências"
+  },
+  "action": {
+    "new": "Nova Valência",
+    "edit": "Editar Valência",
+    "delete": "Eliminar Valência?"
+  },
+  "message": {
+    "save_success": "Valência guardada com sucesso!",
+    "delete_success": "Valência apagada com sucesso!",
+    "delete_success_plural": "Valências apagadas com sucesso!",
+    "send_success": "Valência enviada com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Valência \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Valências selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas"
+  },
+  "model": {
+    "name": "Nome",
+    "validated": "Validado"
+  }
+}

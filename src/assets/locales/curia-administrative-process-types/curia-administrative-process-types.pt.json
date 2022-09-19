@@ -1,0 +1,27 @@
+{
+  "module": {
+    "name_singular": "Tipo de Processo Administrativo",
+    "name_many": "Tipos de Processos Administrativos"
+  },
+  "action": {
+    "new": "Novo Tipo de Processo Administrativo",
+    "edit": "Editar Tipo de Processo Administrativo",
+    "delete": "Eliminar Tipo de Processo Administrativo?"
+  },
+  "message": {
+    "save_success": "Tipo de Processo Administrativo guardado com sucesso!",
+    "delete_success": "Tipo de Processo Administrativo apagado com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Tipo de Processo Administrativo \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Tipos de Processos Administrativos selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Nome",
+    "subtype_id": "Subtipo",
+    "subtype_description": "Subtipo",
+    "option": {
+      "party_provisions": "Licenças de Festas"
+    }
+  }
+}

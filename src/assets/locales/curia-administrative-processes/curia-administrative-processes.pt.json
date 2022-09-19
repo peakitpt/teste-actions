@@ -1,0 +1,68 @@
+{
+  "module": {
+    "name_singular": "Processo Administrativo",
+    "name_many": "Processos Administrativos"
+  },
+  "action": {
+    "new": "Novo Processo Administrativo",
+    "edit": "Editar Processo Administrativo",
+    "delete": "Eliminar Processo Administrativo?",
+    "save_generate_document": "Guardar e Gerar Doc.",
+    "emit_document": "Emitir Documento",
+    "see_document": "Ver Documento"
+  },
+  "message": {
+    "save_success": "Processo Administrativo guardado com sucesso!",
+    "delete_success": "Processo Administrativo apagado com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Processo Administrativo \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Processo Administrativo selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados",
+    "is_free_text_message": "Marque esta caixa de seleção se pretender escrever um texto personalizado para o documento, ao invés de utilizar o texto predefinido."
+  },
+  "header": {
+    "administrative_processes": "Processo Administrativo",
+    "other_data": "Outros",
+    "entities": "Entidades",
+    "requirements": "Requerimento",
+    "documents": "Documentos",
+    "personalized_text": "Texto personalizado",
+    "attachments": "Anexos"
+  },
+  "tabs": {
+    "administrative_processes": "Processo Administrativo",
+    "documents": "Documentos",
+    "attachments_tab": "Anexos",
+    "party_provisions": "Licença de Festa"
+  },
+  "model": {
+    "serie_number": "Nº de Registo",
+    "curia_administrative_process_type_description": "Tipo",
+    "title": "Título",
+    "emolument_description": "Emolumento",
+    "tax": "Taxa",
+    "document_entity_description": "Entidade a constar no documento",
+    "delivery_term": "Termo de Entrega",
+    "dispatch": "Despacho",
+    "archive": "Arquivo",
+    "document_date": "Data do Documento",
+    "subscriber_description": "Assinante",
+    "entity_description": "Requerente",
+    "place_description": "Representa",
+    "free_description": "Vem por este meio",
+    "is_free_text": "Documento com corpo personalizado",
+    "free_text_title": "Título personalizado",
+    "free_text": "Corpo personalizado do documento",
+    "attachment": "Anexo",
+    "description": "Descrição",
+    "curia_administrative_process_type": "Tipo",
+    "party_provision_chapelry_description": "Requerida pelo Rev.mo Pároco de",
+    "party_provision_party_name": "Festa a celebrar",
+    "party_provision_dates": "Datas de festa",
+    "party_provision_place": "Local",
+    "party_provision_preacher_description": "Pregador",
+    "party_provision_schedule": "Programa",
+    "party_provision_bands_of": "Bandas de música de",
+    "party_provision_subscriber_description": "Assinante"
+  }
+}

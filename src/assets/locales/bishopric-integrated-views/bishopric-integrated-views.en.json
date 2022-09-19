@@ -1,0 +1,14 @@
+{
+  "module": {
+    "name_singular": "Bishopric Integrated View",
+    "name_many": "Bishoprics Integrated View"
+  },
+  "message": {
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas"
+  },
+  "model": {
+    "entity_description": "Chapelry",
+    "diocese_description": "Bishopric"
+  }
+}

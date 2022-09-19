@@ -1,0 +1,59 @@
+<section id="process-data-section">
+  <h2>{{ modulePath + ':header.process_data' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex *ngIf="id" [label]="modulePath + ':model.serie_number' | i18next" [readonly]="true" [control]="form.get('serie_number')"></ui-input>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.date' | i18next" [control]="form.get('date')"></ui-datepicker>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.document_date' | i18next" [control]="form.get('document_date')"></ui-datepicker>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.seat_number' | i18next" [control]="form.get('seat_number')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.sheet' | i18next" [control]="form.get('sheet')"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [required]="true" [readonly]="true" [label]="modulePath + ':model.entity_description' | i18next" [control]="form.get('entity_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }" [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'entity', queryStringParams: entityQSP } }"></ui-input>
+    <ui-input fxFlex="25" [label]="modulePath + ':model.time_of_birth' | i18next" [control]="form.get('time_of_birth')" placeholder="HH:MM" [errorMessage]="'translation:message.hour_format_error' | i18next"></ui-input>
+  </div>
+</section>
+
+<section id="curia-baptism-data-section">
+  <h2>{{ modulePath + ':header.baptism_data' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex [label]="modulePath + ':model.baptism_date' | i18next" [control]="form.get('baptism_date')"></ui-datepicker>
+    <ui-input fxFlex [label]="modulePath + ':model.baptism_hour' | i18next" [control]="form.get('baptism_hour')" placeholder="HH:MM" [errorMessage]="'translation:message.hour_format_error' | i18next"></ui-input>
+    <div fxFlex ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.in_danger_of_life' | i18next" [control]="form.get('in_danger_of_life')"></ui-checkbox>
+    </div>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="66.66" [readonly]="true" [label]="modulePath + ':model.entity_baptized_location_description' | i18next" [control]="form.get('entity_baptized_location_description')" [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'entity_baptized_location' } }"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity_baptized_location_county' | i18next" [control]="form.get('entity_baptized_location_county')"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.parents_and_godparents_preparation_chapelry_description' | i18next" [control]="form.get('parents_and_godparents_preparation_chapelry_description')" [rightTemplate]="{ template: chapelriesRightTemplate, context: { inputName: 'parents_and_godparents_preparation_chapelry' } }"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity_baptized_by_description' | i18next" [control]="form.get('entity_baptized_by_description')" [rightTemplate]="{ template: priestsAndPersonsRightTemplate, context: { inputName: 'entity_baptized_by' } }"></ui-input>
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity_baptized_authorization_description' | i18next" [control]="form.get('entity_baptized_authorization_description')" [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'entity_baptized_authorization', queryStringParams: entityBaptizedAuthorizationQSP } }"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex="100" rows="2" [label]="modulePath + ':model.comments' | i18next" [control]="form.get('comments')"></ui-textarea>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex="100" rows="2" [label]="modulePath + ':model.document_observations' | i18next" [control]="form.get('document_observations')"></ui-textarea>
+  </div>
+</section>
+
+<section id="treasury-document-section">
+  <h2>{{ modulePath + ':header.treasury_document' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="80" [readonly]="true" [label]="modulePath + ':model.emolument_description' | i18next" [control]="form.get('emolument_description')" [rightTemplate]="{ template: emolumentsRightTemplate, context: { inputName: 'emolument' } }"></ui-input>
+    <ui-input fxFlex="20" [readonly]="true" [label]="modulePath + ':model.tax' | i18next" [control]="form.get('tax')"></ui-input>
+    <ui-input fxFlex="100" [readonly]="true" [label]="modulePath + ':model.document_entity_description' | i18next" [control]="form.get('document_entity_description')" [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'document_entity', queryStringParams: documentEntityQSP } }"></ui-input>
+  </div>
+</section>

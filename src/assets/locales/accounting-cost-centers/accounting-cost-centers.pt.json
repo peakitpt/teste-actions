@@ -1,0 +1,24 @@
+{
+  "module": {
+    "name_singular": "Centro de Custo",
+    "name_many": "Centros de Custo"
+  },
+  "action": {
+    "new": "Novo Centro de Custo",
+    "edit": "Editar Centro de Custo",
+    "delete": "Eliminar Centro de Custo?"
+  },
+  "message": {
+    "save_success": "Centro de Custo guardado com sucesso!",
+    "delete_success": "Centro de Custo apagado com sucesso!",
+    "delete_success_plural": "Centros de Custo apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Centro de Custo com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Centros de Custo selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "code": "Código",
+    "description": "Descrição"
+  }
+}

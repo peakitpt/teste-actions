@@ -1,0 +1,56 @@
+{
+  "module": {
+    "name_singular": "Óbito",
+    "name_many": "Óbitos"
+  },
+  "action": {
+    "new": "Novo Óbito",
+    "edit": "Editar Óbito",
+    "delete": "Eliminar Óbito?"
+  },
+  "message": {
+    "save_success": "Óbito guardado com sucesso!",
+    "delete_success": "Óbito apagado com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Óbito de \"<strong>{{ entity_description }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Óbitos selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "serie_number": "Nº de registo",
+    "entity_description": "Nome",
+    "seat_number": "Assento nº",
+    "sheet": "Folha",
+    "death_date": "Data do falecimento",
+    "death_year": "Ano do falecimento",
+    "entity_bury_date": "Data do funeral",
+    "entity_death_bury_process_id": "Processo fúnebre",
+    "death_hour": "Hora do falecimento",
+    "entity_death_place": "Local do falecimento",
+    "entity_death_locality": "Localidade do falecimento",
+    "entity_death_county": "Concelho do falecimento",
+    "death_chapelry_description": "Paróquia onde faleceu",
+    "bury_chapelry_description": "Paróquia do funeral",
+    "entity_bury_cemitery": "Local do funeral",
+    "civil_status_on_death": "Estado civil aquando falecimento",
+    "sacraments": "Sacramento(s)",
+    "observations": "Observações",
+    "emolument_description": "Emolumento",
+    "tax": "Taxa",
+    "document_entity_description": "Entidade a constar no documento",
+    "declaration_relative_presence": "Nome",
+    "declaration_relative_kinship": "Relação com o/a falecido(a)"
+  },
+  "tabs": {
+    "main": "Óbito",
+    "reports": "Relatórios"
+  },
+  "header": {
+    "declaration_of_presence": "Declaração de presença",
+    "treasury_document": "Documento de tesouraria"
+  },
+  "bury_process_options": {
+    "cremated": "Cremado(a)",
+    "buried": "Sepultado(a)"
+  }
+}

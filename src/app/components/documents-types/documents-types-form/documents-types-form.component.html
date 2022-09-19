@@ -1,0 +1,152 @@
+<ui-dialog #modal [inputHeaderTemplate]="header" [inputBodyTemplate]="body" [inputFooterTemplate]="footer"
+  (modalClosed)="navigate('/' + modulePath)" [disableClose]="true">
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') |
+      i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu *ngIf="model && !model.block_remove" [hoverTitle]="'translation:action.more' | i18next" type="icons"
+          [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()">
+      </ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save" [label]="'translation:action.cancel' | i18next"
+      color="secondary" (onClickEvent)="onCancelClick()">
+    </ui-button>
+
+    <ui-button type="flat" icon="save" [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')" fxHide.lt-sm="true"></ui-button>
+
+    <ui-button type="flat" icon="save" [label]="'translation:action.save' | i18next" color="accent"
+      (onClickEvent)="onSubmit()"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+      <ui-input fxFlex [label]="modulePath + ':model.code'| i18next" [required]="true"
+        [placeholder]="modulePath + ':model.code'| i18next" [control]="form.get('name')">
+      </ui-input>
+      <ui-input fxFlex [label]="modulePath + ':model.description'| i18next" [required]="true"
+        [placeholder]="modulePath + ':model.documents-type'| i18next" [control]="form.get('description')">
+      </ui-input>
+      <ui-select fxFlex [options]="movementTypeOptions" [control]="form.get('movement_type')">
+      </ui-select>
+      <ui-select fxFlex [options]="operatorOptions" [control]="form.get('movement_operator')">
+      </ui-select>
+    </div>
+
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+      <ui-checkbox fxFlex class="margin-checkbox-bottom" [label]="modulePath + ':model.active' | i18next"
+        [control]="form.get('active')">
+      </ui-checkbox>
+      <ui-checkbox fxFlex class="margin-checkbox-bottom" [label]="modulePath + ':model.self_assessment' | i18next"
+        [control]="form.get('self_assessment')">
+      </ui-checkbox>
+      <ui-checkbox fxFlex class="margin-checkbox-bottom"
+        [label]="modulePath + ':model.affects_legal_tax_reports' | i18next"
+        [control]="form.get('affects_legal_tax_reports')">
+      </ui-checkbox>
+    </div>
+
+    <ui-table #numerationsTable *ngIf="id" [checkboxes]="false" [dataSource]="numerationsDS"
+      [tableColumns]="numerationsColumns">
+    </ui-table>
+    <div *ngIf="id" class="add-related-content"
+      (click)="addTableLine(generateNewNumeration(), numerationsFormArray, numerationsDS)">
+      {{ 'translation:action.add' | i18next }}
+    </div>
+  </form>
+</ng-template>
+
+
+<!-- NUMERATIONS TABLE TEMPLATES -->
+<ng-template #deleteTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn"
+    (click)="deleteTableLine(index, numerationsFormArray, numerationsDS)"></ui-button>
+</ng-template>
+
+<ng-template #activeTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-checkbox fxFlex [control]="numerationsFormArray.get([index, 'active'])">
+    </ui-checkbox>
+  </div>
+</ng-template>
+
+<ng-template #is_defaultTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-checkbox fxFlex [control]="numerationsFormArray.get([index, 'is_default'])">
+    </ui-checkbox>
+  </div>
+</ng-template>
+
+<ng-template #serieTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" [required]="true" [control]="numerationsFormArray.get([index, 'serie'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #ser_prefixTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" [required]="true" [control]="numerationsFormArray.get([index, 'ser_preffix'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #ser_suffixTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" [required]="true" [control]="numerationsFormArray.get([index, 'ser_suffix'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #ser_valueTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" [required]="true" [control]="numerationsFormArray.get([index, 'ser_value'])">
+    </ui-input>
+  </div>
+</ng-template>
+
+<ng-template #ser_maxTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" [required]="true" [control]="numerationsFormArray.get([index, 'ser_max'])">
+    </ui-input>
+  </div>
+</ng-template>
+<ng-template #ser_lengthTemplate let-index="index">
+  <div fxLayout="column">
+    <ui-input fxFlexOffset="20px" [required]="true" [control]="numerationsFormArray.get([index, 'ser_length'])">
+    </ui-input>
+  </div>
+</ng-template>

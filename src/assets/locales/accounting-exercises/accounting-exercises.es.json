@@ -1,0 +1,28 @@
+{
+    "module": {
+        "name_singular": "Ejercicio",
+        "name_many": "Ejercicios"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Estás seguro de que quieres eliminar el Ejercicio?",
+        "delete_are_you_sure_plural": "¿Estás seguro de que quieres eliminar los <strong>{{ count }}</strong> Ejercicios seleccionados?",
+        "delete_success": "¡Ejercicio eliminado con éxito!",
+        "delete_success_plural": "¡Ejercicios eliminados con éxito!",
+        "save_success": "¡Ejercicio guardado con éxito!"
+    },
+    "model": {
+        "active": "Activo",
+        "taxonomy_reference_description": "Referencia",
+        "end_date": "Fin",
+        "start_date": "Inicio",
+        "year": "Año"
+    },
+    "action": {
+        "next_year": "Pasar de Año",
+        "delete": "¿Eliminar Ejercicio?",
+        "edit": "Editar Ejercicio",
+        "new": "Nuevo Ejercicio"
+    }
+}

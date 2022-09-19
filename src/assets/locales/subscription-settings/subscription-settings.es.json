@@ -1,0 +1,60 @@
+{
+    "module": {
+        "name_singular": "Configuración de Suscripción",
+        "name_many": "Configuración de Suscripción"
+    },
+    "model": {
+        "sms_msisdn": "MSISDN",
+        "sms_gateway": "Puerta de acceso",
+        "finance_department": "Oficina de Impuestos",
+        "current_account_notification_layout_description": "Diseño de las notificaciones de la Cuenta Corriente",
+        "treasury_default_document_type_description": "Tipo de Documento por defecto",
+        "priest_description": "Párroco/Administrador Parroquial",
+        "hide_warnings_from_dash": "No mostrar las advertencias en el Panel de control",
+        "hide_wizard_from_dash": "No mostrar el asistente de configuración en el Panel de Control",
+        "smtp_sender_name": "Nombre del remitente",
+        "smtp_enable_starttls_auto": "Detección automática de STARTTLS",
+        "smtp_authentication": "Tipo de autenticación",
+        "smtp_password": "Contraseña",
+        "smtp_user_name": "Nombre de usuario",
+        "smtp_use_ssl": "Utilización de SSL",
+        "smtp_port": "Puerta",
+        "smtp_domain": "Dominio",
+        "smtp_address": "Dirección",
+        "smtp_use_custom_settings": "Utilizar la configuración personalizada de SMTP",
+        "sms_password": "Contraseña"
+    },
+    "message": {
+        "save_success": "¡Sección guardada con éxito!",
+        "modal_closed": "¿Está cerrada la ventana?"
+    },
+    "action": {
+        "open_again": "Abrir de nuevo"
+    },
+    "text": {
+        "2nd_paragraf": "Esta información se utilizará en los informes y en la cumplimentación automática de algunos formularios.",
+        "1st_paragraf": "No puede cambiar la moneda de suscripción porque ya tiene contabilizaciones en la contabilidad hechas con esta moneda",
+        "8th_paragraf": "Detección automática de STARTTLS - Deje esta opción desactivada si tiene problemas con el certificado del servidor",
+        "7th_paragraf": "Dominio - Si necesita especificar un dominio HELO",
+        "6th_paragraf": "Asegúrese de que los datos para el envío de SMS son válidos enviando un SMS de prueba, en el módulo correspondiente",
+        "5th_paragraf": "El código de la Agencia Tributaria es para la generación del Soporte Magnético Modelo IRPF (archivo .xml) para su presentación en el Portal de las Finanzas",
+        "4th_paragraf": "Diseño que se utilizará para el correo electrónico de notificación que se enviará a las entidades seleccionadas en las Cuentas Corrientes. El título de lo diseño se utilizará como asunto del correo electrónico",
+        "3rd_paragraf": "Todos los documentos generados a través del botón \"Guardar y emitir doc.\" se generarán con este tipo de documento y con sus series predefinidas"
+    },
+    "header": {
+        "smtp_email_configuration": "Configuración del correo electrónico SMTP",
+        "sms_configuration": "Configuración de SMS"
+    },
+    "tabs": {
+        "configuration_assist": "Asistencia para la Configuración",
+        "defenitions": "Definiciones"
+    },
+    "option": {
+        "cram_md5": "CRAM-MD5",
+        "login": "Inicio de sesión",
+        "plain": "Sin encriptación",
+        "vodafone_pt": "Vodafone PT",
+        "parish_admin": "Administrador de la Parroquia",
+        "parson": "Párroco"
+    }
+}

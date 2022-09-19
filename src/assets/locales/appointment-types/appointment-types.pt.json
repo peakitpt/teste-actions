@@ -1,0 +1,28 @@
+{
+  "module": {
+    "name_singular": "Tipo de Nomeação",
+    "name_many": "Tipos de Nomeações"
+  },
+  "action": {
+    "new": "Novo Tipo de Nomeação",
+    "edit": "Editar Tipo de Nomeação",
+    "delete": "Eliminar Tipo de Nomeação?",
+    "generate_card": "Gerar cartão"
+  },
+  "message": {
+    "save_success": "Tipo de Nomeação guardado com sucesso!",
+    "delete_success": "Tipo de Nomeação apagado com sucesso!",
+    "delete_success_plural": "Tipos de Nomeações apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Tipo de Nomeação com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Tipos de Nomeações selecionados?",
+    "delete_are_you_sure_definitely": "Tem a certeza que pretende eliminar DEFINITIVAMENTE o Tipo de Nomeação \"<strong>{{ name }}</strong>\"?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Nome",
+    "validated": "Validado",
+    "locale": "Língua",
+    "deleted": "Eliminado"
+  }
+}

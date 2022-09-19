@@ -1,0 +1,113 @@
+<ui-dialog #modal [inputHeaderTemplate]="header" [inputBodyTemplate]="body" (modalClosed)="modalClose()">
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row wrap" fxLayoutGap="20px">
+      <div *ngIf="model?.curia_status" class="curia-status">
+        <ui-chip class="{{ model.curia_status }}" [disableRipple]="true"
+          [content]="'translation:curia_status.' + model.curia_status | i18next"></ui-chip>
+      </div>
+      <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+        {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model">: {{ model.entity.name }}
+        </ng-container>
+      </h1>
+      <ng-template #smallHeader>
+        {{ modulePath + ':module.name_singular' | i18next }}
+      </ng-template>
+    </div>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model">
+        <ui-menu *ngIf="reportMenuOptionsModel.length" [hasBackdrop]="false" fxHide.lt-md="true"
+          class="reports-list-button" type="nested" [menuClickTemplate]="reportsClickableTemplate" color="accent"
+          [model]="reportMenuOptionsModel" (sendValue)="reportMenuClick($event)"></ui-menu>
+        <ui-menu *ngIf="reportMenuOptionsModel.length" [hasBackdrop]="false" fxHide.gt-sm="true"
+          [hoverTitle]="'reports:module.name_many' | i18next" type="nested" mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel" (sendValue)="reportMenuClick($event)"></ui-menu>
+        <ui-menu *ngIf="treasuryDocOptionsMenu.length" [hoverTitle]="'documents:action.treasury_doc.title' | i18next"
+          type="icons" mainIcon="request_quote" [model]="treasuryDocOptionsMenu" (sendValue)="menuClick($event, model)">
+        </ui-menu>
+        <ui-button [title]="'translation:action.edit' | i18next" type='icon' icon="edit" (onClickEvent)="editModal()">
+        </ui-button>
+        <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)">
+        </ui-menu>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()">
+      </ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model; else loadingTemplate">
+    <ui-tabs [tabs]="detailsTabs"></ui-tabs>
+  </ng-container>
+</ng-template>
+
+<!-- TABS -->
+<ng-template #mainTabTemplate>
+  <kyr-institutions-details-main-tab [modulePath]="modulePath" [model]="model"></kyr-institutions-details-main-tab>
+</ng-template>
+
+<ng-template #appointmentsTabTemplate>
+  <kyr-institutions-details-nominations-tab [modulePath]="modulePath" [model]="model">
+  </kyr-institutions-details-nominations-tab>
+</ng-template>
+
+<ng-template #permissionsTabTemplate>
+  <kyr-institutions-details-permissions-tab [modulePath]="modulePath" [model]="model"
+    [permissionsAttributesDS]="permissionsAttributesDS" [permissionsAttributesColumns]="permissionsAttributesColumns">
+  </kyr-institutions-details-permissions-tab>
+</ng-template>
+<!-- END TABS -->
+
+<!-- TEMPLATES START -->
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<kyr-generate-doc-confirmation-modal *ngIf="openGenerateDocModal" [form]="model" [modulePath]="modulePath"
+  [actionRequestSaveAndGenerateDocument]="actionRequestSaveAndGenerateDocument"
+  [actionRequestFailSaveAndGenerateDocument]="actionRequestFailSaveAndGenerateDocument"
+  [actionSuccessSaveAndGenerateDocument]="actionSuccessSaveAndGenerateDocument"
+  (emitModalClose)="closeGenerateDocModal($event)">
+</kyr-generate-doc-confirmation-modal>
+
+
+<ng-template #permissionsAttributesCheckboxTemplate let-data="data">
+  <mat-checkbox [checked]="selection.hasValue() && isAllSelected()"
+    [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()" [disabled]="true">
+  </mat-checkbox>
+</ng-template>
+
+<ng-template #permissionsModulesTemplateCheckbox let-row="data">
+  <mat-checkbox (change)="$event ? selection.toggle(row) : null; checkboxEvent()" [checked]="selection.isSelected(row)"
+    [aria-label]="checkboxLabel(row)" [disabled]="true">
+  </mat-checkbox>
+</ng-template>
+
+<ng-template #permissionsModulesModule let-row="data">
+  <div fxFill>
+    <ui-autocomplete [control]="moduleForm" [options]="moduleOptions" [label]="row.title" [placeholder]="row.title">
+    </ui-autocomplete>
+  </div>
+</ng-template>
+
+<ng-template #permissionsModulesApp let-row="data">
+
+  <div fxFill>
+    <ui-autocomplete [control]="appForm" [options]="appOptions" [label]="row.title" [placeholder]="row.title">
+    </ui-autocomplete>
+  </div>
+</ng-template>
+<!-- TEMPLATES END -->

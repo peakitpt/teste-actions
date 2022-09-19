@@ -1,0 +1,36 @@
+{
+  "module": {
+    "name_singular": "Estatística (Admin)",
+    "name_many": "Estatísticas (Admin)"
+  },
+  "action": {
+    "open_again": "Abrir de novo"
+  },
+  "message": {
+    "modal_closed": "A modal está fechada?"
+  },
+  "tabs": {
+    "totals": "Totais",
+    "graphics": "Graficos"
+  },
+  "header": {
+    "baptisms": "Batismos",
+    "catechisms": "Catequese",
+    "catechumens": "Catecumenatos",
+    "curia_baptisms": "Batismos (Cúria)",
+    "curia_weddings": "Matrimónios (Cúria)",
+    "deaths": "Óbitos",
+    "families": "Famílias",
+    "parishioners": "Fichas Individuais",
+    "users": "Utilizadores",
+    "websiteconfigurations": "Páginas Internet",
+    "weddings": "Matrimónios",
+    "chrisms": "Crismas",
+    "mass_intentions": "Intenções de Missa",
+    "user_accesses": "Acessos de utilizadores este mês"
+  },
+  "graph": {
+    "day": "Dia",
+    "users": "Utilizadores"
+  }
+}

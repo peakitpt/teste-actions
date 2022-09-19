@@ -1,0 +1,234 @@
+<router-outlet></router-outlet>
+
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2 style="color: white;">
+    {{ modulePath + ':message.modal_closed' | i18next }}
+  </h2>
+  <ui-button type="flat" icon="save" [label]="modulePath + ':action.open_again' | i18next" color="accent" (onClickEvent)="modal.open()">
+  </ui-button>
+</div>
+
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (form.value.id ? ':action.edit' : ':action.new') | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (form.value.id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+      </ng-container>
+
+      <ui-button type="icon" icon="close" (onClickEvent)="closeModal()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <h4 fxLayout="row" fxLayoutAlign="center center">
+    {{ modulePath + ':header.check_documentation' | i18next }} &nbsp;
+    <a
+      href="http://confluence.peakit.pt:8090/pages/viewpage.action?pageId=6979710"
+      target="_blank"
+    >
+      {{ modulePath + ':header.here' | i18next }}
+    </a>
+  </h4>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" icon="save" [label]="(form.value.id ? 'translation:action.save' : 'translation:action.new') | i18next" color="accent" (onClickEvent)="onSubmit()"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <form [formGroup]="form" class="form-body">
+    <section>
+      <h2>{{ modulePath + ':header.general_configurations' | i18next }}</h2>
+      <div>
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+          <ui-input fxFlex [label]="modulePath + ':model.url' | i18next" [required]="true" [control]="form.get('url')"></ui-input>
+        </div>
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="20px">
+          <div fxLayout="row wrap" fxLayoutAlign="start center">
+            <ui-checkbox fxFlex="35" fxFlex.lt-sm="90" [label]="modulePath + ':model.app_share' | i18next: { appName: environment.appName }" [control]="form.get('app_share')"></ui-checkbox>
+          </div>
+          <ui-input fxFlex [label]="modulePath + ':model.email' | i18next" [required]="true" [control]="form.get('email')"></ui-input>
+        </div>
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+          <ui-input fxFlex
+            (change)="changeImage($event)"
+            [label]="modulePath + ':model.header_url'| i18next"
+            type="file" accept="image/png, image/jpeg"
+            [fileName]="form.get('header_filename').value"
+            [control]="form.get('header_url')"></ui-input>
+          <div fxFlex="50" fxLayoutAlign="center center">
+            <img *ngIf="currentImagePath.thumbnail" [src]="currentImagePath.thumbnail" onerror="this.src='assets/image-placeholder-350x350.png'" height="200px">
+            <img *ngIf="!currentImagePath.thumbnail" [src]="baseFilePath + '/' + form.value.header_url" onerror="this.src='assets/image-placeholder-350x350.png'" height="200px">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>{{ modulePath + ':header.social_network_configurations' | i18next }}</h2>
+      <div>
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+          <ui-input fxFlex [label]="modulePath + ':model.url_facebook' | i18next" [control]="form.get('url_facebook')"></ui-input>
+        </div>
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+          <ui-input fxFlex [label]="modulePath + ':model.url_youtube' | i18next" [control]="form.get('url_youtube')"></ui-input>
+        </div>
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+          <ui-input fxFlex [label]="modulePath + ':model.url_twitter' | i18next" [control]="form.get('url_twitter')"></ui-input>
+        </div>
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+          <ui-input fxFlex [label]="modulePath + ':model.url_soundcloud' | i18next" [control]="form.get('url_soundcloud')"></ui-input>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>{{ modulePath + ':header.general_content_configurations' | i18next }}</h2>
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="15px">
+        <div fxFlex fxLayout="column">
+          <ui-input
+            [label]="modulePath + ':model.seccao_noticias_description' | i18next"
+            [label]="modulePath + ':model.seccao_noticias_description' | i18next"
+            [control]="form.get('seccao_noticias_description')"
+            [rightTemplate]="{ template: noticiasRightTemplate }">
+          </ui-input>
+          <ui-input
+            [label]="modulePath + ':model.parish_notary_content_description' | i18next"
+            [label]="modulePath + ':model.parish_notary_content_description' | i18next"
+            [control]="form.get('parish_notary_content_description')"
+            [rightTemplate]="{ template: parishNotaryContentRightTemplate }">
+          </ui-input>
+          <ui-input
+            [label]="modulePath + ':model.masses_content_description' | i18next"
+            [label]="modulePath + ':model.masses_content_description' | i18next"
+            [control]="form.get('masses_content_description')"
+            [rightTemplate]="{ template: massesRightTemplate }">
+          </ui-input>
+          <ui-input
+            [label]="modulePath + ':model.confessions_content_description' | i18next"
+            [label]="modulePath + ':model.confessions_content_description' | i18next"
+            [control]="form.get('confessions_content_description')"
+            [rightTemplate]="{ template: confessionsContentRightTemplate }">
+          </ui-input>
+          <ui-input
+            [label]="modulePath + ':model.visits_to_the_sicks_content_description' | i18next"
+            [label]="modulePath + ':model.visits_to_the_sicks_content_description' | i18next"
+            [control]="form.get('visits_to_the_sicks_content_description')"
+            [rightTemplate]="{ template: visitsToTheSickRightTemplate }">
+          </ui-input>
+        </div>
+        <div fxFlex fxLayout="column">
+          <ui-input
+            [label]="modulePath + ':model.conteudo_ano_pastoral_description' | i18next"
+            [label]="modulePath + ':model.conteudo_ano_pastoral_description' | i18next"
+            [control]="form.get('conteudo_ano_pastoral_description')"
+            [rightTemplate]="{ template: anoPastoralRightTemplate }">
+          </ui-input>
+          <ui-input
+            [label]="modulePath + ':model.seccao_boletim_description' | i18next"
+            [label]="modulePath + ':model.seccao_boletim_description' | i18next"
+            [control]="form.get('seccao_boletim_description')"
+            [rightTemplate]="{ template: boletimRightTemplate }">
+          </ui-input>
+          <ui-input
+            [label]="modulePath + ':model.conteudo_informacoes_description' | i18next"
+            [label]="modulePath + ':model.conteudo_informacoes_description' | i18next"
+            [control]="form.get('conteudo_informacoes_description')"
+            [rightTemplate]="{ template: conteudoInformacoesRightTemplate }">
+          </ui-input>
+          <ui-input
+            [label]="modulePath + ':model.how_to_help_content_description' | i18next"
+            [label]="modulePath + ':model.how_to_help_content_description' | i18next"
+            [control]="form.get('how_to_help_content_description')"
+            [rightTemplate]="{ template: howToHelpRightTemplate }">
+          </ui-input>
+        </div>
+      </div>
+    </section>
+  </form>
+</ng-template>
+
+<!-- TEMPLATES -->
+<ng-template #buttonsTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ui-button [title]="'translation:action.edit' | i18next" type="icon" icon="edit" (onClickEvent)="navigate('/' + modulePath + '/' + data.id + '/edit')"></ui-button>
+    <ui-menu
+      type="icons"
+      [model]="headerOptionsMenu"
+      (sendValue)="menuClick($event)"
+    >
+    </ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #validatedTemplate let-data="data">
+  <ui-icon *ngIf="data.validated" [icon]="data.validated ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+</ng-template>
+
+<!-- General Templates -->
+<ng-template #contentsRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('contents-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="contentsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+<ng-template #sectionsRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('sections-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="sectionsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+<!-- General Templates -->
+
+<ng-template #anoPastoralRightTemplate>
+  <ng-container *ngTemplateOutlet="contentsRightTemplate; context: { inputName: 'conteudo_ano_pastoral'}"></ng-container>
+</ng-template>
+<ng-template #boletimRightTemplate>
+  <ng-container *ngTemplateOutlet="sectionsRightTemplate; context: { inputName: 'seccao_boletim'}"></ng-container>
+</ng-template>
+<ng-template #conteudoInformacoesRightTemplate>
+  <ng-container *ngTemplateOutlet="contentsRightTemplate; context: { inputName: 'conteudo_informacoes'}"></ng-container>
+</ng-template>
+<ng-template #noticiasRightTemplate>
+  <ng-container *ngTemplateOutlet="sectionsRightTemplate; context: { inputName: 'seccao_noticias'}"></ng-container>
+</ng-template>
+<ng-template #parishNotaryContentRightTemplate>
+  <ng-container *ngTemplateOutlet="contentsRightTemplate; context: { inputName: 'parish_notary_content'}"></ng-container>
+</ng-template>
+<ng-template #massesRightTemplate>
+  <ng-container *ngTemplateOutlet="contentsRightTemplate; context: { inputName: 'masses_content'}"></ng-container>
+</ng-template>
+<ng-template #confessionsContentRightTemplate>
+  <ng-container *ngTemplateOutlet="contentsRightTemplate; context: { inputName: 'confessions_content'}"></ng-container>
+</ng-template>
+<ng-template #visitsToTheSickRightTemplate>
+  <ng-container *ngTemplateOutlet="contentsRightTemplate; context: { inputName: 'visits_to_the_sicks_content'}"></ng-container>
+</ng-template>
+<ng-template #howToHelpRightTemplate>
+  <ng-container *ngTemplateOutlet="contentsRightTemplate; context: { inputName: 'how_to_help_content'}"></ng-container>
+</ng-template>
+
+<!-- TEMPLATES END -->

@@ -1,0 +1,67 @@
+{
+    "module": {
+        "name_singular": "SMS",
+        "name_many": "SMS"
+    },
+    "action": {
+        "new": "New SMS",
+        "edit": "Edit SMS",
+        "delete": "Delete SMS?",
+        "send_test": "Test SMS",
+        "send": "Send"
+    },
+    "message": {
+        "save_success": "SMS successfully saved!",
+        "delete_success": "SMS successfully deleted!",
+        "delete_success_plural": "SMS successfully deleted!",
+        "send_success": "SMS successfully sent!",
+        "delete_are_you_sure": "Are you sure that you want to delete the SMS with the description \"<strong>{{ description }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure that you want to delete all the <strong>{{ count }}</strong> selected SMS?",
+        "test_are_you_sure": "Are you sure that you want to send the SMS \"<strong>{{ description }}</strong>\" for the test numbers?<br/>Will be sent to: <strong>{{ numbers }}</strong><br/><br/>All the changes will be automatically saved.",
+        "test_are_you_sure_plural": "Are you sure that you want to send <strong>{{ count }}</strong> SMS for the respective test numbers?",
+        "error_no_test_recipient": "There are no test numbers",
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "error_no_recipient": "Fill in at least one of the Recipients fields",
+        "no_sms_configs": "SMS will only be sent when you fill the <b>SMS Configuration</b> with valid data, in the <a href='{{ url }}'>Subscription Settings</a>",
+        "error_403": "You do not have permissions to send SMS via the specified sending server."
+    },
+    "model": {
+        "description": "Description",
+        "sending_date": "Sending date",
+        "sending_hour": "Sending hour",
+        "active": "Send",
+        "sent_at": "Sent at",
+        "sent": "Sent",
+        "frequency": "Frequency",
+        "message": "Message",
+        "group": "To (group)",
+        "test_recipient": "Test number",
+        "additional_recipients": "To (numbers)",
+        "placeholder": {
+            "additional_recipients": "Separated by semicolons (;)"
+        },
+        "text_messages_errors": {
+            "phone_number": "Number",
+            "entity_description": "Entity"
+        }
+    },
+    "header": {
+        "schedule": "Schedule",
+        "message": "Message",
+        "recipients": "Destinations",
+        "details": "Details"
+    },
+    "frequency": {
+        "unique": "Only",
+        "daily": "Daily",
+        "weekly": "Weekly",
+        "monthly": "Monthly",
+        "yearly": "Annual"
+    },
+    "tabs": {
+        "text_message": "Message",
+        "errors": "Errors",
+        "errors_description": "It was not possible to deliver the SMS to these numbers:"
+    }
+}

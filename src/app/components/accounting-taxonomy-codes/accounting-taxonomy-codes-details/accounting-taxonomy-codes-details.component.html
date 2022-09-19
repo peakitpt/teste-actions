@@ -1,0 +1,99 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.description }}</ng-container>
+    </h1>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model$ | async as model">
+          <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          color="accent"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-button type='icon' icon="edit" disableRipple="true" disableFocusRipple="true" (onClickEvent)="editModal()"></ui-button>
+        <ui-menu
+          type="icons"
+          [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+      </ng-container>
+      <ui-button type='icon' icon="close" disableRipple="true" disableFocusRipple="true" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.accounting_taxonomy_reference_description">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.accounting_taxonomy_reference_description' | i18next }}:</div>
+            <div fxFlex>{{ model.accounting_taxonomy_reference_description }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.taxonomy_code">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.taxonomy_code' | i18next }}:</div>
+            <div fxFlex>{{ model.taxonomy_code }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.base_code">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.base_code' | i18next }}:</div>
+            <div fxFlex>{{ model.base_code }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.description">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.description' | i18next }}:</div>
+            <div fxFlex>{{ model.description }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.observations">
+            <div fxFlex class="mat-body-strong">{{ modulePath + ':model.observations' | i18next }}:</div>
+            <div fxFlex>{{ model.observations }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</ng-template>
+
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+
+
+
+
+

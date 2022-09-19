@@ -1,0 +1,15 @@
+{
+    "paginator": {
+        "-": "-",
+        "of": "of",
+        "items_per_page": "Items per page",
+        "next_page": "Next Page",
+        "prev_page": "Previous Page",
+        "first_page": "First Page",
+        "last_page": "Last Page"
+    },
+    "ckeditor": {
+        "downlable": "To download",
+        "open_in_new_tab": "Open new tab"
+    }
+}

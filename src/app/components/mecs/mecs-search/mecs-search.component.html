@@ -1,0 +1,47 @@
+<div fxLayout="column" fxFlex class="small-topbar-search-form-container">
+  <form [formGroup]="form" style="padding: 10px;">
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'name' }"></ng-container>
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'mec_number' }"></ng-container>
+    <ng-container *ngTemplateOutlet="textInput; context: { field: 'worshipplace' }">
+    </ng-container>
+    <ng-container
+      *ngTemplateOutlet="dateRangeInput; context: { field: 'institution_date', label: modulePath + ':model.institution_date' | i18next }">
+    </ng-container>
+    <ng-container
+      *ngTemplateOutlet="dateRangeInput; context: { field: 'reappointment_date', label: modulePath + ':model.reappointment_date' | i18next }">
+    </ng-container>
+  </form>
+
+
+  <div fxLayout="row" fxLayoutAlign="end center" fxFlex="95" fxLayoutGap="15px">
+    <ui-button [label]="'translation:action.clear' | i18next" type="flat" (click)="clearSearch()"></ui-button>
+    <ui-button [label]="'translation:action.search' | i18next" type="raised" color="primary" (click)="onSearchClick()">
+    </ui-button>
+  </div>
+</div>
+
+<!-- TEMPLATES -->
+<ng-template #textInput let-field="field">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="20" fxLayoutAlign="start center">{{ form.get('searchFields').get(field).get('searchWordLabel').value
+      }}:</div>
+    <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+      <ui-input fxFlex [placeholder]="form.get('searchFields').get(field).get('searchWordLabel').value"
+        [appearance]="'standard'" [control]="form.get('searchFields').get(field).get('value')"
+        (keyup.enter)="onSearchClick()">
+      </ui-input>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #dateRangeInput let-field="field" let-label="label" let-startView="startView">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" fxLayoutGap.lt-sm="0px">
+    <div fxFlex="25" fxLayoutAlign="start center">{{ label }}:</div>
+    <div fxFlex="70" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="20px">
+      <ui-datepicker-range fxFlex [appearance]="'standard'"
+        [controlStart]="form.get('searchFields').get(field + '_start').get('value')"
+        [controlEnd]="form.get('searchFields').get(field + '_end').get('value')" (keyup.enter)="onSearchClick()">
+      </ui-datepicker-range>
+    </div>
+  </div>
+</ng-template>

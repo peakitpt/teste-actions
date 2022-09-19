@@ -1,0 +1,22 @@
+{
+    "module": {
+        "name_singular": "Wedding",
+        "name_many": "Weddings"
+    },
+    "message": {
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Matrimonial of <b>{{ groom_name }}</b> and <b>{{ bride_name }}</b>?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <b>{{ count }}</b> Selected Matrimonies?",
+        "delete_success": "Matrimony successfully deleted!",
+        "save_success": "Matrimony successfully saved!"
+    },
+    "model": {
+        "serie_number": "Registration No."
+    },
+    "action": {
+        "delete": "Delet Matrimony?",
+        "edit": "Edit Matrimony",
+        "new": "New Matrimony"
+    }
+}

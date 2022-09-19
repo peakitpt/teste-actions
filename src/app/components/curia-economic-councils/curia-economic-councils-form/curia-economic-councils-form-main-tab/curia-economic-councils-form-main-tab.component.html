@@ -1,0 +1,98 @@
+<section id="process-data-section">
+  <h2>{{ modulePath + ':header.economic_council' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-checkbox fxFlex [label]="modulePath + ':model.active' | i18next" [control]="form.get('active')"></ui-checkbox>
+    <ui-input fxFlex *ngIf="id" [label]="modulePath + ':model.serie_number' | i18next" [readonly]="true" [control]="form.get('serie_number')"></ui-input>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.document_date' | i18next" [control]="form.get('document_date')"></ui-datepicker>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.expiration_date' | i18next" [control]="form.get('expiration_date')"></ui-datepicker>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true" [required]="true"
+      [label]="modulePath + ':model.applicant_entity_description' | i18next"
+      [control]="form.get('applicant_entity_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'applicant_entity', queryStringParams: priestsAndPersonsQSP } }">
+    </ui-input>
+    <ui-input fxFlex [readonly]="true" [required]="true"
+      [label]="modulePath + ':model.applicant_function_description' | i18next"
+      [control]="form.get('applicant_function_description')"
+      [rightTemplate]="{ template: curiaFunctionsRightTemplate, context: { inputName: 'applicant_function', queryStringParams: applicantFunctionQSP } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true" [required]="true"
+      [label]="modulePath + ':model.chapelry_description' | i18next"
+      [control]="form.get('chapelry_description')"
+      [rightTemplate]="{ template: chapelriesRightTemplate, context: { inputName: 'chapelry' } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="45" [readonly]="true"
+      [label]="modulePath + ':model.emolument_description' | i18next"
+      [control]="form.get('emolument_description')"
+      [rightTemplate]="{ template: emolumentsRightTemplate, context: { inputName: 'emolument' } }">
+    </ui-input>
+    <ui-input fxFlex="10" [label]="modulePath + ':model.tax' | i18next" [readonly]="true" [control]="form.get('tax')"></ui-input>
+    <ui-input fxFlex="45" [readonly]="true"
+      [label]="modulePath + ':model.document_entity_description' | i18next"
+      [control]="form.get('document_entity_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'document_entity' } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true"
+      [label]="modulePath + ':model.archpriest_description' | i18next"
+      [control]="form.get('archpriest_description')"
+      [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'archpriest', queryStringParams: groupId3QSP } }">
+    </ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true"
+      [label]="modulePath + ':model.president_description' | i18next"
+      [control]="form.get('president_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'president', queryStringParams: priestsAndPersonsQSP } }">
+    </ui-input>
+    <ui-input fxFlex [readonly]="true"
+      [label]="modulePath + ':model.vice_president_description' | i18next"
+      [control]="form.get('vice_president_description')"
+      [rightTemplate]="{ template: parishionersRightTemplate, context: { inputName: 'vice_president', queryStringParams: priestsAndPersonsQSP } }">
+    </ui-input>
+  </div>
+</section>
+
+<section id="other-data-section">
+  <h2>{{ modulePath + ':header.members' | i18next }}</h2>
+  <div fxLayout="column" fxLayoutGap="10px">
+    <div fxLayout="row">
+      <div fxFlex fxLayout="column" class="tab-content">
+        <ui-table
+          #entitiesTable
+          [checkboxes]="false"
+          [dataSource]="appointmentsDS"
+          [tableColumns]="appointmentsColumns"
+          stickyHeader="true">
+        </ui-table>
+        <div class="add-table-line" (click)="addTableLine(newAppointment, appointmentsFormArray, appointmentsDS)">
+          {{ 'translation:action.add' | i18next }}
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-input fxFlex [readonly]="true"
+        [label]="modulePath + ':model.subscriber1_description' | i18next"
+        [control]="form.get('subscriber1_description')"
+        [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'subscriber1', queryStringParams: canSignQSP } }">
+      </ui-input>
+      <ui-input fxFlex [readonly]="true"
+        [label]="modulePath + ':model.subscriber2_description' | i18next"
+        [control]="form.get('subscriber2_description')"
+        [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'subscriber2', queryStringParams: canSignQSP } }">
+      </ui-input>
+    </div>
+  </div>
+</section>

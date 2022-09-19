@@ -1,0 +1,39 @@
+<div>
+  <ui-input
+    [fxFlex]="fxFlex"
+    [placeholder]="'translation:action.search_ellipsis' | i18next"
+    [leftTemplate]="{ template: searchLeftTemplate }"
+    [rightTemplate]="{ template: searchRightTemplate }"
+    [control]="searchWordControl"
+    (keyup.enter)="search()"
+  ></ui-input>
+</div>
+
+
+<ng-template #searchLeftTemplate>
+  <div class="search-icon-left">
+    <ui-icon icon="search"></ui-icon>
+  </div>
+</ng-template>
+
+<ng-template #searchRightTemplate>
+  <div fxLayout="row">
+    <ui-button class="search-clear-button" type="icon" icon="clear" (click)="clear()"></ui-button>
+    <ui-menu
+      class="search-menu"
+      type="hidden"
+      mainIcon="arrow_drop_down"
+      [menuTemplate]="searchMenuTemplate"
+      xPosition="before"
+      yPosition="below"
+      hasBackdrop="true"
+      [hoverTitle]="'translation:action.search' | i18next"
+    ></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #searchMenuTemplate>
+  <div *ngIf="menuTemplate;" class="menuContainer">
+    <ng-template [ngTemplateOutlet]="menuTemplate"></ng-template>
+  </div>
+</ng-template>

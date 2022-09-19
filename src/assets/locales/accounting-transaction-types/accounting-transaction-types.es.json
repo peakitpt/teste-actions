@@ -1,0 +1,30 @@
+{
+    "module": {
+        "name_many": "Tipificaciones de Movimientos",
+        "name_singular": "Tipificación de Movimiento"
+    },
+    "model": {
+        "code": "Código",
+        "is_default": "Preestablecido",
+        "locale": "Ubicación",
+        "description": "Descripción"
+    },
+    "error": {
+        "code": "Código obligatorio. Debe ser de un solo carácter."
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar el tipo de movimiento con la descripción {{ name }}?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quiere eliminar los <strong>{{ count }}</strong> Tipificaciones seleccionadas de los Movimientos?",
+        "delete_success": "¡La tipificación del movimiento ha sido eliminada con éxito!",
+        "delete_success_plural": "¡La tipificaciones del movimientos eliminados con éxito!",
+        "save_success": "¡Tipo de movimiento guardado con éxito!"
+    },
+    "action": {
+        "next_year": "Pasar de Año",
+        "delete": "¿Eliminar la Tipificación del Movimiento?",
+        "edit": "Editar Tipo de Movimiento",
+        "new": "Nueva Tipificación del Movimiento"
+    }
+}

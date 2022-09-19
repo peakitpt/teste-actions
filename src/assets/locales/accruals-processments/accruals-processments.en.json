@@ -1,0 +1,31 @@
+{
+    "module": {
+        "name_singular": "Accrual Processment",
+        "name_many": "Accruals Processments"
+    },
+    "message": {
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "total": "Total"
+    },
+    "tabs": {
+        "emoluments": "Emoluments",
+        "general": "General"
+    },
+    "header": {
+        "observations": "Observations",
+        "document_to_generate": "Document to be Created",
+        "processing": "Processing",
+        "validity": "Expiry"
+    },
+    "model": {
+        "processing_next_date_end": "Next Processing (Until)",
+        "processing_next_date_start": "Next processing (since)",
+        "processing_next_date": "Next Processing",
+        "accrual_type_description": "Type of Agreement",
+        "client_name": "Costumer"
+    },
+    "action": {
+        "process_selected": "Processing Selected"
+    }
+}

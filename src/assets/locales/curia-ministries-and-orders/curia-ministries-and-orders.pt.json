@@ -1,0 +1,60 @@
+{
+  "module": {
+    "name_singular": "Ministério e Ordem",
+    "name_many": "Ministérios e Ordens"
+  },
+  "action": {
+    "new": "Novo Ministério e Ordem",
+    "edit": "Editar Ministério e Ordem",
+    "delete": "Eliminar Ministério e Ordem?",
+    "save_generate_document": "Guardar e Gerar Doc.",
+    "emit_document": "Emitir Documento",
+    "see_document": "Ver Documento"
+  },
+  "message": {
+    "save_success": "Ministério e Ordem guardado com sucesso!",
+    "delete_success": "Ministério e Ordem apagado com sucesso!",
+    "delete_success_plural": "Ministérios e Ordens apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Ministério e Ordem?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Ministérios e Ordens selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "header": {
+    "ministries_and_orders": "Ministérios e Ordens",
+    "attachments": "Anexos",
+    "other_data": "Outros Dados"
+  },
+  "tabs": {
+    "ministries_and_orders": "Ministérios e Ordens",
+    "attachments_tab": "Anexos"
+  },
+  "model": {
+    "serie_number": "Nº de Registo",
+    "document_date": "Data do Documento",
+    "entity_description": "Candidato",
+    "type_id": "Tipo",
+    "function_description": "Função",
+    "subscriber1_description": "Conferido(a) por",
+    "place_description": "Local",
+    "date": "Data",
+    "hours": "Hora",
+    "subscriber2_description": "Assinante",
+    "emolument_description": "Emolumento",
+    "tax": "Taxa",
+    "document_entity_description": "Entidade a constar no Documento",
+    "delivery_term": "Termo de Entrega",
+    "dispatch": "Despacho",
+    "archive": "Arquivo",
+    "attachment": "Anexo",
+    "description": "Descrição",
+    "options": {
+      "type": {
+        "1": "Ministério",
+        "2": "Ordem"
+      },
+      "Ministério": "Ministério",
+      "Ordem": "Ordem"
+    }
+  }
+}

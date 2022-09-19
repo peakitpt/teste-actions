@@ -1,0 +1,18 @@
+<section id="categories-section">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="center none" fxLayoutGap="10px grid">
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.entity.disabled' | i18next" [control]="form.get('entity.disabled')"></ui-checkbox>
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.is_parishioner' | i18next" [control]="form.get('is_parishioner')"></ui-checkbox>
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.entity.entity_catechist.catechist' | i18next" [control]="form.get('entity.entity_catechist.catechist')"></ui-checkbox>
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.is_catechized' | i18next" [control]="form.get('is_catechized')"></ui-checkbox>
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.entity.entity_mec.mec' | i18next" [control]="form.get('entity.entity_mec.mec')"></ui-checkbox>
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.entity.entity_elder_patient.elder' | i18next" [control]="form.get('entity.entity_elder_patient.elder')"></ui-checkbox>
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.entity.entity_elder_patient.sick' | i18next" [control]="form.get('entity.entity_elder_patient.sick')"></ui-checkbox>
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.entity.entity_acolyte.is_acolyte' | i18next" [control]="form.get('entity.entity_acolyte.is_acolyte')"></ui-checkbox>
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.entity.entity_pastoral_agent.active' | i18next" [control]="form.get('entity.entity_pastoral_agent.active')"></ui-checkbox>
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.entity.entity_reader.is_reader' | i18next" [control]="form.get('entity.entity_reader.is_reader')"></ui-checkbox>
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.entity.can_sign_documents' | i18next" [control]="form.get('entity.can_sign_documents')"></ui-checkbox>
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.entity.newsletter_subscriptor' | i18next" [control]="form.get('entity.newsletter_subscriptor')" [hintMessage]="modulePath + ':placeholder.newsletter_subscriptor' | i18next"></ui-checkbox>
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.entity.is_public_profile' | i18next" [control]="form.get('entity.is_public_profile')"></ui-checkbox>
+    <ui-checkbox fxFlex="50" [label]="modulePath + ':model.deceased' | i18next" [control]="form.get('deceased')"></ui-checkbox>
+  </div>
+</section>

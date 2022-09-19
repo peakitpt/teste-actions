@@ -1,0 +1,128 @@
+<ui-dialog #modal class="modal-list"
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>{{ modulePath + ':module.except_users_with_demo' | i18next }}</h1>
+    <div fxLayout="row" class="header-buttons">
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : bodyTemplate;"></ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center">
+    <ui-paginator #paginator
+      [length]="total"
+      [pageIndex]="page - 1"
+      [pageSize]="limit"
+      (onChangeEvent)="paginationChangeEvent($event)"
+    ></ui-paginator>
+  </div>
+</ng-template>
+
+<!-- TEMPLATES -->
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #bodyTemplate>
+  <div style="padding: 2% 1% 0 1%">
+    <kyr-table-search
+      [menuTemplate]="menuTemplate" [searchWordControl]="form.get('searchWord')"
+      (searchEvent)="searchWordSearch()" (clearEvent)="clearSearch()">
+    </kyr-table-search>
+  </div>
+  <ui-table
+    #table
+    [dataSource]="dataSource"
+    [tableColumns]="tableColumns"
+    [checkboxes]="false"
+    (columnOrdinationEvent)="columnOrdinationEvent($event)"
+    (clickRowEvent)="return($event)"
+    stickyHeader="true">
+  </ui-table>
+  <br/>
+</ng-template>
+
+<ng-template #menuTemplate>
+  <div fxLayout="column" fxFlex="800px" class="modal-search-menu">
+    <form [formGroup]="form" style="padding: 10px;">
+
+      <kyr-search-text
+        [label]="modulePath + ':model.name' | i18next"
+        [placeholder]="modulePath + ':model.name' | i18next"
+        [control]="form.get('searchFields').get('name').get('value')"
+        (searchEvent)="searchFieldSearch()">
+      </kyr-search-text>
+
+      <kyr-search-text
+        [label]="modulePath + ':model.taxpayer' | i18next"
+        [placeholder]="modulePath + ':model.taxpayer' | i18next"
+        [control]="form.get('searchFields').get('taxpayer').get('value')"
+        (searchEvent)="searchFieldSearch()">
+      </kyr-search-text>
+
+      <kyr-search-text
+        [label]="modulePath + ':model.address' | i18next"
+        [placeholder]="modulePath + ':model.address' | i18next"
+        [control]="form.get('searchFields').get('address').get('value')"
+        (searchEvent)="searchFieldSearch()">
+      </kyr-search-text>
+
+      <kyr-search-text
+        [label]="modulePath + ':model.complete_relation' | i18next"
+        [placeholder]="modulePath + ':model.complete_relation' | i18next"
+        [control]="form.get('searchFields').get('complete_relation').get('value')"
+        (searchEvent)="searchFieldSearch()">
+      </kyr-search-text>
+
+      <div fxLayout="row" fxLayoutGap="25px">
+        <div fxFlex="20" fxLayoutAlign="start center">{{ modulePath + ':model.diocese_id' | i18next }}:</div>
+        <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+          <ui-select
+            fxFlex
+            [appearance]="'standard'"
+            [options]="entityEkklesiaLocationOptions"
+            [control]="form.get('searchFields').get('diocese_id').get('value')">
+          </ui-select>
+        </div>
+      </div>
+
+
+      <div *ngIf="hasBirthDate" fxLayout="row" fxLayoutGap="25px">
+        <div fxFlex="20" fxLayoutAlign="start center">{{ modulePath + ':model.entity__birth_date' | i18next }}:</div>
+        <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+          <ui-datepicker-range
+            fxFlex
+            [appearance]="'standard'"
+            [controlStart]="form.get('searchFields').get('birth_date_start').get('value')"
+            [controlEnd]="form.get('searchFields').get('birth_date_end').get('value')"
+            (keyup.enter)="searchFieldSearch()">
+          </ui-datepicker-range>
+        </div>
+      </div>
+
+    </form>
+    <div fxLayout="row" fxLayoutAlign="end center" fxFlex="95" fxLayoutGap="15px">
+      <ui-button [label]="'translation:action.clear' | i18next" type="flat" (click)="clearSearch()"></ui-button>
+      <ui-button [label]="'translation:action.search' | i18next" type="raised" color="primary" (click)="searchFieldSearch()"></ui-button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #birthDateTemplate let-data="data">
+  {{ data.entity__birth_date | date:('translation:format.date' | i18next) }}
+</ng-template>
+<!-- TEMPLATES END -->

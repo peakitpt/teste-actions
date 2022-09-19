@@ -1,0 +1,52 @@
+{
+    "module": {
+        "name_singular": "Country",
+        "name_many": "Countries"
+    },
+    "country": {
+        "USA": "United States of America",
+        "Portugal": "Portugal"
+    },
+    "action": {
+        "addCountry": "Add Country",
+        "new_country": "New Country",
+        "edit-country": "Edit Country",
+        "edit": "Edit Country",
+        "new": "New Country",
+        "delete": "Delete Country"
+    },
+    "message": {
+        "save_success": "Country successfully saved!",
+        "delete_success": "Country successfully deleted!",
+        "delete_success_plural": "Countries successfully deleted!",
+        "delete_are_you_sure": "Are you sure that you want to delete the Country with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure that you want to delete all the <strong>{{ count }}</strong> selected Countries?",
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected"
+    },
+    "placeholder": {
+        "name": "ex.: Portugal",
+        "officialName": "ex.: Republic of Portugal",
+        "commonCode": "ex.: POR",
+        "officialCode1": "ex.: PT",
+        "officialCode2": "ex.: PRT"
+    },
+    "model": {
+        "name": "Name",
+        "officialName": "Official name",
+        "name_official": "Official name",
+        "commonCode": "Common Code",
+        "cioc": "Common Code",
+        "officialCode1": "Official Code",
+        "cca2": "Official Code",
+        "officialCode2": "Official Code 2",
+        "cca3": "Official Code 2",
+        "validated": "Validated"
+    },
+    "validated": "Validated",
+    "officialCode2": "Oficial Code 2",
+    "officialCode1": "Oficial Code",
+    "commonCode": "Common Code",
+    "officialName": "Oficial Name",
+    "name": "Name"
+}

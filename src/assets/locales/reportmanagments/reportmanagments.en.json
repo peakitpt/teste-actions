@@ -1,0 +1,28 @@
+{
+    "module": {
+        "name_singular": "Report Management",
+        "name_many": "Reports Management"
+    },
+    "header": {
+        "here": "aquí",
+        "footer": "Pie de página",
+        "header": "Cabecera"
+    },
+    "model": {
+        "contacts_footer": "Contacto",
+        "address_footer": "Dirección",
+        "img_header_url": "Logotipo",
+        "attachment_filename": "Logotipo",
+        "chapelry_header": "Subtítulo/Parroquia",
+        "arciprestship_header": "Título/ Arciprestazgo",
+        "url": "URL"
+    },
+    "message": {
+        "no_website_found": "No se ha encontrado ninguna configuración",
+        "save_success": "¡Configuración de informes guardados con éxito!",
+        "modal_closed": "Is the modal closed?"
+    },
+    "action": {
+        "open_again": "Open again"
+    }
+}

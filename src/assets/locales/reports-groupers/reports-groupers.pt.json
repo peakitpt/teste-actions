@@ -1,0 +1,26 @@
+{
+  "module": {
+    "name_singular": "Agrupador de Relatórios",
+    "name_many": "Agrupadores de Relatórios"
+  },
+  "action": {
+    "add": "Adicionar Agrupador de Relatórios",
+    "new": "Novo Agrupador de Relatórios",
+    "edit": "Editar Agrupador de Relatórios",
+    "delete": "Apagar Agrupador de Relatórios"
+  },
+  "message": {
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados",
+    "save_success": "Agrupador de Relatórios guardado com sucesso!",
+    "delete_success": "Agrupador de Relatórios apagado com sucesso!",
+    "delete_success_plural": "Agrupadores de Relatórios apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Agrupador de Relatórios com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Agrupadores de Relatórios selecionados?"
+  },
+  "model": {
+    "name": "Nome",
+    "enabled": "Ativo",
+    "locale": "Localização"
+  }
+}

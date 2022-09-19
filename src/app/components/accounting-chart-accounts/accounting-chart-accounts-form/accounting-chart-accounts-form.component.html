@@ -1,0 +1,124 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="onModalClose()"
+  [disableClose]="true"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>{{ (id ? modulePath + ':action.edit' : modulePath + ':action.new') | i18next }}</h1>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu *ngIf="!isQuickInsertion" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+    <ui-button
+      *ngIf="!isQuickInsertion"
+      type="flat" icon="save"
+      [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true">
+    </ui-button>
+
+    <ui-button
+      type="flat" icon="save"
+      [label]="(isQuickInsertion ? 'translation:action.create_insert' : 'translation:action.save') | i18next"
+      color="accent" (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body">
+    <section>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex [label]="modulePath + ':model.year' | i18next" [control]="form.get('year')" [readonly]="true" [required]="true" type="number"></ui-input>
+        <ui-input fxFlex [label]="modulePath + ':model.account_id' | i18next" [control]="form.get('account_id')" [required]="true" type="number"></ui-input>
+        <ui-input fxFlex [label]="modulePath + ':model.account_description' | i18next" [control]="form.get('account_description')" [required]="true"></ui-input>
+      </div>
+    </section>
+
+    <section>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-select
+          fxFlex [required]="true"
+          [label]="modulePath + ':model.profit' | i18next"
+          [options]="profitLossOptions"
+          [control]="form.get('profit')" >
+        </ui-select>
+        <ui-checkbox fxFlex class="margin-checkbox"
+          [label]="modulePath + ':model.included_on_profit_loss' | i18next"
+          [control]="form.get('included_on_profit_loss')">
+        </ui-checkbox>
+        <ui-input
+          fxFlex [label]="modulePath + ':model.grouping_code_description'| i18next"
+          [placeholder]=" modulePath + ':model.grouping_code_description'| i18next"
+          readonly="true"
+          [control]="form.get('grouping_code_description')"
+          [rightTemplate]="{ template: accountingChartAccountsRightTemplate, context: { inputName: 'grouping_code'} }">
+        </ui-input>
+      </div>
+    </section>
+
+    <section>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input
+          fxFlex [label]="modulePath + ':model.taxonomy_code_description'| i18next"
+          [placeholder]=" modulePath + ':model.taxonomy_code_description'| i18next"
+          readonly="true"
+          [control]="form.get('taxonomy_code_description')"
+          [rightTemplate]="{ template: accountingTaxonomyCodesRightTemplate, context: { inputName: 'taxonomy_code'} }">
+        </ui-input>
+        <ui-input *ngIf="id" fxFlex
+          [label]="modulePath + ':model.grouping_category' | i18next"
+          [control]="form.get('grouping_category')"
+          [readonly]="true">
+        </ui-input>
+      </div>
+    </section>
+  </form>
+</ng-template>
+
+<ng-template #accountingChartAccountsRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('accounting-chart-accounts-modal', inputName)"></ui-button>
+    <ui-menu type="icons" [model]="accountingChartAccountsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #accountingTaxonomyCodesRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('accounting-taxonomy-codes-modal', inputName)"></ui-button>
+    <ui-menu type="icons" [model]="accountingTaxonomyCodesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>

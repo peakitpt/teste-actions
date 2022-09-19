@@ -1,0 +1,38 @@
+{
+    "model": {
+        "comments": "Observations",
+        "serie_number": "Registration No.",
+        "admission_local_description": "In the place",
+        "entity_by_description": "Admitted by",
+        "admission_hour": "Admission time",
+        "admission_date": "Admission date",
+        "date": "Registration date",
+        "entity_catechumen_description": "Name",
+        "document_entity_description": "Entity to be listed on the document",
+        "tax": "Tax",
+        "emolument_description": "Emolument",
+        "sheet": "Sheet",
+        "seat_number": "Certificate Nº"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to eliminate the Catechumenate from <b>{{name }}</b>?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <b>{{ count }}</b> Catechumenates selected?",
+        "delete_success": "Catechumenate successfully deleted!",
+        "save_success": "Catechumenate successfully saved!"
+    },
+    "header": {
+        "admission_details": "Admission details",
+        "treasury_document": "Cash document"
+    },
+    "action": {
+        "delete": "Delete Catechumenate?",
+        "edit": "Edit Catechumenate",
+        "new": "New Catechumenate"
+    },
+    "module": {
+        "name_many": "Catechumenate",
+        "name_singular": "Catechumenate"
+    }
+}

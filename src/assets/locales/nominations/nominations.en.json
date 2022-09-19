@@ -1,0 +1,50 @@
+{
+    "tabs": {
+        "attachments": "Attachments",
+        "clergy_nomination": "Clergy Nominations"
+    },
+    "model": {
+        "options": {
+            "parishioner": "Parish priest",
+            "not_parishioner": "No Parish Priest"
+        },
+        "nomination_attachments": {
+            "attachment_description": "Description",
+            "attachment_filename": "Attached"
+        },
+        "observations": "Observations",
+        "function_details": "Description of Functions",
+        "moderator_description": "Moderator",
+        "subscriber2_description": "Subscriber 2",
+        "subscriber1_description": "Subscriber 1",
+        "bishop_description": "Bishop/Archbishop",
+        "expiration_date": "Expiration Date",
+        "birth_place": "Naturality",
+        "enabled": "Active",
+        "nomination_date": "Date of Nomination",
+        "place_description": "Place",
+        "function_description": "Function",
+        "nomination_type_id": "Type of Nomination",
+        "entity_priest_description": "Nominated",
+        "serie_number": "Registration No."
+    },
+    "message": {
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Nomination with the name \"<strong>{{name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> selected nominations?",
+        "delete_success": "Nomination successfully deleted!",
+        "delete_success_plural": "Nominations successfully deleted!",
+        "save_success": "Nomination successfully saved!"
+    },
+    "action": {
+        "delete": "Delete Nomination?",
+        "edit": "Edit Nomination",
+        "new": "New Nomination",
+        "add": "Add Nomination"
+    },
+    "module": {
+        "name_many": "Nominations",
+        "name_singular": "Nomination"
+    }
+}

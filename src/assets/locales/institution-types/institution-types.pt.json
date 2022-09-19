@@ -1,0 +1,51 @@
+{
+  "module": {
+    "name_singular": "Tipo de Instituição",
+    "name_many": "Tipos de Instituição"
+  },
+  "action": {
+    "new": "Novo Tipo de Instituição",
+    "edit": "Editar Tipo de Instituição",
+    "delete": "Eliminar Tipo de Instituição?"
+  },
+  "message": {
+    "save_success": "Tipo de Instituição guardada com sucesso!",
+    "delete_success": "Tipo de Instituição apagada com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Tipo de Instituição com o nome \"<strong>{{ name }}</strong>\"?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Nome",
+    "photo": "Fotografia",
+    "archpriestship": "Seletor de Arciprestado",
+    "chapelry": "Seletor de Paróquia",
+    "institution_gender": "Seletor de Género",
+    "timetable": "Horário",
+    "holidays": "Feriados",
+    "property": "Propriedade",
+    "mandate": "Mandato",
+    "community": "Casa/comunidade",
+    "congregation": "Seletor de Congregação",
+    "secular_institute": "Seletor de Instituto Secular (Comunidade)",
+    "valences": "Adição de Valências",
+    "christian_life_centers_type": "Seletor de Tipo de Centro de Vida Cristã",
+    "website_type_id": "Seletor de Tipo de Website",
+    "scholarity": "Escolaridade",
+    "social_media": "Campos relativos a Comunicação Social",
+    "periodicity_id": "Seletor de Periodicidade",
+    "historical_note": "Nota histórica",
+    "observations": "Observações",
+    "locale": "Idioma",
+    "localeOptions": {
+      "portuguese": "Português",
+      "spanish": "Espanhol",
+      "english": "Inglês"
+    },
+    "institution_plural_description": "Instituições"
+  },
+  "header": {
+    "institution_type": "Tipo de Instituição",
+    "options": "Opções disponíveis para preenchimento"
+  }
+}

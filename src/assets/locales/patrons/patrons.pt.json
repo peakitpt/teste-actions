@@ -1,0 +1,24 @@
+{
+  "module": {
+    "name_singular": "Orago",
+    "name_many": "Oragos"
+  },
+  "action": {
+    "new": "Novo Orago",
+    "edit": "Editar Orago",
+    "delete": "Eliminar Orago?"
+  },
+  "message": {
+    "save_success": "Orago guardado com sucesso!",
+    "delete_success": "Orago apagado com sucesso!",
+    "delete_success_plural": "Oragos apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Orago com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Oragos selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Nome",
+    "validated": "Validado"
+  }
+}

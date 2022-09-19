@@ -1,0 +1,17 @@
+<section *ngIf="form.get('entity.entity_elder_patient.elder').value === true" id="elder-sick-sunday-communion-section">
+  <h2>{{ modulePath + ':header.elder_sick_sunday_communion' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <div class="center-checkbox" fxFlex="35">
+      <ui-checkbox fxFlex [label]="modulePath + ':model.entity.entity_elder_patient.sunday_communion' | i18next" [control]="form.get('entity.entity_elder_patient.sunday_communion')"></ui-checkbox>
+    </div>
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity.entity_elder_patient.sunday_communion_minister_description' | i18next" [control]="form.get('entity.entity_elder_patient.sunday_communion_minister_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }" [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'entity.entity_elder_patient.sunday_communion_minister' } }"></ui-input>
+  </div>
+</section>
+
+<section *ngIf="form.get('entity.entity_elder_patient.sick').value === true" id="elder-sick-anointing-of-the-sick-section">
+  <h2>{{ modulePath + ':header.elder_sick_anointing_of_the_sick' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker startView="multi-year" fxFlex [label]="modulePath + ':model.entity.entity_elder_patient.anointing_ofthe_sick_date' | i18next" [control]="form.get('entity.entity_elder_patient.anointing_ofthe_sick_date')" [maxDate]="todayDate"></ui-datepicker>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.entity_elder_patient.anointing_ofthe_sick_locale' | i18next" [control]="form.get('entity.entity_elder_patient.anointing_ofthe_sick_locale')"></ui-input>
+  </div>
+</section>

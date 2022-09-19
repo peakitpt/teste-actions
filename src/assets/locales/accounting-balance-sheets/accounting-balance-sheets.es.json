@@ -1,0 +1,32 @@
+{
+    "module": {
+        "name_many": "Balance de Comprobación Analítico",
+        "name_singular": "Balance analítico"
+    },
+    "model": {
+        "options": {
+            "abertura": "Apertura"
+        },
+        "period_aggregated_balance": "Saldo Acumulado",
+        "period_aggregated_credit_amount": "Crédito Acumulado",
+        "period_aggregated_debit_amount": "Débito Acumulado",
+        "period_total_credit": "Valor a acreditar en el Período",
+        "period_total_debit": "Valor del débito en el Período",
+        "account_description": "Descripción",
+        "account_id": "Cuenta",
+        "period": "Período",
+        "exclude_blank_periods": "Excluir las cuentas sin contabilizar en el periodo",
+        "account_id_end": "Código de Cuenta Final",
+        "account_id_start": "Código de Cuenta Inicio"
+    },
+    "recalculate": {
+        "confirm_question": "¿Estás seguro de que quieres continuar?",
+        "body": "Este proceso no es inmediato y puede tardar unos minutos. Puedes seguir utilizando Kyrios cuando los cálculos se realicen en segundo plano.",
+        "title": "Recalculación"
+    },
+    "actions": {
+        "recalculating_failed": "La operación ha fracasado",
+        "recalculating": "Recalculación de los valores de la contabilidad",
+        "recalculate": "Recalculación"
+    }
+}

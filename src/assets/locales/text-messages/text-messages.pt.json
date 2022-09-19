@@ -1,0 +1,67 @@
+{
+  "module": {
+    "name_singular": "SMS",
+    "name_many": "SMS"
+  },
+  "action": {
+    "new": "Nova SMS",
+    "edit": "Editar SMS",
+    "delete": "Eliminar SMS?",
+    "send_test": "Testar SMS",
+    "send": "Enviar"
+  },
+  "message": {
+    "save_success": "SMS guardada com sucesso!",
+    "delete_success": "SMS apagada com sucesso!",
+    "delete_success_plural": "SMS apagadas com sucesso!",
+    "send_success": "SMS enviada com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a SMS com a descrição \"<strong>{{ description }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> SMS selecionadas?",
+    "test_are_you_sure": "Tem a certeza de que pretende enviar a SMS \"<strong>{{ description }}</strong>\" para os números de teste?<br/>Será enviada para: <strong>{{ numbers }}</strong><br/><br/>As alterações serão guardadas automaticamente.",
+    "test_are_you_sure_plural": "Tem a certeza de que pretende enviar <strong>{{ count }}</strong> SMS para os respetivos números de teste?",
+    "error_no_test_recipient": "Não tem números de teste definidos",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas",
+    "error_no_recipient": "Preencha pelo menos um dos campos dos Destinatários",
+    "no_sms_configs": "As SMS apenas serão enviadas quando preencher a <b>Configuração de SMS</b> com dados válidos, nas <a href='{{ url }}'>Definições da Subscrição</a>",
+    "error_403": "Não tem permissões para enviar SMS através do servidor de envio especificado."
+  },
+  "model": {
+    "description": "Descrição",
+    "sending_date": "Data para envio",
+    "sending_hour": "Hora para envio",
+    "active": "Enviar",
+    "sent_at": "Enviada às",
+    "sent": "Enviada",
+    "frequency": "Frequência",
+    "message": "Mensagem",
+    "group": "Para (grupo)",
+    "test_recipient": "Número para teste",
+    "additional_recipients": "Para (números)",
+    "placeholder": {
+      "additional_recipients": "Separados por ponto e vírgula (;)"
+    },
+    "text_messages_errors": {
+      "phone_number": "Número",
+      "entity_description": "Entidade"
+    }
+  },
+  "header": {
+    "schedule": "Agendar",
+    "message": "Mensagem",
+    "recipients": "Destinatários",
+    "details": "Detalhes do envio"
+  },
+  "tabs": {
+    "text_message": "Mensagem",
+    "errors": "Erros",
+    "errors_description": "Não foi possível entregar a SMS a estes números:"
+  },
+  "frequency": {
+    "unique": "Única",
+    "daily": "Diária",
+    "weekly": "Semanal",
+    "monthly": "Mensal",
+    "yearly": "Anual"
+  }
+}

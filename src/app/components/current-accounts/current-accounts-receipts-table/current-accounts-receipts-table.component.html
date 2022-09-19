@@ -1,0 +1,131 @@
+<ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : bodyTemplate;">
+</ng-container>
+
+
+<!-- TEMPLATES -->
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #bodyTemplate>
+  <div style="padding: 2% 1% 0 1%">
+    <kyr-table-search
+      [menuTemplate]="menuTemplate" [searchWordControl]="form.get('searchWord')"
+      (searchEvent)="searchWordSearch()" (clearEvent)="clearSearch()">
+    </kyr-table-search>
+  </div>
+  <ui-table
+    #table
+    [dataSource]="dataSource"
+    [tableColumns]="tableColumns"
+    [checkboxes]="false"
+    (columnOrdinationEvent)="columnOrdinationEvent($event)"
+    (clickRowEvent)="edit ? null : openCurrentAccountReceipt($event)"
+    stickyHeader="true">
+  </ui-table>
+  <br/>
+</ng-template>
+
+<ng-template #menuTemplate>
+  <div fxLayout="column" fxFlex="800px" class="modal-search-menu">
+    <form [formGroup]="form" style="padding: 10px;">
+
+      <kyr-search-text
+        [label]="modulePath + ':model.serie_number' | i18next"
+        [placeholder]="modulePath + ':model.serie_number' | i18next"
+        [control]="form.get('searchFields').get('serie_number').get('value')"
+        (searchEvent)="searchFieldSearch()">
+      </kyr-search-text>
+
+      <div fxLayout="row" fxLayoutGap="25px">
+        <div fxFlex="20" fxLayoutAlign="start center">{{ modulePath + ':model.receipt_date' | i18next }}:</div>
+        <div fxFlex="80" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start strech" fxLayoutGap="10px">
+          <ui-datepicker-range
+            fxFlex
+            [appearance]="'standard'"
+            [controlStart]="form.get('searchFields').get('receipt_date_start').get('value')"
+            [controlEnd]="form.get('searchFields').get('receipt_date_end').get('value')"
+            (keyup.enter)="searchFieldSearch()">
+          </ui-datepicker-range>
+        </div>
+      </div>
+
+      <kyr-search-text
+        [label]="modulePath + ':model.total_amount' | i18next"
+        [placeholder]="modulePath + ':model.total_amount' | i18next"
+        [control]="form.get('searchFields').get('total_amount').get('value')"
+        (searchEvent)="searchFieldSearch()">
+      </kyr-search-text>
+
+    </form>
+    <div fxLayout="row" fxLayoutAlign="end center" fxFlex="95" fxLayoutGap="15px">
+      <ui-button [label]="'translation:action.clear' | i18next" type="flat" (click)="clearSearch()"></ui-button>
+      <ui-button [label]="'translation:action.search' | i18next" type="raised" color="primary" (click)="searchFieldSearch()"></ui-button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #printPDFTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="description" (onClickEvent)="openDocument(data)"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #viewDetailsTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="visibility" (onClickEvent)="openCurrentAccountReceipt(data)"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #deleteTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="delete" (onClickEvent)="deleteDocument(data)"></ui-button>
+  </div>
+</ng-template>
+
+<!-- TEMPLATES END -->
+
+
+<!-- CONFIRMATION DELETE Modal -->
+
+<ui-dialog #confirmDeleteModal
+  [inputHeaderTemplate]="confirmDeleteHeader"
+  [inputBodyTemplate]="confirmDeleteBody"
+  [inputFooterTemplate]="confirmDeleteFooter"
+  [width]="800"
+>
+</ui-dialog>
+
+<ng-template #confirmDeleteHeader>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1>
+      {{ modulePath + ':action.confirm_delete' | i18next }}
+    </h1>
+    <div class="header-buttons" fxLayout="row">
+      <ui-button type='icon' icon="close" disableRipple="true" disableFocusRipple="true" (onClickEvent)="confirmDeleteModal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #confirmDeleteBody>
+  <p [innerHTML]="modulePath + ':delete.1st' | i18next: { name: currentAccountReceiptToDelete?.serie_number}">
+  </p>
+  <p>
+    <b>
+      {{ modulePath + ':delete.2nd' | i18next }}
+    </b>
+  </p>
+</ng-template>
+
+<ng-template #confirmDeleteFooter>
+  <div class="footer-buttons" fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" [label]="'translation:action.cancel' | i18next" (onClickEvent)="confirmDeleteModal.close()"></ui-button>
+    <ui-button type="flat" [label]="'translation:action.delete' | i18next" color="warn" (onClickEvent)="confirmDelete()"></ui-button>
+  </div>
+</ng-template>
+
+<!-- CONFIRMATION DELETE Modal -->

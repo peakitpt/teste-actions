@@ -1,0 +1,50 @@
+{
+    "module": {
+        "name_singular": "Record Importer",
+        "name_many": "Records Importer"
+    },
+    "text": {
+        "9th_paragraf": "You can continue to use Kyrios as normal and follow the import status in the notifications icon in the top right corner. The import will be finished when you don't have any messages regarding the import.",
+        "8th_paragraf": "The import could take <strong>several minutes/hours</strong>, depending on the amount of records to import.",
+        "7th_paragraf": "Please be aware that <strong>all data will be updated/written over</strong> by the data contained in the file to be imported! <strong>If you have made changes to records since the last import, it is likely that these will be lost/rewritten!</strong>",
+        "6th_paragraf": "You can continue to use Kyrios as normal and follow the import status in the notifications icon () in the top right corner. The import is finished when you don't have any messages regarding the import.",
+        "5th_bullet_point": "when saving the file, select the File Format <strong>CSV UTF-8 (Comma Delimited) (.csv)</strong>",
+        "4th_bullet_point": "In the Delimiters, select <strong>only</strong> \"Semicolon\". Click Finish and then OK.",
+        "3rd_bullet_point": "select \"Delimited\" and under File source select \"Unicode (UTF-8)\". Click Next;",
+        "2nd_bullet_point": "on the \"Data\" tab, click on the \"From Text\" button and select the CSV file;",
+        "1st_bullet_point": "Open the programme with a blank book;",
+        "5th_paragraf": "To open in <strong>Microsoft Excel</strong>:",
+        "4th_paragraf": "For easy configuration of these aspects, we recommend using the following <strong>free</strong> productivity programs for CSV editing:",
+        "3rd_paragraf": "Fields marked with an asterisk (*) are <strong>required</strong>.",
+        "2nd_paragraf": "The encoding of the CSV file is in <strong>UTF-8</strong>. Please make sure that the encoding is not changed when saving/exporting changes.",
+        "1st_paragraf": "The column delimiter <strong>must</strong> be the <strong>colon (;)</strong>. Please bear this in mind when opening the file for editing and especially when <strong>saving/exporting</strong> the changes."
+    },
+    "model": {
+        "attachment_filename": "File",
+        "importer_type": "Type of Importer"
+    },
+    "options": {
+        "the_chapelry_mdb": "The Parish (MDB)",
+        "the_chapelry_sql": "The Parish (SQL)",
+        "families": "Families",
+        "persons": "Individual Fact Sheets"
+    },
+    "action": {
+        "open_again": "Open again",
+        "download_families": "Families",
+        "download_persons": "Individual Fact Sheets"
+    },
+    "header": {
+        "import": "Import",
+        "import_csv": "Import (CSV)",
+        "export_csv": "Export (CSV)"
+    },
+    "tabs": {
+        "chapelry": "The Parish",
+        "kyrios": "Kyrios"
+    },
+    "message": {
+        "modal_closed": "Is the modal closed?",
+        "save_success": "Registration successfully imported!"
+    }
+}

@@ -1,0 +1,132 @@
+import { Chapelry } from '../chapelries/chapelry.model';
+import { InstitutionType } from '../institution-types/institution-type.model';
+
+export interface InstitutionResponse {
+  results: Institution[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
+export interface Institution {
+  archpriestship_description: any;
+  archpriestship_id: any;
+  chapelry: Chapelry;
+  chapelry_description: string;
+  chapelry_id: number;
+  christian_life_centers_type_id: any;
+  community: any;
+  congregation_description: any;
+  congregation_id: any;
+  created_at: string;
+  curia_status: any;
+  entity: Entity;
+  entity__name: string;
+  entity__disabled: boolean;
+  entity_id: number;
+  entity_institution_valences: any[];
+  entity_godmother_description: any;
+  historical_note: string;
+  holidays: any;
+  id: number;
+  institution_gender: string;
+  institution_type: InstitutionType;
+  institution_type_description: string;
+  institution_type_id: number;
+  institutions_attachments: any;
+  locale: string;
+  mandate: any;
+  observations: any;
+  periodicity_description: any;
+  periodicity_id: any;
+  property: any;
+  scholarity: any;
+  secular_institute_description: any;
+  secular_institute_id: any;
+  social_media_data_sheet: any;
+  social_media_institution_description: any;
+  social_media_type_description: any;
+  social_media_type_id: any;
+  timetable: any;
+  updated_at: string;
+  website_type_id: any;
+  entity_description: any;
+  appointments_list: any;
+}
+
+interface Entity {
+  address?: string;
+  attachment?: string;
+  attachment_filename?: string;
+  block_remove?: boolean;
+  can_sign_documents?: boolean;
+  civil_status?: string;
+  civil_status_id?: number;
+  complete_relation?: string;
+  country_description?: string;
+  country_id?: number;
+  county?: string;
+  created_at?: string;
+  created_by_user_id?: number;
+  deleted?: boolean;
+  deleted_by_user_id?: number;
+  disabled?: boolean;
+  district?: string;
+  door_number?: string;
+  email?: string;
+  emoluments_imported?: boolean;
+  entity_birth_chapelry_description?: string;
+  entity_birth_chapelry_free_text?: string;
+  entity_birth_chapelry_id?: number;
+  entity_ekklesia_location_id?: number;
+  entity_type_id?: number;
+  fax?: string;
+  id?: number;
+  import_origin?: string;
+  inserted_by_user?: boolean;
+  is_archdiocese?: boolean;
+  is_demo?: boolean;
+  is_public_profile?: boolean;
+  latitude?: string;
+  longitude?: string;
+  mass_intention_types_imported?: boolean;
+  mobilephone?: string;
+  name?: string;
+  newsletter_subscriptor?: boolean;
+  parish?: string;
+  paroquia_sw_id?: number;
+  patron_description?: string;
+  patron_id?: number;
+  payment_types_imported?: boolean;
+  phone?: string;
+  photo_filename?: string;
+  photo_url?: string;
+  place?: string;
+  postal_code?: string;
+  reports_group_description?: string;
+  reports_group_id?: number;
+  residence_chapelry_description?: string;
+  residence_chapelry_id?: number;
+  sync_at?: string;
+  sync_id?: number;
+  tax_designation?: string;
+  taxpayer?: string;
+  touched_in_current_importation?: boolean;
+  updated_at?: string;
+  updated_by_user_id?: number;
+  url?: string;
+  validated?: boolean;
+  subscription_modules_permission_attributes: any;
+  entity_person: any;
+  entity_institution_appointments_attributes: any;
+  payer: any;
+}
+
+export interface EntityInstitutionValences {
+  created_at: string;
+  entity_institution_id: number;
+  id: number;
+  updated_at: string;
+  valence_description: string;
+  valence_id: number;
+}

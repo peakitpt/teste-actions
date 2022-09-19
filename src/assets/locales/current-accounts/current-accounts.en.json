@@ -1,0 +1,71 @@
+{
+    "module": {
+        "name_singular": "Current Account",
+        "name_many": "Current Accounts"
+    },
+    "message": {
+        "total": "Total",
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Current Account with the name \"<strong>{{name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the selected <strong>{{ count }}</strong> Current Accounts?",
+        "delete_success": "Current Account successfully deleted!",
+        "delete_success_plural": "Current Accounts successfully deleted!",
+        "save_success": "Current account successfully saved!"
+    },
+    "tabs": {
+        "receipts": "Receipts",
+        "history": "History",
+        "pending": "Pending"
+    },
+    "model": {
+        "extracts_pendents_only": "Only pending",
+        "extracts_period": "Only movements between",
+        "amount_to_receive": "Receiving",
+        "virtual_pending_amount": "Pending value",
+        "documents_type_description": "Type",
+        "document_date": "Doc. Date",
+        "documents_status_description": "Status",
+        "currency": "Coin",
+        "total_amount": "Total value",
+        "serie_number": "Doc. Nº",
+        "observations": "Notes on payment",
+        "treasury_location": "Treasury location",
+        "payment_type_id": "Type of payment",
+        "receipt_date": "Date of receipt",
+        "current_accounts_lines": {
+            "amount_to_receive": "Receiving",
+            "pending_amount": "Pending value",
+            "total_amount": "Total value",
+            "currency": "Coin",
+            "serie_number": "Doc. Nº",
+            "documents_type_description": "Type",
+            "document_date": "Doc. Date",
+            "documents_status_description": "Status"
+        },
+        "balance": "Balance",
+        "entity_description": "Entity",
+        "payment_type": {
+            "VISA": "VISA",
+            "Cheque": "Cheque",
+            "Multibanco": "ATM",
+            "Transferência": "Transfer",
+            "Numerário": "Numerary"
+        }
+    },
+    "action": {
+        "add_document": "Add Document",
+        "notify_selected": "Notify Selected",
+        "confirm_delete": "Remove current account receipt?",
+        "edit": "Edit Current Account",
+        "new": "New Current Account",
+        "add": "Add Current Account"
+    },
+    "delete": {
+        "2nd": "This will revert all documents entered in it to the previous state and will affect the current account balance.",
+        "1st": "Do you really want to remove current account receipt No. <strong>{{ name }}</strong>?"
+    },
+    "header": {
+        "current_account": "Current Account"
+    }
+}

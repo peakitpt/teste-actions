@@ -1,0 +1,51 @@
+<section id="godfather-section" *ngIf="model.entity_godfather_description">
+  <h2>{{ modulePath + ':header.godfather' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity_godfather_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_godfather_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity_godfather?.entity_person.id)">{{ model.entity_godfather_description }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_godfather_is_not_confirmed' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.entity_godfather_is_not_confirmed ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity_godfather_representative_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_godfather_representative_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity_godfather_representative?.entity_person.id)">{{ model.entity_godfather_representative_description }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="godmother-section" *ngIf="model.entity_godmother_description">
+  <h2>{{ modulePath + ':header.godmother' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity_godmother_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_godmother_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity_godmother?.entity_person.id)">{{ model.entity_godmother_description }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_godmother_is_not_confirmed' | i18next }}:</div>
+        <div fxFlex>
+          <ui-icon [icon]="model.entity_godmother_is_not_confirmed ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity_godmother_representative_description">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_godmother_representative_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity_godmother_representative?.entity_person.id)">{{ model.entity_godmother_representative_description }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

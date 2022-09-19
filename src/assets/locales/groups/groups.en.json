@@ -1,0 +1,22 @@
+{
+    "module": {
+        "name_singular": "Group",
+        "name_many": "Groups"
+    },
+    "message": {
+        "save_success": "Group successfully saved!",
+        "delete_success": "Group successfully deleted!",
+        "delete_are_you_sure": "Are you sure that you want to delete the group \"<strong>{{ description }}</strong>\"?",
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected"
+    },
+    "model": {
+        "name": "Name",
+        "active": "Active"
+    },
+    "action": {
+        "addCountry": "Add Group",
+        "new": "New Group",
+        "edit": "Edit Group"
+    }
+}

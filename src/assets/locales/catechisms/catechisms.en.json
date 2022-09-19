@@ -1,0 +1,118 @@
+{
+    "module": {
+        "name_singular": "Catechism",
+        "name_many": "Catechisms",
+        "name_session_many": "Catechesis Sessions",
+        "name_session_singular": "Catechesis Session"
+    },
+    "catechism_years": {
+        "10_year": "10th Year",
+        "9_year": "9th Year",
+        "8_year": "8th Year",
+        "7_year": "7th Year",
+        "6_year": "6th Year",
+        "5_year": "5th Year",
+        "4_year": "4th Year",
+        "3_year": "3rd Year",
+        "2_year": "2nd Year",
+        "1_year": "1st Year"
+    },
+    "header": {
+        "students": "Catechizing",
+        "catechists": "Catechists"
+    },
+    "tabs": {
+        "individual_docs": "Individual Documents",
+        "transfers": "Download",
+        "sessions": "Sessions",
+        "catechism": "Catechesis"
+    },
+    "placeholder": {
+        "schedule": "Schedule",
+        "class_year": "aaaa/aaaa"
+    },
+    "model": {
+        "catechisms_individual_documents": {
+            "doc_transfer_url": "Download",
+            "doc_attendance_sheet_url": "Presence sheet",
+            "doc_historic_url": "Historic",
+            "doc_inscription_url": "Registration",
+            "entity_description": "Catechizing"
+        },
+        "catechisms_sessions": {
+            "catechisms_sessions_presences_attributes": {
+                "present": "Attendance",
+                "entity_description": "Catechizing"
+            },
+            "observations": "Comments",
+            "summary": "Summary",
+            "presences": "Attendances",
+            "date": "Date"
+        },
+        "catechisms_transfers": {
+            "transfer_date": "Date",
+            "chapelry_description": "Parish of destiny",
+            "entity_description": "Catechizing",
+            "next_class_year_inscription": "Just next pastoral year?",
+            "transited": "Have passed?"
+        },
+        "catechisms_students": {
+            "inscription_date": "Registration",
+            "observations": "Comments",
+            "education_sponsor_description": "Charge of Education",
+            "entity_description": "Catechising"
+        },
+        "catechisms_catechists": {
+            "entity_description": "Catechist"
+        },
+        "finalized": "Finished",
+        "is_for_adults_abrev": "Adults",
+        "is_for_adults": "For adults",
+        "end_time": "Ending time",
+        "start_time": "Starting time",
+        "week_day": "Weekday",
+        "catechists_names_for_search": "The Catechist",
+        "name": "Description",
+        "year": "Year",
+        "class_year": "Pastoral Year"
+    },
+    "message": {
+        "finalize_message": "Do you want to finish this class?<br/><br/><strong> Attendances will be counted on the catechism sheets and it will not be possible to edit the class.</strong>",
+        "passing_grade_message": "Do you want to pass the year without ending this class?<br/><br/><strong>This class will remain editable and the attendance will not be counted on the catechism sheets until it is finished.</strong>",
+        "passing_grade_finalize_message": "Do you want to finish this class at the end of the year?<br/><br/><strong>This class will be finished and a new window will be opened so that you can create the new class.<br>The attendance of this class will be counted on the catechism sheets and it will no longer be possible to edit it.</strong>",
+        "error_blank_presences": "Please fill in all mandatory fields of the Attendance Schedule",
+        "delete_session_are_you_sure": "Are you sure you want to eliminate the Catechesis Session with the summary<br>\"<strong>{{ summary }}</strong>\"?",
+        "delete_session_are_you_sure_plural": "Are you sure you want to eliminate the <strong>{{ count }}</strong> selected Catechetical Sessions?",
+        "delete_session_success": "Catechesis session successfully deleted!",
+        "save_session_success": "Catechesis session successfully saved!",
+        "error_blank_transfers": "Please, fill in all required fields of the Transfer table",
+        "error_blank_students": "Please, fill in all the required fields of the Catechising table",
+        "error_blank_catechists": "Please, fill in all the required fields of the Catechists table",
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to eliminate the Catechesis Group<br>\"<strong>{{ year }} {{ classYear }} — {{ name }}</strong>\"<br>of catechists<br><strong>{{ catechists }}</strong>?",
+        "delete_are_you_sure_plural": "Are you sure you want to eliminate the  <strong>{{ count }}</strong> selected Catechism Groups?",
+        "delete_success": "Catechesis Group successfully deleted!",
+        "save_success": "Group of Catechesis successfully saved!",
+        "cant_edit_finalized_catechism": "This Catechesis Group has already been finalized. It is not possible to edit it",
+        "finalized_success": "The Catechesis Group has been successfully finished!",
+        "cant_manage_finalized_catechism_session": "It is not possible to run sessions because the Catechism Group has already been finalised",
+        "missing_sponsors_message": "This Catechism Group is not marked as <strong> \"For adults\" </strong> and there are catechized children without a tutor associate. <br/><br/><strong> Do you still want to save it?</strong>",
+        "student_exists_on_another_catechism_message": "The catechized<strong>{{ student_names }}</strong> already exist in another Catechetical Group for the pastoral year <strong>{{ class_year }}</strong>. <br/><br/><strong> Do you still want to save it?</strong>",
+        "student_exists_on_another_catechism_message_plural": "The catechized<strong>{{ student_names }}</strong></strong> already exist in another Catechetical Group for the pastoral year <strong>{{ class_year }}</strong>.<br/><br/><strong>Do you still want to save it?</strong>"
+    },
+    "action": {
+        "finalize": "Complete",
+        "passing_grade": "Passing the year",
+        "passing_grade_finalize": "Ending and passing the year",
+        "delete_session": "Delete Catechesis Session?",
+        "edit_session": "Edit Catechesis Session",
+        "new_session": "New Catechesis Session",
+        "add_session": "Add Session",
+        "delete": "Delete Catechesis Group?",
+        "edit": "Edit Catechesis Group",
+        "new": "New Catechesis Group",
+        "save_with_missing_sponsors": "Saving without Parents",
+        "save_when_student_exists_on_another_catechism": "Save"
+    }
+}

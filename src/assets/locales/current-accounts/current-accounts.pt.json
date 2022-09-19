@@ -1,0 +1,74 @@
+{
+  "module": {
+    "name_singular": "Conta Corrente",
+    "name_many": "Contas Correntes"
+  },
+  "action": {
+    "add": "Adicionar Conta Corrente",
+    "new": "Novo Conta Corrente",
+    "edit": "Editar Conta Corrente",
+    "confirm_delete": "Remover recibo de conta corrente?",
+    "notify_selected": "Notificar Selecionados",
+    "add_document": "Adicionar Documento"
+  },
+  "message": {
+    "save_success": "Conta Corrente guardado com sucesso!",
+    "delete_success": "Conta Corrente apagado com sucesso!",
+    "delete_success_plural": "Contas Correntes apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Conta Corrente com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Contas Correntes selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados",
+    "total": "Total"
+  },
+  "model": {
+    "entity_description": "Entidade",
+    "balance": "Saldo",
+    "current_accounts_lines": {
+      "documents_status_description": "Estado",
+      "document_date": "Data do doc.",
+      "documents_type_description": "Tipo",
+      "serie_number": "Doc. Nº",
+      "currency": "Moeda",
+      "total_amount": "Valor total",
+      "pending_amount": "Valor pendente",
+      "amount_to_receive": "A receber"
+    },
+    "receipt_date": "Data do recibo",
+    "payment_type_id": "Tipo de pagamento",
+    "treasury_location": "Local da tesouraria",
+    "observations": "Observações ao pagamento",
+    "serie_number": "Doc. Nº",
+    "total_amount":"Valor total",
+    "currency": "Moeda",
+    "documents_status_description": "Estado",
+    "document_date": "Data do doc.",
+    "documents_type_description": "Tipo",
+    "virtual_pending_amount": "Valor pendente",
+    "amount_to_receive": "A receber",
+    "extracts_period": "Apenas movimentos entre",
+    "extracts_pendents_only": "Apenas pendentes",
+    "payment_type": {
+      "Numerário": "Numerário",
+      "Transferência": "Transferência",
+      "Multibanco": "Multibanco",
+      "Cheque": "Cheque",
+      "VISA": "VISA"
+    }
+  },
+  "tabs": {
+    "pending": "Pendentes",
+    "history": "Histórico",
+    "receipts": "Recibos"
+  },
+  "header": {
+    "current_account": "Conta Corrente"
+  },
+  "delete": {
+    "1st": "Deseja realmente remover recibo de conta corrente Nº <strong>{{ name }}</strong>?",
+    "2nd": "Isto reverterá todos os documentos nele inseridos para o estado anterior e irá afetar o saldo da conta corrente."
+  }
+}
+
+
+

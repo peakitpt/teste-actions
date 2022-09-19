@@ -1,0 +1,90 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.serie_number }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model$ | async as model">
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          [hasBackdrop]="false"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          fxHide.gt-sm="true"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          [hasBackdrop]="false"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="treasuryDocOptionsMenu.length"
+          [hoverTitle]="'documents:action.treasury_doc.title' | i18next"
+          type="icons"
+          mainIcon="request_quote"
+          [model]="treasuryDocOptionsMenu"
+          (sendValue)="menuClick($event, model)">
+        </ui-menu>
+        <ui-button [title]="'translation:action.edit' | i18next" type='icon' icon="edit" (onClickEvent)="editModal()"></ui-button>
+        <ui-menu
+          [hoverTitle]="'translation:action.more' | i18next"
+          type="icons"
+          [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <kyr-details [fields]="detailsFields"></kyr-details>
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<ng-template #freeDescriptionTemplate let-field="field" let-model="model">
+  <div *ngIf="model" fxFlex [innerHTML]="model.free_text"></div>
+</ng-template>
+
+<ng-template #attachmentLinkTemplate let-data="data">
+  <a (click)="openAttachmentLink(data)">{{ data.attachment_name }}</a>
+</ng-template>
+
+<ng-template #curia_function_descriptionLinkTemplate let-data="data">
+  <a target="_blank" [href]="'curia-functions/' + data.curia_function_id + '/details'">{{ data.curia_function_description }}</a>
+</ng-template>

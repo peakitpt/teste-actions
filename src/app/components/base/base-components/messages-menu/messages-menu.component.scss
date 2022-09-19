@@ -1,0 +1,47 @@
+@import '~@angular/material/theming';
+@include mat-core();
+@import './node_modules/@peakitpt/ui-material/assets/theme.scss';
+
+@mixin messages-menu-theme($theme){
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .message-alert-line:hover {
+    background-color: mat-color($background, hover);
+  }
+
+  .message-subject {
+    color: mat-color($foreground, base);
+  }
+
+}
+
+.kyrios-theme-light {
+  @include messages-menu-theme($kyrios-theme-light);
+}
+.kyrios-theme-dark {
+  @include messages-menu-theme($kyrios-theme-dark);
+}
+
+
+.messages-alerts-container {
+  width: 400px;
+  height: 450px;
+}
+
+.message-alert-line {
+  height: 65px;
+  cursor: pointer;
+}
+
+.messages-container {
+  overflow-y: auto;
+}
+
+.no-messages-body {
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: none;
+}

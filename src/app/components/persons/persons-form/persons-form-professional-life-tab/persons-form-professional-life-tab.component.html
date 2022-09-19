@@ -1,0 +1,38 @@
+<section id="professional-life-section">
+  <h2>{{ modulePath + ':header.profession' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.professional_profession_description' | i18next" [control]="form.get('professional_profession_description')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.professional_post' | i18next" [control]="form.get('professional_post')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.professional_company' | i18next" [control]="form.get('professional_company')"></ui-input>
+  </div>
+</section>
+
+<section id="professional-address-section">
+  <h2>{{ modulePath + ':header.address' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="70" [label]="modulePath + ':model.professional_address' | i18next" [control]="form.get('professional_address')"></ui-input>
+    <ui-input fxFlex="30" [label]="modulePath + ':model.professional_door_number' | i18next" [control]="form.get('professional_door_number')"></ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="25" [label]="modulePath + ':model.professional_postal_code' | i18next" [control]="form.get('professional_postal_code')"></ui-input>
+    <ui-input fxFlex="37.5" [label]="modulePath + ':model.professional_locality' | i18next" [control]="form.get('professional_locality')"></ui-input>
+    <ui-input fxFlex="37.5" [label]="modulePath + ':model.professional_parish' | i18next" [control]="form.get('professional_parish')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.professional_county' | i18next" [control]="form.get('professional_county')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.professional_district' | i18next" [control]="form.get('professional_district')"></ui-input>
+    <ui-input fxFlex="37.5" [readonly]="true" [label]="modulePath + ':model.professional_country_description' | i18next" [control]="form.get('professional_country_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: countriesRightTemplate, context: { inputName: 'professional_country' } }"></ui-input>
+  </div>
+</section>
+
+<section id="professional-contacts-section">
+  <h2>{{ modulePath + ':header.contacts' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.professional_mobilephone' | i18next" [control]="form.get('professional_mobilephone')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'smartphone' } }"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.professional_phone' | i18next" [control]="form.get('professional_phone')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'phone' } }"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.professional_fax' | i18next" [control]="form.get('professional_fax')"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex type="email" [errorMessage]="sharedModule.patternErrorMessage(form, 'professional_email')" [label]="modulePath + ':model.professional_email' | i18next" [control]="form.get('professional_email')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'email' } }"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.professional_url' | i18next" [control]="form.get('professional_url')"></ui-input>
+  </div>
+</section>

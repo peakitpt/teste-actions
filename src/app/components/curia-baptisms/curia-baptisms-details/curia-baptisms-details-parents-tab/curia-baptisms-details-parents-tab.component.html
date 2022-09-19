@@ -1,0 +1,59 @@
+<section id="parents-section" *ngIf="model.entity.entity_person.entity_father.complete_relation || model.entity.entity_person.entity_mother.complete_relation">
+  <h2>{{ modulePath + ':header.parents' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_person.entity_father.complete_relation">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.father_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity.entity_person.entity_father?.entity_person.id)">{{ model.entity.entity_person.entity_father.complete_relation }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_person.entity_mother.complete_relation">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.mother_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity.entity_person.entity_mother?.entity_person.id)">{{ model.entity.entity_person.entity_mother.complete_relation }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="paternal-grandparents-section" *ngIf="model.entity.entity_person.entity_father?.entity_person.entity_father?.complete_relation || model.entity.entity_person.entity_father?.entity_person.entity_mother?.complete_relation">
+  <h2>{{ modulePath + ':header.paternal_grandparents' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_person.entity_father?.entity_person.entity_father?.complete_relation">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.paternal_grandfather_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity.entity_person.entity_father.entity_person.entity_father.entity_person.id)">{{ model.entity.entity_person.entity_father.entity_person.entity_father.complete_relation }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_person.entity_father?.entity_person.entity_mother?.complete_relation">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.paternal_grandmother_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity.entity_person.entity_father.entity_person.entity_mother.entity_person.id)">{{ model.entity.entity_person.entity_father.entity_person.entity_mother.complete_relation }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="maternal-grandparents-section" *ngIf="model.entity.entity_person.entity_mother?.entity_person.entity_father?.complete_relation || model.entity.entity_person.entity_mother?.entity_person.entity_mother?.complete_relation">
+  <h2>{{ modulePath + ':header.maternal_grandparents' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_person.entity_mother?.entity_person.entity_father?.complete_relation">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.maternal_grandfather_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity.entity_person.entity_mother.entity_person.entity_father.entity_person.id)">{{ model.entity.entity_person.entity_mother.entity_person.entity_father.complete_relation }}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity.entity_person.entity_mother?.entity_person.entity_mother?.complete_relation">
+        <div fxFlex class="mat-body-strong">{{ modulePath + ':model.maternal_grandmother_description' | i18next }}:</div>
+        <div fxFlex>
+          <a (click)="openDetails('persons', model.entity.entity_person.entity_mother.entity_person.entity_mother.entity_person.id)">{{ model.entity.entity_person.entity_mother.entity_person.entity_mother.complete_relation }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

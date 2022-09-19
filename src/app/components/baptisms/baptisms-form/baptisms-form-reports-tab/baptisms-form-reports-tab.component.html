@@ -1,0 +1,79 @@
+<section id="reports-section">
+  <ui-expansion-panel [panels]="expansionPanels" displayMode="flat" togglePosition="before"></ui-expansion-panel>
+</section>
+
+<ng-template #baptismInscriptionTemplate>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <div fxFlex="100" ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.has_more_kids' | i18next" [control]="form.get('has_more_kids')"></ui-checkbox>
+    </div>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="100" [readonly]="true" [label]="modulePath + ':model.preparation_reunion_location_description' | i18next" [control]="form.get('preparation_reunion_location_description')" [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'preparation_reunion_location' } }"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex="33.33" [label]="modulePath + ':model.preparation_reunion_date_1' | i18next" [control]="form.get('preparation_reunion_date_1')"></ui-datepicker>
+    <ui-datepicker fxFlex="33.33" [label]="modulePath + ':model.preparation_reunion_date_2' | i18next" [control]="form.get('preparation_reunion_date_2')"></ui-datepicker>
+    <ui-input fxFlex="33.33" [label]="modulePath + ':model.preparation_reunion_hours' | i18next" [control]="form.get('preparation_reunion_hours')" placeholder="HH:MM" [errorMessage]="'translation:message.hour_format_error' | i18next"></ui-input>
+  </div>
+</ng-template>
+
+<ng-template #baptismEntryTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid">
+    <ui-select fxFlex [required]="true" [label]="modulePath + ':model.seat_godfather_pronoun' | i18next" [options]="malePronounsOptions" [control]="form.get('seat_godfather_pronoun')"></ui-select>
+    <ui-select fxFlex [required]="true" [label]="modulePath + ':model.seat_godmother_pronoun' | i18next" [options]="femalePronounsOptions" [control]="form.get('seat_godmother_pronoun')"></ui-select>
+    <ui-select fxFlex [required]="true" [label]="modulePath + ':model.seat_officiant_pronoun' | i18next" [options]="malePronounsOptions" [control]="form.get('seat_officiant_pronoun')"></ui-select>
+    <ui-select fxFlex [required]="true" [label]="modulePath + ':model.seat_parson_pronoun' | i18next" [options]="malePronounsOptions" [control]="form.get('seat_parson_pronoun')"></ui-select>
+  </div>
+
+  <div fxLayout="row wrap" fxLayoutGap="20px grid">
+    <ui-textarea fxFlex="100" rows="1" [label]="modulePath + ':model.wich_will' | i18next" [control]="form.get('wich_will')"></ui-textarea>
+  </div>
+</ng-template>
+
+<ng-template #baptismCertificateTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid">
+    <div fxFlex="25" ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.certificate_no_info_on_margin' | i18next" [control]="form.get('certificate_no_info_on_margin')"></ui-checkbox>
+    </div>
+    <div fxFlex="25" ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.certificate_first_communion' | i18next" [control]="form.get('certificate_first_communion')"></ui-checkbox>
+    </div>
+    <div fxFlex="25" ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.certificate_chrism' | i18next" [control]="form.get('certificate_chrism')"></ui-checkbox>
+    </div>
+    <div fxFlex="25" ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.certificate_wedding' | i18next" [control]="form.get('certificate_wedding')"></ui-checkbox>
+    </div>
+  </div>
+
+  <div fxLayout="row wrap" fxLayoutGap="20px grid">
+    <ui-textarea fxFlex="100" rows="1" [label]="modulePath + ':model.certificate_comments' | i18next" [control]="form.get('certificate_comments')"></ui-textarea>
+  </div>
+</ng-template>
+
+<ng-template #suitabilityRequestTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid">
+    <ui-select fxFlex="50" [required]="true" [label]="modulePath + ':model.suitability_request_godfather_godmother' | i18next" [options]="godparentsOptions" [control]="form.get('suitability_request_godfather_godmother')"></ui-select>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid">
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.parents_preparation_priest_description' | i18next" [control]="form.get('parents_preparation_priest_description')" [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'parents_preparation_priest' } }"></ui-input>
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.godfathers_preparation_priest_description' | i18next" [control]="form.get('godfathers_preparation_priest_description')" [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'godfathers_preparation_priest' } }"></ui-input>
+  </div>
+</ng-template>
+
+<ng-template #preparationCoursesTemplate>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid">
+    <div fxFlex fxLayout="column" fxLayoutGap="grid">
+      <h2>{{ modulePath + ':header.parents' | i18next }}</h2>
+      <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.parents_preparation_priest_description' | i18next" [control]="form.get('parents_preparation_priest_description')" [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'parents_preparation_priest' } }"></ui-input>
+    </div>
+
+    <div fxFlex fxLayout="column" fxLayoutGap="grid">
+      <h2>{{ modulePath + ':tabs.godparents' | i18next }}</h2>
+      <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.godfathers_preparation_priest_description' | i18next" [control]="form.get('godfathers_preparation_priest_description')" [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'godfathers_preparation_priest' } }"></ui-input>
+    </div>
+  </div>
+</ng-template>

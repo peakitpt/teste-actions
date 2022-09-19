@@ -1,0 +1,24 @@
+{
+    "module": {
+        "name_singular": "Diseño del Correo Electrónico",
+        "name_many": "Diseño del Correo Electrónico"
+    },
+    "message": {
+        "save_success": "¡Diseño del Correo electrónico guardado con éxito!",
+        "delete_success": "¡Diseño del Correo Electrónico eliminado con éxito!",
+        "delete_success_plural": "¡Los diseños del Correo Electrónico se han eliminado con éxito!",
+        "delete_are_you_sure": "¿Estás seguro de que quieres eliminar el Diseño de Correo Electrónico \"<strong>{{ title }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Estás seguro de que quieres eliminar los <strong>{{ count }}</strong> Diseños de Correo Electrónico seleccionados?",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados"
+    },
+    "action": {
+        "new": "Nuevo Diseño del Correo Electrónico",
+        "edit": "Editar el Diseño del Correo Electrónico",
+        "delete": "¿Eliminar el Diseño del Correo Electrónico?"
+    },
+    "model": {
+        "title": "Título",
+        "layout": "Diseño"
+    }
+}

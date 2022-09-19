@@ -1,0 +1,225 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.name }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model$ | async as model">
+          <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-button *ngIf="model.block_edit === false" [title]="'translation:action.edit' | i18next" type='icon' icon="edit" (onClickEvent)="editModal()"></ui-button>
+        <ui-menu
+          [hoverTitle]="'translation:action.more' | i18next"
+          type="icons"
+          [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <ui-tabs [tabs]="detailsTabs"></ui-tabs>
+  </ng-container>
+</ng-template>
+
+<ng-template #mainTab>
+  <section>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <section>
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap.lt-md="15px">
+            <div fxFlex fxLayout="column" fxLayoutGap="10px">
+              <div class="top-title">{{ modulePath + ':header.resume' | i18next }}</div>
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <div fxFlex fxLayout="column">
+                  <div class="top-subtitle">
+                    <b>{{ modulePath + ':model.serie_number' | i18next }}:</b>
+                  </div>
+                  <div>
+                    {{ model.serie_number }}
+                  </div>
+                </div>
+                <div fxFlex fxLayout="column">
+                  <div class="top-subtitle">
+                    <b>{{ modulePath + ':model.total_amount' | i18next }}:</b>
+                  </div>
+                  <div>
+                    {{ model.total_amount }}
+                  </div>
+                </div>
+                <div fxFlex fxLayout="column">
+                  <b>
+                    <div>
+                      <ng-container *ngIf="[null ,'null'].includes(model.documents_status_id); else statusNotNull">
+                          {{ model.paid ? (modulePath + ':model.paid' | i18next) : (modulePath + ':model.waiting' | i18next)}}
+                      </ng-container>
+                      <ng-template #statusNotNull>
+                        {{ model.documents_status_id === 1 ? (modulePath + ':model.waiting' | i18next) : ''}}
+                        {{ model.documents_status_id === 2 ? (modulePath + ':model.partially_paid' | i18next) : ''}}
+                        {{ model.documents_status_id === 3 ? (modulePath + ':model.paid' | i18next) : ''}}
+                        {{ model.documents_status_id === 4 ? (modulePath + ':model.canceled' | i18next) : ''}}
+                      </ng-template>
+                    </div>
+                  </b>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div fxLayout="row" fxLayoutGap="20px">
+            <div fxFill fxLayout="row wrap" fxLayoutGap="10px grid">
+              <div fxFlex="25" fxLayout="column" fxLayoutGap="10px" *ngIf="model.document_date">
+                <div fxFlex class="mat-body-strong">
+                  <b>
+                    {{ modulePath + ':model.document_date' | i18next }}:
+                  </b>
+                </div>
+                <div fxFlex>{{ model.document_date | date:('translation:format.date' | i18next) }}</div>
+              </div>
+              <div fxFlex="25" fxLayout="column" fxLayoutGap="10px" *ngIf="model.documents_type_description">
+                <div fxFlex class="mat-body-strong">
+                  <b>
+                    {{ modulePath + ':model.documents_type_description' | i18next }}:
+                  </b>
+                </div>
+                <div fxFlex>{{ model.documents_type_description }}</div>
+              </div>
+              <div fxFlex="25" fxLayout="column" fxLayoutGap="10px" *ngIf="model.documents_type_serie_id">
+                <div fxFlex class="mat-body-strong">
+                  <b>
+                    {{ modulePath + ':model.documents_type_serie_id' | i18next }}:
+                  </b>
+                </div>
+                <div fxFlex>{{ series[model.documents_type_serie_id] }}</div>
+              </div>
+              <div fxFlex="25" fxLayout="column" fxLayoutGap="10px" *ngIf="model.currency">
+                <div fxFlex class="mat-body-strong">
+                  <b>
+                    {{ modulePath + ':model.currency' | i18next }}:
+                  </b>
+                </div>
+                <div fxFlex>{{ model.currency }}</div>
+              </div>
+              <div fxFlex="50" fxLayout="column" fxLayoutGap="10px" *ngIf="model.name">
+                <div fxFlex class="mat-body-strong">
+                  <b>
+                    {{ modulePath + ':model.description' | i18next }}:
+                  </b>
+                </div>
+                <div fxFlex>{{ model.name }}</div>
+              </div>
+              <div fxFlex="50" fxLayout="column" fxLayoutGap="10px" *ngIf="model.entity_description">
+                <div fxFlex class="mat-body-strong">
+                  <b>
+                    {{ modulePath + ':model.entity_description' | i18next }}:
+                  </b>
+                </div>
+                <a (click)="openDetails('unknown', model.entity_id)">{{ model.entity_description }}</a>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div fxLayout="row">
+            <div class="section-container" fxLayout="column" fxFill>
+              <div class="scrollable-table">
+                <table class="mat-table" id="catechists-table">
+                  <tr class="mat-header-row">
+                    <th class="mat-header-cell col1">{{ modulePath + ':model.document_line_attributes.emolument_description' | i18next }}</th>
+                    <th class="mat-header-cell col1">{{ modulePath + ':model.document_line_attributes.price_value' | i18next }}</th>
+                  </tr>
+                  <tr class="mat-row uiKyriosTableRow" *ngFor="let emolument of model.document_line_attributes">
+                    <td class="mat-cell col1">
+                      {{ emolument.emolument_description }}
+                    </td>
+                    <td class="mat-cell col1">
+                      {{ emolument.price_value }}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+                <div>
+                  <b>{{ modulePath + ':model.total_amount' | i18next }}:</b>
+                </div>
+                <div>
+                  <b>{{ model.total_amount }}</b>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #attachmentsTab>
+  <section id="attachments-section">
+    <div fxLayout="column">
+      <table class="mat-table">
+        <tr class="mat-header-row">
+          <th class="mat-header-cell">#</th>
+          <th class="mat-header-cell">{{ modulePath + ':model.attachment' | i18next }}</th>
+          <th class="mat-header-cell">{{ modulePath + ':model.description' | i18next }}</th>
+        </tr>
+        <tr class="mat-row uiKyriosTableRow" *ngFor="let attachment of model.documents_attachments_attributes; let i = index" [attr.data-index]="i">
+          <td class="mat-cell">{{ i + 1 }}</td>
+          <td class="mat-cell"><a [href]="getAttachmentUrl(attachment)">{{ attachment.attachment_name }}</a></td>
+          <td class="mat-cell">{{ attachment.description }}</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>

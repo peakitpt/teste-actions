@@ -1,0 +1,11 @@
+.scrollable-table {
+  width: 100%;
+  overflow-x: scroll;
+
+  #text-messages-errors-table {
+    .col1 {
+      min-width: 120px;
+      max-width: 120px;
+    }
+  }
+}

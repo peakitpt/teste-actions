@@ -1,0 +1,46 @@
+<ui-menu
+  class="right-icon"
+  type="hidden"
+  mainIcon="apps"
+  [menuTemplate]="innerOptionsGridTemplate"
+  [stopClosingOnClick]="false"
+  [hoverTitle]="'translation:apps.title' | i18next"
+></ui-menu>
+
+
+<ng-template #innerOptionsGridTemplate>
+
+
+  <div class="modulesContainer" fxLayout="column">
+
+    <div class="modulesTitle" fxFlex="90px" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px">
+      <img *ngIf="currentTheme === 'kyrios-theme-light'" [src]="'assets/' + environment.appName + '_chms_logo__symbol_blue.png'" width="35" height="35">
+      <img *ngIf="currentTheme === 'kyrios-theme-dark'" [src]="'assets/' + environment.appName + '_chms_logo__symbol_white.png'" width="35" height="35">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div style="font-size: 25px; font-weight: 550;">
+          {{ 'translation:apps.title' | i18next }}
+        </div>
+      </div>
+    </div>
+
+    <ui-divider></ui-divider>
+
+    <div class="app-menu-box-container" fxLayout="column" fxLayoutAlign="start stretch" style="width: 305px;">
+
+      <div *ngFor="let appModule of appModules" class="display-block" fxLayout="column" fxLayoutAlign="start stretch">
+        <div class="module-line" fxLayout="row" fxLayoutGap="10px" (click)="redirectThenNavigateTo(appModule)">
+          <div class="icon-container" fxFlex="50px" fxLayout="row" fxLayoutAlign="center center">
+            <ui-icon [icon]="appModuleIcons[appModule.imageSrc]"></ui-icon>
+          </div>
+          <div class="module-text-container" fxLayout="row" fxLayoutAlign="center center">
+            {{ appModule.title }}
+          </div>
+        </div>
+
+        <ui-divider *ngIf="appModule.name === 'dashboard'"></ui-divider>
+      </div>
+
+   </div>
+
+  </div>
+ </ng-template>

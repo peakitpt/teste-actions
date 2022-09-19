@@ -1,0 +1,24 @@
+{
+    "module": {
+        "name_singular": "Centro de Costo",
+        "name_many": "Centros de Costo"
+    },
+    "model": {
+        "description": "Descripción",
+        "code": "Código"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que desea eliminar el centro de costo con el nombre \"<strong> {{name}} </strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que desea eliminar los <strong> {{count}} </strong> centros de costos seleccionados?",
+        "delete_success": "¡Centro de costo eliminado correctamente!",
+        "delete_success_plural": "¡Centros de costo eliminados correctamente!",
+        "save_success": "¡Centro de costo guardado correctamente!"
+    },
+    "action": {
+        "delete": "Eliminar Centro de Costo?",
+        "edit": "Editar Centro de Costo",
+        "new": "Nuevo Centro de Costo"
+    }
+}

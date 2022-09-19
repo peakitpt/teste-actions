@@ -1,0 +1,28 @@
+{
+  "module": {
+    "name_singular": "Local de Tesouraria",
+    "name_many": "Locais de Tesouraria"
+  },
+  "action": {
+    "new": "Novo Local de Tesouraria",
+    "edit": "Editar Local de Tesouraria",
+    "delete": "Eliminar Local de Tesouraria com o nome {{ name }}?",
+    "next_year": "Passar de Ano"
+  },
+  "message": {
+    "save_success": "Local de Tesouraria guardado com sucesso!",
+    "delete_success": "Local de Tesouraria apagado com sucesso!",
+    "delete_success_plural": "Locais de Tesouraria apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Exercicio?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Locais de Tesouraria selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Nome",
+    "active": "Ativo"
+  },
+  "header": {
+    "treasury_location": "Local de Tesouraria"
+  }
+}

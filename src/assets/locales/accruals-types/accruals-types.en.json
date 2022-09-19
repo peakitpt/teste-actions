@@ -1,0 +1,64 @@
+{
+    "module": {
+        "name_singular": "Accrual Type",
+        "name_many": "Accruals Types"
+    },
+    "message": {
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Agreement Type with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Agreements Type selected?",
+        "delete_success": "Agreement Type successfully deleted!",
+        "delete_success_plural": "Agreements Type successfully deleted!",
+        "save_success": "Agreement Type succesfully saved!",
+        "total": "Total"
+    },
+    "options": {
+        "yearly": "Annual",
+        "semiannual": "Biannual",
+        "quarterly": "Trimesterly",
+        "other": "Other",
+        "weekly": "Weekly",
+        "monthly": "Monthly"
+    },
+    "header": {
+        "periodicity": "Periodicity",
+        "observations": "Observations",
+        "document_to_generate": "Document to be Created",
+        "processing": "Processing",
+        "validity": "Expiry"
+    },
+    "model": {
+        "accruals_types_emoluments": {
+            "total": "Total",
+            "value": "Price",
+            "quantity": "Quantity",
+            "emolument_description": "Description"
+        },
+        "document_to_generate_serie_description": "Series",
+        "periodicity_number_of_days": "Number of Days",
+        "periodicity_type": "Periodicity",
+        "validity_date": "Expiration Date",
+        "total": "Total",
+        "value": "Price",
+        "quantity": "Quantity",
+        "comments": "Observations",
+        "catechisms_sessions": "Observations",
+        "document_to_generate_document_type_description": "Document Type",
+        "validity_date_end": "End Date",
+        "validity_date_start": "Start Date",
+        "active": "Active",
+        "description": "Description",
+        "code": "Code"
+    },
+    "action": {
+        "delete": "Delete Agreement Type?",
+        "edit": "Edit Agreement Type",
+        "new": "New Type of Agreement",
+        "generate_card": "Create card"
+    },
+    "tabs": {
+        "emoluments": "Emoluments",
+        "general": "General"
+    }
+}

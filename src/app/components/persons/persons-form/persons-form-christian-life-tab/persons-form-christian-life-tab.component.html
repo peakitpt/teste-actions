@@ -1,0 +1,298 @@
+<section id="christian-life-section">
+  <h2>{{ modulePath + ':header.christian_life' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [label]="modulePath + ':model.christian_often_eucharist' | i18next" [control]="form.get('christian_often_eucharist')" [options]="oftenEucharistOptions"></ui-select>
+  </div>
+  <ng-container *ngTemplateOutlet="sacramentsTableTemplate"></ng-container>
+</section>
+
+<section id="christian-life-catechism-section">
+  <h2>{{ modulePath + ':header.christian_life_catechism' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <div fxFlex="35" ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.christian_attended_catechism' | i18next" [control]="form.get('christian_attended_catechism')"></ui-checkbox>
+    </div>
+    <ui-select fxFlex="65" [label]="modulePath + ':model.catechism_last_year' | i18next" [control]="form.get('catechism_last_year')" [options]="catechismYearsOptions"></ui-select>
+    <ui-input fxFlex="50" [readonly]="true" [label]="modulePath + ':model.christian_attended_catechism_worshipplace_description' | i18next" [control]="form.get('christian_attended_catechism_worshipplace_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'christian_attended_catechism_worshipplace' } }"></ui-input>
+    <ui-input fxFlex="25" [label]="modulePath + ':model.christian_attended_catechism_county' | i18next" [control]="form.get('christian_attended_catechism_county')"></ui-input>
+    <ui-input fxFlex="25" [label]="modulePath + ':model.christian_attended_catechism_district' | i18next" [control]="form.get('christian_attended_catechism_district')"></ui-input>
+    <ui-select [fxFlex]="form.get('lives_with').value === 'o' ? 30 : 100" [label]="modulePath + ':model.lives_with' | i18next" [control]="form.get('lives_with')" [options]="livesWithOptions"></ui-select>
+    <ui-input fxFlex="70" [fxHide]="form.get('lives_with').value !== 'o'" [label]="modulePath + ':model.lives_with_text' | i18next" [control]="form.get('lives_with_text')"></ui-input>
+    <ui-textarea fxFlex="50" [label]="modulePath + ':model.catechized_has_brothers_info' | i18next" [control]="form.get('catechized_has_brothers_info')"></ui-textarea>
+    <ui-textarea fxFlex="50" [label]="modulePath + ':model.catechized_has_catechized_brothers' | i18next" [control]="form.get('catechized_has_catechized_brothers')"></ui-textarea>
+  </div>
+
+  <div class="table-divider">
+    <ui-divider></ui-divider>
+    <ng-container *ngTemplateOutlet="partiesTableTemplate"></ng-container>
+  </div>
+
+  <div class="table-divider">
+    <ui-divider></ui-divider>
+    <ng-container *ngTemplateOutlet="presencesTableTemplate"></ng-container>
+  </div>
+</section>
+
+
+
+<!-- TEMPLATES -->
+<ng-template #sacramentsTableTemplate>
+  <h3>{{ modulePath + ':header.subheader.sacraments' | i18next }}</h3>
+  <div class="scrollable-table">
+    <table id="person-form-sacraments-table">
+      <thead>
+        <tr>
+          <th colspan="2">{{ modulePath + ':sacraments_table.header.sacrament' | i18next }}</th>
+          <th class="col3">{{ modulePath + ':sacraments_table.header.date' | i18next }}</th>
+          <th class="col4">{{ modulePath + ':sacraments_table.header.seat_nr' | i18next }}</th>
+          <th class="col5">{{ modulePath + ':sacraments_table.header.sheet' | i18next }}</th>
+          <th class="col6">{{ modulePath + ':sacraments_table.header.worshipplace' | i18next }}</th>
+          <th class="col7">{{ modulePath + ':sacraments_table.header.county' | i18next }}</th>
+          <th class="col8">{{ modulePath + ':sacraments_table.header.district' | i18next }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('christian_baptized')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':sacraments_table.sacraments.baptized' | i18next }}</td>
+          <ng-container *ngIf="form.get('christian_baptized').value; else sacramentNotChecked">
+            <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':sacraments_table.header.date' | i18next" [control]="form.get('christian_baptized_date')"></ui-datepicker></td>
+            <td class="col4"><ui-input [placeholder]="modulePath + ':sacraments_table.header.seat_nr' | i18next" [control]="form.get('christian_baptized_number')"></ui-input></td>
+            <td class="col5"><ui-input [placeholder]="modulePath + ':sacraments_table.header.sheet' | i18next" [control]="form.get('christian_baptized_sheet')"></ui-input></td>
+            <td class="col6"><ui-input [readonly]="true" [placeholder]="modulePath + ':sacraments_table.header.worshipplace' | i18next" [control]="form.get('christian_baptized_worshipplace_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'christian_baptized_worshipplace' } }"></ui-input></td>
+            <td class="col7"><ui-input [placeholder]="modulePath + ':sacraments_table.header.county' | i18next" [control]="form.get('christian_baptized_county')"></ui-input></td>
+            <td class="col8"><ui-input [placeholder]="modulePath + ':sacraments_table.header.district' | i18next" [control]="form.get('christian_baptized_district')"></ui-input></td>
+          </ng-container>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('christian_first_confession')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':sacraments_table.sacraments.first_confession' | i18next }}</td>
+          <ng-container *ngIf="form.get('christian_first_confession').value; else sacramentNotChecked">
+            <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':sacraments_table.header.date' | i18next" [control]="form.get('christian_first_confession_date')"></ui-datepicker></td>
+            <td class="col4"></td>
+            <td class="col5"></td>
+            <td class="col6"><ui-input [readonly]="true" [placeholder]="modulePath + ':sacraments_table.header.worshipplace' | i18next" [control]="form.get('christian_first_confession_worshipplace_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'christian_first_confession_worshipplace' } }"></ui-input></td>
+            <td class="col7"></td>
+            <td class="col8"></td>
+          </ng-container>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('christian_first_communion')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':sacraments_table.sacraments.first_communion' | i18next }}</td>
+          <ng-container *ngIf="form.get('christian_first_communion').value; else sacramentNotChecked">
+            <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':sacraments_table.header.date' | i18next" [control]="form.get('christian_first_communion_date')"></ui-datepicker></td>
+            <td class="col4"><ui-input [placeholder]="modulePath + ':sacraments_table.header.seat_nr' | i18next" [control]="form.get('christian_first_communion_number')"></ui-input></td>
+            <td class="col5"><ui-input [placeholder]="modulePath + ':sacraments_table.header.sheet' | i18next" [control]="form.get('christian_first_communion_sheet')"></ui-input></td>
+            <td class="col6"><ui-input [readonly]="true" [placeholder]="modulePath + ':sacraments_table.header.worshipplace' | i18next" [control]="form.get('christian_first_communion_worshipplace_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'christian_first_communion_worshipplace' } }"></ui-input></td>
+            <td class="col7"><ui-input [placeholder]="modulePath + ':sacraments_table.header.county' | i18next" [control]="form.get('christian_first_communion_county')"></ui-input></td>
+            <td class="col8"><ui-input [placeholder]="modulePath + ':sacraments_table.header.district' | i18next" [control]="form.get('christian_first_communion_district')"></ui-input></td>
+          </ng-container>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('christian_chrism')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':sacraments_table.sacraments.chrism' | i18next }}</td>
+          <ng-container *ngIf="form.get('christian_chrism').value; else sacramentNotChecked">
+            <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':sacraments_table.header.date' | i18next" [control]="form.get('christian_chrism_date')"></ui-datepicker></td>
+            <td class="col4"><ui-input [placeholder]="modulePath + ':sacraments_table.header.seat_nr' | i18next" [control]="form.get('christian_chrism_number')"></ui-input></td>
+            <td class="col5"><ui-input [placeholder]="modulePath + ':sacraments_table.header.sheet' | i18next" [control]="form.get('christian_chrism_sheet')"></ui-input></td>
+            <td class="col6"><ui-input [readonly]="true" [placeholder]="modulePath + ':sacraments_table.header.worshipplace' | i18next" [control]="form.get('christian_chrism_worshipplace_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'christian_chrism_worshipplace' } }"></ui-input></td>
+            <td class="col7"><ui-input [placeholder]="modulePath + ':sacraments_table.header.county' | i18next" [control]="form.get('christian_chrism_county')"></ui-input></td>
+            <td class="col8"><ui-input [placeholder]="modulePath + ':sacraments_table.header.district' | i18next" [control]="form.get('christian_chrism_district')"></ui-input></td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+<ng-template #sacramentNotChecked>
+  <td class="col3"></td>
+  <td class="col4"></td>
+  <td class="col5"></td>
+  <td class="col6"></td>
+  <td class="col7"></td>
+  <td class="col8"></td>
+</ng-template>
+
+
+<ng-template #partiesTableTemplate>
+  <h3>{{ modulePath + ':header.subheader.parties' | i18next }}</h3>
+  <div class="scrollable-table">
+    <table id="person-form-parties-table">
+      <thead>
+        <tr>
+          <th colspan="2">{{ modulePath + ':parties_table.header.year' | i18next }}</th>
+          <th class="col3">{{ modulePath + ':parties_table.header.party' | i18next }}</th>
+          <th class="col4">{{ modulePath + ':parties_table.header.date' | i18next }}</th>
+          <th class="col5">{{ modulePath + ':parties_table.header.worshipplace' | i18next }}</th>
+          <th class="col6">{{ modulePath + ':parties_table.header.county' | i18next }}</th>
+          <th class="col7">{{ modulePath + ':parties_table.header.district' | i18next }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_party_1')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':parties_table.parties.year_1' |i18next }}</td>
+          <td class="col3"><ui-input [placeholder]="modulePath + ':parties_table.header.party' | i18next" [control]="form.get('catechism_party_1_name')"></ui-input></td>
+          <td class="col4"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':parties_table.header.date' | i18next" [control]="form.get('catechism_party_1_date')" [maxDate]="todayDate"></ui-datepicker></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_party_2')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':parties_table.parties.year_2' |i18next }}</td>
+          <td class="col3"><ui-input [placeholder]="modulePath + ':parties_table.header.party' | i18next" [control]="form.get('catechism_party_2_name')"></ui-input></td>
+          <td class="col4"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':parties_table.header.date' | i18next" [control]="form.get('catechism_party_2_date')" [maxDate]="todayDate"></ui-datepicker></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_party_3')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':parties_table.parties.year_3' |i18next }}</td>
+          <td class="col3"><ui-input [placeholder]="modulePath + ':parties_table.header.party' | i18next" [control]="form.get('catechism_party_3_name')"></ui-input></td>
+          <td class="col4"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':parties_table.header.date' | i18next" [control]="form.get('catechism_party_3_date')" [maxDate]="todayDate"></ui-datepicker></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_party_4')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':parties_table.parties.year_4' |i18next }}</td>
+          <td class="col3"><ui-input [placeholder]="modulePath + ':parties_table.header.party' | i18next" [control]="form.get('catechism_party_4_name')"></ui-input></td>
+          <td class="col4"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':parties_table.header.date' | i18next" [control]="form.get('catechism_party_4_date')" [maxDate]="todayDate"></ui-datepicker></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_party_5')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':parties_table.parties.year_5' |i18next }}</td>
+          <td class="col3"><ui-input [placeholder]="modulePath + ':parties_table.header.party' | i18next" [control]="form.get('catechism_party_5_name')"></ui-input></td>
+          <td class="col4"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':parties_table.header.date' | i18next" [control]="form.get('catechism_party_5_date')" [maxDate]="todayDate"></ui-datepicker></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('christian_solemn_communion')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':parties_table.parties.year_6' |i18next }}</td>
+          <td class="col3"><ui-input [placeholder]="modulePath + ':parties_table.header.party' | i18next" [control]="form.get('catechism_party_6_name')"></ui-input></td>
+          <td class="col4"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':parties_table.header.date' | i18next" [control]="form.get('christian_solemn_communion_date')" [maxDate]="todayDate"></ui-datepicker></td>
+          <td class="col5"><ui-input [readonly]="true" [placeholder]="modulePath + ':parties_table.header.worshipplace' | i18next" [control]="form.get('christian_solemn_communion_worshipplace_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'christian_solemn_communion_worshipplace' } }"></ui-input></td>
+          <td class="col6"><ui-input [placeholder]="modulePath + ':parties_table.header.county' | i18next" [control]="form.get('christian_solemn_communion_county')"></ui-input></td>
+          <td class="col7"><ui-input [placeholder]="modulePath + ':parties_table.header.district' | i18next" [control]="form.get('christian_solemn_communion_district')"></ui-input></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_party_7')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':parties_table.parties.year_7' |i18next }}</td>
+          <td class="col3"><ui-input [placeholder]="modulePath + ':parties_table.header.party' | i18next" [control]="form.get('catechism_party_7_name')"></ui-input></td>
+          <td class="col4"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':parties_table.header.date' | i18next" [control]="form.get('catechism_party_7_date')" [maxDate]="todayDate"></ui-datepicker></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_party_8')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':parties_table.parties.year_8' |i18next }}</td>
+          <td class="col3"><ui-input [placeholder]="modulePath + ':parties_table.header.party' | i18next" [control]="form.get('catechism_party_8_name')"></ui-input></td>
+          <td class="col4"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':parties_table.header.date' | i18next" [control]="form.get('catechism_party_8_date')" [maxDate]="todayDate"></ui-datepicker></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_party_9')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':parties_table.parties.year_9' |i18next }}</td>
+          <td class="col3"><ui-input [placeholder]="modulePath + ':parties_table.header.party' | i18next" [control]="form.get('catechism_party_9_name')"></ui-input></td>
+          <td class="col4"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':parties_table.header.date' | i18next" [control]="form.get('catechism_party_9_date')" [maxDate]="todayDate"></ui-datepicker></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_party_10')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':parties_table.parties.year_10' |i18next }}</td>
+          <td class="col3"><ui-input [placeholder]="modulePath + ':parties_table.header.party' | i18next" [control]="form.get('catechism_party_10_name')"></ui-input></td>
+          <td class="col4"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':parties_table.header.date' | i18next" [control]="form.get('catechism_party_10_date')" [maxDate]="todayDate"></ui-datepicker></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+
+<ng-template #presencesTableTemplate>
+  <h3>{{ modulePath + ':header.subheader.presences' | i18next }}</h3>
+  <div class="scrollable-table">
+    <table id="person-form-presences-table">
+      <thead>
+        <tr>
+          <th colspan="2">{{ modulePath + ':presences_table.header.year' | i18next }}</th>
+          <th class="col3">{{ modulePath + ':presences_table.header.inscription' | i18next }}</th>
+          <th class="col4">{{ modulePath + ':presences_table.header.attendance' | i18next }}</th>
+          <th class="col5">{{ modulePath + ':presences_table.header.failures' | i18next }}</th>
+          <th class="col6">{{ modulePath + ':presences_table.header.comments' | i18next }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_year_1')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':presences_table.years.year_1' |i18next }}</td>
+          <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':presences_table.header.inscription' | i18next" [control]="form.get('catechism_inscription_date_1')" [maxDate]="todayDate"></ui-datepicker></td>
+          <td class="col4"><ui-input [placeholder]="modulePath + ':presences_table.header.attendance' | i18next" [control]="form.get('catechism_attendance_1')" type="number"></ui-input></td>
+          <td class="col5"><ui-input [placeholder]="modulePath + ':presences_table.header.failures' | i18next" [control]="form.get('catechism_failures_1')" type="number"></ui-input></td>
+          <td class="col6"><ui-textarea [placeholder]="modulePath + ':presences_table.header.comments' | i18next" [control]="form.get('catechism_1_obs')"></ui-textarea></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_year_2')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':presences_table.years.year_2' |i18next }}</td>
+          <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':presences_table.header.inscription' | i18next" [control]="form.get('catechism_inscription_date_2')" [maxDate]="todayDate"></ui-datepicker></td>
+          <td class="col4"><ui-input [placeholder]="modulePath + ':presences_table.header.attendance' | i18next" [control]="form.get('catechism_attendance_2')" type="number"></ui-input></td>
+          <td class="col5"><ui-input [placeholder]="modulePath + ':presences_table.header.failures' | i18next" [control]="form.get('catechism_failures_2')" type="number"></ui-input></td>
+          <td class="col6"><ui-textarea [placeholder]="modulePath + ':presences_table.header.comments' | i18next" [control]="form.get('catechism_2_obs')"></ui-textarea></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_year_3')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':presences_table.years.year_3' |i18next }}</td>
+          <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':presences_table.header.inscription' | i18next" [control]="form.get('catechism_inscription_date_3')" [maxDate]="todayDate"></ui-datepicker></td>
+          <td class="col4"><ui-input [placeholder]="modulePath + ':presences_table.header.attendance' | i18next" [control]="form.get('catechism_attendance_3')" type="number"></ui-input></td>
+          <td class="col5"><ui-input [placeholder]="modulePath + ':presences_table.header.failures' | i18next" [control]="form.get('catechism_failures_3')" type="number"></ui-input></td>
+          <td class="col6"><ui-textarea [placeholder]="modulePath + ':presences_table.header.comments' | i18next" [control]="form.get('catechism_3_obs')"></ui-textarea></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_year_4')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':presences_table.years.year_4' |i18next }}</td>
+          <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':presences_table.header.inscription' | i18next" [control]="form.get('catechism_inscription_date_4')" [maxDate]="todayDate"></ui-datepicker></td>
+          <td class="col4"><ui-input [placeholder]="modulePath + ':presences_table.header.attendance' | i18next" [control]="form.get('catechism_attendance_4')" type="number"></ui-input></td>
+          <td class="col5"><ui-input [placeholder]="modulePath + ':presences_table.header.failures' | i18next" [control]="form.get('catechism_failures_4')" type="number"></ui-input></td>
+          <td class="col6"><ui-textarea [placeholder]="modulePath + ':presences_table.header.comments' | i18next" [control]="form.get('catechism_4_obs')"></ui-textarea></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_year_5')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':presences_table.years.year_5' |i18next }}</td>
+          <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':presences_table.header.inscription' | i18next" [control]="form.get('catechism_inscription_date_5')" [maxDate]="todayDate"></ui-datepicker></td>
+          <td class="col4"><ui-input [placeholder]="modulePath + ':presences_table.header.attendance' | i18next" [control]="form.get('catechism_attendance_5')" type="number"></ui-input></td>
+          <td class="col5"><ui-input [placeholder]="modulePath + ':presences_table.header.failures' | i18next" [control]="form.get('catechism_failures_5')" type="number"></ui-input></td>
+          <td class="col6"><ui-textarea [placeholder]="modulePath + ':presences_table.header.comments' | i18next" [control]="form.get('catechism_5_obs')"></ui-textarea></td>
+        </tr><tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_year_6')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':presences_table.years.year_6' |i18next }}</td>
+          <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':presences_table.header.inscription' | i18next" [control]="form.get('catechism_inscription_date_6')" [maxDate]="todayDate"></ui-datepicker></td>
+          <td class="col4"><ui-input [placeholder]="modulePath + ':presences_table.header.attendance' | i18next" [control]="form.get('catechism_attendance_6')" type="number"></ui-input></td>
+          <td class="col5"><ui-input [placeholder]="modulePath + ':presences_table.header.failures' | i18next" [control]="form.get('catechism_failures_6')" type="number"></ui-input></td>
+          <td class="col6"><ui-textarea [placeholder]="modulePath + ':presences_table.header.comments' | i18next" [control]="form.get('catechism_6_obs')"></ui-textarea></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_year_7')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':presences_table.years.year_7' |i18next }}</td>
+          <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':presences_table.header.inscription' | i18next" [control]="form.get('catechism_inscription_date_7')" [maxDate]="todayDate"></ui-datepicker></td>
+          <td class="col4"><ui-input [placeholder]="modulePath + ':presences_table.header.attendance' | i18next" [control]="form.get('catechism_attendance_7')" type="number"></ui-input></td>
+          <td class="col5"><ui-input [placeholder]="modulePath + ':presences_table.header.failures' | i18next" [control]="form.get('catechism_failures_7')" type="number"></ui-input></td>
+          <td class="col6"><ui-textarea [placeholder]="modulePath + ':presences_table.header.comments' | i18next" [control]="form.get('catechism_7_obs')"></ui-textarea></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_year_8')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':presences_table.years.year_8' |i18next }}</td>
+          <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':presences_table.header.inscription' | i18next" [control]="form.get('catechism_inscription_date_8')" [maxDate]="todayDate"></ui-datepicker></td>
+          <td class="col4"><ui-input [placeholder]="modulePath + ':presences_table.header.attendance' | i18next" [control]="form.get('catechism_attendance_8')" type="number"></ui-input></td>
+          <td class="col5"><ui-input [placeholder]="modulePath + ':presences_table.header.failures' | i18next" [control]="form.get('catechism_failures_8')" type="number"></ui-input></td>
+          <td class="col6"><ui-textarea [placeholder]="modulePath + ':presences_table.header.comments' | i18next" [control]="form.get('catechism_8_obs')"></ui-textarea></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_year_9')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':presences_table.years.year_9' |i18next }}</td>
+          <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':presences_table.header.inscription' | i18next" [control]="form.get('catechism_inscription_date_9')" [maxDate]="todayDate"></ui-datepicker></td>
+          <td class="col4"><ui-input [placeholder]="modulePath + ':presences_table.header.attendance' | i18next" [control]="form.get('catechism_attendance_9')" type="number"></ui-input></td>
+          <td class="col5"><ui-input [placeholder]="modulePath + ':presences_table.header.failures' | i18next" [control]="form.get('catechism_failures_9')" type="number"></ui-input></td>
+          <td class="col6"><ui-textarea [placeholder]="modulePath + ':presences_table.header.comments' | i18next" [control]="form.get('catechism_9_obs')"></ui-textarea></td>
+        </tr>
+        <tr>
+          <td class="col1"><ui-checkbox [control]="form.get('attended_catechism_year_10')"></ui-checkbox></td>
+          <td class="col2">{{ modulePath + ':presences_table.years.year_10' |i18next }}</td>
+          <td class="col3"><ui-datepicker startView="multi-year" [placeholder]="modulePath + ':presences_table.header.inscription' | i18next" [control]="form.get('catechism_inscription_date_10')" [maxDate]="todayDate"></ui-datepicker></td>
+          <td class="col4"><ui-input [placeholder]="modulePath + ':presences_table.header.attendance' | i18next" [control]="form.get('catechism_attendance_10')" type="number"></ui-input></td>
+          <td class="col5"><ui-input [placeholder]="modulePath + ':presences_table.header.failures' | i18next" [control]="form.get('catechism_failures_10')" type="number"></ui-input></td>
+          <td class="col6"><ui-textarea [placeholder]="modulePath + ':presences_table.header.comments' | i18next" [control]="form.get('catechism_10_obs')"></ui-textarea></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

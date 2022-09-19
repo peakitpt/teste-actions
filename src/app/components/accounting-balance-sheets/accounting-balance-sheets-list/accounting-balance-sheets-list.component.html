@@ -1,0 +1,159 @@
+<router-outlet></router-outlet>
+<ng-container *ngIf="modelList$ | async as modelList">
+  <ui-card>
+    <div content>
+      <div fxLayout="row" fxLayoutAlign="end center">
+        <!-- <kyr-table-filters fxFlex [filterList]="[]"></kyr-table-filters> -->
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+
+        <ui-button
+          [style.margin]="'0 0 10px 10px'"
+          type="flat"
+          color="accent"
+          [label]="modulePath + ':actions.recalculate' | i18next"
+          [attr.aria-label]="modulePath + ':actions.recalculate' | i18next"
+          (onClickEvent)="callRecalculateModal()">
+        </ui-button>
+      </div>
+      <ng-container *ngIf="selectedRows$ | async as selectedRows">
+        <ui-toolbar
+          *ngIf="selectedRows.length"
+          [title]="modulePath + ':message.selected' | i18next: { count: selectedRows.length }"
+          [dataModel]="toolbarDataModel"
+          rowColor="accent"
+          (iconClickedEvent)="toolbarItemClick($event)"
+          >
+        </ui-toolbar>
+      </ng-container>
+
+      <ui-button *ngIf="!menuHelperService.getSideNavOpen()" class="float-button-mobile" fxLayoutAlign="end" type="mini_fab" icon="add" color="accent" [attr.aria-label]="'translation:action.add' | i18next"
+        (onClickEvent)="navigate('/' + modulePath + '/new')">
+      </ui-button>
+      <ui-table
+        #table
+        [dataSource]="modelList.results"
+        [tableColumns]="tableColumns"
+        [generalFilter]="false"
+        [checkboxes]="false"
+        stickyHeader="true"
+        (clickRowEvent)="goToAccountingTransactionLines($event)"
+        [tableFooter]="true"
+        [stickyFooter]="true"
+        (columnFilterEvent)="columnFilterEvent($event)"
+        (columnOrdinationEvent)="columnOrdinationEvent($event)">
+      </ui-table>
+
+      <kyr-table-pagination>
+        <ui-paginator
+          [length]="modelList.total"
+          [pageIndex]="modelList.page - 1"
+          [pageSize]="limit"
+          (onChangeEvent)="paginationChangeEvent($event)"
+        ></ui-paginator>
+        <ui-menu
+          type="icons"
+          [model]="pagerMenu"
+          xPosition="before"
+          (sendValue)="menuClick($event)"
+        ></ui-menu>
+      </kyr-table-pagination>
+    </div>
+  </ui-card>
+</ng-container>
+
+<!-- TEMPLATES -->
+<ng-template #buttonsTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ui-button type="icon" icon="edit" (onClickEvent)="navigate('/' + modulePath + '/' + data.id + '/edit')"></ui-button>
+    <ui-menu
+      type="icons"
+      [model]="headerOptionsMenu"
+      (sendValue)="menuClick($event, data)"
+    >
+    </ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #periodTotalDebitTemplate let-data="data">
+  <div [ngClass]="+data.period_total_debit >= 0 ? 'positive' : 'negative'" class="number">
+    {{ data.period_total_debit | number : '1.2-2' }}
+  </div>
+</ng-template>
+<ng-template #periodTotalCreditTemplate let-data="data">
+  <div [ngClass]="+data.period_total_credit < 0 ? 'positive' : 'negative'" class="number">
+    {{ data.period_total_credit | number : '1.2-2' }}
+  </div>
+</ng-template>
+<ng-template #periodAggregatedDebitAmountTemplate let-data="data">
+  <div [ngClass]="+data.period_aggregated_debit_amount >= 0 ? 'positive' : 'negative'" class="number">
+    {{ data.period_aggregated_debit_amount | number : '1.2-2' }}
+  </div>
+</ng-template>
+<ng-template #periodAggregatedCreditAmountTemplate let-data="data">
+  <div [ngClass]="+data.period_aggregated_credit_amount < 0 ? 'positive' : 'negative'" class="number">
+    {{ data.period_aggregated_credit_amount | number : '1.2-2' }}
+  </div>
+</ng-template>
+<ng-template #periodAggregatedBalanceTemplate let-data="data">
+  <div [ngClass]="+data.period_aggregated_balance >= 0 ? 'positive' : 'negative'" class="number">
+    {{ data.period_aggregated_balance | number : '1.2-2' }}
+  </div>
+</ng-template>
+
+<ng-template #footerTableTemplate let-column="column">
+  <div [ngClass]="getColumnTotal(column.id).color" class="number">
+    {{ getColumnTotal(column.id).value | number : '1.2-2' }}
+  </div>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<!-- TEMPLATES END -->
+
+<!-- Populate DefaultsModal Modal -->
+
+<ui-dialog #recalculateModal
+  [inputHeaderTemplate]="recalculateModalHeader"
+  [inputBodyTemplate]="recalculateModalBody"
+  [inputFooterTemplate]="recalculateModalFooter"
+  [width]="800"
+>
+</ui-dialog>
+
+<ng-template #recalculateModalHeader>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1>
+      {{ modulePath + ':recalculate.title' | i18next }}
+    </h1>
+    <div class="header-buttons" fxLayout="row">
+      <ui-button type='icon' icon="close" disableRipple="true" disableFocusRipple="true" (onClickEvent)="recalculateModal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #recalculateModalBody>
+  {{ modulePath + ':recalculate.body' | i18next }} <br>
+  <b>
+    {{ modulePath + ':recalculate.confirm_question' | i18next }}
+  </b>
+</ng-template>
+
+<ng-template #recalculateModalFooter>
+  <div class="footer-buttons" fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button type="flat" [label]="'translation:action.cancel' | i18next" (onClickEvent)="recalculateModal.close()"></ui-button>
+    <ui-button type="flat" [label]="'translation:yes' | i18next" color="accent" (onClickEvent)="recalculate()"></ui-button>
+  </div>
+</ng-template>
+
+<!-- Populate DefaultsModal Modal -->

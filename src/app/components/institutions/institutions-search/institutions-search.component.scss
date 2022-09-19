@@ -1,0 +1,27 @@
+@import './node_modules/@peakitpt/ui-material/assets/theme.scss';
+
+@mixin institutions-search-theme($theme) {
+  $background: map-get($theme, background);
+
+  .topbar-search-form-container {
+    max-height: 80vh;
+    max-width: 100vw;
+    width: 800px;
+    padding: 0px 5px;
+  }
+
+  .sticky-footer {
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    background-color: mat-color($background, card);
+  }
+}
+
+.kyrios-theme-light {
+  @include institutions-search-theme($kyrios-theme-light);
+}
+
+.kyrios-theme-dark {
+  @include institutions-search-theme($kyrios-theme-dark);
+}

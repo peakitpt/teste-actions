@@ -1,0 +1,77 @@
+{
+    "module": {
+        "name_singular": "Institución",
+        "name_many": "Instituciones"
+    },
+    "header": {
+        "contacts": "Contacto",
+        "address": "Dirección",
+        "appointments": "Nombramientos",
+        "other_info": "Otros datos",
+        "valences": "Áreas de actuación"
+    },
+    "model": {
+        "entity": {
+            "fax": "Fax",
+            "phone": "Teléfono",
+            "mobilephone": "Teléfono móvil",
+            "longitude": "Longitud",
+            "latitude": "Latitud",
+            "county": "Ayuntamiento",
+            "place": "Localidad",
+            "address": "Dirección",
+            "url": "Sitio Web",
+            "email": "Correo electrónico",
+            "country_description": "País",
+            "district": "Provincia",
+            "postal_code": "CP",
+            "parish": "Parroquia",
+            "door_number": "Nº",
+            "taxpayer": "NIF",
+            "tax_designation": "Designación Fiscal",
+            "name": "Nombre"
+        },
+        "observations": "Observaciones",
+        "entity_institution_appointments": {
+            "description": "Descripción",
+            "representing_description": "Representación",
+            "end_date": "Fin",
+            "start_date": "Inicio",
+            "nominee_description": "Entidad",
+            "curia_function_description": "Cargo"
+        },
+        "entity__entity_ekklesia_location__name": "Diócesis",
+        "holidays": "Festivos",
+        "timetable": "Horario",
+        "historical_note": "Nota Histórica",
+        "social_media_data_sheet": "Ficha Técnica",
+        "website_type_id": "Tipo de sitio web",
+        "social_media_institution_description": "Descripción de la institución",
+        "social_media_type_description": "Descripción del Tipo de Medio",
+        "periodicity_description": "Descripción de la Periodicidad",
+        "scholarity": "Escolaridad",
+        "property": "Propiedad",
+        "community": "Casa/Comunidad",
+        "mandate": "Mandato",
+        "institution_gender": "Institución Género",
+        "secular_institute_description": "Instituto Secular (Comunidad)",
+        "congregation_description": "Congregación",
+        "chapelry_description": "Parroquia",
+        "archpriestship_description": "Arciprestazgo",
+        "institution_type_description": "Tipo de institución",
+        "name": "Nombre"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados"
+    },
+    "option": {
+        "undifferentiated": "n/s",
+        "female": "Feminino",
+        "male": "Masculino"
+    },
+    "tabs": {
+        "appointments": "Nombramientos",
+        "institution": "Institución"
+    }
+}

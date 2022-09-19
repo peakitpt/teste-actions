@@ -1,0 +1,51 @@
+{
+  "module": {
+    "name_singular": "Provisão",
+    "name_many": "Provisões"
+  },
+  "action": {
+    "new": "Nova Provisão",
+    "edit": "Editar Provisão",
+    "delete": "Eliminar Provisão?",
+    "save_generate_document": "Guardar e Gerar Doc."
+  },
+  "message": {
+    "save_success": "Provisão guardada com sucesso!",
+    "delete_success": "Provisão apagada com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Provisão \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Provisões selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas"
+  },
+  "header": {
+    "provision": "Provisão",
+    "members": "Membros",
+    "attachments": "Anexos"
+  },
+  "tabs": {
+    "provision": "Provisão",
+    "members": "Membros",
+    "attachments_tab": "Anexos"
+  },
+  "model": {
+    "attachment": "Anexo",
+    "description": "Descripção",
+    "function_description": "Função",
+    "member_description": "Membro",
+    "serie_number": "Nº de Registo",
+    "document_date": "Data do Documento",
+    "expiration_date": "Data de Validade",
+    "provision_type_description": "Tipo",
+    "place_description": "Local",
+    "emolument_description": "Emolumento",
+    "tax": "Taxa",
+    "document_entity_description": "Entidade a constar no documento",
+    "applicant_entity_description": "Requerente",
+    "applicant_function_description": "Função de Requerente",
+    "applicant_chapelry_description": "Paróquia do Requerente",
+    "archpriest_description": "Bispo/Arcebispo",
+    "subscriber1_description": "Assinante 1",
+    "subscriber2_description": "Assinante 2",
+    "observations": "Observações"
+  }
+}

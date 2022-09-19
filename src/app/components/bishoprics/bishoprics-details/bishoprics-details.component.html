@@ -1,0 +1,215 @@
+<router-outlet></router-outlet>
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+  >
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.name }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ modulePath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div class="header-buttons" fxLayout="row">
+      <ng-container *ngIf="model$ | async as model">
+        <ui-button *ngIf="canEditBishopric(model.entity_relation_attributes)" [title]="'translation:action.edit' | i18next" type='icon' icon="edit" (onClickEvent)="editModal()"></ui-button>
+        <ui-menu
+          [hoverTitle]="'translation:action.more' | i18next"
+          type="icons"
+          [model]="headerOptionsMenu"
+          (click)="updateMenu(model.entity_relation_attributes)"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : bodyTemplate;">
+  </ng-container>
+</ng-template>
+
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #bodyTemplate>
+  <div class="body">
+    <ui-tabs [tabs]="detailsTabs"></ui-tabs>
+  </div>
+</ng-template>
+
+<ng-template #bishopricTemplate>
+  <div class="tab-content">
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="model.name" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.name' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.name }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.validated' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.validated ? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.is_archdiocese' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.is_archdiocese ? ('translation:yes' | i18next) : ('translation:no' | i18next)  }}</div>
+          </div>
+          <div *ngIf="model.district" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.district' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.district }}</div>
+          </div>
+          <div *ngIf="model.country_description" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.country_description' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.country_description }}</div>
+          </div>
+          <div *ngIf="model.reports_group_description" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.reports_group_description' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.reports_group_description }}</div>
+          </div>
+          <div *ngIf="model.tax_designation" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.tax_designation' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.tax_designation }}</div>
+          </div>
+          <div *ngIf="model.taxpayer" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.taxpayer' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.taxpayer }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="model.address || model.door_number || model.postal_code || model.place || model.county || model.latitude || model.longitude">
+      <h2 >{{ 'bishoprics:header.address' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill >
+          <div *ngIf="model.address" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.address' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.address }}</div>
+          </div>
+          <div *ngIf="model.door_number" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.door_number' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.door_number }}</div>
+          </div>
+          <div *ngIf="model.postal_code" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.postal_code' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.postal_code }}</div>
+          </div>
+          <div *ngIf="model.place" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.place' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.place }}</div>
+          </div>
+          <div *ngIf="model.county" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.county' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.county }}</div>
+          </div>
+          <div *ngIf="model.latitude" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.latitude' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.latitude }}</div>
+          </div>
+          <div *ngIf="model.longitude" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.longitude' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.longitude }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="model.mobilephone || model.phone || model.fax || model.email || model.url">
+      <h2>{{ 'bishoprics:header.contacts' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div *ngIf="model.mobilephone" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.mobilephone' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.mobilephone }}</div>
+          </div>
+          <div *ngIf="model.phone" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.phone' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.phone }}</div>
+          </div>
+          <div *ngIf="model.fax" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.fax' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.fax }}</div>
+          </div>
+          <div *ngIf="model.email" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.email' | i18next }}:</strong></div>
+            <div fxFlex>{{ model.email }}</div>
+          </div>
+          <div *ngIf="model.url" fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex><strong>{{ 'bishoprics:model.url' | i18next }}:</strong></div>
+            <div fxFlex>
+              <ng-container >
+                <a [href]="model.url" target="_blank">{{ model.url }}</a>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</ng-template>
+
+
+<ng-template #permissionsAttributesCheckboxTemplate let-data="data">
+  <mat-checkbox
+    [checked]="selection.hasValue() && isAllSelected()"
+    [indeterminate]="selection.hasValue() && !isAllSelected()"
+    [aria-label]="checkboxLabel()"
+    [disabled]="true"
+    >
+  </mat-checkbox>
+</ng-template>
+
+<ng-template #permissions_modulesTemplateCheckbox let-row="data">
+  <mat-checkbox
+    (change)="$event ? selection.toggle(row) : null; checkboxEvent()"
+    [checked]="selection.isSelected(row)"
+    [aria-label]="checkboxLabel(row)"
+    [disabled]="true"
+    >
+  </mat-checkbox>
+</ng-template>
+
+<ng-template #permissions_modulesTemplate>
+  <div class="tab-content">
+    <ui-table
+      #table
+      [checkboxes]="false"
+      [dataSource]="permissionsAttributesDS"
+      [tableColumns]="permissionsAttributesColumns">
+    </ui-table>
+  </div>
+</ng-template>
+
+<!-- BEGIN PERMISSION MODULOS -->
+
+<!-- HEADER TEMPLATES -->
+<ng-template #permissionsModulesModule let-row="data">
+  <div fxFill>
+    <ui-autocomplete [control]="moduleForm" [options]="moduleOptions" [label]="row.title" [placeholder]="row.title"></ui-autocomplete>
+  </div>
+</ng-template>
+
+<ng-template #permissionsModulesApp let-row="data">
+
+  <div fxFill>
+    <ui-autocomplete [control]="appForm" [options]="appOptions" [label]="row.title" [placeholder]="row.title"></ui-autocomplete>
+  </div>
+</ng-template>
+<!--  -->
+
+<!-- END PERMISSION MODULOS -->

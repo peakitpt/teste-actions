@@ -1,0 +1,34 @@
+{
+  "module": {
+    "name_singular": "Mensagem",
+    "name_many": "Mensagens"
+  },
+  "action": {
+    "add": "Adicionar Mensagem",
+    "delete": "Eliminar Mensagem",
+    "toggle_status": "Marcar como Lida/Não Lida"
+  },
+  "message": {
+    "save_success": "Mensagem guardada com sucesso!",
+    "delete_success": "Mensagem apagada com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Mensagem \"<strong>{{ description }}</strong>\"?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas",
+    "status_toggled": "Estado de leitura alterado"
+  },
+  "model": {
+    "from": "De",
+    "subject": "Assunto",
+    "sent_at": "Data",
+    "read": "Lida",
+    "message": "Mensagem"
+  },
+  "header": {},
+  "frequency": {
+    "unique": "Única",
+    "daily": "Diária",
+    "weekly": "Semanal",
+    "monthly": "Mensal",
+    "yearly": "Anual"
+  }
+}

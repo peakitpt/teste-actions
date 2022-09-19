@@ -1,0 +1,167 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>
+      {{ modulePath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.serie_number }}</ng-container>
+    </h1>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="model$ | async as model">
+          <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.lt-md="true"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          [hasBackdrop]="false"
+          fxHide.gt-sm="true"
+          color="accent"
+          [hoverTitle]="'reports:module.name_many' | i18next"
+          type="nested"
+          mainIcon="insert_drive_file"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+        <ui-button type='icon' icon="edit" disableRipple="true" disableFocusRipple="true" (onClickEvent)="editModal()"></ui-button>
+        <ui-menu
+          type="icons"
+          [model]="headerOptionsMenu"
+          (sendValue)="menuClick($event, model)"
+        >
+        </ui-menu>
+      </ng-container>
+      <ui-button type='icon' icon="close" disableRipple="true" disableFocusRipple="true" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <ui-tabs [tabs]="detailsTabs"></ui-tabs>
+  </ng-container>
+</ng-template>
+
+<!-- TABS -->
+<ng-template #clergyNominationTabsTemplate>
+  <section>
+    <div fxLayout="row">
+      <div class="section-container" fxLayout="column" fxFill>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.serie_number">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.serie_number' | i18next }}:</div>
+          <div fxFlex>{{ model.serie_number }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.enabled' | i18next }}:</div>
+          <div fxFlex><ui-icon [icon]="model.enabled ? 'check_box' : 'check_box_outline_blank'"></ui-icon></div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.nomination_type_id !== null">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.nomination_type_id' | i18next }}:</div>
+          <div fxFlex>{{ nominationsTypesOptions ? nominationsTypesOptions[model.nomination_type_id] : '' }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.nomination_date">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.nomination_date' | i18next }}:</div>
+          <div fxFlex>{{ model.nomination_date | date:('translation:format.date' | i18next) }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.expiration_date">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.expiration_date' | i18next }}:</div>
+          <div fxFlex>{{ model.expiration_date | date:('translation:format.date' | i18next) }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.entity_priest_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.entity_priest_description' | i18next }}:</div>
+          <div fxFlex>{{ model.entity_priest_description }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.birth_place">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.birth_place' | i18next }}:</div>
+          <div fxFlex>{{ model.birth_place }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.function_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.function_description' | i18next }}:</div>
+          <div fxFlex>{{ model.function_description }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.place_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.place_description' | i18next }}:</div>
+          <div fxFlex>{{ model.place_description }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.bishop_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.bishop_description' | i18next }}:</div>
+          <div fxFlex>{{ model.bishop_description }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.moderator_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.moderator_description' | i18next }}:</div>
+          <div fxFlex>{{ model.moderator_description }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.subscriber1_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.subscriber1_description' | i18next }}:</div>
+          <div fxFlex>{{ model.subscriber1_description }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.subscriber2_description">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.subscriber2_description' | i18next }}:</div>
+          <div fxFlex>{{ model.subscriber2_description }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.function_details">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.function_details' | i18next }}:</div>
+          <div fxFlex>{{ model.function_details }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="model.observations">
+          <div fxFlex class="mat-body-strong">{{ modulePath + ':model.observations' | i18next }}:</div>
+          <div fxFlex>{{ model.observations }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #attachmentsTabsTemplate>
+  <section>
+    <div class="scrollable-table">
+      <table class="mat-table" id="catechists-table">
+        <tr class="mat-header-row">
+          <th class="mat-header-cell col1">{{ modulePath + ':model.nomination_attachments.attachment_filename' | i18next }}</th>
+          <th class="mat-header-cell col1">{{ modulePath + ':model.nomination_attachments.attachment_description' | i18next }}</th>
+        </tr>
+        <tr class="mat-row uiKyriosTableRow" *ngFor="let attachment of model.nomination_attachments">
+          <td class="mat-cell col1">
+            <a class="download" (click)="downloadAttachment(attachment)">
+              {{ attachment.attachment_filename }}
+            </a>
+          </td>
+          <td class="mat-cell col1">
+            {{ attachment.attachment_description }}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+</ng-template>
+<!-- TABS -->
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+
+
+
+
+

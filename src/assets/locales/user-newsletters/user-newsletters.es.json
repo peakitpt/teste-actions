@@ -1,0 +1,33 @@
+{
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionado",
+        "status_toggled": "Cambio de estado de lectura",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar el Mensaje \"<strong>{{ description }}</strong>\"?",
+        "delete_success": "¡Mensaje eliminado con éxito!",
+        "save_success": "¡Mensaje guardado con éxito!"
+    },
+    "frequency": {
+        "yearly": "Anual",
+        "monthly": "Mensualmente",
+        "weekly": "Semanalmente",
+        "daily": "Diario",
+        "unique": "Una vez"
+    },
+    "model": {
+        "message": "Mensaje",
+        "read": "Leído",
+        "sent_at": "Fecha",
+        "subject": "Asunto",
+        "from": "Desde"
+    },
+    "action": {
+        "toggle_status": "Marcar como Leído/No Leído",
+        "delete": "Eliminar Mensaje",
+        "add": "Añadir Mensaje"
+    },
+    "module": {
+        "name_many": "Mensajes",
+        "name_singular": "Mensaje"
+    }
+}

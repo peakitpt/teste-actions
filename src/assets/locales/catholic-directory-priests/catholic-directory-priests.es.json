@@ -1,0 +1,129 @@
+{
+    "module": {
+        "name_singular": "Elemento del Clero",
+        "name_many": "Elementos del Clero"
+    },
+    "header": {
+        "contacts": "Contacto",
+        "address": "Dirección",
+        "appointments": "Nombramientos",
+        "other_info": "Otros datos",
+        "academic_qualifications": "Habilitaciones académicas",
+        "curriculum": "Currículum",
+        "publications": "Publicaciones",
+        "ongoing_formations": "Formación permanente",
+        "retreats": "Retiros",
+        "priesty_card_renovation": "Renovación de la tarjeta sacerdotal",
+        "ordenation": "Ordenación",
+        "filiation": "Afiliación",
+        "identification_documents": "Documentos de identificación",
+        "current_appointments": "Nombramientos actuales",
+        "personal_data": "Datos personales"
+    },
+    "model": {
+        "entity": {
+            "url": "Sitio web",
+            "fax": "Fax",
+            "phone": "Teléfono",
+            "mobilephone": "Teléfono móvil",
+            "county": "Ayuntamiento",
+            "place": "Localidad",
+            "address": "Dirección",
+            "name": "Nombre",
+            "email": "Correo electrónico",
+            "country_description": "País",
+            "district": "Provincia",
+            "postal_code": "CP",
+            "door_number": "Nº",
+            "taxpayer": "NIF",
+            "can_sign_documents": "Puede firmar documentos"
+        },
+        "observations": "Observaciones",
+        "year": "Año",
+        "name": "Nombre",
+        "entity__entity_ekklesia_location__name": "Diócesis",
+        "entity_priest_priestly_cards": {
+            "renewal_date": "Fecha de renovación"
+        },
+        "entity_person": {
+            "entity_mother_description": "Madre",
+            "entity_father_description": "Padre",
+            "title": "Título"
+        },
+        "birth_chapelry": {
+            "complete_relation": "Parroquia de nacimiento"
+        },
+        "entity_priest_ongoing_formations": {
+            "description": "Descripción",
+            "end_date": "Fin",
+            "start_date": "Inicio"
+        },
+        "entity_priest_academic_qualifications": {
+            "description": "Descripción",
+            "end_date": "Fin",
+            "start_date": "Inicio"
+        },
+        "entity_priest_curriculums": {
+            "description": "Descripción",
+            "end_date": "Fin",
+            "start_date": "Inicio"
+        },
+        "entity_priest_publications": {
+            "description": "Descripción",
+            "publication_date": "Fecha de publicación"
+        },
+        "entity_priest_appointments": {
+            "description": "Descripción",
+            "representing_description": "Representa",
+            "end_date": "Fin",
+            "start_date": "Inicio",
+            "nominee_description": "Ubicación",
+            "curia_function_description": "Función"
+        },
+        "appointments_appointment_place_description_starts": "Ubicación actual del nombramiento (pertenece a)",
+        "appointments_appointment_place_description": "Ubicación actual del nombramiento (igual que)",
+        "appointments_curia_function_description": "Nombramiento actual",
+        "place": "Ubicación",
+        "episcopal_ordination_place": "Lugar de ordenación",
+        "ordination_date_end": "Ordenación Fin",
+        "ordination_date_start": "Ordenación Inicio",
+        "ordination_date": "Fecha de ordenación sacerdotal",
+        "ident_document_validity_date": "Fecha de caducidad",
+        "ident_document_emitted_by": "Emitido por",
+        "ident_document_emission_date": "Fecha de Emisión",
+        "ident_document_number": "Número de identificación",
+        "ident_document_type": "Tipo de Identificación",
+        "residence_chapelry_description": "Parroquia de residencia",
+        "residence": "Residencia",
+        "priest_birth_date_end": "Fecha de nacimiento - Fin",
+        "priest_birth_date_start": "Fecha de nacimiento - Inicio",
+        "priest_birth_date": "Fecha de nacimiento",
+        "abbreviated_name": "Nombre abreviado",
+        "clergy_type_description": "Tipo de clero",
+        "deceased": "Fallecido",
+        "active": "Activo",
+        "private_mobilephone": "Teléfono móvil",
+        "priestly_fraternity": "Fraternidad sacerdotal",
+        "priestly_card": "Tarjeta sacerdotal",
+        "entity__name": "Nombre"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados"
+    },
+    "option": {
+        "residence_title": "Título de Residencia",
+        "passport": "Pasaporte",
+        "citizen_card": "Tarjeta de Ciudadanía",
+        "identity_card": "DNI",
+        "from_outside_residing_at_archdiocese": "Desde fuera a residir en la Diócesis",
+        "archdiocesan_residing_outside": "Diocesano con residencia fuera",
+        "archdiocesan": "Diocesano",
+        "religious": "Religioso"
+    },
+    "tabs": {
+        "other_info_tab": "Otros datos",
+        "ordenations_appointments": "Ordenaciones y nombramientos",
+        "personal_data": "Datos personales"
+    }
+}

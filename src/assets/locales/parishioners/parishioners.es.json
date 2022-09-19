@@ -1,0 +1,88 @@
+{
+    "module": {
+        "name_singular": "Entidad",
+        "name_many": "Entidades",
+        "except_users_with_demo": "Entidad",
+        "priests_and_persons": "Fichas Individuales y Clero"
+    },
+    "message": {
+        "save_success": "¡Registro Individual guardado con éxito!",
+        "delete_success": "¡Registro Individual eliminado con éxito!",
+        "delete_are_you_sure": "¿Estás seguro de que deseas eliminar el Registro Individual \"<strong>{{ name }}</strong>\"?",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados"
+    },
+    "model": {
+        "birth_date": "Fecha de nacimiento",
+        "is_parishioner": "Parroquiano(a)",
+        "serie_number": "Nº de registo",
+        "entity": {
+            "name": "Nombre",
+            "email": "E-mail",
+            "mobilephone": "Teléfono móvil",
+            "disabled": "Activo(a)",
+            "taxpayer": "Nº contribuyente",
+            "entity_elder_patient": {
+                "elder": "Anciano(a)",
+                "sick": "Enfermo"
+            }
+        },
+        "complete_relation": "Concepto de búsqueda",
+        "address": "Dirección",
+        "entity_type__name": "Tipo",
+        "name": "Nombre",
+        "email": "Correo electrónico",
+        "entity_type_description": "Tipo",
+        "district": "Provincia",
+        "ident_document_emission_date": "Fecha de Emisión",
+        "ident_document_validity_date": "Fecha de caducidad",
+        "ident_document_number": "Número de Identificación",
+        "ident_document_type": "Tipo de Identificación",
+        "phone": "Teléfono",
+        "mobilephone": "Teléfono móvil",
+        "country_id": "País",
+        "county": "Consejo",
+        "place": "Ubicación",
+        "postal_code": "CP",
+        "door_number": "Nº",
+        "maritial_status": "Tipo de Boda",
+        "civil_status": "Estado Civil",
+        "entity_birth_place_id": "Nacionalidad",
+        "sex": "Género",
+        "is_catechized": "Catequizando",
+        "catechist": "Catequista",
+        "entity_ekklesia_location_id": "Diócesis (Elem. de Clero e Instituciones)",
+        "taxpayer": "NIF",
+        "options": {
+            "residence_title": "Permiso de Residencia",
+            "passport": "Pasaporte",
+            "citizenship_card": "Tarjeta ciudadana",
+            "identification_card": "Tarjeta de Identidad",
+            "not_married": "No Casado",
+            "civil": "Civil",
+            "catholic": "Católico",
+            "other": "Otro",
+            "death": "Fallecido(a)",
+            "widow": "Viudo(a)",
+            "union_of_fact": "Unión de Facto",
+            "single": "Solo",
+            "judicial_separated": "Separación Judicial",
+            "divorced_remarried": "Divorciado(a) Vuelta a Casar",
+            "divorced_not_remarried": "Divorciado(a) no vuelta a Casar",
+            "civil_divorced": "Divorciado(a) por lo Civil",
+            "divorced": "Divorciado(a)",
+            "civil_married": "Casado por lo Civil",
+            "catholic_married": "Católico casado"
+        },
+        "ident_document_emitted_by": "Emitido por",
+        "diocese_id": "Diócesis (Elem. del Clero y Instituciones)"
+    },
+    "action": {
+        "new": "Nuevo"
+    },
+    "header": {
+        "identification_documents": "Documentos de Identificación",
+        "contacts": "Contacto",
+        "address": "Dirección"
+    }
+}

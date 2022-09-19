@@ -1,0 +1,222 @@
+{
+  "module": {
+    "name_singular": "Elemento do Clero",
+    "name_many": "Elementos do Clero"
+  },
+  "action": {
+    "new": "Novo Elemento do Clero",
+    "edit": "Editar Elemento do Clero",
+    "delete": "Eliminar Elemento do Clero?",
+    "group_activate": "Ativar",
+    "group_deactivate": "Desativar",
+    "group_toggle_subscription_activate": "Ativar a subscrição no grupo?",
+    "group_toggle_subscription_deactivate": "Desativar a subscrição no grupo?",
+    "request_change": "Pedir alteração"
+  },
+  "message": {
+    "save_success": "Elemento do Clero guardado com sucesso!",
+    "delete_success": "Elemento do Clero apagado com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Elemento do Clero com o nome \"<strong>{{ name }}</strong>\"?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados",
+    "group_toggle_are_you_sure_activate": "Deseja realmente Ativar a subscrição no grupo \"<strong>{{ groupName }}</strong>\"?",
+    "group_toggle_are_you_sure_deactivate": "Deseja realmente Desativar a subscrição no grupo \"<strong>{{ groupName }}</strong>\"?",
+    "group_toggle_activated": "Subscrição ativada com sucesso!",
+    "group_toggle_deactivated": "Subscrição desativada com sucesso!",
+    "change_requested": "Alteração pedida com sucesso!"
+  },
+  "model": {
+    "hashtag_tag": "Etiquetas para pesquisa",
+    "appointments_curia_function_description": "Nomeação Atual",
+    "appointments_appointment_place_description": "Local de nomeação atual (igual a)",
+    "appointments_appointment_place_description_starts": "Local de nomeação atual (pertence a)",
+    "changes_request": "Pedido de atualização de dados",
+    "active": "Ativo",
+    "clergy_type": {
+      "name": "Tipo",
+      "abbreviated_name": "Tipo"
+    },
+    "entity": {
+      "name": "Nome",
+      "photo_url": "Foto",
+      "complete_relation": "Nome",
+      "address": "Morada",
+      "door_number": "Nº de porta",
+      "postal_code": "Código postal",
+      "place": "Localidade",
+      "county": "Concelho",
+      "district": "Distrito",
+      "country_description": "País",
+      "mobilephone": "Telemóvel",
+      "phone": "Telefone",
+      "fax": "Fax",
+      "email": "E-mail",
+      "url": "Página web",
+      "newsletter_subscriptor": "Grupos (Newsletters/SMS)",
+      "taxpayer": "Nº de Contribuinte",
+      "disabled": "Ativo",
+      "can_sign_documents": "Pode assinar documentos"
+    },
+    "entity_person": {
+      "ident_document_type": "Tipo de Identificação",
+      "ident_document_number": "Nº de Identificação Civil",
+      "ident_document_emission_date": "Data de Emissão",
+      "ident_document_emitted_by": "Emitido por",
+      "ident_document_validity_date": "Data de Validade"
+    },
+    "entity_priest_appointments": {
+      "start_date": "Início",
+      "end_date": "Fim",
+      "curia_function_description": "Função",
+      "appointment_place_description": "Local",
+      "representing_description": "Representa",
+      "description": "Descrição"
+    },
+    "entity_priest_priestly_cards": {
+      "renewal_date": "Data de Renovação"
+    },
+    "entity_priest_retreats": {
+      "retreat_year": "Ano",
+      "retreat_place": "Local"
+    },
+    "entity_priest_ongoing_formations": {
+      "start_date": "Início",
+      "end_date": "Fim",
+      "description": "Descrição"
+    },
+    "entity_priest_publications": {
+      "publication_date": "Data da Publicação",
+      "description": "Descrição"
+    },
+    "entity_priest_curriculums": {
+      "start_date": "Início",
+      "end_date": "Fim",
+      "description": "Descrição"
+    },
+    "entity_priest_academic_qualifications": {
+      "start_date": "Início",
+      "end_date": "Fim",
+      "description": "Descrição"
+    },
+    "entity_priest_hashtags": {
+      "tag": "Etiqueta"
+    },
+    "deceased": "Falecido",
+    "death_date": "Falecido em",
+    "retired": "Jubilado",
+    "retired_date": "Jubilado em",
+    "clergy_type_description": "Tipo de clero",
+    "abbreviated_name": "Nome abreviado",
+    "title_for_documents": "Título para documentos",
+    "priest_birth_date": "Data de nascimento",
+    "priest_death_date": "Data de falecimento",
+    "priest_retired_date": "Data de jubilamento",
+    "birth_chapelry_description": "Paróquia de nascimento",
+    "residence": "Residência",
+    "residence_chapelry_description": "Paróquia de residência",
+    "private_mobilephone": "Telemóvel privado",
+    "father_description": "Pai",
+    "mother_description": "Mãe",
+    "observations": "Observações",
+    "ordination_date": "Data de Ordenação",
+    "ordination_place": "Local de Ordenação",
+    "imported_actual_appointments": "Nomeações Atuais (importadas)",
+    "appointments": "Nomeações (importadas)",
+    "attachment_filename": "Fotografia",
+    "coat_of_arms_filename": "Brasão",
+    "ongoing_formations": "Formação Permanente",
+    "publications": "Publicações",
+    "curriculum": "Currículo",
+    "priest_academic_qualifications": "Habilitações Académicas",
+    "entity__name": "Nome",
+    "current_account_lines": {
+      "date": "Data",
+      "documents_status_description": "Estado",
+      "serie_number": "Doc. Nº",
+      "currency": "Moeda",
+      "total_amount": "Valor total",
+      "pending_amount": "Valor Pendente",
+      "document_options": {
+        "pending": "Pendente",
+        "partially_paid": "Pago Parcialmente",
+        "paid": "Pago",
+        "canceled": "Cancelado"
+      }
+    }
+  },
+  "current_account_priestly_fraternity": {
+    "document_date": "Data do doc.",
+    "documents_status_description": "Estado",
+    "serie_number": "Doc. Nº",
+    "total_amount": "Valor Total",
+    "currency": "Moeda",
+    "pending_amount": "Valor Pendente"
+  },
+  "current_account_curia": {
+    "document_date": "Data do doc.",
+    "documents_status_description": "Estado",
+    "serie_number": "Doc. Nº",
+    "currency": "Moeda",
+    "total_amount": "Valor Total",
+    "pending_amount": "Valor Pendente"
+  },
+  "groups": {
+    "group_name": "Grupo",
+    "subscription_date": "Data de Subscrição",
+    "unsubscription_date": "Data de Cancelamento",
+    "active": "Ativar/Desativar"
+  },
+  "types": {
+    "religious": "Religioso",
+    "arquidiocesano": "Arquidiocesano",
+    "arquidiocesano1": "Arquidiocesano a residir fora",
+    "arquidiocesano2": "De fora a residir na Arquidiocese",
+    "bi": "Bilhete de Identidade",
+    "cc": "Cartão de Cidadão",
+    "passaport": "Passaporte",
+    "tit_resi": "Título de Residência",
+    "pending": "Pendente",
+    "partially_paid": "Pago parcialmente",
+    "paid": "Pago",
+    "canceled": "Cancelado"
+  },
+  "placeholder": {
+    "age": "Idade"
+  },
+  "tabs": {
+    "personal_data": "Dados Pessoais",
+    "ordination_appointmens": "Ordenação e Nomeações",
+    "current_accounts": "Contas Correntes",
+    "groups": "Grupos",
+    "other_infos": "Outras informações"
+  },
+  "header": {
+    "personal_data": "Dados Pessoais",
+    "address": "Morada",
+    "contacts": "Contactos",
+    "identification_documents": "Documentos de identificação",
+    "filiation": "Filiação",
+    "other_informations": "Outras informações",
+    "ordination": "Ordenação",
+    "appoitments": "Nomeações",
+    "priest_card_renewals": "Renovações do Cartão Sacerdotal",
+    "retreats": "Retiros",
+    "permanent_formation": "Formação Permanente",
+    "publications": "Publicações",
+    "curriculum": "Currículo",
+    "academic_qualifications": "Habilitações Académicas",
+    "attachment": "Fotografia",
+    "hashtags": "Etiquetas para pesquisa",
+    "coat_of_arms": "Brasão",
+    "current_account_priestly_fraternity": "Conta Corrente da Fraternidade Sacerdotal",
+    "current_account_curia": "Conta Corrente da Cúria",
+    "groups": "Grupos",
+    "current_accounts_lines": "Conta Corrente da Fraternidade Sacerdotal",
+    "current_accounts_lines_on_curia": "Conta Corrente da Cúria",
+    "appointments_historic": "Histórico de nomeações",
+    "appointments_active": "Nomeações ativas"
+  },
+  "error": {
+    "entity_priest_retreats": "Verifique o campo 'Ano' no separador 'Outras informações'"
+  }
+}

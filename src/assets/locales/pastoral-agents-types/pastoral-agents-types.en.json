@@ -1,0 +1,25 @@
+{
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Pastoral Agent Type with the description \"<strong> {{description}} </strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the selected <strong> {{count}} </strong> Types of Pastoral Agent?",
+        "delete_success": "Type of Pastoral Agent successfully deleted!",
+        "delete_success_plural": "Types of Pastoral Agent successfully deleted!",
+        "save_success": "Type of Pastoral Agent saved successfully!"
+    },
+    "model": {
+        "group_translate": "Group",
+        "group": "Group",
+        "description": "Description"
+    },
+    "action": {
+        "delete": "Delete type of Pastoral Agent",
+        "edit": "Edit type of Pastoral Agent",
+        "new": "New type of Pastoral Agent"
+    },
+    "module": {
+        "name_many": "Types of Pastoral Agent",
+        "name_singular": "Type of Pastoral Agent"
+    }
+}

@@ -1,0 +1,33 @@
+<ui-input
+  fxFlex
+  customClass="{{ customClass }}"
+  [readonly]="readonly"
+  [required]="required"
+  [label]="label | i18next"
+  [control]="form.get(name + '_description')"
+  [leftTemplate]="{ template: inputLeftTemplate, context: leftTemplateContext }"
+  [rightTemplate]="{ template: inputRightTemplate, context: { inputName: name } }"></ui-input>
+
+<ng-template #inputLeftTemplate let-icon="icon">
+  <ng-container *ngIf="leftTemplateContext">
+    <div style="margin-right: 2px;">
+      <ui-icon
+        class="input-icon"
+        [icon]="icon"></ui-icon>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #inputRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button
+      fxFlex type="icon"
+      icon="open_in_new"
+      (onClickEvent)="openSelectionModal(modalName, inputName)"></ui-button>
+    <ui-menu
+      [hoverTitle]="'translation:action.more' | i18next"
+      type="icons"
+      [model]="inputMenuOptions"
+      (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>

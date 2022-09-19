@@ -1,0 +1,64 @@
+{
+    "module": {
+        "name_singular": "Pacto",
+        "name_many": "Pactos"
+    },
+    "action": {
+        "generate_card": "Generar tarjeta",
+        "delete": "¿Eliminar Avenza?",
+        "edit": "Editar Avenza",
+        "new": "Nueva Avenza"
+    },
+    "model": {
+        "processing_last_date": "Últ. Procesamiento",
+        "processing_next_date": "Próx. Procesamiento",
+        "validity_date_end": "Fecha de Finalización",
+        "validity_date_start": "Fecha de Inicio",
+        "active": "Activo",
+        "accrual_type_description": "Tipo de Avenza",
+        "client_name": "Usuario",
+        "description": "Descripción",
+        "validity_date_end_end": "Fecha de Finalización (Hasta)",
+        "validity_date_end_start": "Fecha de Finalización (Desde)",
+        "processing_next_date_end": "Próximo Procesamiento (a)",
+        "processing_next_date_start": "Próx. Procesamiento (desde)",
+        "validity_date_start_end": "Fecha de inicio (Hasta)",
+        "validity_date_start_start": "Fecha de Inicio (desde)",
+        "accruals_accruals_emoluments": {
+            "total": "Total",
+            "value": "Precio",
+            "quantity": "Cantidad",
+            "description": "Descripción"
+        },
+        "total": "Total",
+        "value": "Precio",
+        "quantity": "Cantidad",
+        "comments": "Observaciones",
+        "catechisms_sessions": "Observaciones",
+        "document_to_generate_serie": "Serie",
+        "document_to_generate_document_type_description": "Tipo de Documento"
+    },
+    "message": {
+        "populate": "Popular",
+        "auto_complete_data_confirmation": "Al hacer clic en Popular, se modificarán los datos precumplimentados, así como los cargos.",
+        "auto_complete_title": "Rellenar los datos automáticamente",
+        "total": "Total",
+        "delete_are_you_sure": "¿Está seguro de que quieres eliminar la Avenza con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quieres eliminar las <strong>{{ count }}</strong> Avenzas seleccionadas?",
+        "delete_success": "Avenza eliminada con éxito!",
+        "delete_success_plural": "Avenzas eliminadas con éxito!",
+        "save_success": "Avenza guardada con éxito!",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionado"
+    },
+    "tabs": {
+        "emoluments": "Emolumentos",
+        "general": "General"
+    },
+    "header": {
+        "observations": "Observaciones",
+        "document_to_generate": "Documento a Generar",
+        "processing": "Procesamiento",
+        "validity": "Validez"
+    }
+}

@@ -1,0 +1,201 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="onModalClose()"
+  [disableClose]="true"
+  [headerBottomMargin]="false"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu [hoverTitle]="'translation:action.more' | i18next" *ngIf="headerOptionsMenu.length && !isQuickInsertion" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+
+    <ui-button
+      *ngIf="!isQuickInsertion"
+      type="flat" icon="save"
+      [label]="'translation:action.save_new' | i18next" color="secondary"
+      (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true">
+    </ui-button>
+
+    <ui-button
+      type="flat" icon="save"
+      [label]="(isQuickInsertion ? 'translation:action.create_insert' : 'translation:action.save') | i18next"
+      color="accent" (onClickEvent)="onSubmit()">
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body" (keydown.enter)="$event.preventDefault()">
+    <ui-tabs [tabs]="formTabs"></ui-tabs>
+  </form>
+</ng-template>
+
+
+<!-- TABS -->
+<ng-template #catechismTabTemplate>
+  <kyr-catechisms-form-catechism-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [catechistsFormArray]="catechistsFormArray"
+    [catechistsDS]="catechistsDS"
+    [catechistsColumns]="catechistsColumns"
+    [studentsFormArray]="studentsFormArray"
+    [studentsDS]="studentsDS"
+    [studentsColumns]="studentsColumns"
+  ></kyr-catechisms-form-catechism-tab>
+</ng-template>
+
+<ng-template #transfersTabTemplate>
+  <kyr-catechisms-form-transfers-tab
+    [modulePath]="modulePath"
+    [form]="form"
+    [transfersFormArray]="transfersFormArray"
+    [transfersDS]="transfersDS"
+    [transfersColumns]="transfersColumns"
+  ></kyr-catechisms-form-transfers-tab>
+</ng-template>
+<!-- END TABS -->
+
+
+
+<!-- TEMPLATES -->
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #deleteCatechistsTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index, catechistsFormArray, catechistsDS)"></ui-button>
+</ng-template>
+
+<ng-template #deleteStudentsTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index, studentsFormArray, studentsDS)"></ui-button>
+</ng-template>
+
+<ng-template #personsInputLeftTemplate>
+  <div style="margin-right: 2px;">
+    <ui-icon icon="person"></ui-icon>
+  </div>
+</ng-template>
+
+<ng-template #entityModalRightTemplate let-modalTitle="modalTitle" let-inputName="inputName" let-modalParams="modalParams">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('persons-modal', inputName, modalParams ? modalParams : {}, modalTitle)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="personsMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #entityCatechistTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" readonly="true" [required]="true"
+  [control]="catechistsFormArray.controls[index].get('entity_description')"
+  [leftTemplate]="{ template: personsInputLeftTemplate }"
+  [rightTemplate]="{ template: entityModalRightTemplate, context: { modalTitle: (modulePath + ':header.catechists' | i18next), inputName: 'catechisms_catechists.entity#' + index, modalParams: { disabled: 'true', catechist: 'true' }} }"></ui-input>
+</ng-template>
+
+<ng-template #entityStudentTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" readonly="true" [required]="true"
+  [control]="studentsFormArray.controls[index].get('entity_description')" [leftTemplate]="{ template: personsInputLeftTemplate }"
+  [rightTemplate]="{ template: entityModalRightTemplate, context: { inputName: 'catechisms_students.entity#' + index, modalParams: { disabled: 'true' } } }"></ui-input>
+</ng-template>
+
+<ng-template #entityStudentSponsorTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" readonly="true"
+  [control]="studentsFormArray.controls[index].get('education_sponsor_description')" [leftTemplate]="{ template: personsInputLeftTemplate }"
+  [rightTemplate]="{ template: entityModalRightTemplate, context: { inputName: 'catechisms_students.education_sponsor#' + index } }"></ui-input>
+</ng-template>
+
+<ng-template #entityStudentObservationsTemplate let-index="index">
+  <ui-textarea customClass="remove-bottom-padding" [control]="studentsFormArray.controls[index].get('observations')"></ui-textarea>
+</ng-template>
+
+<ng-template #entityStudentInscriptionTemplate let-index="index">
+  <ui-datepicker customClass="remove-bottom-padding" [control]="studentsFormArray.controls[index].get('inscription_date')"></ui-datepicker>
+</ng-template>
+
+<ng-template #deleteTransfersTemplate let-index="index">
+  <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index, transfersFormArray, transfersDS)"></ui-button>
+</ng-template>
+
+<ng-template #transferTransitedTemplate let-index="index">
+  <ui-checkbox [label]="modulePath + ':model.catechisms_transfers.transited' | i18next"
+  [control]="transfersFormArray.controls[index].get('transited')"></ui-checkbox>
+</ng-template>
+
+<ng-template #transferNextClassYearTemplate let-index="index">
+  <ui-checkbox [label]="modulePath + ':model.catechisms_transfers.next_class_year_inscription' | i18next"
+  [control]="transfersFormArray.controls[index].get('next_class_year_inscription')"></ui-checkbox>
+</ng-template>
+
+<ng-template #transferEntityTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" readonly="true" [required]="true"
+  [control]="transfersFormArray.controls[index].get('entity_description')" [leftTemplate]="{ template: personsInputLeftTemplate }"
+  [rightTemplate]="{ template: entityModalRightTemplate, context: { modalTitle: (modulePath + ':header.students' | i18next), inputName: 'catechisms_transfers.entity#' + index, modalParams: { catechism_id: id } } }"></ui-input>
+</ng-template>
+
+<ng-template #chapelryModalRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('chapelries-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="chapelriesMenuOptions" (sendValue)="menuClick($event, inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #transferChapelryTemplate let-index="index">
+  <ui-input customClass="remove-bottom-padding" readonly="true" [required]="true"
+  [control]="transfersFormArray.controls[index].get('chapelry_description')"
+  [rightTemplate]="{ template: chapelryModalRightTemplate, context: { inputName: 'catechisms_transfers.chapelry#' + index } }"></ui-input>
+</ng-template>
+
+<ng-template #transferDateTemplate let-index="index">
+  <ui-datepicker customClass="remove-bottom-padding" [control]="transfersFormArray.controls[index].get('transfer_date')"></ui-datepicker>
+</ng-template>
+
+<kyr-catechisms-confirmation-modal #save_when_student_exists_on_another_catechism
+  *ngIf="openStudentExistsOnAnotherCatechismConfirmation"
+  [action]="'save_when_student_exists_on_another_catechism'"
+  [studentNamesOnAnotherCatechism]="studentNamesOnAnotherCatechism"
+  [classYear]="form.get('class_year').value"
+  (emitModalClose)="closeConfirmationModal($event)"
+>
+</kyr-catechisms-confirmation-modal>
+
+<kyr-catechisms-confirmation-modal #save_with_missing_sponsors
+  *ngIf="openMissingSponsorsConfirmation"
+  [action]="'save_with_missing_sponsors'"
+  (emitModalClose)="closeConfirmationModal($event)"
+>
+</kyr-catechisms-confirmation-modal>
+<!-- TEMPLATES END -->

@@ -1,0 +1,57 @@
+{
+    "module": {
+        "name_singular": "Death",
+        "name_many": "Deaths"
+    },
+    "action": {
+        "new": "New Death",
+        "edit": "Edit Death",
+        "delete": "Delete Death?"
+    },
+    "message": {
+        "save_success": "Death successfully saved!",
+        "delete_success": "Death successfully deleted!",
+        "delete_are_you_sure": "Are you sure you want to eliminate the Death of <strong>{{ entity_description }}</strong>?",
+        "delete_are_you_sure_plural": "Are you sure you want to eliminate the <strong>{{ count }}</strong> selected Deaths?",
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected"
+    },
+    "model": {
+        "entity_description": "Name",
+        "seat_number": "Certificate Nº",
+        "sheet": "Sheet",
+        "death_date": "Date os Death",
+        "entity_bury_date": "Funeral date",
+        "entity_death_bury_process_id": "Funeral process",
+        "death_hour": "Time of Death",
+        "entity_death_place": "Place of death",
+        "entity_death_locality": "Place of Death",
+        "entity_death_county": "County of Death",
+        "death_chapelry_description": "Parish where the death occurred",
+        "bury_chapelry_description": "Funeral Parish",
+        "entity_bury_cemitery": "Place of the funeral",
+        "sacraments": "Sacrament(s)",
+        "emolument_description": "Emolument",
+        "tax": "Tax",
+        "document_entity_description": "Entity to be listed on the document",
+        "declaration_relative_presence": "Name",
+        "declaration_relative_kinship": "Relationship with the deceased",
+        "serie_number": "Registration No.",
+        "observations": "Observations",
+        "death_year": "Death year",
+        "death_hour_error": "It must have the format HH:MM",
+        "civil_status_on_death": "Marital status on death"
+    },
+    "tabs": {
+        "main": "Death",
+        "reports": "Reports"
+    },
+    "header": {
+        "declaration_of_presence": "Declaration of presence",
+        "treasury_document": "Cash document"
+    },
+    "bury_process_options": {
+        "cremated": "Cremated",
+        "buried": "Buried"
+    }
+}

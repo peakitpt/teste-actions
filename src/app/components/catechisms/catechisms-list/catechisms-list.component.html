@@ -1,0 +1,101 @@
+<router-outlet></router-outlet>
+<ng-container *ngIf="modelList$ | async as modelList">
+  <ui-card>
+    <div content>
+      <div fxLayout="row" fxLayoutAlign="end center">
+        <!-- <kyr-table-filters fxFlex [filterList]="[]"></kyr-table-filters> -->
+        <ui-menu
+          *ngIf="reportMenuOptionsModel.length"
+          class="reports-list-button"
+          type="nested"
+          [menuClickTemplate]="reportsClickableTemplate"
+          color="accent"
+          [model]="reportMenuOptionsModel"
+          (sendValue)="reportMenuClick($event)"
+        ></ui-menu>
+      </div>
+      <ng-container *ngIf="selectedRows$ | async as selectedRows">
+        <ui-toolbar
+          *ngIf="selectedRows.length"
+          [title]="modulePath + ':message.selected' | i18next: { count: selectedRows.length }"
+          [dataModel]="toolbarDataModel"
+          rowColor="accent"
+          (iconClickedEvent)="toolbarItemClick($event)"
+          ></ui-toolbar>
+      </ng-container>
+
+      <ui-button *ngIf="!menuHelperService.getSideNavOpen()" class="float-button-mobile" [title]="'translation:action.add' | i18next" fxLayoutAlign="end" type="mini_fab" icon="add" color="accent" [attr.aria-label]="'translation:action.add' | i18next"
+        (onClickEvent)="router.navigate([modulePath, 'new'])">
+      </ui-button>
+      <ui-table
+        #table
+        [dataSource]="modelList.results"
+        [tableColumns]="tableColumns"
+        checkboxes="true"
+        stickyHeader="true"
+        (clickRowEvent)="router.navigate([modulePath, $event.id, 'details'])"
+        (checkboxSelectionEvent)="checkboxSelectionEvent($event)"
+        (columnFilterEvent)="columnFilterEvent($event)"
+        (columnOrdinationEvent)="columnOrdinationEvent($event)">
+      </ui-table>
+
+      <kyr-table-pagination>
+        <ui-paginator
+          [length]="modelList.total"
+          [pageIndex]="modelList.page - 1"
+          [pageSize]="limit"
+          (onChangeEvent)="paginationChangeEvent($event)"
+        ></ui-paginator>
+        <ui-menu
+          type="icons"
+          [model]="pagerMenu"
+          xPosition="before"
+          (sendValue)="menuClick($event)"
+        ></ui-menu>
+      </kyr-table-pagination>
+    </div>
+  </ui-card>
+</ng-container>
+
+<!-- TEMPLATES -->
+<ng-template #yearTemplate let-data="data">
+  {{ modulePath + ':catechism_years.' + data.year + '_year' | i18next }}
+</ng-template>
+
+<ng-template #catechistsTemplate let-data="data">
+  {{ data.catechisms_catechists_attributes[0].entity_description }}<span *ngIf="data.catechisms_catechists_attributes.length > 1">; <strong>+{{ data.catechisms_catechists_attributes.length - 1 }}</strong></span>
+</ng-template>
+
+<ng-template #weekDayTemplate let-data="data">
+  {{ getWeekday(data.week_day) }}
+</ng-template>
+
+<ng-template #isForAdultsTemplate let-data="data">
+  <div fxFill fxLayoutAlign="start center">
+    <mat-checkbox [checked]="data.is_for_adults" [disabled]="true"></mat-checkbox>
+  </div>
+</ng-template>
+
+<ng-template #finalizedTemplate let-data="data">
+  <div fxFill fxLayoutAlign="start center">
+    <mat-checkbox [checked]="data.finalized" [disabled]="true"></mat-checkbox>
+  </div>
+</ng-template>
+
+<ng-template #buttonsTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ui-button *ngIf="!data.finalized" type="icon" icon="edit" (onClickEvent)="router.navigate([modulePath, data.id, 'edit'])"></ui-button>
+    <ui-menu
+      [hoverTitle]="'translation:action.more' | i18next"
+      type="icons"
+      [model]="headerOptionsMenu"
+      (sendValue)="menuClick($event, data)"
+    >
+    </ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+<!-- TEMPLATES END -->

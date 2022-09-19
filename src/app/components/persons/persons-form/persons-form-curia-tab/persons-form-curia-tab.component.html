@@ -1,0 +1,13 @@
+<section id="curia-appointments-section">
+  <h2>{{ modulePath + ':header.curia_appointments' | i18next }}</h2>
+  <ui-table
+      #mecRenewalsTable
+      [checkboxes]="false"
+      [dataSource]="appointmentsDS"
+      [tableColumns]="appointmentsColumns"
+      stickyHeader="true">
+    </ui-table>
+    <div class="add-table-line" (click)="addTableLine(newAppointment, appointmentsFormArray, appointmentsDS)">
+      {{ 'translation:action.add' | i18next }}
+    </div>
+</section>

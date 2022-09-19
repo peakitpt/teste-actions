@@ -1,0 +1,296 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  [inputFooterTemplate]="footer"
+  (modalClosed)="navigate('/' + modulePath)"
+  [disableClose]="true"
+  [headerBottomMargin]="false"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">{{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}</h1>
+    <ng-template #smallHeader>
+      {{ modulePath + (id ? ':action.edit' : ':action.new') | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ng-container *ngIf="!isLoading">
+        <ui-progress-spinner diameter="20" color="warn" strokeWidth="4" *ngIf="isSaving"></ui-progress-spinner>
+
+        <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="headerOptionsMenu" (sendValue)="menuClick($event)"></ui-menu>
+      </ng-container>
+
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <ng-container *ngTemplateOutlet="isLoading ? loadingTemplate : formTemplate; context: form">
+  </ng-container>
+</ng-template>
+
+<ng-template #footer>
+  <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <ui-button *ngIf="!isQuickInsertion" type="flat" icon="save"
+      [label]="'translation:action.cancel' | i18next" color="secondary"
+      (onClickEvent)="onCancelClick()">
+    </ui-button>
+
+    <ui-button type="flat" icon="save" [label]="'translation:action.save_new' | i18next" color="secondary" (onClickEvent)="menuClick('save_new')"
+      fxHide.lt-sm="true"></ui-button>
+    <ui-button type="flat" icon="save" [label]="'translation:action.save' | i18next" color="accent" (onClickEvent)="onSubmit()"></ui-button>
+  </div>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #formTemplate>
+  <router-outlet></router-outlet>
+  <form [formGroup]="form" class="form-body">
+    <ui-tabs #tabsComponent [tabs]="formTabs"></ui-tabs>
+  </form>
+</ng-template>
+
+<ng-template #personalDataTemplate>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [required]="true" [label]="modulePath + ':model.entity.name' | i18next" [control]="form.get('entity.name')"></ui-input>
+    <ui-select fxFlex [required]="true" [label]="modulePath + ':model.entity.entity_person.sex' | i18next" [options]="genderOptions" [control]="form.get('entity.entity_person.sex')" ></ui-select>
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity.entity_person.serie_number' | i18next" [control]="form.get('entity.entity_person.serie_number')"></ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex [label]="modulePath + ':model.entity.entity_person.birth_date' | i18next" [control]="form.get('entity.entity_person.birth_date')"></ui-datepicker>
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity.entity_person.age' | i18next" [control]="ageControl"></ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.entity.entity_birth_chapelry_description' | i18next" [control]="form.get('entity.entity_birth_chapelry_description')" [rightTemplate]="{ template: birthChapelryDescription }"></ui-input>
+    <ng-template #birthChapelryDescription>
+      <ng-container *ngTemplateOutlet="chapelryRightTemplate; context: { inputName: 'birth' }"></ng-container>
+    </ng-template>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex [label]="modulePath + ':model.entity.civil_status' | i18next" [options]="civilStatusesOptions" [control]="form.get('entity.civil_status_id')"></ui-select>
+    <ui-select fxFlex [label]="modulePath + ':model.entity.entity_person.qualifications' | i18next" [options]="qualificationsOptions" [control]="form.get('entity.entity_person.qualifications_id')" ></ui-select>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.entity_person.professional_profession_description' | i18next" [control]="form.get('entity.entity_person.professional_profession_description')"></ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.entity.entity_person.comments' | i18next" [control]="form.get('entity.entity_person.comments')"></ui-input>
+  </div>
+  <h2>{{ modulePath + ':header.address' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.entity.residence_chapelry_description' | i18next" [control]="form.get('entity.residence_chapelry_description')" [rightTemplate]="{ template: residenceChapelryDescription }"></ui-input>
+    <ng-template #residenceChapelryDescription>
+      <ng-container *ngTemplateOutlet="chapelryRightTemplate; context: { inputName: 'address' }"></ng-container>
+    </ng-template>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.entity.address' | i18next" [control]="form.get('entity.address')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.door_number' | i18next" [control]="form.get('entity.door_number')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.postal_code' | i18next" [control]="form.get('entity.postal_code')"></ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.entity.place' | i18next" [control]="form.get('entity.place')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.county' | i18next" [control]="form.get('entity.county')"></ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.entity.latitude' | i18next" [control]="form.get('entity.latitude')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.longitude' | i18next" [control]="form.get('entity.longitude')"></ui-input>
+  </div>
+  <h2>{{ modulePath + ':header.contacts' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.entity.mobilephone' | i18next" [control]="form.get('entity.mobilephone')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.phone' | i18next" [control]="form.get('entity.phone')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.fax' | i18next" [control]="form.get('entity.fax')"></ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.entity.email' | i18next" [control]="form.get('entity.email')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.url' | i18next" [control]="form.get('entity.url')"></ui-input>
+  </div>
+  <h2>{{ modulePath + ':header.identi_documents' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select fxFlex
+    [label]="modulePath + ':model.entity.entity_person.ident_document_type' | i18next"
+    [options]="documentTypesOptions"
+    [control]="form.get('entity.entity_person.ident_document_type')"
+  ></ui-select>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.entity_person.ident_document_number' | i18next" [control]="form.get('entity.entity_person.ident_document_number')"></ui-input>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.entity.entity_person.ident_document_emission_date' | i18next" [control]="form.get('entity.entity_person.ident_document_emission_date')"></ui-datepicker>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex [label]="modulePath + ':model.entity.entity_person.ident_document_validity_date' | i18next" [control]="form.get('entity.entity_person.ident_document_validity_date')" ></ui-datepicker>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.entity_person.ident_document_emitted_by' | i18next" [control]="form.get('entity.entity_person.ident_document_emitted_by')"></ui-input>
+  </div>
+</ng-template>
+
+<ng-template #chapelryRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('chapelries-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="groupModalMenu" (sendValue)="menuClick($event + '_chapelries_birth_chapelry')"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #categoriesTemplate>
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.mec' | i18next" [control]="form.get('mec')"></ui-checkbox>
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.entity.is_public_profile' | i18next" [control]="form.get('entity.is_public_profile')"></ui-checkbox>
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.entity.entity_person.is_parishioner' | i18next" [control]="form.get('entity.entity_person.is_parishioner')"></ui-checkbox>
+          </div>
+        </div>
+      </div>
+    </section>
+</ng-template>
+
+<ng-template #mecTemplate>
+    <section>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+            <ui-input fxFlex [label]="modulePath + ':model.mec_number' | i18next" [control]="form.get('mec_number')"></ui-input>
+            <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.magnetic_number' | i18next" [control]="form.get('magnetic_number')"></ui-input>
+          </div>
+          <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+            <ui-input fxFlex [label]="modulePath + ':model.institution_center_worshipplace_description' | i18next" [control]="form.get('institution_center_worshipplace_description')" [rightTemplate]="{ template: institutionWorshipplace }"></ui-input>
+            <ng-template #institutionWorshipplace >
+              <ng-container *ngTemplateOutlet="worshipplaceRightTemplate; context: { inputName: 'worshipplaces' }"></ng-container>
+            </ng-template>
+          </div>
+          <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+            <ui-checkbox [label]="modulePath + ':model.is_coordinator' | i18next" class="center-checkbox" [control]="form.get('is_coordinator')"></ui-checkbox>
+            <ui-input fxFlex [label]="modulePath + ':model.congregation' | i18next" [control]="form.get('congregation')"></ui-input>
+          </div>
+          <ui-input fxFlex [label]="modulePath + ':model.formation_courses' | i18next" [control]="form.get('formation_courses')"></ui-input>
+          <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+            <ui-datepicker fxFlex [label]="modulePath + ':model.institution_date' | i18next" [control]="form.get('institution_date')"></ui-datepicker>
+            <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.institution_time' | i18next" [control]="institutionTimeControl"></ui-input>
+          </div>
+          <h2>{{ modulePath + ':header.ecclesial_formations' | i18next }}</h2>
+          <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.ecclesial_formation_biblical_courses' | i18next" [control]="form.get('ecclesial_formation_biblical_courses')"></ui-checkbox>
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.ecclesial_formation_theological_pastorails_courses' | i18next" [control]="form.get('ecclesial_formation_theological_pastorails_courses')"></ui-checkbox>
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.ecclesial_formation_other' | i18next" [control]="form.get('ecclesial_formation_other')"></ui-checkbox>
+          </div>
+          <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+            <ui-input fxFlex *ngIf="form.get('ecclesial_formation_other').value" [label]="modulePath + ':model.ecclesial_formation_other_description' | i18next" [control]="form.get('ecclesial_formation_other_description')"></ui-input>
+          </div>
+          <h2>{{ modulePath + ':header.ecclesial_activities' | i18next }}</h2>
+          <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.entity.entity_acolyte.is_acolyte' | i18next" [control]="form.get('entity.entity_acolyte.is_acolyte')"></ui-checkbox>
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.ecclesial_activities_singer' | i18next" [control]="form.get('ecclesial_activities_singer')"></ui-checkbox>
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.entity.entity_reader.is_reader' | i18next" [control]="form.get('entity.entity_reader.is_reader')"></ui-checkbox>
+          </div>
+          <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.entity.entity_catechist.catechist' | i18next" [control]="form.get('entity.entity_catechist.catechist')"></ui-checkbox>
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.ecclesial_activities_caretaker' | i18next" [control]="form.get('ecclesial_activities_caretaker')"></ui-checkbox>
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.ecclesial_activities_association_of_faithful_direction_member' | i18next" [control]="form.get('ecclesial_activities_association_of_faithful_direction_member')"></ui-checkbox>
+          </div>
+          <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.ecclesial_activities_economic_council_member' | i18next" [control]="form.get('ecclesial_activities_economic_council_member')"></ui-checkbox>
+            <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.ecclesial_activities_other' | i18next" [control]="form.get('ecclesial_activities_other')"></ui-checkbox>
+            <div fxFlex ></div>
+          </div>
+          <ui-input fxFlex *ngIf="form.get('ecclesial_activities_other').value"  [label]="modulePath + ':model.ecclesial_activities_other_description' | i18next" [control]="form.get('ecclesial_activities_other_description')"></ui-input>
+        </div>
+      </div>
+    </section>
+</ng-template>
+
+<ng-template #worshipplaceRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('worshipplaces-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="groupModalMenu" (sendValue)="menuClick($event + '_worshipplace_institution_center')"></ui-menu>
+  </div>
+</ng-template>
+
+<ng-template #formationsTemplate>
+    <section>
+      <h2 >{{ modulePath + ':header.renewal' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <ui-table
+            #tmecLinesTable
+            [checkboxes]="false"
+            [dataSource]="mecLinesDS"
+            [tableColumns]="mecLinesColumns">
+          </ui-table>
+          <div class="add-table-line" (click)="addTableLine(newMecLine, mecLinesFormArray, mecLinesDS)">
+            {{ 'translation:action.add' | i18next }}
+         </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2 >{{ modulePath + ':header.formations' | i18next }}</h2>
+      <div fxLayout="row">
+        <div class="section-container" fxLayout="column" fxFill>
+          <ui-table
+            #mecFormationsTable
+            [dataSource]="mecFormationsDS"
+            [checkboxes]="false"
+            [tableColumns]="mecFormationsColumns">
+          </ui-table>
+          <div class="add-table-line" (click)="addTableLine(newMecFormation, mecFormationsFormArray, mecFormationsDS)">
+            {{ 'translation:action.add' | i18next }}
+         </div>
+        </div>
+      </div>
+    </section>
+</ng-template>
+
+<!-- MEC LINES-->
+<ng-template #deleteMecLineTableTemplate let-index="index" let-row="row">
+  <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index, mecLinesFormArray, mecLinesDS)"></ui-button>
+</ng-template>
+<ng-template #mecRenewalTemplate let-index="index">
+  <div fxLayout="column" fxFlex>
+    <ui-datepicker fxFlex
+    fxFlexOffset="20px"
+    [label]="modulePath + ':model.entities_mecs_lines.renewal_date' | i18next"
+    [control]="mecLinesFormArray.controls[index].get('renewal_date')"
+    [required]="true"
+    ></ui-datepicker>
+  </div>
+</ng-template>
+<!-- MEC LINES-->
+<!-- MEC FORMATIONS-->
+<ng-template #deleteMecFormationTableTemplate let-index="index" let-row="row">
+  <ui-button type="icon" icon="delete" color="warn" (onClickEvent)="deleteTableLine(index, mecFormationsFormArray, mecFormationsDS)"></ui-button>
+</ng-template>
+<ng-template #mecFormationDescriptionTableTemplate let-index="index">
+  <div fxLayout="column" fxFlex>
+    <ui-input [required]="true" fxFlexOffset="20px" fxFlex [label]="modulePath + ':model.entities_mecs_formations.formation_description' | i18next" [control]="mecFormationsFormArray.controls[index].get('formation_description')" [rightTemplate]="{ template: mecFormationsRightTemplate, context: { index: index} }"></ui-input>
+  </div>
+  <ng-template #mecFormationsRightTemplate let-index="index">
+    <ng-container *ngTemplateOutlet="formationsRightTemplate; context: { inputName: 'formations#' + index, index: index}"></ng-container>
+  </ng-template>
+</ng-template>
+
+<ng-template #formationsRightTemplate let-inputName="inputName">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-left: 10px;">
+    <ui-button fxFlex type="icon" icon="open_in_new" (onClickEvent)="openSelectionModal('formations-modal', inputName)"></ui-button>
+    <ui-menu [hoverTitle]="'translation:action.more' | i18next" type="icons" [model]="groupModalMenu" (sendValue)="menuClick($event + '_formations', inputName)"></ui-menu>
+  </div>
+</ng-template>
+
+
+<ng-template #mecFormationDateTemplate let-index="index">
+  <div fxLayout="column" fxFlex="200px">
+    <ui-datepicker
+    fxFlex
+    fxFlexOffset="20px"
+    [label]="modulePath + ':model.entities_mecs_formations.formation_date' | i18next"
+    [control]="mecFormationsFormArray.controls[index].get('formation_date')"
+    [required]="true"
+    ></ui-datepicker>
+  </div>
+</ng-template>
+<!-- MEC FORMATIONS-->

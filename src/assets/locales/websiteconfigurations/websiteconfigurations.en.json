@@ -1,0 +1,51 @@
+{
+    "module": {
+        "name_singular": "Website Configuration",
+        "name_many": "Website Configurations"
+    },
+    "action": {
+        "add": "Add Website Configuration",
+        "new": "New Website Configuration",
+        "edit": "Edit Website Configuration",
+        "open_again": "Open again"
+    },
+    "message": {
+        "save_success": "Website Configuration successfully saved!",
+        "delete_success": "Website Configuration successfully deleted!",
+        "delete_success_plural": "Website Configurations successfully deleted!",
+        "delete_are_you_sure": "Are you sure that you want to delete the Website Configuration with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure that you want to delete all the <strong>{{ count }}</strong> selected Website Configurations?",
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "modal_closed": "Is the modal closed?",
+        "no_website_found": "No website found"
+    },
+    "model": {
+        "url": "URL",
+        "email": "E-mail",
+        "app_share": "Share contents on the {{ appName }} mobile app",
+        "url_facebook": "Url Facebook",
+        "url_youtube": "URL YouTube",
+        "url_twitter": "URL Twitter",
+        "url_soundcloud": "URL SoundCloud",
+        "conteudo_ano_pastoral_description": "Pastoral year content",
+        "seccao_boletim_description": "Report seccion",
+        "conteudo_informacoes_description": "Content information",
+        "seccao_noticias_description": "News section",
+        "parish_notary_content_description": "Parish notary content",
+        "masses_content_description": "Masses content",
+        "confessions_content_description": "Confessions content",
+        "visits_to_the_sicks_content_description": "Visits to the sick",
+        "how_to_help_content_description": "How to Help Content"
+    },
+    "header": {
+        "general_configurations": "General configurations",
+        "social_network_configurations": "Social network configurations",
+        "general_content_configurations": "Special Contents",
+        "left_section": "Left section",
+        "main_section": "Main section",
+        "right_section": "Right section",
+        "check_documentation": "Check how to set up this module",
+        "here": "aquí"
+    }
+}

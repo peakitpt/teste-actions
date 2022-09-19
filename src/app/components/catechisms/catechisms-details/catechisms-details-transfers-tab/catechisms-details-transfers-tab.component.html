@@ -1,0 +1,35 @@
+<section id="transfers-section" *ngIf="model.catechisms_transfers_attributes?.length">
+  <div fxLayout="column">
+    <section>
+      <div class="scrollable-table">
+        <table class="mat-table" id="transfers-table">
+          <tr class="mat-header-row">
+            <th class="mat-header-cell">#</th>
+            <th class="mat-header-cell col1"></th>
+            <th class="mat-header-cell col2">{{ modulePath + ':model.catechisms_transfers.transited' | i18next }}</th>
+            <th class="mat-header-cell col3">{{ modulePath + ':model.catechisms_transfers.next_class_year_inscription' | i18next }}</th>
+            <th class="mat-header-cell col4">{{ modulePath + ':model.catechisms_transfers.entity_description' | i18next }}</th>
+            <th class="mat-header-cell col5">{{ modulePath + ':model.catechisms_transfers.chapelry_description' | i18next }}</th>
+            <th class="mat-header-cell col6">{{ modulePath + ':model.catechisms_transfers.transfer_date' | i18next }}</th>
+          </tr>
+          <tr class="mat-row uiKyriosTableRow" *ngFor="let transfer of model.catechisms_transfers_attributes; let i = index" [attr.data-index]="i">
+            <td class="mat-cell">{{ i + 1 }}</td>
+            <td class="mat-cell col1" *ngIf="!transfer.report_url"></td>
+            <td class="mat-cell col1" *ngIf="transfer.report_url">
+              <ui-button type="icon" icon="insert_drive_file" color="primary" (onClickEvent)="openTransferReport(transfer)"></ui-button>
+            </td>
+            <td class="mat-cell col2">
+              <ui-icon [icon]="transfer.transited ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+            </td>
+            <td class="mat-cell col3">
+              <ui-icon [icon]="transfer.next_class_year_inscription ? 'check_box' : 'check_box_outline_blank'"></ui-icon>
+            </td>
+            <td class="mat-cell col4"><a (click)="openDetails('persons', transfer.entity_id)">{{ transfer.entity_description }}</a></td>
+            <td class="mat-cell col5"><a (click)="openDetails('chapelries', transfer.chapelry_id)">{{ transfer.chapelry_description }}</a></td>
+            <td class="mat-cell col6">{{ transfer.transfer_date | date:('translation:format.date' | i18next) }}</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </div>
+</section>

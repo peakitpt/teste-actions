@@ -1,0 +1,7 @@
+<section id='reports-section'>
+  <h2>{{ modulePath + ':header.declaration_of_presence' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.declaration_relative_presence' | i18next" [control]="form.get('declaration_relative_presence')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.declaration_relative_kinship' | i18next" [control]="form.get('declaration_relative_kinship')"></ui-input>
+  </div>
+</section>

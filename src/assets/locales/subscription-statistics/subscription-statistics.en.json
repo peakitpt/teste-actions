@@ -1,0 +1,28 @@
+{
+    "module": {
+        "name_singular": "Statistic",
+        "name_many": "Statistics"
+    },
+    "header": {
+        "baptisms": "Baptisms",
+        "catechisms": "Catechesis",
+        "catechumens": "Catechumenates",
+        "curia_baptisms": "Baptisms (Curia)",
+        "curia_weddings": "Matrimonials (Curia)",
+        "deaths": "Deaths",
+        "families": "Families",
+        "parishioners": "Individual Sheets",
+        "users": "Users",
+        "chrisms": "Confirmations",
+        "user_accesses": "User accesses this month",
+        "websiteconfigurations": "Webpage",
+        "weddings": "Marriages",
+        "mass_intentions": "Mass Intentions"
+    },
+    "action": {
+        "open_again": "Open again"
+    },
+    "message": {
+        "modal_closed": "Is the modal closed?"
+    }
+}

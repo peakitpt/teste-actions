@@ -1,0 +1,32 @@
+{
+    "module": {
+        "name_many": "Tipos de Clero",
+        "name_singular": "Tipo de Clero"
+    },
+    "model": {
+        "name": "Nome",
+        "abbreviated_name": "Nome abreviado",
+        "group_id": "Grupo",
+        "types": {
+            "presbiterals": "Presbíteros",
+            "deacons": "Diáconos",
+            "bishops": "Bispos"
+        },
+        "locale": "Nacionalidade"
+    },
+    "message": {
+        "save_success": "Tipo de Clero guardado com sucesso!",
+        "delete_success": "Tipo de Clero apagado com sucesso!",
+        "delete_success_plural": "Tipos de Clero apagados com sucesso!",
+        "delete_are_you_sure": "Tem a certeza que pretende eliminar o Tipo de Clero com o nome \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Tipos de Clero selecionados?",
+        "selected": "{{ count }} selecionado",
+        "selected_plural": "{{ count }} selecionados"
+    },
+    "action": {
+        "delete": "Eliminar Tipo de Clero",
+        "edit": "Editar Tipo de Clero",
+        "new": "Novo Tipo de Clero",
+        "add": "Adicionar Tipo de Clero"
+    }
+}

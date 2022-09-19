@@ -1,0 +1,29 @@
+{
+    "model": {
+        "name": "Nombre",
+        "validated": "Validado"
+    },
+    "options": {
+        "no": "No",
+        "not_available": "N/D",
+        "yes": "Sí"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que desea eliminar Santo Patrón  con el nombre \"<strong> {{name}} </strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que desea eliminar los <strong> {{count}} </strong> Santos Patrones  seleccionados?",
+        "delete_success": "¡Santo Patrón eliminado correctamente!",
+        "delete_success_plural": "¡Santos Patronos eliminados correctamente!",
+        "save_success": "¡Santo patrón guardado con éxito!"
+    },
+    "action": {
+        "delete": "Eliminar Santo Patrón?",
+        "edit": "Editar Santo Patrón",
+        "new": "Nuevo Santo Patrón"
+    },
+    "module": {
+        "name_many": "Santos Patronos",
+        "name_singular": "Santo Patrón"
+    }
+}

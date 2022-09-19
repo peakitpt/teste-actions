@@ -1,0 +1,200 @@
+<ui-menu
+  type="hidden"
+  [stopClosingOnClick]="true"
+  [menuClickTemplate]="subscriptionsMenuClickTemplate"
+  [menuTemplate]="subscriptionsMenuTemplate"
+  xPosition="before"
+  yPosition="below"
+  hasBackdrop="true"
+  [hoverTitle]="'translation:action.change_subscription' | i18next"
+></ui-menu>
+
+<ng-template #subscriptionsMenuClickTemplate>
+  <div *ngIf="subscriptions && currentSubscription.name" >
+    <ui-button
+      type="flat"
+      color="primary"
+      leftIcon="account_balance"
+      rightIcon="arrow_drop_down"
+      [label]="' ' + currentSubscription.entity_type.name_translate + ' ' + currentSubscription.name"
+    >
+    </ui-button>
+  </div>
+</ng-template>
+
+<ng-template #subscriptionsMenuTemplate>
+  <div class="subscriptions-main-container" *ngIf="subscriptions" fxLayout="column" fxLayoutGap="10px" fxFlex.gt-sm="450px">
+
+    <div fxLayout="column" class="changeSubscriptionHeader" fxFlex="120px">
+      <div class="mat-title" fxLayout="row" fxFlexOffset="10px" fxLayoutAlign="center center">
+        <div>
+          {{ 'translation:action.change_subscription' | i18next }}
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxFlexOffset="10px" fxFlex="95">
+          <ui-input
+            id="subscriptionSearch"
+            [placeholder]="'translation:action.search_ellipsis' | i18next"
+            [leftTemplate]="{ template: searchIcon }"
+            [control]="subscriptionSearchForm">
+          </ui-input>
+        </div>
+      </div>
+    </div>
+
+    <ui-divider></ui-divider>
+
+    <div class="subscriptions-container-list" fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="start stretch" fxFlexOffset="10px" fxFlex="45px" class="subscription-chip mat-body" (click)="changeSubscription(subscriptions.default)">
+        <div fxLayout="column" fxLayoutAlign="center center" fxFlexOffset="25px"
+        class="iconParish"
+        [ngClass]="{'iconDioceses' : subscriptions.default.entity_type.id === 9,
+        'iconInstitutions' : subscriptions.default.entity_type.id === 13}">
+          <ui-icon icon="star" [ngClass]="{'subscription-chip-active' : subscriptions.default.name == currentSubscription.id}"></ui-icon>
+        </div>
+        <div fxLayout="column" fxFlex fxFlexOffset="25px">
+          <div fxFlex fxLayout="column" fxLayoutAlign="center start">
+            <span class="mat-body" [ngStyle]="{ 'font-weight': ((subscriptions.default.id == currentSubscription.id) ? '600' : '' ) }">
+              {{ subscriptions.default.entity_type.name_translate }} | {{ subscriptions.default.name }}
+            </span>
+          </div>
+          <ui-divider fxFlex="2"></ui-divider>
+        </div>
+      </div>
+
+      <div *ngFor="let subscription of shownSubscriptions" fxLayout="row" fxLayoutAlign="start stretch" fxFlex="45px" class="subscription-chip mat-body" (click)="changeSubscription(subscription)">
+        <div fxLayout="column" fxLayoutAlign="center center" fxFlexOffset="25px"
+        class="iconParish"
+        [ngClass]="{'iconDioceses' : subscription.entity_type.id === 9,
+        'iconInstitutions' : subscription.entity_type.id === 13}">
+          <ui-icon fxFlexOffset="5" icon="account_balance" [ngClass]="{'subscription-chip-active' : subscription.id == currentSubscription.id}"></ui-icon>
+        </div>
+        <div fxLayout="column" fxFlex fxFlexOffset="25px">
+          <div fxFlex fxLayout="column" fxLayoutAlign="center start">
+            <span class="mat-body" [ngStyle]="{ 'font-weight': ((subscription.id == currentSubscription.id) ? '600' : '' ) }">
+              {{subscription.entity_type.name_translate }} | {{ subscription.name }}
+            </span>
+          </div>
+          <ui-divider fxFlex="2"></ui-divider>
+        </div>
+      </div>
+    </div>
+
+    <ui-divider></ui-divider>
+
+    <div fxLayout="row" fxFlex="45px" fxLayoutAlign="start center" class="subscription-chip" (click)="openSubscriptionsModal()">
+      <a fxFlexOffset="5" class="mat-body link-button">
+        {{ 'translation:action.more' | i18next }}
+      </a>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #searchIcon>
+  <ui-icon icon="search"></ui-icon>
+</ng-template>
+
+<!-- Subscriptions Modal -->
+
+<ui-dialog #modal
+  [inputHeaderTemplate]="modalHeader"
+  [inputBodyTemplate]="modalBody"
+  [width]="800"
+  (modalClosed)="onModalClose()"
+>
+</ui-dialog>
+
+<ng-template #modalHeader>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>
+      {{ 'translation:action.change_subscription' | i18next }}
+    </h1>
+    <div class="header-buttons" fxLayout="row">
+      <ng-container *ngIf="isSuperUser===true">
+        <ui-button type='icon' icon="add" disableRipple="true" disableFocusRipple="true" (onClickEvent)="addSubscription()"></ui-button>
+        <ui-button type='icon' icon="settings" disableRipple="true" disableFocusRipple="true" (onClickEvent)="goToEntitysAccess()"></ui-button>
+      </ng-container>
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #modalBody>
+
+  <div fxLayout="row">
+    <div fxFlexOffset="10px" fxFlex="95">
+      <ui-input
+        id="subscriptionSearch"
+        [placeholder]="'translation:action.search_ellipsis' | i18next"
+        [leftTemplate]="{ template: searchIcon }"
+        [control]="allSubscriptionSearchForm">
+      </ui-input>
+    </div>
+  </div>
+
+  <div class="modal-subscriptions-container" fxLayout="column">
+    <ng-container *ngIf="allSubscriptions$ | async; else loadingTemplate">
+
+      <div fxLayout="row" fxLayoutAlign="start stretch" fxFlexOffset="10px" fxFlex fxFlex.gt-sm="45px" class="subscription-chip mat-body" (click)="changeSubscription(subscriptions.default)">
+        <div fxLayout="column" fxLayoutAlign="center center" fxFlexOffset.gt-sm="25px"
+        class="iconParish"
+        [ngClass]="{'iconDioceses' : subscriptions.default.entity_type.id === 9,
+        'iconInstitutions' : subscriptions.default.entity_type.id === 13}">
+          <ui-icon fxFlexOffset="2" fxFlexOffset.gt-sm="5" icon="star" [ngClass]="{'subscription-chip-active' : subscriptions.default.name == currentSubscription.id}"></ui-icon>
+        </div>
+        <div fxLayout="column" fxFlex fxFlexOffset="25px">
+          <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+            <span fxFlex class="mat-body" [ngStyle]="{ 'font-weight': ((subscriptions.default.id == currentSubscription.id) ? '600' : '' ) }">
+              {{ subscriptions.default.entity_type.name_translate }} | {{ subscriptions.default.name }}
+            </span>
+          </div>
+          <ui-divider fxFlex="2"></ui-divider>
+        </div>
+      </div>
+
+      <div *ngFor="let subscription of shownAllSubscriptions" fxLayout="row" fxLayoutAlign="start stretch" fxFlex fxFlex.gt-sm="45px" class="subscription-chip mat-body">
+        <div fxLayout="column" fxLayoutAlign="center center" fxFlexOffset.gt-sm="25px"
+          class="iconParish"
+          [ngClass]="{'iconDioceses' : subscription.entity_type.id === 9,
+          'iconInstitutions' : subscription.entity_type.id === 13}"
+          (click)="changeSubscription(subscription)">
+          <ui-icon fxFlexOffset="2" fxFlexOffset.gt-sm="5" icon="account_balance" [ngClass]="{'subscription-chip-active' : subscription.id == currentSubscription.id}"></ui-icon>
+        </div>
+        <div fxFlex fxLayout="column" fxFlexOffset="25px" class="subscription-modal-text-container">
+          <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+            <span fxFlex class="mat-body"
+              [ngStyle]="{ 'font-weight': ((subscription.id == currentSubscription.id) ? '600' : '' ) }"
+              (click)="changeSubscription(subscription)">
+              {{subscription.fullName }}
+            </span>
+            <div>
+              <ui-chip fxHide.lt-md="true" color="accent" [chipTemplate]="predefineTemplate" selected="true" (onClickEvent)="predefineSubscription(subscription.id)"></ui-chip>
+              <ui-button fxHide.gt-sm="true" type="icon" icon="star" color="accent" (onClickEvent)="predefineSubscription(subscription.id)"></ui-button>
+            </div>
+          </div>
+          <ui-divider fxFlex="2"></ui-divider>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>
+
+<!-- Subscriptions Modal -->
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #predefineTemplate>
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <!-- <ui-button type="icon" icon="star"></ui-button> -->
+    <div>
+      {{ 'translation:action.predefine' | i18next }}
+    </div>
+  </div>
+</ng-template>

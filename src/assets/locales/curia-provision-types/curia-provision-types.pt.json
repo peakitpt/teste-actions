@@ -1,0 +1,22 @@
+{
+  "module": {
+    "name_singular": "Tipo de Provisão",
+    "name_many": "Tipos de Provisões"
+  },
+  "action": {
+    "new": "Novo Tipo de Provisão",
+    "edit": "Editar Tipo de Provisão",
+    "delete": "Eliminar Tipo de Provisão?"
+  },
+  "message": {
+    "save_success": "Tipo de Provisão guardado com sucesso!",
+    "delete_success": "Tipo de Provisão apagado com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Tipo de Provisão \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Tipos de Provisões selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Nome"
+  }
+}

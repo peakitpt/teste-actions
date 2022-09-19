@@ -1,0 +1,22 @@
+{
+    "module": {
+        "name_singular": "Grupo",
+        "name_many": "Grupos"
+    },
+    "action": {
+      "addCountry": "Adicionar Grupo",
+      "new": "Novo Grupo",
+      "edit": "Editar Grupo"
+    },
+    "message": {
+        "save_success": "Grupo guardado com sucesso!",
+        "delete_success": "Grupo apagado com sucesso!",
+        "delete_are_you_sure": "Tem a certeza que pretende eliminar o Grupo \"<strong>{{ description }}</strong>\"?",
+        "selected": "{{ count }} selecionada",
+        "selected_plural": "{{ count }} selecionadas"
+    },
+    "model": {
+        "name": "Nome",
+        "active": "Ativo"
+    }
+}

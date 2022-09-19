@@ -1,0 +1,50 @@
+{
+    "module": {
+        "name_singular": "Tipo de Documento",
+        "name_many": "Tipos de Documentos"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "error": {
+            "no_series": "Añadir al menos una Serie"
+        },
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar el Tipo de Documento con el nombre \"<strong>{{ description }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quiere eliminar los <strong>{{ count }}</strong> Tipos de documentos seleccionados?",
+        "delete_success": "¡Tipo de documento eliminado con éxito!",
+        "delete_success_plural": "¡Tipos de documentos eliminados con éxito!",
+        "save_success": "¡Tipo de documento guardado con éxito!"
+    },
+    "model": {
+        "description": "Descripción",
+        "code": "Código",
+        "name": "Nombre",
+        "active": "Activo",
+        "numeration": {
+            "ser_length": "Número de dígitos",
+            "ser_max": "Número máximo",
+            "ser_value": "Número actual",
+            "ser_suffix": "Sufijo",
+            "ser_preffix": "Prefijo",
+            "serie": "Serie",
+            "is_default": "Preestablecido",
+            "active": "Activo"
+        },
+        "movement_operator": "Operador",
+        "movement_type_option": {
+            "d": "Débito",
+            "c": "Crédito"
+        },
+        "affects_legal_tax_reports": "Afecta modelo IRPF ",
+        "self_assessment": "Autoliquidación",
+        "movement_type": "Tipo de movimiento"
+    },
+    "header": {
+        "series": "Serie"
+    },
+    "action": {
+        "delete": "¿Eliminar tipo de documento?",
+        "edit": "Editar tipo de documento",
+        "new": "Nuevo tipo de documento"
+    }
+}

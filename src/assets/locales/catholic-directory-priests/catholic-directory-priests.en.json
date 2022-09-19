@@ -1,0 +1,129 @@
+{
+    "module": {
+        "name_singular": "Clergy Member",
+        "name_many": "Clergy Members"
+    },
+    "model": {
+        "observations": "Observations",
+        "year": "Year",
+        "entity": {
+            "door_number": "Door No.",
+            "taxpayer": "Contributor No.",
+            "can_sign_documents": "Can Sign Documents",
+            "email": "Email",
+            "country_description": "Country",
+            "district": "District",
+            "postal_code": "Zip code",
+            "url": "Web Page",
+            "fax": "Fax",
+            "phone": "Cell Phone",
+            "mobilephone": "Mobile Phone",
+            "county": "County",
+            "place": "Locality",
+            "address": "Adress",
+            "name": "Name"
+        },
+        "ordination_date_start": "Ordering Start",
+        "entity_priest_priestly_cards": {
+            "renewal_date": "Renewal Date"
+        },
+        "entity_person": {
+            "entity_mother_description": "Mother",
+            "entity_father_description": "Father",
+            "title": "Title"
+        },
+        "birth_chapelry": {
+            "complete_relation": "Birth Parish"
+        },
+        "entity_priest_ongoing_formations": {
+            "description": "Description",
+            "end_date": "End",
+            "start_date": "Start"
+        },
+        "entity_priest_academic_qualifications": {
+            "description": "Description",
+            "end_date": "End",
+            "start_date": "Start"
+        },
+        "entity_priest_curriculums": {
+            "description": "Description",
+            "end_date": "End",
+            "start_date": "Start"
+        },
+        "entity_priest_publications": {
+            "description": "Description",
+            "publication_date": "Date of Publication"
+        },
+        "entity_priest_appointments": {
+            "description": "Description",
+            "representing_description": "Represent",
+            "end_date": "End",
+            "start_date": "Start",
+            "nominee_description": "Place",
+            "curia_function_description": "Function"
+        },
+        "appointments_appointment_place_description_starts": "Current Place of Nomination (belongs to)",
+        "appointments_appointment_place_description": "Current Place of Nomination (equal to)",
+        "appointments_curia_function_description": "Current Nomination",
+        "place": "Place",
+        "episcopal_ordination_place": "Place of Ordering",
+        "ordination_date_end": "Ordering End",
+        "ordination_date": "Ordering Date",
+        "ident_document_validity_date": "Expiry Date",
+        "ident_document_emitted_by": "Issued by",
+        "ident_document_emission_date": "Date of Issue",
+        "ident_document_number": "Civil Identification No.",
+        "ident_document_type": "Type of Identification",
+        "residence_chapelry_description": "Residence Parish",
+        "residence": "Residence",
+        "priest_birth_date_end": "Birth End",
+        "priest_birth_date_start": "Birth Start",
+        "priest_birth_date": "Date of Birth",
+        "abbreviated_name": "Short Name",
+        "clergy_type_description": "Clergy Type",
+        "deceased": "Deceased",
+        "active": "Active",
+        "private_mobilephone": "Mobile phone",
+        "priestly_fraternity": "Fraternity of Priests",
+        "priestly_card": "Priestly Card",
+        "entity__name": "Name",
+        "name": "Name",
+        "entity__entity_ekklesia_location__name": "Bishopric"
+    },
+    "message": {
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected"
+    },
+    "option": {
+        "residence_title": "Residence Title",
+        "passport": "Passport",
+        "citizen_card": "Citizen Card",
+        "identity_card": "Identity Card",
+        "from_outside_residing_at_archdiocese": "From outside residing in the Archdiocese",
+        "archdiocesan_residing_outside": "Archdiocesan residing abroad",
+        "archdiocesan": "Archdiocesan",
+        "religious": "Religious"
+    },
+    "header": {
+        "academic_qualifications": "Academic Qualifications",
+        "curriculum": "Curriculum",
+        "publications": "Publications",
+        "ongoing_formations": "Permanent Formation",
+        "retreats": "Retreats",
+        "priesty_card_renovation": "Renewals of Priestly Card",
+        "ordenation": "Ordering",
+        "filiation": "Affiliation",
+        "identification_documents": "Identification documents",
+        "current_appointments": "Current Nominations",
+        "personal_data": "Personal Data",
+        "appointments": "Nominations",
+        "other_info": "Other information",
+        "contacts": "Contact",
+        "address": "Adress"
+    },
+    "tabs": {
+        "other_info_tab": "Other Information",
+        "ordenations_appointments": "Ordination and Nominations",
+        "personal_data": "Personal Data"
+    }
+}

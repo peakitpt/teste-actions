@@ -1,0 +1,33 @@
+{
+    "message": {
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "status_toggled": "Changed reading status",
+        "delete_are_you_sure": "Are you sure you want to delete the Message \"<strong>{{ description }}</strong>\"?",
+        "delete_success": "Message successfully deleted!",
+        "save_success": "Message successfully saved!"
+    },
+    "frequency": {
+        "yearly": "Annual",
+        "monthly": "Monthly",
+        "weekly": "Weekly",
+        "daily": "Daily",
+        "unique": "Only"
+    },
+    "model": {
+        "message": "Message",
+        "read": "Read",
+        "sent_at": "Date",
+        "subject": "Subject",
+        "from": "From"
+    },
+    "action": {
+        "toggle_status": "Mark as Read/Unread",
+        "delete": "Delete Message",
+        "add": "Add Message"
+    },
+    "module": {
+        "name_many": "Messages",
+        "name_singular": "Message"
+    }
+}

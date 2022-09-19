@@ -1,0 +1,57 @@
+<section id="documents-data-section">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex [label]="modulePath + ':model.document_date' | i18next" [control]="form.get('document_date')"></ui-datepicker>
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.party_provision_chapelry_description' | i18next"
+      [control]="form.get('party_provision_chapelry_description')"
+      [rightTemplate]="{ template: chapelriesRightTemplate, context: { inputName: 'party_provision_chapelry' } }">
+    </ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex
+      [label]="modulePath + ':model.party_provision_party_name' | i18next"
+      [control]="form.get('party_provision_party_name')">
+    </ui-input>
+    <ui-input fxFlex
+      [label]="modulePath + ':model.party_provision_dates' | i18next"
+      [control]="form.get('party_provision_dates')">
+    </ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex
+      [label]="modulePath + ':model.party_provision_place' | i18next"
+      [control]="form.get('party_provision_place')">
+    </ui-input>
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.party_provision_preacher_description' | i18next"
+      [control]="form.get('party_provision_preacher_description')"
+      [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'party_provision_preacher', queryStringParams: {} } }">
+    </ui-input>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-text-area-ckeditor
+      #party_provision_scheduleTextEditor fxFlex
+      [environment]="environment"
+      [label]="modulePath + ':model.party_provision_schedule' | i18next"
+      [control]="form.get('party_provision_schedule')"
+      config="">
+    </ui-text-area-ckeditor>
+    <ui-text-area-ckeditor
+      #party_provision_bands_ofTextEditor fxFlex
+      [environment]="environment"
+      [label]="modulePath + ':model.party_provision_bands_of' | i18next"
+      [control]="form.get('party_provision_bands_of')"
+      config="">
+    </ui-text-area-ckeditor>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex
+      [readonly]="true"
+      [label]="modulePath + ':model.party_provision_subscriber_description' | i18next"
+      [control]="form.get('party_provision_subscriber_description')"
+      [rightTemplate]="{ template: priestsRightTemplate, context: { inputName: 'party_provision_subscriber', queryStringParams: priestsQSP} }">
+    </ui-input>
+  </div>
+</section>

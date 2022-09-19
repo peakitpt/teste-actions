@@ -1,0 +1,64 @@
+{
+    "module": {
+        "name_singular": "Tipo de Pacto",
+        "name_many": "Tipos de Pactos"
+    },
+    "action": {
+        "generate_card": "Generar tarjeta",
+        "delete": "¿Eliminar el Tipo de Avenza?",
+        "edit": "Editar Tipo de Avenza",
+        "new": "Nuevo tipo de Avenza"
+    },
+    "model": {
+        "validity_date_end": "Fecha de Finalización",
+        "validity_date_start": "Fecha de Inicio",
+        "active": "Activo",
+        "description": "Descripción",
+        "code": "Código",
+        "document_to_generate_document_type_description": "Tipo de Documento",
+        "accruals_types_emoluments": {
+            "total": "Total",
+            "value": "Precio",
+            "quantity": "Cantidad",
+            "emolument_description": "Descripción"
+        },
+        "document_to_generate_serie_description": "Serie",
+        "periodicity_number_of_days": "Número de Días",
+        "periodicity_type": "Periodicidad",
+        "validity_date": "Fecha de Caducidad",
+        "total": "Total",
+        "value": "Precio",
+        "quantity": "Cantidad",
+        "comments": "Observaciones",
+        "catechisms_sessions": "Observaciones"
+    },
+    "message": {
+        "total": "Total",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionado",
+        "delete_are_you_sure": "¿Está seguro de que quieres eliminar el Tipo de Avenza con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quieres eliminar las <strong>{{ count }}</strong> Tipos de Avenzas seleccionadas?",
+        "delete_success": "Tipo de Avenza eliminada con éxito!",
+        "delete_success_plural": "Tipo de Avenzas eliminadas con éxito!",
+        "save_success": "Tipo de Avenza guardada con éxito!"
+    },
+    "tabs": {
+        "emoluments": "Emolumentos",
+        "general": "General"
+    },
+    "options": {
+        "other": "Otro",
+        "weekly": "Semanal",
+        "monthly": "Mensual",
+        "semiannual": "Semestralmente",
+        "quarterly": "Trimestralmente",
+        "yearly": "Anual"
+    },
+    "header": {
+        "periodicity": "Periodicidad",
+        "observations": "Observaciones",
+        "document_to_generate": "Documento a Generar",
+        "processing": "Procesamiento",
+        "validity": "Validez"
+    }
+}

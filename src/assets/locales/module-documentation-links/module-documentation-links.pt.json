@@ -1,0 +1,28 @@
+{
+  "module": {
+    "name_singular": "Documentação",
+    "name_many": "Documentação"
+  },
+  "action": {
+    "new": "Novo Documento",
+    "edit": "Editar Documento",
+    "delete": "Eliminar Documento?"
+  },
+  "message": {
+    "save_success": "Documento guardado com sucesso!",
+    "delete_success": "Documento apagado com sucesso!",
+    "delete_success_plural": "documentos apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Documento do módulo: \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> documentos selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "resource": "Módulo",
+    "documentation_url": "Endereço",
+    "active": "Ativo"
+  },
+  "text":{
+    "1st_paragraph": "O Módulo deverá ser obtido através do URL da página para a qual vai ser inserida a documentação. Por exemplo, para adicionar documentação para os Batismos, cujo URL da página é <u><em>'{{ path }}/<b>baptisms</b>'</em></u>, o Módulo a ser inserido aqui é <b>baptisms<b>"
+  }
+}

@@ -1,0 +1,31 @@
+{
+    "module": {
+        "name_singular": "Taxonomy Code",
+        "name_many": "Taxonomy Codes"
+    },
+    "message": {
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Taxonomy Code with the name \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the <strong>{{ count }}</strong> Taxonomy Codes selected?",
+        "delete_success": "Taxonomy code successfully deleted!",
+        "delete_success_plural": "Taxonomy codes successfully deleted!",
+        "save_success": "Taxonomy code successfully saved!"
+    },
+    "model": {
+        "observations": "Observations",
+        "description": "Description",
+        "base_code": "Code SNC base",
+        "taxonomy_code": "Taxonomy Code",
+        "taxonomy_reference_description": "Reference Code Description",
+        "taxonomy_reference_code": "Ref.",
+        "locale": "Location",
+        "taxonomy_reference_id": "Taxonomy Ref. Code",
+        "accounting_taxonomy_reference_description": "Taxonomy Reference"
+    },
+    "action": {
+        "delete": "Delet Taxonomy Codes?",
+        "edit": "Edit Taxonomy Codes",
+        "new": "New Taxonomy Codes"
+    }
+}

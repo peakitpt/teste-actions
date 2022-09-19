@@ -1,0 +1,59 @@
+{
+  "module": {
+    "name_singular": "Família",
+    "name_many": "Famílias"
+  },
+  "action": {
+    "new": "Nova Família",
+    "edit": "Editar Família",
+    "delete": "Eliminar Família?",
+    "continue": "Tomei conhecimento e desejo continuar."
+  },
+  "message": {
+    "save_success": "Família guardada com sucesso!",
+    "delete_success": "Família apagada com sucesso!",
+    "delete_success_plural": "Famílias apagadas com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar a Família com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar as <strong>{{ count }}</strong> Famílias selecionadas?",
+    "selected": "{{ count }} selecionada",
+    "selected_plural": "{{ count }} selecionadas",
+    "error_blank_families_entities": "Por favor, preencha todos os campos obrigatórios da tabela do Agregado familiar",
+    "family_documents_will_be_here": "Aqui serão listados os documentos associados aos elementos desta família",
+    "no_satistics_to_show": "Sem estatísticas preenchidas"
+  },
+  "model": {
+    "id": "Id",
+    "name": "Apelido",
+    "father_description": "1º chefe de família",
+    "mother_description": "2º chefe de família",
+    "disabled": "Ativa",
+    "comments": "Observações",
+    "opt1_text": "Algum dos elementos do agregado familiar participa em algum movimento religioso? Quem?",
+    "opt1_text2_description": "Em que paróquia?",
+    "opt2_text": "Algum membro está disponível para colaborar nesta Paróquia? Qual/quais?",
+    "opt2_text2": "Em quê?",
+    "opt3_text": "'Na sua opinião, o que considera que poderia ser feito no sentido de promover a maior ligação dos habitantes à Paróquia?'",
+    "opt4_text": "Quais são os principais problemas deste agregado familiar?",
+    "opt5_text": "O agregado necessita de algum tipo de apoio? De que tipo?",
+    "families_entities": {
+      "_destroy": "Apagar?",
+      "entity_description": "Nome",
+      "relationship_degree_description": "Parentesco",
+      "relation_with": "Relativo a"
+    },
+    "already_on_family_warning": "A pessoa selecionada já se encontra associado a(s) seguinte(s) familia(s):",
+    "choose_an_option": "Escolha uma das opções abaixo para continuar."
+  },
+  "header": {
+    "family_data": "Dados da família",
+    "household": "Agregado familiar",
+    "other_info": "Outras informações",
+    "warning": "Aviso"
+  },
+  "tabs": {
+    "family": "Família",
+    "documents": "Documentos",
+    "statistic_data": "Dados estatísticos"
+  },
+  "relations_with_both": "Ambos os chefes de família"
+}

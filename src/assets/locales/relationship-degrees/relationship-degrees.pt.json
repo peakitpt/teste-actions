@@ -1,0 +1,25 @@
+{
+  "module": {
+    "name_singular": "Grau de Parentesco",
+    "name_many": "Graus de Parentesco"
+  },
+  "action": {
+    "addCountry": "Adicionar Grau de parentesco",
+    "new": "Novo Grau de parentesco",
+    "edit": "Editar Grau de parentesco"
+  },
+  "message": {
+    "save_success": "Grau de parentesco guardado com sucesso!",
+    "delete_success": "Grau de parentesco apagado com sucesso!",
+    "delete_success_plural": "Grau de parentescos apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Grau de parentesco com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Grau de parentescos selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Nome",
+    "validated": "Validado",
+    "locale": "Localização"
+  }
+}

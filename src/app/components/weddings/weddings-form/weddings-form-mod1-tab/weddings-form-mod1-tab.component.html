@@ -1,0 +1,86 @@
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+  <section fxFlex id="godfather-section">
+    <div fxLayout="column" fxLayoutGap="10px">
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+        <div fxFlex ngClass.gt-xs="center-checkbox">
+          <ui-checkbox [label]="modulePath + ':model.opt_mod1_opt1' | i18next" [control]="form.get('opt_mod1_opt1')"></ui-checkbox>
+        </div>
+        <ui-input *ngIf="form.value.opt_mod1_opt1 === true" fxFlex
+          [label]="modulePath + ':model.opt_mod1_opt1_text' | i18next"
+          [control]="form.get('opt_mod1_opt1_text')">
+        </ui-input>
+      </div>
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+        <div fxFlex ngClass.gt-xs="center-checkbox">
+          <ui-checkbox [label]="modulePath + ':model.opt_mod1_opt2' | i18next" [control]="form.get('opt_mod1_opt2')"></ui-checkbox>
+        </div>
+        <ui-input *ngIf="form.value.opt_mod1_opt2 === true" fxFlex
+          [label]="modulePath + ':model.opt_mod1_opt2_text' | i18next"
+          [control]="form.get('opt_mod1_opt2_text')">
+        </ui-input>
+      </div>
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+        <div fxFlex ngClass.gt-xs="center-checkbox">
+          <ui-checkbox [label]="modulePath + ':model.opt_mod1_opt3' | i18next" [control]="form.get('opt_mod1_opt3')"></ui-checkbox>
+        </div>
+        <ui-input *ngIf="form.value.opt_mod1_opt3 === true" fxFlex
+          [label]="modulePath + ':model.opt_mod1_opt3_text' | i18next"
+          [control]="form.get('opt_mod1_opt3_text')">
+        </ui-input>
+      </div>
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+        <div fxFlex ngClass.gt-xs="center-checkbox">
+          <ui-checkbox [label]="modulePath + ':model.opt_mod1_opt4' | i18next" [control]="form.get('opt_mod1_opt4')"></ui-checkbox>
+        </div>
+        <ui-input *ngIf="form.value.opt_mod1_opt4 === true" fxFlex
+          [label]="modulePath + ':model.opt_mod1_opt4_text' | i18next"
+          [control]="form.get('opt_mod1_opt4_text')">
+        </ui-input>
+      </div>
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+        <div fxFlex ngClass.gt-xs="center-checkbox">
+          <ui-checkbox [label]="modulePath + ':model.opt_mod1_opt5' | i18next" [control]="form.get('opt_mod1_opt5')"></ui-checkbox>
+        </div>
+        <ui-input *ngIf="form.value.opt_mod1_opt5 === true" fxFlex
+          [label]="modulePath + ':model.opt_mod1_opt5_text' | i18next"
+          [control]="form.get('opt_mod1_opt5_text')">
+        </ui-input>
+      </div>
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+        <div fxFlex ngClass.gt-xs="center-checkbox">
+          <ui-checkbox [label]="modulePath + ':model.opt_mod1_opt6' | i18next" [control]="form.get('opt_mod1_opt6')"></ui-checkbox>
+        </div>
+        <ui-input *ngIf="form.value.opt_mod1_opt6 === true" fxFlex="34"
+          [label]="modulePath + ':model.opt_mod1_opt6_text' | i18next"
+          [control]="form.get('opt_mod1_opt6_text')">
+        </ui-input>
+        <ui-input *ngIf="form.value.opt_mod1_opt6 === true" fxFlex
+          [label]="modulePath + ':model.opt_mod1_opt6_number' | i18next"
+          [control]="form.get('opt_mod1_opt6_number')">
+        </ui-input>
+        <ui-datepicker *ngIf="form.value.opt_mod1_opt6 === true" fxFlex
+          [label]="modulePath + ':model.opt_mod1_opt6_date' | i18next"
+          [control]="form.get('opt_mod1_opt6_date')">
+        </ui-datepicker>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+      <ui-textarea fxFlex rows="2" [label]="modulePath + ':model.opt_mod1_extra_option1' | i18next" [control]="form.get('opt_mod1_extra_option1')"></ui-textarea>
+      <ui-textarea fxFlex rows="2" [label]="modulePath + ':model.opt_mod1_extra_option2' | i18next" [control]="form.get('opt_mod1_extra_option2')"></ui-textarea>
+    </div>
+
+    <div fxLayout="column">
+      <div class="side-note">
+        {{ modulePath + ':sidenote.mod1.1' | i18next }}
+      </div>
+      <div class="side-note">
+        {{ modulePath + ':sidenote.mod1.2' | i18next }}
+      </div>
+      <div class="side-note">
+        {{ modulePath + ':sidenote.mod1.3' | i18next }}
+      </div>
+    </div>
+  </section>
+
+</div>

@@ -1,0 +1,288 @@
+<!--Institution info-->
+<section>
+  <h2>{{ modulePath + ':header.institution' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-checkbox fxFlex class="margin-checkbox" [label]="modulePath + ':model.entity.disabled' | i18next"
+          [control]="form.get('entity.disabled')"></ui-checkbox>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.institution_type_description' | i18next"
+          [control]="form.get('institution_type_description')"
+          [rightTemplate]="{ template: institutionTypeDescriptionRightTemplate, context: { inputName: 'institution_type' } }">
+        </ui-input>
+        <ui-input fxFlex [label]="modulePath + ':model.entity.name' | i18next" [control]="form.get(['entity', 'name'])"
+          [required]="true"></ui-input>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex [label]="modulePath + ':model.entity.tax_designation' | i18next"
+          [control]="form.get('entity.tax_designation')"></ui-input>
+        <ui-input fxFlex [label]="modulePath + ':model.entity.taxpayer' | i18next"
+          [control]="form.get('entity.taxpayer')">
+        </ui-input>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.archpriestship').value || form.get('institution_type.chapelry').value">
+        <ui-input fxFlex *ngIf="form.get('institution_type.archpriestship').value" [readonly]="true"
+          [label]="modulePath + ':model.archpriestship_description' | i18next"
+          [control]="form.get('archpriestship_description')"
+          [rightTemplate]="{ template: archpristshipRightTemplate, context: { inputName: 'archpriestship' } }">
+        </ui-input>
+
+        <ui-input fxFlex *ngIf="form.get('institution_type.chapelry').value " [readonly]="true"
+          [label]="modulePath + ':model.chapelry_description' | i18next" [control]="form.get('chapelry_description')"
+          [rightTemplate]="{ template: chapelryRightTemplate, context: { inputName: 'chapelry' } }">
+        </ui-input>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.congregation').value|| form.get('institution_type.secular_institute').value">
+
+        <ui-input fxFlex [readonly]="true" *ngIf="form.get('institution_type.congregation').value"
+          [label]="modulePath + ':model.congregation_description' | i18next"
+          [control]="form.get('congregation_description')"
+          [rightTemplate]="{ template: congregationRightTemplate, context: { inputName: 'congregation' } }">
+          >
+        </ui-input>
+
+        <ui-input fxFlex [readonly]="true" *ngIf="form.get('institution_type.secular_institute').value"
+          [label]="modulePath + ':model.secular_institute_description' | i18next"
+          [control]="form.get('secular_institute_description')"
+          [rightTemplate]="{ template: secularInstituteRightTemplate, context: { inputName: 'secular_institute' } }">
+        </ui-input>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.community').value || form.get('institution_type.institution_gender').value">
+
+        <ui-input fxFlex *ngIf="form.get('institution_type.community').value || form.get('community').value"
+          [label]="modulePath + ':model.community' | i18next" [control]="form.get('community')">
+        </ui-input>
+
+
+        <ui-select fxFlex [required]="true" *ngIf="form.get('institution_type.institution_gender').value"
+          [label]="modulePath + ':model.institution_gender' | i18next" [options]="institutionGenderOptions"
+          [control]="form.get('institution_gender')">
+        </ui-select>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.christian_life_centers_type').value || form.get('institution_type.mandate').value">
+
+        <ui-select fxFlex *ngIf="form.get('institution_type.christian_life_centers_type').value"
+          [label]="modulePath + ':model.christian_life_centers_type' | i18next"
+          [options]="christianLifeCentersTypeOptions" [control]="form.get('christian_life_centers_type_id')">
+        </ui-select>
+
+        <ui-input fxFlex *ngIf="form.get('institution_type.mandate').value"
+          [label]="modulePath + ':model.mandate' | i18next" [control]="form.get('mandate')">
+        </ui-input>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.photo').value">
+        <ui-input fxFlex (change)="changeImage($event)" [label]="modulePath + ':model.entity.photo_url'| i18next"
+          type="file" accept="image/png, image/jpeg"
+          [fileName]="form.get('entity.photo_filename').value ? form.get('entity.photo_filename').value : form.get('entity.photo_filename').value"
+          [control]="form.get('entity.photo_url')">
+        </ui-input>
+
+        <div fxFlex fxLayoutAlign="left center">
+          <img *ngIf="currentImagePath.thumbnail" [src]="currentImagePath.thumbnail"
+            onerror="this.src='assets/image-placeholder-350x350.png'" height="200px">
+          <img *ngIf="!currentImagePath.thumbnail" [src]="baseFilePath + '/' + form.value.photo_url"
+            onerror="this.src='assets/image-placeholder-350x350.png'" height="200px">
+        </div>
+
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.website_type_id').value">
+        <ui-select fxFlex [label]="modulePath + ':model.website_type' | i18next" [options]="websiteTypeOptions"
+          [control]="form.get('website_type_id')">
+        </ui-select>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.property').value || form.get('institution_type.scholarity').value">
+
+        <ui-input fxFlex *ngIf="form.get('institution_type.property').value"
+          [label]="modulePath + ':model.property' | i18next" [control]="form.get('property')">
+        </ui-input>
+
+
+        <ui-input fxFlex *ngIf="form.get('institution_type.scholarity').value"
+          [label]="modulePath + ':model.scholarity' | i18next" [control]="form.get('scholarity')">
+        </ui-input>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.periodicity_id').value">
+
+        <ui-select fxFlex [label]="modulePath + ':model.periodicity' | i18next" [options]="periodicityOptions"
+          [control]="form.get('periodicity_id')">
+        </ui-select>
+
+        <ui-input fxFlex [label]="modulePath + ':model.periodicity_description' | i18next"
+          [control]="form.get('periodicity_description')"></ui-input>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.social_media').value">
+
+        <ui-select fxFlex [label]="modulePath + ':model.social_media_description' | i18next"
+          [options]="socialMediaOptions" [control]="form.get('social_media_type_id')">
+        </ui-select>
+
+        <ui-input fxFlex *ngIf="form.get('institution_type.social_media').value"
+          [label]="modulePath + ':model.social_media_type_description' | i18next"
+          [control]="form.get('social_media_type_description')"></ui-input>
+      </div>
+
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.social_media').value">
+        <ui-input fxFlex *ngIf="form.get('institution_type.social_media').value"
+          [label]="modulePath + ':model.social_media_institution_description' | i18next"
+          [control]="form.get('social_media_institution_description')"></ui-input>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.social_media').value">
+        <ui-text-area-ckeditor *ngIf="form.get('institution_type.social_media').value" #free_textTextEditor fxFlex
+          [label]="modulePath + ':model.social_media_data_sheet' | i18next" [environment]="environment"
+          [control]="form.get('social_media_data_sheet')" config="">
+        </ui-text-area-ckeditor>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.timetable').value || form.get('institution_type.holidays').value">
+        <ui-text-area-ckeditor *ngIf="form.get('institution_type.timetable').value" #free_textTextEditor fxFlex
+          [label]="modulePath + ':model.timetable' | i18next" [control]="form.get('timetable')"
+          [environment]="environment" config="">
+        </ui-text-area-ckeditor>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.timetable').value || form.get('institution_type.holidays').value">
+        <ui-text-area-ckeditor *ngIf="form.get('institution_type.holidays').value" #free_textTextEditor fxFlex
+          [label]="modulePath + ':model.holidays' | i18next" [control]="form.get('holidays')"
+          [environment]="environment" config="">
+        </ui-text-area-ckeditor>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.valences').value">
+        <div class=" section-container" fxLayout="column" fxFill>
+          <ui-table #table [dataSource]="valencesDS" [checkboxes]="false" [tableColumns]="valencesColumns">
+          </ui-table>
+          <div class="add-table-line" (click)="addTableLine(newValence, valencesFormArray, valencesDS)">
+            {{ 'translation:action.add' | i18next }}
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid"
+        *ngIf="form.get('institution_type.historical_note').value">
+        <ui-text-area-ckeditor [label]="modulePath + ':model.historical_note' | i18next" #free_textTextEditor fxFlex
+          [control]="form.get('historical_note')" [environment]="environment" config="">
+        </ui-text-area-ckeditor>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <h2>{{ modulePath + ':header.address' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex="50" [label]="modulePath + ':model.entity.address' | i18next"
+          [control]="form.get('entity.address')"></ui-input>
+
+        <ui-input fxFlex [label]="modulePath + ':model.entity.door_number' | i18next"
+          [control]="form.get('entity.door_number')"></ui-input>
+
+        <ui-input fxFlex [label]="modulePath + ':model.entity.parish' | i18next" [control]="form.get('entity.parish')">
+        </ui-input>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex [label]="modulePath + ':model.entity.postal_code' | i18next"
+          [control]="form.get('entity.postal_code')"></ui-input>
+        <ui-input fxFlex [label]="modulePath + ':model.entity.place' | i18next" [control]="form.get('entity.place')">
+        </ui-input>
+        <ui-input fxFlex [label]="modulePath + ':model.entity.county' | i18next" [control]="form.get('entity.county')">
+        </ui-input>
+        <ui-input fxFlex [label]="modulePath + ':model.entity.district' | i18next"
+          [control]="form.get('entity.district')"></ui-input>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+
+        <ui-input fxFlex="50" [readonly]="true" [required]="true"
+          [label]="modulePath + ':model.entity.country_description' | i18next"
+          [control]="form.get('entity.country_description')"
+          [rightTemplate]="{ template: countryRightTemplate, context: { inputName: 'country' } }">
+        </ui-input>
+
+        <ui-input fxFlex [label]="modulePath + ':model.entity.latitude' | i18next"
+          [control]="form.get('entity.latitude')"></ui-input>
+
+        <ui-input fxFlex [label]="modulePath + ':model.entity.longitude' | i18next"
+          [control]="form.get('entity.longitude')"></ui-input>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>{{ modulePath + ':header.contacts' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex="33.33" [label]="modulePath + ':model.entity.mobilephone' | i18next"
+          [control]="form.get('entity.mobilephone')"></ui-input>
+
+        <ui-input fxFlex="33.33" [label]="modulePath + ':model.entity.phone' | i18next"
+          [control]="form.get('entity.phone')"></ui-input>
+
+        <ui-input fxFlex="33.33" [label]="modulePath + ':model.entity.fax' | i18next"
+          [control]="form.get('entity.fax')">
+        </ui-input>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex [label]="modulePath + ':model.entity.email' | i18next" [control]="form.get('entity.email')">
+        </ui-input>
+
+        <ui-input fxFlex [label]="modulePath + ':model.entity.url' | i18next" [control]="form.get('entity.url')">
+        </ui-input>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-checkbox fxFlex class="margin-checkbox"
+          [label]="modulePath + ':model.entity.newsletter_subscriptor' | i18next"
+          [control]="form.get('entity.newsletter_subscriptor')"></ui-checkbox>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>{{ modulePath + ':header.other_informations' | i18next }}</h2>
+  <div fxLayout="row">
+    <div class="section-container" fxLayout="column" fxFill>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+        <ui-input fxFlex [label]="modulePath + ':model.observations' | i18next" [control]="form.get('observations')">
+        </ui-input>
+      </div>
+    </div>
+  </div>
+</section>

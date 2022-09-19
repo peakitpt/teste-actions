@@ -1,0 +1,25 @@
+{
+    "message": {
+        "selected": "{{ count }} selected",
+        "selected_plural": "{{ count }} selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Function \"<strong>{{ name }} [{{ appointment_type_description }}]</strong>\"?",
+        "delete_success": "Function successfully deleted!",
+        "save_success": "Function successfully saved!"
+    },
+    "model": {
+        "validated": "Validated",
+        "abbreviated_name": "Short Name",
+        "locale": "Language",
+        "appointment_type_description": "Type",
+        "name": "Name"
+    },
+    "action": {
+        "delete": "Delete Function?",
+        "edit": "Edit Function",
+        "new": "New Function"
+    },
+    "module": {
+        "name_many": "Functions",
+        "name_singular": "Function"
+    }
+}

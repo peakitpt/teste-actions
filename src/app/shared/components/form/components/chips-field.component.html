@@ -1,0 +1,8 @@
+<ui-chips-dynamic
+  [data]="hashtagsList"
+  [inputPlaceholder]="label | i18next"
+  [editableData]="!readonly"
+  [control]="form.get(name)"
+  (onDataChange)="onDataChange($event)"
+  >
+</ui-chips-dynamic>

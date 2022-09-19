@@ -1,0 +1,37 @@
+{
+  "module": {
+    "name_singular": "Emolumento",
+    "name_many": "Emolumentos"
+  },
+  "action": {
+    "add": "Adicionar Emolumento",
+    "new": "Novo Emolumento",
+    "edit": "Editar Emolumento"
+  },
+  "message": {
+    "save_success": "Emolumento guardado com sucesso!",
+    "delete_success": "Emolumento apagado com sucesso!",
+    "delete_success_plural": "Emolumentos apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Emolumento com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Emolumentos selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Nome",
+    "description_short": "Descrição curta",
+    "value": "Valor",
+    "currency": "Moeda",
+    "emoluments_type": "Tipo de emolumento",
+    "is_parochial_right": "Direito paroquial",
+    "description": "Descrição longa",
+    "type": "Tipo"
+
+  },
+  "header": {
+    "menu": "Numerador",
+    "sub_menus": "Sub-menus",
+    "emolunment": "Emolumento",
+    "amount": "Montante"
+  }
+}

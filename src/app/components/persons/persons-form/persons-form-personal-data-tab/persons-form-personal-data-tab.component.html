@@ -1,0 +1,136 @@
+<section id="personal-data-section">
+  <h2>{{ modulePath + ':header.personal_data' | i18next }}</h2>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <div fxLayout="row wrap" fxFlex="66.66%" fxLayoutGap="10px grid" fxLayoutAlign="none start">
+      <ui-input fxFlex="100" *ngIf="id" [label]="modulePath + ':model.serie_number' | i18next" [readonly]="true" [control]="form.get('serie_number')"></ui-input>
+      <ui-input fxFlex="30" [label]="modulePath + ':model.title' | i18next" [placeholder]="modulePath + ':placeholder.title' | i18next" [control]="form.get('title')"></ui-input>
+      <ui-input fxFlex="70" [label]="modulePath + ':model.entity.name' | i18next" [required]="true" [control]="form.get('entity.name')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }"></ui-input>
+      <ui-select fxFlex="100" [label]="modulePath + ':model.sex' | i18next" [required]="true" [options]="genderOptions" [control]="form.get('sex')"></ui-select>
+      <ui-datepicker *ngIf="!id" fxFlex="70" [label]="modulePath + ':model.birth_date' | i18next" [control]="form.get('birth_date')" [maxDate]="todayDate" startView="multi-year"></ui-datepicker>
+      <ui-input *ngIf="!id" fxFlex="30" [readonly]="true" [label]="modulePath + ':placeholder.age' | i18next" [control]="ageControl"></ui-input>
+    </div>
+
+    <div fxLayout="column" fxFlex="33.33%" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+      <div fxFlex="100" fxLayoutAlign="center center">
+        <a [href]="currentImage.path ? currentImage.path : sharedModule.getUploadFileLink(environment, form.value.entity.photo_url)" target='_blank'>
+          <img class="photo-img-edit" *ngIf="currentImage.path" [src]="currentImage.path" onerror="this.src='assets/image-placeholder-350x350.png'">
+          <img class="photo-img-edit" *ngIf="!currentImage.path" [src]="sharedModule.getUploadFileLink(environment, form.value.entity.photo_url)" onerror="this.src='assets/image-placeholder-350x350.png'">
+        </a>
+      </div>
+      <ui-input
+        fxFlex
+        type="file" accept="image/png, image/jpeg"
+        [label]="modulePath + ':model.entity.photo_filename'| i18next"
+        [control]="form.get('entity.photo_filename')"
+        [readonly]="true"
+        (change)="changeImage($event)"
+        [fileName]="form.get('entity.photo_filename').value?.name ? form.get('entity.photo_filename').value.name : form.get('entity.photo_filename').value">
+      </ui-input>
+    </div>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid" *ngIf="id">
+    <ui-datepicker fxFlex="40" [label]="modulePath + ':model.birth_date' | i18next" [control]="form.get('birth_date')" [maxDate]="todayDate" startView="multi-year"></ui-datepicker>
+    <ui-input fxFlex="20" [readonly]="true" [label]="modulePath + ':placeholder.age' | i18next" [control]="ageControl"></ui-input>
+    <ui-input fxFlex="40" [readonly]="true" [label]="modulePath + ':model.entity_birth_place_description' | i18next" [control]="form.get('entity_birth_place_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: countriesRightTemplate, context: { inputName: 'entity_birth_place' } }"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input *ngIf="!id" [readonly]="true" fxFlex [label]="modulePath + ':model.entity_birth_place_description' | i18next" [control]="form.get('entity_birth_place_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: countriesRightTemplate, context: { inputName: 'entity_birth_place' } }"></ui-input>
+    <ui-select fxFlex [label]="modulePath + ':model.entity.civil_status_id' | i18next" [options]="civilStatusesOptions" [control]="form.get('entity.civil_status_id')"></ui-select>
+    <ui-select fxFlex [label]="modulePath + ':model.qualifications_id' | i18next" [options]="qualificationsOptions" [control]="form.get('qualifications_id')"></ui-select>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity.entity_birth_chapelry_description' | i18next" [control]="form.get('entity.entity_birth_chapelry_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: chapelriesRightTemplate, context: { inputName: 'entity.entity_birth_chapelry' } }"></ui-input>
+    <ui-input fxFlex *ngIf="!form.get('entity.entity_birth_chapelry_description').value" [label]="modulePath + ':model.entity.entity_birth_chapelry_free_text' | i18next" [control]="form.get('entity.entity_birth_chapelry_free_text')"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.birth_place_parish' | i18next" [control]="form.get('birth_place_parish')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.birth_place_county' | i18next" [control]="form.get('birth_place_county')"></ui-input>
+  </div>
+</section>
+
+<section id="address-section">
+  <h2>{{ modulePath + ':header.address' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity.residence_chapelry_description' | i18next" [control]="form.get('entity.residence_chapelry_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: chapelriesRightTemplate, context: { inputName: 'entity.residence_chapelry' } }"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="70" [label]="modulePath + ':model.entity.address' | i18next" [control]="form.get('entity.address')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'home' } }"></ui-input>
+    <ui-input fxFlex="30" [label]="modulePath + ':model.entity.door_number' | i18next" [control]="form.get('entity.door_number')"></ui-input>
+    <ui-input fxFlex="25" [label]="modulePath + ':model.entity.postal_code' | i18next" [control]="form.get('entity.postal_code')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.place' | i18next" [control]="form.get('entity.place')"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.county' | i18next" [control]="form.get('entity.county')"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.entity.district' | i18next" [control]="form.get('entity.district')"></ui-input>
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity.country_description' | i18next" [control]="form.get('entity.country_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: countriesRightTemplate, context: { inputName: 'entity.country' } }"></ui-input>
+    <ui-textarea fxFlex="100" rows="2" [label]="modulePath + ':model.previous_address' | i18next" [control]="form.get('previous_address')"></ui-textarea>
+  </div>
+</section>
+
+<section id="contacts-section">
+  <h2>{{ modulePath + ':header.contacts' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.entity.mobilephone' | i18next" [control]="form.get('entity.mobilephone')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'smartphone' } }"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.phone' | i18next" [control]="form.get('entity.phone')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'phone' } }"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.fax' | i18next" [control]="form.get('entity.fax')"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex type="email" [errorMessage]="sharedModule.patternErrorMessage(form, 'entity.email')" [label]="modulePath + ':model.entity.email' | i18next" [control]="form.get('entity.email')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'email' } }"></ui-input>
+    <ui-input fxFlex [label]="modulePath + ':model.entity.url' | i18next" [control]="form.get('entity.url')"></ui-input>
+  </div>
+</section>
+
+<section id="identification-docs-section">
+  <h2>{{ modulePath + ':header.identification_docs' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex [label]="modulePath + ':model.entity.taxpayer' | i18next" [control]="form.get('entity.taxpayer')"></ui-input>
+    <ui-select fxFlex [label]="modulePath + ':model.ident_document_type' | i18next" [options]="documentTypesOptions" [control]="form.get('ident_document_type')"></ui-select>
+    <ui-input fxFlex [label]="modulePath + ':model.ident_document_number' | i18next" [control]="form.get('ident_document_number')"></ui-input>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-datepicker fxFlex [label]="modulePath + ':model.ident_document_emission_date' | i18next" [control]="form.get('ident_document_emission_date')" [maxDate]="todayDate" startView="multi-year"></ui-datepicker>
+    <ui-input fxFlex [label]="modulePath + ':model.ident_document_emitted_by' | i18next" [control]="form.get('ident_document_emitted_by')"></ui-input>
+    <ui-datepicker fxFlex [label]="modulePath + ':model.ident_document_validity_date' | i18next" [control]="form.get('ident_document_validity_date')" startView="multi-year"></ui-datepicker>
+  </div>
+</section>
+
+<section id="family-section">
+  <h2>{{ modulePath + ':header.family' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-select [fxFlex]="hideWeddingFields() ? 100 : 30" [label]="modulePath + ':model.maritial_status' | i18next" [options]="weddingTypesOptions" [control]="form.get('maritial_status')"></ui-select>
+    <ng-container *ngIf="!hideWeddingFields()">
+      <ui-input fxFlex="70" [readonly]="true" [label]="modulePath + ':model.entity_spouse_description' | i18next" [control]="form.get('entity_spouse_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }" [rightTemplate]="{ template: personsRightTemplate, context: { inputName: 'entity_spouse' } }"></ui-input>
+      <ui-datepicker fxFlex="30" [label]="modulePath + ':model.wedding_date' | i18next" [control]="form.get('wedding_date')" startView="multi-year"></ui-datepicker>
+      <ui-input fxFlex="70" [readonly]="true" [label]="modulePath + ':model.entity_wedding_location_description' | i18next" [control]="form.get('entity_wedding_location_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'entity_wedding_location' } }"></ui-input>
+    </ng-container>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <div ngClass.gt-xs="center-checkbox">
+      <ui-checkbox [label]="modulePath + ':model.is_adopted' | i18next" [control]="form.get('is_adopted')"></ui-checkbox>
+    </div>
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity_father_description' | i18next" [control]="form.get('entity_father_description')"
+      [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }"
+      [rightTemplate]="{ template: personsRightTemplate, context: { modalTitle: (modulePath + ':module.name_many' | i18next) + ' (' + ('translation:gender.male_plural' | i18next) + ')', inputName: 'entity_father', modalParams: { sex: 'true' } } }"></ui-input>
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity_mother_description' | i18next" [control]="form.get('entity_mother_description')"
+      [leftTemplate]="{ template: leftTemplate, context: { icon: 'person' } }"
+      [rightTemplate]="{ template: personsRightTemplate, context: { modalTitle: (modulePath + ':module.name_many' | i18next) + ' (' + ('translation:gender.female_plural' | i18next) + ')', inputName: 'entity_mother', modalParams: { sex: 'false' } } }"></ui-input>
+  </div>
+</section>
+
+<section id="other-info-section">
+  <h2>{{ modulePath + ':header.other_info' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex fxHide.lt-sm="true" rows="3" [label]="modulePath + ':model.comments' | i18next" [control]="form.get('comments')"></ui-textarea>
+    <ui-textarea fxFlex fxHide.gt-xs="true" [label]="modulePath + ':model.comments' | i18next" [control]="form.get('comments')"></ui-textarea>
+  </div>
+</section>
+

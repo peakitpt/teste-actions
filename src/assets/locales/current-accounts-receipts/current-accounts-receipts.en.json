@@ -1,0 +1,41 @@
+{
+    "module": {
+        "name_singular": "Current Account Receipt",
+        "name_many": "Current Accounts Receipts"
+    },
+    "message": {
+        "total": "Total",
+        "selected": "{{ count }} Selected",
+        "selected_plural": "{{ count }} Selected",
+        "delete_are_you_sure": "Are you sure you want to delete the Current Account Receipt with the name \"<strong>{{name }}</strong>\"?",
+        "delete_are_you_sure_plural": "Are you sure you want to delete the selected <strong>{{ count }}</strong> Current Accounts?",
+        "delete_success": "Current Account Receipt successfully deleted!",
+        "delete_success_plural": "Current Accounts successfully deleted!",
+        "save_success": "Current Account Receipt successfully saved!"
+    },
+    "model": {
+        "observations": "Observations",
+        "receipt_date": "Date of receipt",
+        "entity_description": "Entity",
+        "current_accounts_lines": {
+            "pending_amount": "Value Pendant",
+            "received_amount": "Value Received",
+            "total_amount": "Value",
+            "document_date": "Date",
+            "document_serie_number": "Document"
+        },
+        "treasury_location": "Cash Offices",
+        "payment_type_description": "Payment Type",
+        "total_amount": "Total",
+        "serie_number": "Receipt No."
+    },
+    "header": {
+        "resume": "Resume"
+    },
+    "action": {
+        "confirm_delete": "Remove Receipt from Current Account Receipt?",
+        "edit": "Edit Current Account Receipt",
+        "new": "New Current Account Receipt",
+        "add": "Add Current Account Receipt"
+    }
+}

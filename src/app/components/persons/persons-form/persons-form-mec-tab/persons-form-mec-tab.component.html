@@ -1,0 +1,23 @@
+<section id="extraordinary-minister-of-communion-section">
+  <h2>{{ modulePath + ':header.mec_extraordinary_minister_of_communion' | i18next }}</h2>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-input fxFlex="50" [label]="modulePath + ':model.entity.entity_mec.mec_number' | i18next" [control]="form.get('entity.entity_mec.mec_number')"></ui-input>
+    <ui-input fxFlex="50" [readonly]="true" [label]="modulePath + ':model.entity.entity_mec.magnetic_number' | i18next" [control]="form.get('entity.entity_mec.magnetic_number')"></ui-input>
+    <ui-datepicker startView="multi-year" fxFlex="25" [label]="modulePath + ':model.entity.entity_mec.institution_date' | i18next" [control]="form.get('entity.entity_mec.institution_date')" [maxDate]="todayDate"></ui-datepicker>
+    <ui-input fxFlex [readonly]="true" [label]="modulePath + ':model.entity.entity_mec.institution_center_worshipplace_description' | i18next" [control]="form.get('entity.entity_mec.institution_center_worshipplace_description')" [leftTemplate]="{ template: leftTemplate, context: { icon: 'place' } }" [rightTemplate]="{ template: worshipplacesRightTemplate, context: { inputName: 'entity.entity_mec.institution_center_worshipplace' } }"></ui-input>
+  </div>
+</section>
+
+<section id="mec-renewals-section">
+  <h2>{{ modulePath + ':header.mec_renewals' | i18next }}</h2>
+  <ui-table
+      #mecRenewalsTable
+      [checkboxes]="false"
+      [dataSource]="mecRenewalsDS"
+      [tableColumns]="mecRenewalsColumns"
+      stickyHeader="true">
+    </ui-table>
+    <div class="add-table-line" (click)="addTableLine(newMecLine, mecRenewalsFormArray, mecRenewalsDS)">
+      {{ 'translation:action.add' | i18next }}
+    </div>
+</section>

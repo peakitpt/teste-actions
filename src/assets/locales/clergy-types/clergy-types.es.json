@@ -1,0 +1,31 @@
+{
+    "action": {
+        "add": "Añadir Tipo de Clérigo",
+        "new": "Nuevo Tipo de Clérigo",
+        "edit": "Editar Tipo de Clérigo",
+        "delete": "Eliminar el Tipo de Clero"
+    },
+    "message": {
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "delete_are_you_sure": "¿Está seguro de que quiere eliminar el tipo de Clérigos con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Está seguro de que quiere eliminar los <strong>{{ count }}</strong> Tipos de Clérigos seleccionados?",
+        "delete_success": "¡Tipo de Clérigo eliminado con éxito!",
+        "delete_success_plural": "¡Tipos de Clérigos eliminados con éxito!",
+        "save_success": "¡Tipo de clero salvado con éxito!"
+    },
+    "model": {
+        "types": {
+            "bishops": "Obispos",
+            "deacons": "Diáconos",
+            "presbiterals": "Presbíteros"
+        },
+        "group_id": "Grupo",
+        "abbreviated_name": "Nombre abreviado",
+        "name": "Nombre"
+    },
+    "module": {
+        "name_singular": "Tipo de Clérigo",
+        "name_many": "Tipos de Clérigos"
+    }
+}

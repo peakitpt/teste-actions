@@ -1,0 +1,64 @@
+{
+  "module": {
+    "name_singular": "Utilizador",
+    "name_many": "Utilizadores"
+  },
+  "action": {
+    "delete": "Eliminar Utilizador",
+    "new": "Novo Utilizador",
+    "edit": "Editar Utilizador"
+  },
+  "message": {
+    "save_success": "Utilizador guardado com sucesso!",
+    "delete_success": "Utilizador apagado com sucesso!",
+    "delete_success_plural": "Utilizadores apagados com sucesso!",
+    "delete_are_you_sure": "Tem a certeza que pretende eliminar o Utilizador com o nome \"<strong>{{ name }}</strong>\"?",
+    "delete_are_you_sure_plural": "Tem a certeza que pretende eliminar os <strong>{{ count }}</strong> Utilizadores selecionados?",
+    "selected": "{{ count }} selecionado",
+    "selected_plural": "{{ count }} selecionados"
+  },
+  "model": {
+    "name": "Nome",
+    "active": "Ativo",
+    "entity_type": "Tipo de entidade",
+    "email": "E-mail",
+    "expiration_date": "Expira em",
+    "current_sign_in_at": "Último acesso",
+    "approved_at": "Aprovado a",
+    "is_subscription_admin": "Admin da Subscrição",
+    "locale": "Língua",
+    "accounting_attributes": "Contabilidade",
+    "admin_attributes": "Admin",
+    "archive_attributes": "Arquivos",
+    "catholic_directory_attributes": "Anuários",
+    "cms_attributes": "CMS",
+    "dash_calendar_attributes": "Calendários",
+    "dms_attributes": "DMS",
+    "newsletter_attributes": "Newsletters",
+    "reporting_attributes": "Relatórios",
+    "sacraments_attributes": "Sacramentos",
+    "settings_attributes": "Definições",
+    "subscription_admin_attributes": "Admin da Subscrição",
+    "treasury_attributes": "Tesouraria",
+    "accruals_attributes": "Provisões",
+    "catechism_attributes": "Catequese",
+    "places_attributes": "Locais",
+    "processes_attributes": "Processos",
+    "permission": "Permissão",
+    "access_only_to_own_catechisms": "Acesso apenas aos grupos de catequese onde é catequista"
+  },
+  "header": {
+    "activation": "Ativação",
+    "subscription-user": "Utilizador de Subscrição",
+    "attributes": "Atributos",
+    "view_description": "Vista",
+    "can_read": "Ler",
+    "can_create": "Criar",
+    "can_edit": "Editar",
+    "can_delete": "Apagar"
+  },
+  "tabs": {
+    "subscription_users": "Utilizadores da Subscrição",
+    "permissions_modules": "Permissões a módulos"
+  }
+}

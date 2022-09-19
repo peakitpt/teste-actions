@@ -1,0 +1,38 @@
+{
+    "module": {
+        "name_singular": "Menú",
+        "name_many": "Menús"
+    },
+    "action": {
+        "add": "Añadir Menú",
+        "new": "Nuevo Menú",
+        "edit": "Editar Menú"
+    },
+    "message": {
+        "save_success": "¡Menú guardado con éxito!",
+        "delete_success": "¡Menú eliminado con éxito!",
+        "delete_success_plural": "¡Menús eliminados con éxito!",
+        "delete_are_you_sure": "¿Estás seguro de que quiere eliminar el Menú con el nombre \"<strong>{{ name }}</strong>\"?",
+        "delete_are_you_sure_plural": "¿Estás seguro de que quiere eliminar los <strong>{{ count }}</strong> Menús seleccionados?",
+        "selected": "{{ count }} seleccionado",
+        "selected_plural": "{{ count }} seleccionados",
+        "no_subscription_layouts": "Esta suscripción no tiene diseños. Configúrelos en la \"Configuración del sitio web\" para generarlos."
+    },
+    "model": {
+        "order": "Orden",
+        "title": "Título",
+        "section_description": "Sección",
+        "content_description": "Contenido",
+        "template_description": "Diseño",
+        "layout": "Diseño",
+        "block_remove": "Eliminación bloqueada",
+        "content": "Contenido",
+        "emenu_type": "Tipo",
+        "url": "Enlace",
+        "section": "Sección"
+    },
+    "header": {
+        "sub_menus": "Sub-menús",
+        "menu": "Menú"
+    }
+}

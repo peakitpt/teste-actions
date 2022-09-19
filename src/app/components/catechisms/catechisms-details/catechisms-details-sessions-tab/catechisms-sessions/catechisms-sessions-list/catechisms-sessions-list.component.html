@@ -1,0 +1,82 @@
+<ng-container *ngIf="modelList$ | async as modelList">
+  <router-outlet></router-outlet>
+  <section id="sessions-section">
+    <div *ngIf="!finalized" [style.margin-bottom]="'15px'" fxLayout="row" fxLayoutAlign="start none">
+      <ui-button type="flat" icon="add" [label]="modulePath + ':action.add_session' | i18next"
+        color="primary" (onClickEvent)="menuClick('new')">
+      </ui-button>
+    </div>
+    <ui-table
+      #table
+      [checkboxes]="false"
+      [dataSource]="modelList.results"
+      [tableColumns]="tableColumns"
+      stickyHeader="true"
+      (clickRowEvent)="menuClick('details', $event)"
+      (columnFilterEvent)="columnFilterEvent($event)"
+      (columnOrdinationEvent)="columnOrdinationEvent($event)">
+    </ui-table>
+
+    <kyr-table-pagination>
+      <ui-paginator
+        [length]="modelList.total"
+        [pageIndex]="modelList.page - 1"
+        [pageSize]="limit"
+        (onChangeEvent)="paginationChangeEvent($event)"
+      ></ui-paginator>
+      <ui-menu
+        type="icons"
+        [model]="pagerMenu"
+        xPosition="before"
+        (sendValue)="menuClick($event)"
+      ></ui-menu>
+    </kyr-table-pagination>
+  </section>
+</ng-container>
+
+<!-- TEMPLATES START -->
+<ng-template #dateTemplate let-data="data">
+  {{ data.date | date:('translation:format.date' | i18next) }}
+</ng-template>
+
+<ng-template #buttonsTemplate let-data="data">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ui-button [title]="'translation:action.edit' | i18next" type="icon" icon="edit" (onClickEvent)="menuClick('edit', data)"></ui-button>
+    <ui-menu
+      [hoverTitle]="'translation:action.more' | i18next"
+      type="icons"
+      [model]="headerOptionsMenu"
+      (sendValue)="menuClick($event, data)"
+    >
+    </ui-menu>
+  </div>
+</ng-template>
+<!-- TEMPLATES END -->
+
+
+<!-- SESSIONS START -->
+<kyr-catechisms-sessions-form #new *ngIf="isSessionNewOpen && !finalized"
+  [catechismId]="catechismId"
+  [finalized]="finalized"
+  (emitModalClose)="closeSessionNewModal($event)">
+</kyr-catechisms-sessions-form>
+
+<kyr-catechisms-sessions-form #edit *ngIf="isSessionEditOpen && !finalized"
+  [catechismId]="catechismId"
+  [finalized]="finalized"
+  [sessionId]="sessionId"
+  [duplicateMode]="duplicateMode"
+  (emitModalClose)="closeSessionFormModal($event)">
+</kyr-catechisms-sessions-form>
+
+<kyr-catechisms-sessions-details *ngIf="sessionId && isSessionDetailsOpen"
+  [catechismId]="catechismId"
+  [sessionId]="sessionId"
+  [finalized]="finalized"
+  (emitModalClose)="closeSessionDetailsModal($event)">
+</kyr-catechisms-sessions-details>
+
+<kyr-catechisms-sessions-delete *ngIf="isSessionDeleteOpen"
+  (emitModalClose)="closeSessionDeleteModal($event)">
+</kyr-catechisms-sessions-delete>
+<!-- SESSIONS END -->

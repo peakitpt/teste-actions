@@ -1,0 +1,144 @@
+<ui-dialog #modal
+  [inputHeaderTemplate]="header"
+  [inputBodyTemplate]="body"
+  (modalClosed)="modalClose()"
+>
+</ui-dialog>
+
+<ng-template #header>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 *ngIf="!sharedModule.isSmallScreen(); else smallHeader">
+      {{ translationPath + ':module.name_singular' | i18next }}<ng-container *ngIf="model$ | async as model">: {{ model.entity.name }}</ng-container>
+    </h1>
+    <ng-template #smallHeader>
+      {{ translationPath + ':module.name_singular' | i18next }}
+    </ng-template>
+    <div fxLayout="row" class="header-buttons">
+      <ui-button [title]="'translation:action.close' | i18next" type='icon' icon="close" (onClickEvent)="modal.close()"></ui-button>
+    </div>
+  </div>
+  <ui-divider></ui-divider>
+</ng-template>
+
+<ng-template #body>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="model$ | async as model; else loadingTemplate">
+    <kyr-details [fields]="detailsFields"></kyr-details>
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <ui-progress-spinner></ui-progress-spinner>
+    {{ 'translation:message.loading' | i18next }}
+  </div>
+</ng-template>
+
+<ng-template #reportsClickableTemplate>
+  <kyr-reports-button></kyr-reports-button>
+</ng-template>
+
+<!-- TABS -->
+
+<ng-template #leftTemplate let-icon="icon">
+  <div style="margin-right: 2px;">
+    <ui-icon class="input-icon" [icon]="icon"></ui-icon>
+  </div>
+</ng-template>
+
+<!-- TEMPLATES START -->
+<ng-template #tableLineTemplate let-index="index" let-column="column" let-data="data">
+  <ng-container [ngSwitch]="column.type">
+    <ng-container *ngSwitchCase="'date'">{{ data[column.id] | date:('translation:format.date' | i18next) }}</ng-container>
+    <ng-container *ngSwitchDefault>
+      <ng-container *ngIf="column.url">
+        <a [href]="column.url(data)" target="_blank">{{ data[column.id] }}</a>
+      </ng-container>
+      <ng-container *ngIf="!column.url">
+        {{ data[column.id] }}
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #documentsDateTemplate let-data="data">
+  {{ data.document_date | date:('translation:format.date' | i18next) }}
+</ng-template>
+
+<ng-template #documentsTotalTemplate let-data="data">
+  {{ (data.total_amount | number:'.2-2') + ' ' + data.currency }}
+</ng-template>
+
+<ng-template #documentsPendingTemplate let-data="data">
+  {{ (data.pending_amount | number:'.2-2') + ' ' + data.currency }}
+</ng-template>
+
+<ng-template #total_amountTotalTemplate let-data="data">
+  {{ (total_amountTotal | number:'.2-2') + ' ' + total_amountCurrency }}
+</ng-template>
+
+<ng-template #pending_amountTotalTemplate let-data="data">
+  {{ (pending_amountTotal | number:'.2-2') + ' ' + pending_amountCurrency }}
+</ng-template>
+
+
+<ng-template #curiatotal_amountTotalTemplate let-data="data">
+  {{ (curia_total_amountTotal | number:'.2-2') + ' ' + curia_total_amountCurrency }}
+</ng-template>
+
+<ng-template #curiapending_amountTotalTemplate let-data="data">
+  {{ (curia_pending_amountTotal | number:'.2-2') + ' ' + curia_pending_amountCurrency }}
+</ng-template>
+<!-- TEMPLATES END -->
+
+
+<!-- TOGGLE SUBSCRIPTION MODAL -->
+<ui-dialog #modalToggle
+  [inputHeaderTemplate]="headerToggle"
+  [inputBodyTemplate]="bodyToggle"
+  [inputFooterTemplate]="footerToggle"
+
+  [headerBottomMargin]="false"
+  [width]="600"
+>
+</ui-dialog>
+<!-- (modalClosed)="modalClose()" -->
+<ng-template #headerToggle let-data="data">
+  <div fxFill fxLayout="row" fxLayoutAlign="space-between stretch">
+    <h1>{{ translationPath + ':action.' + (data.active ? 'group_toggle_subscription_deactivate' : 'group_toggle_subscription_activate') | i18next }}</h1>
+    <div class="header-buttons" fxLayout="row">
+      <ui-button [title]="'translation:action.close' | i18next" type="icon" icon="close" (onClickEvent)="modalToggle.close()"></ui-button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #bodyToggle let-data="data">
+  <div style="margin: 20px 0">
+    <div class="body-content" [innerHTML]="modulePath + ':message.' + (data.active ? 'group_toggle_are_you_sure_deactivate' : 'group_toggle_are_you_sure_activate') | i18next: { groupName: data.groupName }"></div>
+  </div>
+</ng-template>
+
+<ng-template #footerToggle let-data="data">
+  <ng-container>
+    <div class="footer-buttons" fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <ui-button type="flat" [label]="'translation:action.cancel' | i18next" (onClickEvent)="modalToggle.close()"></ui-button>
+      <ui-button type="flat" [label]="modulePath + ':action.' + (data.active ? 'group_deactivate' : 'group_activate') | i18next" color="accent" (onClickEvent)="toggleSubscription(data)"></ui-button>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #changesRequestTemplate>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px grid">
+    <ui-textarea fxFlex
+      rows="3"
+      [label]="translationPath + ':model.changes_request' | i18next"
+      [control]="changesRequestFormControl">
+    </ui-textarea>
+  </div>
+  <ui-button
+    type="flat" icon="save"
+    [label]="translationPath + ':action.request_change' | i18next" color="accent"
+    (onClickEvent)="onRequestChangeClick()">
+  </ui-button>
+</ng-template>
+<!-- END TOGGLE SUBSCRIPTION MODAL -->
